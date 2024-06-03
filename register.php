@@ -7,9 +7,10 @@
 		$fullname = $_POST['fullname'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
+		$defaultProfile = "profile/default.jpg";
 		$status = "pending";
 
-		$insertIntoDatabase = "INSERT INTO accounts (fullname, username, password, status) VALUES ('$fullname', '$username', '$password', '$status')";
+		$insertIntoDatabase = "INSERT INTO accounts (profile,fullname, username, password, status) VALUES ('$defaultProfile','$fullname', '$username', '$password', '$status')";
 		if (mysqli_query($conn, $insertIntoDatabase)) {
 			$successModal = true;
 		}
