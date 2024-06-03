@@ -95,14 +95,14 @@
 				<li class="head-responsive-right pull-right">
 					<div class="header-top-right">
 						<ul>
-							<li class="header-top-contact">
+							<li class="header-top-contact" style = "color: red;">
 								Landing Page
 							</li>
 							<li class="header-top-contact">
-								<a href="#">sign in</a>
+								<a href="loadToLogin.php">sign in</a>
 							</li>
 							<li class="header-top-contact">
-								<a href="#">register</a>
+								<a href="loadToRegister.php">register</a>
 							</li>
 						</ul>
 					</div>
@@ -306,7 +306,7 @@ Discover global sports events showcasing new venues, thrilling competitions, div
 						<!-- start sa usa ka box -->
 								<?php
 
-										$allEvents = "SELECT * FROM events";
+										$allEvents = "SELECT * FROM matches";
 
 										$result = mysqli_query($conn,$allEvents);
 										while($test = mysqli_fetch_assoc($result)){
