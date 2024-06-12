@@ -1,4 +1,5 @@
 <?php
+session_start();
 	include('connection/conn.php');
 
 	if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -18,9 +19,10 @@
 		
 		while ($test = mysqli_fetch_assoc($result)) {
 			if ($username == $test['username'] && $password == $test['password']) {
+				$_SESSION['id'] = $test['id'];
 				$modalForNoResult = false; // Found matching account, so set to false
-				header('Location: loadToDashboard.php');
-				exit(); // Terminate script after redirection
+				header('Location: goOnline.php');
+				
 			}
 		}
 	}

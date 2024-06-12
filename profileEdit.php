@@ -1,20 +1,56 @@
 <?php
-    include('connection/conn.php');
+session_start();
+include('connection/conn.php');
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = $_SESSION['id'];
+    $fullname = mysqli_real_escape_string($conn, $_POST['fullname']);
+    $age = (int) $_POST['age'];
+    $gmail = mysqli_real_escape_string($conn, $_POST['gmail']);
+
+    // Handle the file upload
+    if (isset($_FILES['profileFile']) && $_FILES['profileFile']['error'] == UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['profileFile']['tmp_name'];
+        $fileName = $_FILES['profileFile']['name'];
+        $fileSize = $_FILES['profileFile']['size'];
+        $fileType = $_FILES['profileFile']['type'];
+        $fileNameCmps = explode(".", $fileName);
+        $fileExtension = strtolower(end($fileNameCmps));
+
+        // Allowed file extensions
+        $allowedfileExtensions = ['jpg', 'png', 'jpeg', 'gif','webp'];
+        if (in_array($fileExtension, $allowedfileExtensions)) {
+            // Specify the path where the file is going to be stored
+            $uploadFileDir = 'profile/';
+            $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+            $dest_path = $uploadFileDir . $newFileName;
+
+            // Move the file to the desired directory
+            if (move_uploaded_file($fileTmpPath, $dest_path)) {
+                // File successfully uploaded, update database
+                $updateProfileQuery = "UPDATE accounts SET profile = '$dest_path' WHERE id = $id";
+                mysqli_query($conn, $updateProfileQuery);
+            } else {
+                echo 'There was some error moving the file to the upload directory.';
+            }
+        } else {
+            echo 'Upload failed. Allowed file types: ' . implode(',', $allowedfileExtensions);
+        }
+    } else {
+        echo "Profile photo not uploaded!";
+    }
+
+    // Update other fields
+    $updateInfoQuery = "UPDATE accounts SET fullname = '$fullname', age = $age, gmail = '$gmail' WHERE id = $id";
+    if (mysqli_query($conn, $updateInfoQuery)) {
+      
+    } else {
+        echo "Error updating record: " . mysqli_error($conn);
+    }
+}
 ?>
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.7
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
 
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +60,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="template/AdminTemplate/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="template/AdminTemplate/assets/img/favicon.png">
   <title>
-    Dashbaord
+    Profile
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -54,7 +90,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link  active" href="loadToSuperAdmin.php">
+          <a class="nav-link" href="loadToDashboard.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
@@ -74,12 +110,12 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="loadToProfile.php">
+          <a class="nav-link  active" href="loadToProfile.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>user</title>
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g fill="#000000" transform="translate(4.000000, 2.000000)">
+        <g fill="#FFFFFF" transform="translate(4.000000, 2.000000)">
             <path d="M8,2.5 C9.933,2.5 11.5,4.067 11.5,6 C11.5,7.933 9.933,9.5 8,9.5 C6.067,9.5 4.5,7.933 4.5,6 C4.5,4.067 6.067,2.5 8,2.5 Z M8,0.5 C5.514,0.5 3.5,2.514 3.5,6 C3.5,9.486 5.514,11.5 8,11.5 C10.486,11.5 12.5,9.486 12.5,6 C12.5,2.514 10.486,0.5 8,0.5 Z"></path>
             <path d="M12,14.5 C12.75,14.5 13.5,14.774 14.072,15.286 C14.651,15.804 15,16.554 15,17.5 L1,17.5 C1,16.554 1.349,15.804 1.928,15.286 C2.5,14.774 3.25,14.5 4,14.5 L12,14.5 Z M12,12.5 L4,12.5 C2.533,12.5 0.5,13.434 0.5,17.5 C0.5,18.052 0.948,18.5 1.5,18.5 L14.5,18.5 C15.052,18.5 15.5,18.052 15.5,17.5 C15.5,13.434 13.467,12.5 12,12.5 Z"></path>
         </g>
@@ -87,7 +123,7 @@
 </svg>
 
 
-                <title>office</title>
+              <title>office</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -130,18 +166,17 @@
             <span class="nav-link-text ms-1">Program</span>
           </a>
         </li>
-    
-      
-       
         
-       
         
-    
+     
+       
+       
+       
       
       </ul>
     </div>
     <div class="sidenav-footer mx-3 ">
-     
+   
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
@@ -150,18 +185,21 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Cloud Based Realtime Event</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page"> Dashboard</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Profile</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+        
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-          
+            <div class="input-group">
+             
+            
+            </div>
           </div>
           <ul class="navbar-nav  justify-content-end">
-           
+         
             <li class="nav-item d-flex align-items-center">
-              <a href="goLogout.php" class="nav-link text-body font-weight-bold px-0">
+              <a href="loadToIndex.php" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">Logout</span>
               </a>
@@ -176,7 +214,7 @@
               </a>
             </li>
             <li class="nav-item px-3 d-flex align-items-center">
-              
+             
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -258,190 +296,91 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h6>Profile Information</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                        <!-- start here para sa new content sa profile! -->
+                         <div class="container" style = " padding: 40px; display: flex;">
+
+                            <div class = "section1">
+                                    <div class="profileSection" style = "margin-left: 20px;">
+                                        <img src="<?php 
+
+                                            $id = $_SESSION['id'];
+
+                                            $selectProfileQuery = "SELECT profile FROM accounts WHERE id = $id";
+                                            $getProfile = mysqli_query($conn,$selectProfileQuery);
+
+                                            while($profileRepresent = mysqli_fetch_assoc($getProfile)){
+                                                    echo $profileRepresent['profile'];
+                                            }
+                                            ?>" alt="no image"  id = "profileImage" style = "width: 300px; height: 300px; border-radius: 10px;">
+                                    </div>
+                            </div>
+
+                            <div class = "section2">
+                                        <div class="information" style = "margin-left: 70px; margin-top: 10px;">
+
+                                        <?php 
+
+                                            $idForInformation = $_SESSION['id'];
+
+                                            $selectInfoQuery = "SELECT * FROM accounts WHERE id = $idForInformation";
+                                            $getInfo = mysqli_query($conn,$selectInfoQuery);
+
+                                            while($accountRepresent = mysqli_fetch_assoc($getInfo)){
+
+                                          
+                                                
+                                            
+                                                     
+                                           
+                                            ?>
+
+                                                   <form method="post" action="profileEdit.php" enctype="multipart/form-data">
+                                                        <label style = "color: gray;">Fullname:</label><br>
+                                                            <input type = "text" name = "fullname" value = "<?php echo $accountRepresent['fullname']; ?>" class = "form-control" style = "width: 35vw;">
+                                                            <label style = "color: gray;">Age:</label><br>
+                                                            <input type = "number" name = "age" value = "<?php echo $accountRepresent['age']; ?>" class = "form-control" style = "width: 5vw;">
+                                                            <label style = "color: gray;">Gmail:</label><br>
+                                                            <input type = "text" name = "gmail" value = "<?php echo $accountRepresent['gmail']; ?>" class = "form-control" style = "width: 35vw;">
+
+
+                                                            <input type="file" name = "profileFile" id = "forProfile" hidden onchange="previewImage(event)">
+
+                                                            <div class = "buttons" style = "display: flex">
+                                                                <label for = "forProfile" class = "btn btn-info" style = "font-size: 14px; position:relative; top: 20px; background-color: #4290f5; color: white; padding: 7px; border-radius: 10px;">SELECT PROFILE PHOTO</label>
+                                                                <input type = "submit" value = "CONFIRM EDIT"  class = "btn btn-success" style = "font-size: 14px; position:relative; top: 20px;  left: 20px; background-color: #26ed2d; color: white; padding: 7px; border-radius: 10px;">
+                                                            </div>
+                                                   </form>
+
+                                              <?php
+                                                    }
+                                              ?>
+                                                
+                                        </div>
+                            </div>
+
+                            
+
+                         </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
       
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Events</p>
-                    <h5 class="font-weight-bolder mb-0">
-                    <?php
-
-                            // Get the previous count from the database
-                            $sqlGetPreviousCount = "SELECT last_data FROM percentage WHERE id = 3"; // Assuming id=1 always holds the previous count
-                            $result = mysqli_query($conn, $sqlGetPreviousCount);
-                            $row = mysqli_fetch_assoc($result);
-                            $previousCount = $row['last_data'];
-
-                            // Get the current count from the database
-                            $sqlForPendingAccount = "SELECT COUNT(*) as count FROM events";
-                            $result = mysqli_query($conn, $sqlForPendingAccount);
-                            $row = mysqli_fetch_assoc($result);
-                            $currentCount = $row['count'];
-
-                            // Calculate the increase percentage
-                            if ($previousCount > 0) {
-                                $percentage = (($currentCount - $previousCount) / $previousCount) * 100;
-                            } else {
-                                $percentage = 0; // Handle division by zero
-                            }
-
-                            // Update the previous count in the database
-                            $sqlUpdatePreviousCount = "UPDATE percentage SET last_data = $currentCount WHERE id = 3"; // Assuming id=1 always holds the previous count
-                            mysqli_query($conn, $sqlUpdatePreviousCount);
-
-                            $currentPerccent  = number_format($percentage,2);
-
-
-                            if($previousCount != $currentCount){
-                            $sqlUpdatePercent = "UPDATE percentage SET percent = '$currentPerccent' WHERE id = 3";
-                            mysqli_query($conn,$sqlUpdatePercent);
-                            }
-
-
-                            $sqlGetPercentOfData = "SELECT percent FROM percentage WHERE id = 3";
-                            $resultForGettingTheStatedPercent = mysqli_query($conn,$sqlGetPercentOfData);
-                            while($test = mysqli_fetch_assoc($resultForGettingTheStatedPercent)){
-                                $newDataForPercent = $test['percent'];
-                            }
-
-                            // Display the current count and percentage increase
-                            echo $currentCount . '<span class="text-success text-sm font-weight-bolder">+' . $newDataForPercent . '%</span>';
-
-                            ?>
-                    </h5>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                  <i class="fas fa-calendar text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Matches</p>
-                    <h5 class="font-weight-bolder mb-0">
-                    <?php
-
-                            // Get the previous count from the database
-                            $sqlGetPreviousCount = "SELECT last_data FROM percentage WHERE id = 4"; // Assuming id=1 always holds the previous count
-                            $result = mysqli_query($conn, $sqlGetPreviousCount);
-                            $row = mysqli_fetch_assoc($result);
-                            $previousCount = $row['last_data'];
-
-                            // Get the current count from the database
-                            $sqlForPendingAccount = "SELECT COUNT(*) as count FROM matches";
-                            $result = mysqli_query($conn, $sqlForPendingAccount);
-                            $row = mysqli_fetch_assoc($result);
-                            $currentCount = $row['count'];
-
-                            // Calculate the increase percentage
-                            if ($previousCount > 0) {
-                                $percentage = (($currentCount - $previousCount) / $previousCount) * 100;
-                            } else {
-                                $percentage = 0; // Handle division by zero
-                            }
-
-                            // Update the previous count in the database
-                            $sqlUpdatePreviousCount = "UPDATE percentage SET last_data = $currentCount WHERE id = 4"; // Assuming id=1 always holds the previous count
-                            mysqli_query($conn, $sqlUpdatePreviousCount);
-
-                            $currentPerccent  = number_format($percentage,2);
-
-
-                            if($previousCount != $currentCount){
-                            $sqlUpdatePercent = "UPDATE percentage SET percent = '$currentPerccent' WHERE id = 4";
-                            mysqli_query($conn,$sqlUpdatePercent);
-                            }
-
-
-                            $sqlGetPercentOfData = "SELECT percent FROM percentage WHERE id = 4";
-                            $resultForGettingTheStatedPercent = mysqli_query($conn,$sqlGetPercentOfData);
-                            while($test = mysqli_fetch_assoc($resultForGettingTheStatedPercent)){
-                                $newDataForPercent = $test['percent'];
-                            }
-
-                            // Display the current count and percentage increase
-                            echo $currentCount . '<span class="text-success text-sm font-weight-bolder">+' . $newDataForPercent . '%</span>';
-
-                            ?>
-                    </h5>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                  <i class="fas fa-trophy text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-lg-7 mb-lg-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="d-flex flex-column h-100">
-                    <p class="mb-1 pt-2 text-bold">Cloud-Based Realtime Event</p>
-                    <h5 class="font-weight-bolder"> Dasboard</h5>
-                    <p class="mb-5">Here, we can all observe the percentage increase and understand the level of user interaction, including the number of users involved</p>
-                    <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
-                      Read More
-                      <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
-                  <div class="bg-gradient-primary border-radius-lg h-100">
-                    <img src="template/AdminTemplate/assets/img/shapes/waves-white.svg" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
-                    <div class="position-relative d-flex align-items-center justify-content-center h-100">
-                      <img class="w-100 position-relative z-index-2 pt-4" src="template/AdminTemplate/assets/img/sports.webp" alt="sports">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <div class="card h-100 p-3">
-            <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('template/AdminTemplate/assets/img/ivancik.jpg');">
-              <span class="mask bg-gradient-dark"></span>
-              <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
-                <h5 class="text-white font-weight-bolder mb-4 pt-2">Information!</h5>
-                <p class="text-white">Cloud-Based Dynamic Real-Time Sports Tallying and Data Analytics Management System" key concepts from AI Cloud-Based: Indicating the system will be hosted on a cloud platform, enabling scalability, accessibility, and remote management.</p>
-                <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
-                  Read More
-                  <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-   
-      <div class="row my-4">
-       
-        
       </div>
       <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4">
-             
+              
             </div>
             <div class="col-lg-6">
               <ul class="nav nav-footer justify-content-center justify-content-lg-end">
@@ -527,181 +466,27 @@
     </div>
   </div>
   <!--   Core JS Files   -->
+     <!-- Bootstrap JS and dependencies -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   <script src="template/AdminTemplate/assets/js/core/popper.min.js"></script>
   <script src="template/AdminTemplate/assets/js/core/bootstrap.min.js"></script>
   <script src="template/AdminTemplate/assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="template/AdminTemplate/assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="template/AdminTemplate/assets/js/plugins/chartjs.min.js"></script>
+
   <script>
-    var ctx = document.getElementById("chart-bars").getContext("2d");
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('profileImage');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
 
-    new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: ["pending",""],
-        datasets: [{
-          label: "Sales",
-          tension: 0.4,
-          borderWidth: 0,
-          borderRadius: 4,
-          borderSkipped: false,
-          backgroundColor: "#fff",
-          data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-          maxBarThickness: 6
-        }, ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-            },
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 500,
-              beginAtZero: true,
-              padding: 15,
-              font: {
-                size: 14,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-              color: "#fff"
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false
-            },
-            ticks: {
-              display: false
-            },
-          },
-        },
-      },
-    });
-
-
-    var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-    var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-    gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-    gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-    gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-    var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-    gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-    gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-    new Chart(ctx2, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-            label: "Mobile apps",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#cb0c9f",
-            borderWidth: 3,
-            backgroundColor: gradientStroke1,
-            fill: true,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            maxBarThickness: 6
-
-          },
-          {
-            label: "Websites",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#3A416F",
-            borderWidth: 3,
-            backgroundColor: gradientStroke2,
-            fill: true,
-            data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-            maxBarThickness: 6
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: '#b2b9bf',
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              color: '#b2b9bf',
-              padding: 20,
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
-  </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -714,7 +499,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+  <script src="template/AdminTemplate/assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
 </body>
 
 </html>
