@@ -1,57 +1,14 @@
-
 <?php
 session_start();
-    include('connection/conn.php');
+include('../connection/conn.php');
 
-    $id = $_GET['id'];
+    // echo $_SESSION['GameId'];
+    // echo '      ';
+    // echo $_SESSION['EventId'];
+    // echo '      ';
+    // echo  $_SESSION['GameType'];
+    // echo '      ';
 
-    $_SESSION['teamCount'] = $_GET['teamCount'];
-
-
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-      
-
-        $event_id = $_POST['event_id'];
-        $game_type = $_POST['match_type'];
-
-
-          if($game_type == 'Basketball_Men' || $game_type == 'Basketball_Women'){
-              $pic = 'stored_images/basketball.avif';
-          }else if($game_type == 'Vollayball_Men' || $game_type == 'Vollayball_Women'){
-               $pic = 'stored_images/volleyball.png';
-          }else if($game_type == 'Softball_Men' || $game_type == 'Softball_Women'){
-            $pic = 'stored_images/softball.png';
-          }else if($game_type == 'Runs_Men' || $game_type == 'Runs_Women'){
-            $pic = 'stored_images/runs.png';
-          }else if($game_type == 'Throws_Men' || $game_type == 'Throws_Women'){
-            $pic = 'stored_images/throws.jpg';
-          }else if($game_type == 'Jumps_Men' || $game_type == 'Jumps_Women'){
-            $pic = 'stored_images/jumps.jpg';
-          }else if($game_type == 'MLBB'){
-            $pic = 'stored_images/mobile_legends.jpg';
-          }else if($game_type == 'Badminton_Single_Men' || $game_type == 'Badminton_Double_Men' || $game_type == 'Badminton_Single_Women' || $game_type == 'Badminton_Double_Women'){
-            $pic = 'stored_images/badminton.jpg';
-          }else if($game_type == 'Table_tennis_Single_Men' || $game_type == 'Table_tennis_Double_Men' || $game_type == 'Table_tennis_Single_Women' || $game_type == 'Table_tennis_Double_Women'){
-            $pic = 'stored_images/table_tennis.jpg';
-          }else if($game_type == 'Futsal_Men' || $game_type == 'Futsal_Women'){
-            $pic = 'stored_images/futsal.jpg';
-          }else if($game_type == 'Dance_Sports'){
-            $pic = 'stored_images/dance-sport.png';
-          }else if($game_type == 'Chess'){
-            $pic = 'stored_images/chess.webp';
-          }else if($game_type == 'Archery'){
-            $pic = 'stored_images/archery.png';
-          }
-
-          $sqlForRegisterGame = "INSERT INTO registered_game (event_id,game_type,status,img) VALUES ('$event_id','$game_type','need_information','$pic')";
-          mysqli_query($conn,$sqlForRegisterGame);
-
-          header('Location: loadToCreateProgram.php');
-
-
-
-
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,21 +16,21 @@ session_start();
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="template/AdminTemplate/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="template/AdminTemplate/assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../template/AdminTemplate/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../template/AdminTemplate/assets/img/favicon.png">
   <title>
-    Game Registration
+    Team Information
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
-  <link href="template/AdminTemplate/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="template/AdminTemplate/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="../template/AdminTemplate/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../template/AdminTemplate/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="template/AdminTemplate/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="../template/AdminTemplate/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="template/AdminTemplate/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+  <link id="pagestyle" href="../template/AdminTemplate/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
@@ -84,15 +41,15 @@ session_start();
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html " target="_blank">
-        <img src="template/AdminTemplate/assets/img/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
+        <img src="../template/AdminTemplate/assets/img/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">Menu</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="loadToDashboard.php">
+      <li class="nav-item">
+          <a class="nav-link" href="../loadToDashboard.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
@@ -113,7 +70,7 @@ session_start();
         </li>
 
         <li class="nav-item">
-          <a class="nav-link  " href="loadToProfile.php">
+          <a class="nav-link  " href="../loadToProfile.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>user</title>
@@ -144,7 +101,7 @@ session_start();
         </li>
 
         <li class="nav-item">
-          <a class="nav-link  active" href="loadToCreateProgram.php">
+          <a class="nav-link  active" href="../loadToCreateProgram.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="45px" height="45px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <g fill="none" stroke="#FFFFFF" stroke-width="2">
@@ -190,19 +147,7 @@ session_start();
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Cloud Based Realtime Event</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">
-              <?php
-
-               
-                
-
-                $sqlForHeader = "SELECT event_name FROM events WHERE id = $id";
-                $resultForHeader = mysqli_query($conn,$sqlForHeader);
-
-                while($testForHeader = mysqli_fetch_assoc($resultForHeader)){
-                        echo $testForHeader['event_name'];
-                }
-            ?></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Teams</li>
           </ol>
         
         </nav>
@@ -216,7 +161,7 @@ session_start();
           <ul class="navbar-nav  justify-content-end">
          
             <li class="nav-item d-flex align-items-center">
-              <a href="loadToIndex.php" class="nav-link text-body font-weight-bold px-0">
+              <a href="../loadToIndex.php" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">Logout</span>
               </a>
@@ -316,137 +261,61 @@ session_start();
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Listed Games</h6>
-              
+              <h6>Submit Team Information</h6>
+                <a href="" class = "btn btn-success" style = "margin-left: 30px;">Submit Team Information</a>
             </div>
-            <div class="card-body px-0 pt-0 pb-2">
+            <div class="card-body px-0 pt-0 pb-2" style = "margin-top: -20px;">
               <div class="table-responsive p-0">
                         <!-- start here para sa new content sa profile! -->
-                         <div class="container" style = " padding: 40px;">
-                                <div class = "top">
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style = "margin-top: 5px;">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Game</h1>
-                                           
-                                        </div>
-                                            <form action="addGames.php" method = "post">
-                                                        <div class="modal-body">
-                                                            <label for="program">Program name:</label>
-                                                            <select name="match_type" class = "form-control">
-                                                              <option value="none">None</option>
-                                                                <option value="Basketball_Men">Basketball Men's Category</option>
-                                                                <option value="Basketball_Women">Basketball Women's Category</option>
-                                                                <option value="Vollayball_Men">Volleybal Men's Category</option>
-                                                                <option value="Vollayball_Women">Volleybal Women's Category</option>
-                                                                <option value="Softball_Men">Softball Men's Category</option>
-                                                                <option value="Softball_Women">Softball Women's Category</option>
-                                                                <option value="Runs_Men">Runs Men's Category</option>
-                                                                <option value="Runs_Women">Runs Women's Category</option>
-                                                                <option value="Throws_Men">Throws Men's Category</option>
-                                                                <option value="Throws_Women">Throws Women's Category</option>
-                                                                <option value="Jumps_Men">Jumps Men's Category</option>
-                                                                <option value="Jumps_Women">Jumps Women's Category</option>
-                                                                <option value="MLBB">Mobile Legend</option>
-                                                                <option value="Badminton_Single_Men">Badminton Single Men's Category</option>
-                                                                <option value="Badminton_Double_Men">Badminton Double's Category</option>
-                                                                <option value="Badminton_Single_Women">Badminton Single Women's Category</option>
-                                                                <option value="Badminton_Double_Women">Badminton Double Women's Category</option>
-                                                                <option value="Table_tennis_Single_Men">Table Tennis Single Men's Category</option>
-                                                                <option value="Table_tennis_Double_Men">Table Tennis DoubleMen's Category</option>
-                                                                <option value="Table_tennis_Single_Women">Table Tennis Single Women's Category</option>
-                                                                <option value="Table_tennis_Double_Women">Table Tennis Double Women's Category</option>
-                                                                <option value="Futsal_Men">Futsal_Men</option>
-                                                                <option value="Futsal_Women">Futsal_Women</option>
-                                                                <option value="Dance_Sports">Dance Sports</option>
-                                                                <option value="Chess">Chess</option>
-                                                                <option value="Archery">Archery</option>
+                         <div class="container" style = " padding: 40px; display: flex;">
 
-                                                                
+                          
+                          <!-- <div class = "row"> -->
+                          <?php
 
-                                                              </select>
-                                                              <input type="text" hidden name = "event_id" value = "<?php  echo $_GET['id'];?>">
-                                                        </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <input type="submit" value = "Register" class = "btn btn-success">
-                                                        
-                                                    </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    </div>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Add Game
-                                </button>
-                                </div>
-                                <div class = "content">
-                                    <div class="container-fluid">
-                                            <div class="row" >
-                                                
-                                                  <?php 
+                            // $_SESSION['GameId'] = $gameId;
+                            // $_SESSION['EventId'] = $event_id;
 
-                                                          $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE event_id = $id";
-                                                          $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
+                            $game_ID = $_SESSION['GameId'];
+                            $event_ID = $_SESSION['EventId'];
 
-                                                          while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){
+                              $sqlGetAllDataFromTeam = "SELECT * FROM teams WHERE game_id = '$game_ID' && event_ID = '$event_ID'";
+                              $result = mysqli_query($conn,$sqlGetAllDataFromTeam);
 
-                                                            $gameType = $checkResultForGameAvail['game_type'];
-                                                            $status = $checkResultForGameAvail['status'];
-                                                            $pic = $checkResultForGameAvail['img'];
-                                                            $registerGameId = $checkResultForGameAvail['id'];
-                                                            $eventId = $checkResultForGameAvail['event_id'];
-                                                            $gameStatusNo = 0;
+                                while($testForTeam = mysqli_fetch_assoc($result)){
 
-                                                            $createdTeam = $checkResultForGameAvail['CreatedTeam'];
+                                  $logos = $testForTeam['logo'];
+                                  $teamName = $testForTeam['team_name'];
 
-                                                              if($createdTeam == 0){
-                                                                
-                                                                $gameStatusNo = 0;
-                                                                $PrintStatus = '<h6 style = "color: orange;margin-top: -10px;" >Need Information</h6>';
+                                  if(empty($teamName)){
+                                      $name = "Enter Team Name";
+                                  }else{
+                                    $name =  $teamName;
+                                  }
+                                        echo "
 
-                                                              }else if($status == 'need_information'){
-                                                                $gameStatusNo = 1;
-                                                                  $PrintStatus = '<h6 style = "color: orange;margin-top: -10px;" >Need Information</h6>';
-                                                              }else{
-                                                                $gameStatusNo = 2;
-                                                                  $PrintStatus = '<h6 style = "color: green; margin-top: -5px;" >Game Info</h6>';
-                                                              }
-
-
-
-
-                                                            echo"
-                                                                       
-                                                                            <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                  <a href = '' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
                                                                                     <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
-                                                                                    <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                                    <img src = '$logos' style = 'width: 150px; height: 140px;'>
                                                                                     </div>
 
                                                                                     <div class='information' style = 'margin-top: 20px;'>
 
-                                                                                                <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
-                                                                                                  <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                                <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$name</h6></div>
+                                                                                                  <div class = 'status' style = 'display: flex; justify-content: center;'><p>Click for more info!</p></div>
                                                                                                 
 
                                                                                     </div>
                                                                                     
                                                                             </a>
-                                                                      
-                                                                    ";
-                                                          }
+                                        
+                                          ";
+                                }
 
-                                                  ?>
 
-                                                    
-                                            </div>
-                                    </div>
-                                </div>
-                           
 
-                           
+                                ?>  
+                          <!-- </div> -->
 
                             
 
@@ -554,10 +423,10 @@ session_start();
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <script src="template/AdminTemplate/assets/js/core/popper.min.js"></script>
-  <script src="template/AdminTemplate/assets/js/core/bootstrap.min.js"></script>
-  <script src="template/AdminTemplate/assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="template/AdminTemplate/assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../template/AdminTemplate/assets/js/core/popper.min.js"></script>
+  <script src="../template/AdminTemplate/assets/js/core/bootstrap.min.js"></script>
+  <script src="../template/AdminTemplate/assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../template/AdminTemplate/assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -570,7 +439,8 @@ session_start();
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="template/AdminTemplate/assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+  <script src="../template/AdminTemplate/assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
 </body>
 
 </html>
+

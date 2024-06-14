@@ -314,6 +314,7 @@ session_start();
                                                                     $id = $getAllEvents['id'];
                                                                     $title = $getAllEvents['event_name'];
                                                                     $status = $getAllEvents['status'];
+                                                                    $teamCount = $getAllEvents['number_of_teams'];
 
                                                                     if($status == 'completed'){
                                                                         $sta =  "<h6 style = 'color: green;'>$status</h6>";
@@ -325,7 +326,7 @@ session_start();
 
                                                                     echo"
                                                                        
-                                                                            <a href = 'addGames.php?id=$id' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                            <a href = 'addGames.php?id=$id&&teamCount=$teamCount' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
                                                                                     <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
                                                                                     <img src = 'stored_images/trop.jpg' style = 'width: 150px;'>
                                                                                     </div>
