@@ -1,13 +1,10 @@
 <?php
-session_start();
-include('../connection/conn.php');
+        session_start();
+        include('../connection/conn.php');    
 
-    // echo $_SESSION['GameId'];
-    // echo '      ';
-    // echo $_SESSION['EventId'];
-    // echo '      ';
-    // echo  $_SESSION['GameType'];
-    // echo '      ';
+          $id = $_GET['id'];
+          $_SESSION['idOfTeam'] = $_GET['id'];   
+
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +16,7 @@ include('../connection/conn.php');
   <link rel="apple-touch-icon" sizes="76x76" href="../template/AdminTemplate/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../template/AdminTemplate/assets/img/favicon.png">
   <title>
-    Team Information
+    Edit Information
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -147,7 +144,7 @@ include('../connection/conn.php');
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Cloud Based Realtime Event</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Teams</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Edit Information</li>
           </ol>
         
         </nav>
@@ -261,68 +258,107 @@ include('../connection/conn.php');
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Submit Team Information</h6>
-                <a href="" class = "btn btn-success" style = "margin-left: 30px;">Submit Team Information</a>
+              <h6>Edit Information</h6>
+              <a href="addInformation.php?id=<?php echo $id; ?>" class = "btn btn-info">Back</a>
+              
+                
             </div>
             <div class="card-body px-0 pt-0 pb-2" style = "margin-top: -20px;">
               <div class="table-responsive p-0">
-                        <!-- start here para sa new content sa profile! -->
-                         <div class="container" style = " padding: 40px; display: flex;">
+
+                      <form action="ProcessTeamInfo.php" method = "post" enctype="multipart/form-data">
+
+                                <div class="section1" style = "display: flex; margin: 40px;">
+
+                                        <div class="part1">
+                                                <div class="forLogo">
+                                                    <img src="<?php 
+
+                                                      $selectLogo = "SELECT logo FROM teams WHERE id = $id";
+                                                      $getLogo = mysqli_query($conn,$selectLogo);
+                                                      $LogoRepresent = mysqli_fetch_assoc($getLogo);
+
+
+                                                      echo $LogoRepresent['logo'];
+                                                      
+                                                      ?>" alt="no image" id = "logo" style = "width: 300px; height: 300px; border-radius: 10px;">
 
                           
-                          <!-- <div class = "row"> -->
-                          <?php
 
-                            // $_SESSION['GameId'] = $gameId;
-                            // $_SESSION['EventId'] = $event_id;
+                                                </div>
 
-                            $game_ID = $_SESSION['GameId'];
-                            $event_ID = $_SESSION['EventId'];
+                                                <div class="ForButtonToChangeTheLogo" style = "display: flex;  justify-content: center;">
+                                                  <input type="file" id = "changeLogoPicture" name = "changeLogoPicture" hidden value = "<?php echo $LogoRepresent['logo']; ?>" onchange="previewImage(event)">
+                                                  <label for="changeLogoPicture" class = "btn btn-primary" style = "margin-top: 10px;" >Upload Team Logo</label>
+                                                  </div>
+                                        </div>
 
-                              $sqlGetAllDataFromTeam = "SELECT * FROM teams WHERE game_id = '$game_ID' && event_ID = '$event_ID' && status != 'drop'";
-                              $result = mysqli_query($conn,$sqlGetAllDataFromTeam);
+ 
+                                        <div class="forInformation1">
+                                                        <?php
 
-                                while($testForTeam = mysqli_fetch_assoc($result)){
-
-                                  $logos = $testForTeam['logo'];
-                                  $teamName = $testForTeam['team_name'];
-                                  $teamId = $testForTeam['id'];
-
-                                  if(empty($teamName)){
-                                      $name = "Enter Team Name";
-                                  }else{
-                                    $name =  $teamName;
-                                  }
+                                                            $sqlForSelectingInfoInTeams = "SELECT * FROM teams WHERE id = $id";
+                                                            $resultForSelectingsql = mysqli_query($conn,$sqlForSelectingInfoInTeams);
+                                                            $GETdATA = mysqli_fetch_assoc($resultForSelectingsql);
+                                                      
+                                                        ?>
 
 
-                                        echo "
-
-                                                  <a href = 'addInformation.php?id=$teamId' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
-                                                                                    <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
-                                                                                    <img src = '$logos' style = 'width: 150px; height: 140px;'>
-                                                                                    </div>
-
-                                                                                    <div class='information' style = 'margin-top: 20px;'>
-
-                                                                                                <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$name</h6></div>
-                                                                                                  <div class = 'status' style = 'display: flex; justify-content: center;'><p>Click for more info!</p></div>
-                                                                                                
-
-                                                                                    </div>
-                                                                                    
-                                                                            </a>
-                                        
-                                          ";
-                                }
+                                                    <div class="form-group" style = "margin: 40px; margin-left: 100px;">
+                                                          <label for="team_name">Team Name: </label>
+                                                          <input type="text" id = "team_name" name = "team_name" class = "form-control" style = "width: 35vw;" value = "<?php echo $GETdATA['team_name']; ?>">
+                                                          <label for="player_count">Player Count: </label>
+                                                          <input type="text" id = "player_count" name = "player_count" class = "form-control" style = "width: 10vw;" value = "<?php echo $GETdATA['number_of_player']; ?>">
+                                                          <input type = "submit" value = "Submit Primary Information" class = "btn btn-primary" style = "margin-top: 10px;">
 
 
 
-                                ?>  
-                          <!-- </div> -->
+                                                          <div class = "message">
+                                                               
+                                                                <?php 
 
-                            
+                                                                  $status = $GETdATA['status'];
 
-                         </div>
+                                                                  if($status == 'detailed'){
+                                                                          echo '<h6 style = "padding:20px; background-color: green; border-radius: 10px; color: white">You have successfully filled up primary information! You may now fill up information about players.</h6>';
+                                                                  }else{
+                                                                      echo '<h6 style = "padding:20px; background-color: orange; border-radius: 10px; color: black">Submit primary information to proceed to the Player information settings!</h6>';
+                                                                  }
+                                                                      
+                                                                ?>
+                                                         </div>
+
+                                                         
+                                                  </div>
+
+
+
+                                                    
+                                                  
+                                        </div>
+
+
+
+                         </form>
+
+                                </div>
+                                <div class="row"></div>
+                                <div class="section2" style = "margin: 40px;">
+
+                                            <?php  
+                                                  if($GETdATA['status'] == 'detailed'){
+                                                            // add information here
+                                                            
+                                                  }else{
+                                                        echo '';
+                                                  }
+                                            ?>
+
+                                </div>
+
+                      <!-- </form> -->
+                      
+                         
               </div>
             </div>
           </div>
@@ -430,6 +466,17 @@ include('../connection/conn.php');
   <script src="../template/AdminTemplate/assets/js/core/bootstrap.min.js"></script>
   <script src="../template/AdminTemplate/assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../template/AdminTemplate/assets/js/plugins/smooth-scrollbar.min.js"></script>
+
+  <script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('logo');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -446,4 +493,5 @@ include('../connection/conn.php');
 </body>
 
 </html>
+
 

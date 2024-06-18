@@ -1,13 +1,9 @@
 <?php
-session_start();
-include('../connection/conn.php');
+        session_start();
+        include('../connection/conn.php');
 
-    // echo $_SESSION['GameId'];
-    // echo '      ';
-    // echo $_SESSION['EventId'];
-    // echo '      ';
-    // echo  $_SESSION['GameType'];
-    // echo '      ';
+        $id = $_GET['id'];
+
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +15,7 @@ include('../connection/conn.php');
   <link rel="apple-touch-icon" sizes="76x76" href="../template/AdminTemplate/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../template/AdminTemplate/assets/img/favicon.png">
   <title>
-    Team Information
+    Edit Information
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -147,7 +143,7 @@ include('../connection/conn.php');
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Cloud Based Realtime Event</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Teams</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Edit Information</li>
           </ol>
         
         </nav>
@@ -261,8 +257,9 @@ include('../connection/conn.php');
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Submit Team Information</h6>
-                <a href="" class = "btn btn-success" style = "margin-left: 30px;">Submit Team Information</a>
+              <h6>Edit Team Information</h6>
+              <a href="needInformation.php" class = "btn btn-info">Back</a>
+                
             </div>
             <div class="card-body px-0 pt-0 pb-2" style = "margin-top: -20px;">
               <div class="table-responsive p-0">
@@ -270,56 +267,89 @@ include('../connection/conn.php');
                          <div class="container" style = " padding: 40px; display: flex;">
 
                           
-                          <!-- <div class = "row"> -->
-                          <?php
+                         <div class = "section1">
+                                    <div class="profileSection" style = "margin-left: 20px;">
+                                        <img src="<?php 
 
-                            // $_SESSION['GameId'] = $gameId;
-                            // $_SESSION['EventId'] = $event_id;
+                                           
 
-                            $game_ID = $_SESSION['GameId'];
-                            $event_ID = $_SESSION['EventId'];
+                                            $selectLogo = "SELECT logo FROM teams WHERE id = $id";
+                                            $getLogo = mysqli_query($conn,$selectLogo);
 
-                              $sqlGetAllDataFromTeam = "SELECT * FROM teams WHERE game_id = '$game_ID' && event_ID = '$event_ID' && status != 'drop'";
-                              $result = mysqli_query($conn,$sqlGetAllDataFromTeam);
+                                            while($LogoRepresent = mysqli_fetch_assoc($getLogo)){
+                                                    echo $LogoRepresent['logo'];
+                                            }
+                                            ?>" alt="no image" style = "width: 300px; height: 300px; border-radius: 10px;">
+                                    </div>
+                            </div>
 
-                                while($testForTeam = mysqli_fetch_assoc($result)){
+                            <div class = "section2">
+                                        <div class="information" style = "margin-left: 70px; margin-top: 40px;">
 
-                                  $logos = $testForTeam['logo'];
-                                  $teamName = $testForTeam['team_name'];
-                                  $teamId = $testForTeam['id'];
+                                        <?php 
 
-                                  if(empty($teamName)){
-                                      $name = "Enter Team Name";
-                                  }else{
-                                    $name =  $teamName;
-                                  }
+                                           
 
+                                            $selectInfoQuery = "SELECT * FROM teams WHERE id = $id";
+                                            $getInfo = mysqli_query($conn,$selectInfoQuery);
 
-                                        echo "
+                                            while($accountRepresent = mysqli_fetch_assoc($getInfo)){
 
-                                                  <a href = 'addInformation.php?id=$teamId' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
-                                                                                    <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
-                                                                                    <img src = '$logos' style = 'width: 150px; height: 140px;'>
-                                                                                    </div>
+                                          
+                                                
+                                            
+                                                     
+                                           
+                                            ?>
 
-                                                                                    <div class='information' style = 'margin-top: 20px;'>
+                                                <div class = "info">
+                                                        <h1 style = "display: flex; "><?php echo $accountRepresent['team_name']; ?></h1>
+                                                        <p>Please add information for this team in order to proceed further operation!</p>
+                                                </div>
 
-                                                                                                <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$name</h6></div>
-                                                                                                  <div class = 'status' style = 'display: flex; justify-content: center;'><p>Click for more info!</p></div>
-                                                                                                
-
-                                                                                    </div>
-                                                                                    
-                                                                            </a>
-                                        
-                                          ";
-                                }
+                                                
 
 
+                                               
 
-                                ?>  
-                          <!-- </div> -->
+                                                <a href = "addTeamMember.php?id=<?php echo $id; ?>" class = "btn btn-success" style = "font-size: 14px; position:relative; top: 50px; background-color: #26ed2d; color: white; padding: 7px; border-radius: 10px;">EDIT MEMBERS AND INFORMATION</a>
+                                                <!-- The Modal -->
+                                                        <div class="modal fade" id="myModal" style = "margin-top: 80px;">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
 
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Confirm Deletion</h4>
+
+                                                            </div>
+
+                                                            <!-- Modal body -->
+                                                            <div class="modal-body">
+                                                                Are you sure you want to delete this team slot?
+                                                            </div>
+
+                                                            <!-- Modal footer -->
+                                                            <div class="modal-footer">
+                                                                <a href = "deleteSlot.php?id=<?php echo $id; ?>" class="btn btn-success">Confirm</a>
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                            </div>
+
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" style = "font-size: 14px; position:relative;border: none; top: 50px; background-color: #fc1424; color: white; padding: 7px; border-radius: 10px;">DELETE TEAM SLOT</button>
+                                             
+
+                                            <?php
+
+                                                }
+                                            ?>
+                                                
+                                        </div>
+                            </div>
+
+                                
                             
 
                          </div>
@@ -446,4 +476,5 @@ include('../connection/conn.php');
 </body>
 
 </html>
+
 
