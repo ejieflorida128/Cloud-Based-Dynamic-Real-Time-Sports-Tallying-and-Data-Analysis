@@ -13,6 +13,7 @@ include('../connection/conn.php');
             $_SESSION['EventId'] = $event_id;
             $_SESSION['GameType'] = $gameType;
             
+            
         if($gameStatus == 0){
                 for($x = 0; $x < $teamCount; $x++){
                                 $sql = "INSERT INTO teams (game_id,event_id,team_name,logo) VALUES ('$gameId','$event_id','Team Name','../logo/default.png')";

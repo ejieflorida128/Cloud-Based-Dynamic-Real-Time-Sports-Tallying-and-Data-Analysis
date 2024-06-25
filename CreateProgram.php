@@ -23,7 +23,7 @@ session_start();
   <link rel="apple-touch-icon" sizes="76x76" href="template/AdminTemplate/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="template/AdminTemplate/assets/img/favicon.png">
   <title>
-    Profile
+    Program Information
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
