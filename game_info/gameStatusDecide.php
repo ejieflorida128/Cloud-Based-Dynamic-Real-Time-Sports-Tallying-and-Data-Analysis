@@ -32,7 +32,11 @@ include('../connection/conn.php');
                     header('Location: needInformation.php');
 
             }else if($gameStatus == 2){
+
+                
                     header('Location: showEventInformation.php');
+                        
+
             }
             
 

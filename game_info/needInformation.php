@@ -262,7 +262,7 @@ include('../connection/conn.php');
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6>Submit Team Information</h6>
-                <a href="" class = "btn btn-success" style = "margin-left: 30px;">Submit Team Information</a>
+                <a href="changeStatus.php" class = "btn btn-success" style = "margin-left: 30px;">Submit Team Information</a>
             </div>
             <div class="card-body px-0 pt-0 pb-2" style = "margin-top: -20px;">
               <div class="table-responsive p-0">

@@ -15,6 +15,15 @@ session_start();
         $game_type = $_POST['match_type'];
 
 
+        $numberOfPlayer = $_SESSION['number_of_player'];
+        $game_id = $_SESSION['GameId'];
+        // $event_id = $_SESSION['EventId'];
+        $gameType = $_SESSION['GameType'];
+        $team_id = $_SESSION['idOfTeam'];
+
+        $team_count = $_GET['teamCount'];
+
+
           if($game_type == 'Basketball_Men' || $game_type == 'Basketball_Women'){
               $pic = 'stored_images/basketball.avif';
           }else if($game_type == 'Vollayball_Men' || $game_type == 'Vollayball_Women'){
@@ -41,12 +50,37 @@ session_start();
             $pic = 'stored_images/chess.webp';
           }else if($game_type == 'Archery'){
             $pic = 'stored_images/archery.png';
+          }else if($game_type == 'Creative_Folk_Dance'){
+            $pic = 'stored_images/folkDance.png';
+          }else if($game_type == 'Pop_Dance'){
+            $pic = 'stored_images/popDance.jpg';
+          }else if($game_type == 'Vocal_Duet'){
+            $pic = 'stored_images/vocalDuet.webp';
+          }else if($game_type == 'Pop_Solo'){
+            $pic = 'stored_images/popSolo.webp';
+          }else if($game_type == 'Charcoal_Rendering'){
+            $pic = 'stored_images/charcoalRendering.jpg';
+          }else if($game_type == 'Pencil_Drawing'){
+            $pic = 'stored_images/pencilDrawing.jpg';
+          }else if($game_type == 'Painting'){
+            $pic = 'stored_images/painting.jpg';
+          }else if($game_type == 'Poster_Making'){
+            $pic = 'stored_images/posterMaking.webp';
+          }else if($game_type == 'Phone_Photography'){
+            $pic = 'stored_images/phonePhotography.jpg';
+          }else if($game_type == 'Mr_and_Mrs_Panagtigi'){
+            $pic = 'stored_images/mrsAndmrs.jpg';
+          }else if($game_type == 'Mass_Dance'){
+            $pic = 'stored_images/massDance.webp';
           }
 
           $sqlForRegisterGame = "INSERT INTO registered_game (event_id,game_type,status,img) VALUES ('$event_id','$game_type','need_information','$pic')";
           mysqli_query($conn,$sqlForRegisterGame);
 
-          header('Location: loadToCreateProgram.php');
+
+        
+
+          header('Location: addGames.php?id=' . urlencode($event_id) . '&&teamCount=' . urlencode($team_count));
 
 
 
@@ -316,7 +350,7 @@ session_start();
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Listed Games</h6>
+              <h6>Event List</h6>
               
             </div>
             <div class="card-body px-0 pt-0 pb-2">
@@ -329,7 +363,7 @@ session_start();
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Game</h1>
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Event</h1>
                                            
                                         </div>
                                             <form action="addGames.php" method = "post">
@@ -359,11 +393,23 @@ session_start();
                                                                 <option value="Table_tennis_Single_Women">Table Tennis Single Women's Category</option>
                                                                 <option value="Table_tennis_Double_Women">Table Tennis Double Women's Category</option>
                                                                 <option value="Futsal_Men">Futsal_Men</option>
-                                                                <option value="Futsal_Women">Futsal_Women</option>
-                                                                <option value="Dance_Sports">Dance Sports</option>
+                                                                <option value="Futsal_Women">Futsal_Women</option>                                            
                                                                 <option value="Chess">Chess</option>
                                                                 <option value="Archery">Archery</option>
 
+                                                                <option value="Creative_Folk_Dance">Creative Folk Dance</option>
+                                                                <option value="Pop_Dance">Pop Dance</option>
+                                                                <option value="Vocal_Duet">Vocal Duet</option>
+                                                                <option value="Pop_Solo">Pop Solo</option>
+                                                                <option value="Charcoal_Rendering">Charcoal Rendering</option>
+                                                                <option value="Pencil_Drawing">Pencil Drawing</option>
+                                                                <option value="Painting">Painting</option>
+                                                                <option value="Poster_Making">On the Spot Poster Making</option>
+                                                                <option value="Phone_Photography">Phone Photography</option>
+                                                                <option value="Mr_and_Mrs_Panagtigi">Mr. and Mrs PANAGTIGI</option>
+                                                                <option value="Mass_Dance">Mass Dance</option>
+                                                                <option value="Dance_Sports">Dance Sports</option>
+                                                             
                                                                 
 
                                                               </select>
@@ -379,16 +425,17 @@ session_start();
                                     </div>
                                     </div>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Add Game
+                                    Add Event
                                 </button>
                                 </div>
                                 <div class = "content">
                                     <div class="container-fluid">
+                                          <h4 style = "margin-top: 40px;">Game Category</h4>
                                             <div class="row" >
                                                 
                                                   <?php 
 
-                                                          $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE event_id = $id";
+                                                          $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE game_type != 'Creative_Folk_Dance' AND game_type != 'Pop_Dance' AND game_type != 'Vocal_Duet' AND game_type != 'Pop_Solo' AND game_type != 'Charcoal_Rendering' AND game_type != 'Pencil_Drawing' AND game_type != 'Painting' AND game_type != 'Poster_Making' AND game_type != 'Phone_Photography' AND game_type != 'Mr_and_Mrs_Panagtigi' AND game_type != 'Mass_Dance' AND game_type != 'Dance_Sports' AND  event_id = $id";
                                                           $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
 
                                                           while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){
@@ -407,18 +454,52 @@ session_start();
                                                                 $gameStatusNo = 0;
                                                                 $PrintStatus = '<h6 style = "color: orange;margin-top: -10px;" >Need Information</h6>';
 
+                                                                echo"
+                                                                       
+                                                                <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                        <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                        <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                        </div>
+
+                                                                        <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                    <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                      <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                    
+
+                                                                        </div>
+                                                                        
+                                                                </a>
+                                                          
+                                                        ";
+
                                                               }else if($status == 'need_information'){
                                                                 $gameStatusNo = 1;
                                                                   $PrintStatus = '<h6 style = "color: orange;margin-top: -10px;" >Need Information</h6>';
+
+                                                                  echo"
+                                                                       
+                                                                  <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                          <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                          <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                          </div>
+
+                                                                          <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                      <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                        <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                      
+
+                                                                          </div>
+                                                                          
+                                                                  </a>
+                                                            
+                                                          ";
                                                               }else{
                                                                 $gameStatusNo = 2;
-                                                                  $PrintStatus = '<h6 style = "color: green; margin-top: -5px;" >Game Info</h6>';
-                                                              }
+                                                                  $PrintStatus = '<h6 style = "color: green; margin-top: -5px;" >View Information</h6>';
 
-
-
-
-                                                            echo"
+                                                                    echo"
                                                                        
                                                                             <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
                                                                                     <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
@@ -436,12 +517,407 @@ session_start();
                                                                             </a>
                                                                       
                                                                     ";
+                                                              }
+
+
+
+
+                                                              
                                                           }
 
                                                   ?>
 
                                                     
                                             </div>
+
+                                            <h4>Dance Category</h4>
+                                            <div class="row">
+                                            <?php 
+
+                                                              $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE game_type = 'Creative_Folk_Dance' OR game_type = 'Pop_Dance' AND event_id = $id";
+                                                              $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
+
+                                                              while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){
+
+                                                                $gameType = $checkResultForGameAvail['game_type'];
+                                                                $status = $checkResultForGameAvail['status'];
+                                                                $pic = $checkResultForGameAvail['img'];
+                                                                $registerGameId = $checkResultForGameAvail['id'];
+                                                                $eventId = $checkResultForGameAvail['event_id'];
+                                                                $gameStatusNo = 0;
+
+                                                                $createdTeam = $checkResultForGameAvail['CreatedTeam'];
+
+                                                                  if($createdTeam == 0){
+                                                                    
+                                                                    $gameStatusNo = 0;
+                                                                    $PrintStatus = '<h6 style = "color: orange;margin-top: -10px;" >Need Information</h6>';
+
+                                                                    echo"
+                                                                          
+                                                                    <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                            <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                            <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                            </div>
+
+                                                                            <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                        <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                          <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                        
+
+                                                                            </div>
+                                                                            
+                                                                    </a>
+
+                                                              ";
+
+                                                                  }else if($status == 'need_information'){
+                                                                    $gameStatusNo = 1;
+                                                                      $PrintStatus = '<h6 style = "color: orange;margin-top: -10px;" >Need Information</h6>';
+
+                                                                      echo"
+                                                                          
+                                                                      <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                              <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                              <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                              </div>
+
+                                                                              <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                          <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                            <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                          
+
+                                                                              </div>
+                                                                              
+                                                                      </a>
+                                                                
+                                                              ";
+                                                                  }else{
+                                                                    $gameStatusNo = 2;
+                                                                      $PrintStatus = '<h6 style = "color: green; margin-top: -5px;" >View Information</h6>';
+
+                                                                        echo"
+                                                                          
+                                                                                <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                                        <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                                        <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                                        </div>
+
+                                                                                        <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                                    <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                                      <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                                    
+
+                                                                                        </div>
+                                                                                        
+                                                                                </a>
+                                                                          
+                                                                        ";
+                                                                  }
+
+
+
+
+                                                                  
+                                                              }
+
+                                                              ?>
+                                            </div>
+                                                <h4>Music Category</h4>
+                                            <div class="row">
+                                            <?php 
+
+                                                              $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE game_type = 'Vocal_Duet' OR game_type = 'Pop_Solo' AND event_id = $id";
+                                                              $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
+
+                                                              while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){
+
+                                                                $gameType = $checkResultForGameAvail['game_type'];
+                                                                $status = $checkResultForGameAvail['status'];
+                                                                $pic = $checkResultForGameAvail['img'];
+                                                                $registerGameId = $checkResultForGameAvail['id'];
+                                                                $eventId = $checkResultForGameAvail['event_id'];
+                                                                $gameStatusNo = 0;
+
+                                                                $createdTeam = $checkResultForGameAvail['CreatedTeam'];
+
+                                                                  if($createdTeam == 0){
+                                                                    
+                                                                    $gameStatusNo = 0;
+                                                                    $PrintStatus = '<h6 style = "color: orange;margin-top: -10px;" >Need Information</h6>';
+
+                                                                    echo"
+                                                                          
+                                                                    <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                            <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                            <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                            </div>
+
+                                                                            <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                        <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                          <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                        
+
+                                                                            </div>
+                                                                            
+                                                                    </a>
+
+                                                              ";
+
+                                                                  }else if($status == 'need_information'){
+                                                                    $gameStatusNo = 1;
+                                                                      $PrintStatus = '<h6 style = "color: orange;margin-top: -10px;" >Need Information</h6>';
+
+                                                                      echo"
+                                                                          
+                                                                      <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                              <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                              <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                              </div>
+
+                                                                              <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                          <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                            <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                          
+
+                                                                              </div>
+                                                                              
+                                                                      </a>
+                                                                
+                                                              ";
+                                                                  }else{
+                                                                    $gameStatusNo = 2;
+                                                                      $PrintStatus = '<h6 style = "color: green; margin-top: -5px;" >View Information</h6>';
+
+                                                                        echo"
+                                                                          
+                                                                                <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                                        <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                                        <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                                        </div>
+
+                                                                                        <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                                    <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                                      <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                                    
+
+                                                                                        </div>
+                                                                                        
+                                                                                </a>
+                                                                          
+                                                                        ";
+                                                                  }
+
+
+
+
+                                                                  
+                                                              }
+
+                                                              ?>
+                                            </div>
+
+                                            <h4>Visual Arts Category</h4>
+                                            <div class="row">
+                                            <?php 
+
+                                                              $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE game_type = 'Charcoal_Rendering' OR game_type = 'Pencil_Drawing' OR game_type = 'Painting' OR game_type = 'Poster_Making' OR game_type = 'Phone_Photography' AND event_id = $id";
+                                                              $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
+
+                                                              while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){
+
+                                                                $gameType = $checkResultForGameAvail['game_type'];
+                                                                $status = $checkResultForGameAvail['status'];
+                                                                $pic = $checkResultForGameAvail['img'];
+                                                                $registerGameId = $checkResultForGameAvail['id'];
+                                                                $eventId = $checkResultForGameAvail['event_id'];
+                                                                $gameStatusNo = 0;
+
+                                                                $createdTeam = $checkResultForGameAvail['CreatedTeam'];
+
+                                                                  if($createdTeam == 0){
+                                                                    
+                                                                    $gameStatusNo = 0;
+                                                                    $PrintStatus = '<h6 style = "color: orange;margin-top: -10px;" >Need Information</h6>';
+
+                                                                    echo"
+                                                                          
+                                                                    <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                            <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                            <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                            </div>
+
+                                                                            <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                        <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                          <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                        
+
+                                                                            </div>
+                                                                            
+                                                                    </a>
+
+                                                              ";
+
+                                                                  }else if($status == 'need_information'){
+                                                                    $gameStatusNo = 1;
+                                                                      $PrintStatus = '<h6 style = "color: orange;margin-top: -10px;" >Need Information</h6>';
+
+                                                                      echo"
+                                                                          
+                                                                      <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                              <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                              <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                              </div>
+
+                                                                              <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                          <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                            <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                          
+
+                                                                              </div>
+                                                                              
+                                                                      </a>
+                                                                
+                                                              ";
+                                                                  }else{
+                                                                    $gameStatusNo = 2;
+                                                                      $PrintStatus = '<h6 style = "color: green; margin-top: -5px;" >View Information</h6>';
+
+                                                                        echo"
+                                                                          
+                                                                                <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                                        <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                                        <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                                        </div>
+
+                                                                                        <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                                    <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                                      <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                                    
+
+                                                                                        </div>
+                                                                                        
+                                                                                </a>
+                                                                          
+                                                                        ";
+                                                                  }
+
+
+
+
+                                                                  
+                                                              }
+
+                                                              ?>
+                                            </div>
+
+                                            <h4>Special Category</h4>
+                                            <div class="row">
+                                            <?php 
+
+                                                              $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE game_type = 'Mr_and_Mrs_Panagtigi' OR game_type = 'Mass_Dance' OR game_type = 'Dance_Sports' AND event_id = $id";
+                                                              $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
+
+                                                              while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){
+
+                                                                $gameType = $checkResultForGameAvail['game_type'];
+                                                                $status = $checkResultForGameAvail['status'];
+                                                                $pic = $checkResultForGameAvail['img'];
+                                                                $registerGameId = $checkResultForGameAvail['id'];
+                                                                $eventId = $checkResultForGameAvail['event_id'];
+                                                                $gameStatusNo = 0;
+
+                                                                $createdTeam = $checkResultForGameAvail['CreatedTeam'];
+
+                                                                  if($createdTeam == 0){
+                                                                    
+                                                                    $gameStatusNo = 0;
+                                                                    $PrintStatus = '<h6 style = "color: orange;margin-top: -10px;" >Need Information</h6>';
+
+                                                                    echo"
+                                                                          
+                                                                    <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                            <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                            <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                            </div>
+
+                                                                            <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                        <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                          <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                        
+
+                                                                            </div>
+                                                                            
+                                                                    </a>
+
+                                                              ";
+
+                                                                  }else if($status == 'need_information'){
+                                                                    $gameStatusNo = 1;
+                                                                      $PrintStatus = '<h6 style = "color: orange;margin-top: -10px;" >Need Information</h6>';
+
+                                                                      echo"
+                                                                          
+                                                                      <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                              <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                              <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                              </div>
+
+                                                                              <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                          <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                            <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                          
+
+                                                                              </div>
+                                                                              
+                                                                      </a>
+                                                                
+                                                              ";
+                                                                  }else{
+                                                                    $gameStatusNo = 2;
+                                                                      $PrintStatus = '<h6 style = "color: green; margin-top: -5px;" >View Information</h6>';
+
+                                                                        echo"
+                                                                          
+                                                                                <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                                        <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                                        <img src = '$pic' style = 'width: 150px; height: 150px;'>
+                                                                                        </div>
+
+                                                                                        <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                                    <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                                      <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                                    
+
+                                                                                        </div>
+                                                                                        
+                                                                                </a>
+                                                                          
+                                                                        ";
+                                                                  }
+
+
+
+
+                                                                  
+                                                              }
+
+                                                              ?>
+                                            </div>
+
+                                            
                                     </div>
                                 </div>
                            
