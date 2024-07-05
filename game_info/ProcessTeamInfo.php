@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $gameType = $_SESSION['GameType'];
 
 
-    if($number_of_player >= 5 || $gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Double_Women' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Double_Women' || $gameType == 'Dance_Sports' || $gameType == 'Chess' || $gameType == 'Archery'){
+    if($number_of_player >= 5 || $gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Double_Women' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Double_Women' || $gameType == 'Dance_Sports' || $gameType == 'Chess' || $gameType == 'Archery' || $gameType == 'Vocal_Duet' || $gameType == 'Pop_Solo' || $gameType == 'Charcoal_Rendering' || $gameType == 'Pencil_Drawing' || $gameType == 'Painting' || $gameType == 'Poster_Making' || $gameType == 'Phone_Photography' || $gameType == 'Mr_and_Mrs_Panagtigi'){
       $team_name = $_POST['team_name'];
       
 

@@ -284,8 +284,7 @@
 header('Location: addTeamMember.php?id='.urldecode($team_id));
 
   // end sa chess
-}
-else if($gameType == 'Archery'){
+}else if($gameType == 'Archery'){
   // start sa Archery
 
   for($x = 1; $x <= $numberOfPlayer; $x++){
@@ -303,7 +302,215 @@ else if($gameType == 'Archery'){
 header('Location: addTeamMember.php?id='.urldecode($team_id));
 
   // end sa Archery
+}else if($gameType == 'Creative_Folk_Dance'){
+  // start sa Creative_Folk_Dance
+
+  for($x = 1; $x <= $numberOfPlayer; $x++){
+
+    $name = $_POST['name'.$x];
+    $age = $_POST['age'.$x];
+
+    $player = 'player'.$x;
+
+    $update = "UPDATE players SET name = '$name', age = '$age' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+    mysqli_query($conn,$update);
+
 }
+
+header('Location: addTeamMember.php?id='.urldecode($team_id));
+
+  // end sa Creative_Folk_Dance
+}else if($gameType == 'Pop_Dance'){
+  // start sa Pop_Dance
+
+  for($x = 1; $x <= $numberOfPlayer; $x++){
+
+    $name = $_POST['name'.$x];
+    $age = $_POST['age'.$x];
+
+    $player = 'player'.$x;
+
+    $update = "UPDATE players SET name = '$name', age = '$age' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+    mysqli_query($conn,$update);
+
+}
+
+header('Location: addTeamMember.php?id='.urldecode($team_id));
+
+  // end sa Pop_Dance
+}else if($gameType == 'Vocal_Duet'){
+  // start sa Vocal_Duet
+
+  for($x = 1; $x <= $numberOfPlayer; $x++){
+
+    $name = $_POST['name1'.$x];
+    $age = $_POST['age1'.$x];
+
+    $name1 = $_POST['name2'.$x];
+    $age1 = $_POST['age2'.$x];
+
+    
+
+    $player = 'player'.$x;
+
+    $update = "UPDATE players SET name = '$name', age = '$age', name1 = '$name1', age1 = '$age1' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+    mysqli_query($conn,$update);
+
+}
+
+header('Location: addTeamMember.php?id='.urldecode($team_id));
+
+  // end sa Vocal_Duet
+}else if($gameType == 'Pop_Solo'){
+  // start sa Pop_Solo
+
+  for($x = 1; $x <= $numberOfPlayer; $x++){
+
+    $name = $_POST['name'.$x];
+    $age = $_POST['age'.$x];
+
+    $player = 'player'.$x;
+
+    $update = "UPDATE players SET name = '$name', age = '$age' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+    mysqli_query($conn,$update);
+
+}
+
+header('Location: addTeamMember.php?id='.urldecode($team_id));
+
+  // end sa Pop_Solo
+}else if($gameType == 'Charcoal_Rendering'){
+  // start sa Charcoal_Rendering
+
+  for($x = 1; $x <= $numberOfPlayer; $x++){
+
+    $name = $_POST['name'.$x];
+    $age = $_POST['age'.$x];
+
+    $player = 'player'.$x;
+
+    $update = "UPDATE players SET name = '$name', age = '$age' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+    mysqli_query($conn,$update);
+
+}
+
+header('Location: addTeamMember.php?id='.urldecode($team_id));
+
+  // end sa Charcoal_Rendering
+}else if($gameType == 'Pencil_Drawing'){
+  // start sa Pencil_Drawing
+
+  for($x = 1; $x <= $numberOfPlayer; $x++){
+
+    $name = $_POST['name'.$x];
+    $age = $_POST['age'.$x];
+
+    $player = 'player'.$x;
+
+    $update = "UPDATE players SET name = '$name', age = '$age' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+    mysqli_query($conn,$update);
+
+}
+
+header('Location: addTeamMember.php?id='.urldecode($team_id));
+
+  // end sa Pencil_Drawing
+}else if($gameType == 'Painting'){
+  // start sa Painting
+
+  for($x = 1; $x <= $numberOfPlayer; $x++){
+
+    $name = $_POST['name'.$x];
+    $age = $_POST['age'.$x];
+
+    $player = 'player'.$x;
+
+    $update = "UPDATE players SET name = '$name', age = '$age' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+    mysqli_query($conn,$update);
+
+}
+
+header('Location: addTeamMember.php?id='.urldecode($team_id));
+
+  // end sa Painting
+}else if($gameType == 'Poster_Making'){
+  // start sa Poster_Making
+
+  for($x = 1; $x <= $numberOfPlayer; $x++){
+
+    $name = $_POST['name'.$x];
+    $age = $_POST['age'.$x];
+
+    $player = 'player'.$x;
+
+    $update = "UPDATE players SET name = '$name', age = '$age' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+    mysqli_query($conn,$update);
+
+}
+
+header('Location: addTeamMember.php?id='.urldecode($team_id));
+
+  // end sa Poster_Making
+}else if($gameType == 'Phone_Photography'){
+  // start sa Phone_Photography
+
+  for($x = 1; $x <= $numberOfPlayer; $x++){
+
+    $name = $_POST['name'.$x];
+    $age = $_POST['age'.$x];
+
+    $player = 'player'.$x;
+
+    $update = "UPDATE players SET name = '$name', age = '$age' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+    mysqli_query($conn,$update);
+
+}
+
+header('Location: addTeamMember.php?id='.urldecode($team_id));
+
+  // end sa Phone_Photography
+}else if($gameType == 'Mr_and_Mrs_Panagtigi'){
+  // start sa Mr_and_Mrs_Panagtigi
+
+  for($x = 1; $x <= $numberOfPlayer; $x++){
+
+    $name = $_POST['name1'.$x];
+    $age = $_POST['age1'.$x];
+
+    $name1 = $_POST['name2'.$x];
+    $age1 = $_POST['age2'.$x];
+
+    
+
+    $player = 'player'.$x;
+
+    $update = "UPDATE players SET name = '$name', age = '$age', name1 = '$name1', age1 = '$age1' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+    mysqli_query($conn,$update);
+
+}
+
+header('Location: addTeamMember.php?id='.urldecode($team_id));
+
+              // end sa Mr_and_Mrs_Panagtigi
+            }else if($gameType == 'Mass_Dance'){
+              // start sa Mass_Dance
+            
+              for($x = 1; $x <= $numberOfPlayer; $x++){
+            
+                $name = $_POST['name'.$x];
+                $age = $_POST['age'.$x];
+            
+                $player = 'player'.$x;
+            
+                $update = "UPDATE players SET name = '$name', age = '$age' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+                mysqli_query($conn,$update);
+            
+            }
+            
+            header('Location: addTeamMember.php?id='.urldecode($team_id));
+            
+              // end sa Mass_Dance
+            }
 
 
                     

@@ -262,6 +262,15 @@ include('../connection/conn.php');
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6>Submit Team Information</h6>
+              <?php
+
+                
+                  $team_count = $_SESSION['teamCount'];
+
+
+                  ?>
+<a href="../addGames.php?id=<?php echo $_SESSION['EventId'] ?> &&teamCount=<?php echo $team_count ?>" class = "btn btn-danger">BACK</a>
+
                 <a href="changeStatus.php" class = "btn btn-success" style = "margin-left: 30px;">Submit Team Information</a>
             </div>
             <div class="card-body px-0 pt-0 pb-2" style = "margin-top: -20px;">
@@ -279,7 +288,7 @@ include('../connection/conn.php');
                             $game_ID = $_SESSION['GameId'];
                             $event_ID = $_SESSION['EventId'];
 
-                              $sqlGetAllDataFromTeam = "SELECT * FROM teams WHERE game_id = '$game_ID' && event_ID = '$event_ID' && status != 'drop'";
+                              $sqlGetAllDataFromTeam = "SELECT * FROM teams WHERE game_id = '$game_ID' AND event_ID = '$event_ID' AND status != 'drop'";
                               $result = mysqli_query($conn,$sqlGetAllDataFromTeam);
 
                                 while($testForTeam = mysqli_fetch_assoc($result)){

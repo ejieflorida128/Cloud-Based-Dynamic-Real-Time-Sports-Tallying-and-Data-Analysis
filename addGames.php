@@ -385,11 +385,11 @@ session_start();
                                                                 <option value="Jumps_Women">Jumps Women's Category</option>
                                                                 <option value="MLBB">Mobile Legend</option>
                                                                 <option value="Badminton_Single_Men">Badminton Single Men's Category</option>
-                                                                <option value="Badminton_Double_Men">Badminton Double's Category</option>
+                                                                <option value="Badminton_Double_Men">Badminton Double Men's Category</option>
                                                                 <option value="Badminton_Single_Women">Badminton Single Women's Category</option>
                                                                 <option value="Badminton_Double_Women">Badminton Double Women's Category</option>
                                                                 <option value="Table_tennis_Single_Men">Table Tennis Single Men's Category</option>
-                                                                <option value="Table_tennis_Double_Men">Table Tennis DoubleMen's Category</option>
+                                                                <option value="Table_tennis_Double_Men">Table Tennis Double Men's Category</option>
                                                                 <option value="Table_tennis_Single_Women">Table Tennis Single Women's Category</option>
                                                                 <option value="Table_tennis_Double_Women">Table Tennis Double Women's Category</option>
                                                                 <option value="Futsal_Men">Futsal_Men</option>
@@ -465,6 +465,8 @@ session_start();
 
                                                                                     <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
                                                                                       <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
+                                                                                      
+                                  
                                                                                     
 
                                                                         </div>

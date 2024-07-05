@@ -257,8 +257,8 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Edit Team Information</h6>
-              <a href="needInformation.php" class = "btn btn-info">Back</a>
+              <h6>Edit Team Information</h6>       
+              <a href="needInformation.php" class = "btn btn-danger">Back</a>
                 
             </div>
             <div class="card-body px-0 pt-0 pb-2" style = "margin-top: -20px;">

@@ -12,6 +12,9 @@ include('../connection/conn.php');
             $_SESSION['GameId'] = $gameId;
             $_SESSION['EventId'] = $event_id;
             $_SESSION['GameType'] = $gameType;
+
+
+           
             
             
         if($gameStatus == 0){
@@ -40,4 +43,4 @@ include('../connection/conn.php');
             }
             
 
-?>
+?>      
