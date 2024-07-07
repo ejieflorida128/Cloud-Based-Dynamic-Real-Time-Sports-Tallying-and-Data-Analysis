@@ -4,12 +4,17 @@ session_start();
     include('connection/conn.php');
 
     $id = $_GET['id'];
+     $_SESSION['teamCount'] = $_GET['teamCount'];
 
-    $_SESSION['teamCount'] = $_GET['teamCount'];
-
+    
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
       
+
+     
+
+        //  $_SESSION['team_count'] = $_POST['team_count'];
+
 
         $event_id = $_POST['event_id'];
         $game_type = $_POST['match_type'];
@@ -21,7 +26,7 @@ session_start();
         $gameType = $_SESSION['GameType'];
         $team_id = $_SESSION['idOfTeam'];
 
-        $team_count = $_GET['teamCount'];
+        $_SESSION['team_count'] = $_POST['team_count'];
 
 
           if($game_type == 'Basketball_Men' || $game_type == 'Basketball_Women'){
@@ -74,13 +79,15 @@ session_start();
             $pic = 'stored_images/massDance.webp';
           }
 
-          $sqlForRegisterGame = "INSERT INTO registered_game (event_id,game_type,status,img) VALUES ('$event_id','$game_type','need_information','$pic')";
+          $sqlForRegisterGame = "INSERT INTO registered_game (event_id,game_type,status,img,CreatedTeam) VALUES ('$event_id','$game_type','need_information','$pic',0)";
           mysqli_query($conn,$sqlForRegisterGame);
 
 
+          $newCount  = $_POST['team_count'];
+
         
 
-          header('Location: addGames.php?id=' . urlencode($event_id) . '&&teamCount=' . urlencode($team_count));
+          header('Location: addGames.php?id=' . urlencode($event_id) . '&&teamCount=' . urlencode($newCount));
 
 
 
@@ -413,6 +420,7 @@ session_start();
                                                                 
 
                                                               </select>
+                                                              <input type="text" hidden name = "team_count" value = "<?php echo $_GET['teamCount'];  ?>">
                                                               <input type="text" hidden name = "event_id" value = "<?php  echo $_GET['id'];?>">
                                                         </div>
                                                     <div class="modal-footer">
@@ -435,7 +443,7 @@ session_start();
                                                 
                                                   <?php 
 
-                                                          $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE game_type != 'Creative_Folk_Dance' AND game_type != 'Pop_Dance' AND game_type != 'Vocal_Duet' AND game_type != 'Pop_Solo' AND game_type != 'Charcoal_Rendering' AND game_type != 'Pencil_Drawing' AND game_type != 'Painting' AND game_type != 'Poster_Making' AND game_type != 'Phone_Photography' AND game_type != 'Mr_and_Mrs_Panagtigi' AND game_type != 'Mass_Dance' AND game_type != 'Dance_Sports' AND  event_id = $id";
+                                                          $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE (game_type != 'Creative_Folk_Dance' OR game_type != 'Pop_Dance' OR game_type != 'Vocal_Duet' OR game_type != 'Pop_Solo' OR game_type != 'Charcoal_Rendering' OR game_type != 'Pencil_Drawing' OR game_type != 'Painting' OR game_type != 'Poster_Making' OR game_type != 'Phone_Photography' OR game_type != 'Mr_and_Mrs_Panagtigi' OR game_type != 'Mass_Dance' OR game_type != 'Dance_Sports') AND  event_id = $id";
                                                           $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
 
                                                           while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){
@@ -536,7 +544,7 @@ session_start();
                                             <div class="row">
                                             <?php 
 
-                                                              $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE game_type = 'Creative_Folk_Dance' OR game_type = 'Pop_Dance' AND event_id = $id";
+                                                              $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE (game_type = 'Creative_Folk_Dance' OR game_type = 'Pop_Dance') AND event_id = $id";
                                                               $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
 
                                                               while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){
@@ -632,7 +640,7 @@ session_start();
                                             <div class="row">
                                             <?php 
 
-                                                              $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE game_type = 'Vocal_Duet' OR game_type = 'Pop_Solo' AND event_id = $id";
+                                                              $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE (game_type = 'Vocal_Duet' OR game_type = 'Pop_Solo') AND event_id = $id";
                                                               $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
 
                                                               while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){
@@ -729,7 +737,7 @@ session_start();
                                             <div class="row">
                                             <?php 
 
-                                                              $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE game_type = 'Charcoal_Rendering' OR game_type = 'Pencil_Drawing' OR game_type = 'Painting' OR game_type = 'Poster_Making' OR game_type = 'Phone_Photography' AND event_id = $id";
+                                                              $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE (game_type = 'Charcoal_Rendering' OR game_type = 'Pencil_Drawing' OR game_type = 'Painting' OR game_type = 'Poster_Making' OR game_type = 'Phone_Photography') AND event_id = $id";
                                                               $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
 
                                                               while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){
@@ -826,7 +834,7 @@ session_start();
                                             <div class="row">
                                             <?php 
 
-                                                              $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE game_type = 'Mr_and_Mrs_Panagtigi' OR game_type = 'Mass_Dance' OR game_type = 'Dance_Sports' AND event_id = $id";
+                                                              $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE (game_type = 'Mr_and_Mrs_Panagtigi' OR game_type = 'Mass_Dance' OR game_type = 'Dance_Sports') AND event_id = $id";
                                                               $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
 
                                                               while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){
