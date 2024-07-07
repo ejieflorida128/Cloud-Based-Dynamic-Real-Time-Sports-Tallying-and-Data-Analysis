@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2024 at 08:51 AM
+-- Generation Time: Jul 07, 2024 at 06:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -53,21 +53,6 @@ INSERT INTO `accounts` (`id`, `profile`, `fullname`, `age`, `gmail`, `username`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `basketball_match`
---
-
-CREATE TABLE `basketball_match` (
-  `id` int(11) NOT NULL,
-  `game_id` int(11) NOT NULL,
-  `event_id` int(11) NOT NULL,
-  `game_type` varchar(255) NOT NULL,
-  `team1` varchar(255) NOT NULL,
-  `team2` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `events`
 --
 
@@ -84,12 +69,148 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `event_name`, `number_of_teams`, `status`, `date`) VALUES
-(6, 'Intramurals 2019', 0, 'completed', '2024-06-10 01:59:36'),
-(7, 'Intramurals 2020', 0, 'completed', '2024-06-10 01:59:36'),
-(8, 'Intramurals 2021', 0, 'completed', '2024-06-10 02:00:48'),
-(9, 'Intramurals 2022', 0, 'completed', '2024-06-10 02:01:08'),
-(10, 'Intramurals 2023', 0, 'completed', '2024-06-10 02:01:08'),
-(16, 'Intramurals 2024', 4, 'on-going', '2024-06-16 02:57:29');
+(1, 'demo1', 11, 'on-going', '2024-07-07 04:24:45'),
+(2, 'demo2', 7, 'on-going', '2024-07-07 04:25:44'),
+(3, 'demo3', 4, 'on-going', '2024-07-07 04:26:43'),
+(4, 'demo4', 3, 'on-going', '2024-07-07 04:27:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `game_matches`
+--
+
+CREATE TABLE `game_matches` (
+  `id` int(11) NOT NULL,
+  `game_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `game_type` varchar(255) NOT NULL,
+  `match_info` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `team1` int(11) NOT NULL,
+  `team1_name` varchar(255) NOT NULL,
+  `team_one_score` int(11) NOT NULL,
+  `team2` int(11) NOT NULL,
+  `team2_name` varchar(255) NOT NULL,
+  `team_two_score` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `game_matches`
+--
+
+INSERT INTO `game_matches` (`id`, `game_id`, `event_id`, `game_type`, `match_info`, `status`, `team1`, `team1_name`, `team_one_score`, `team2`, `team2_name`, `team_two_score`) VALUES
+(1, 1, 1, 'Basketball_Men', 'match1', 'Round 1', 11, 'Team Name', 0, 4, 'Team Name', 0),
+(2, 1, 1, 'Basketball_Men', 'match2', 'Round 1', 9, 'Team Name', 0, 10, 'Team Name', 0),
+(3, 1, 1, 'Basketball_Men', 'match3', 'Round 1', 8, 'Team Name', 0, 7, 'Team Name', 0),
+(4, 1, 1, 'Basketball_Men', 'match4', '', 0, '', 0, 0, '', 0),
+(5, 1, 1, 'Basketball_Men', 'match5', '', 0, '', 0, 0, '', 0),
+(6, 1, 1, 'Basketball_Men', 'match6', '', 0, '', 0, 0, '', 0),
+(7, 1, 1, 'Basketball_Men', 'match7', '', 0, '', 0, 0, '', 0),
+(8, 1, 1, 'Basketball_Men', 'match8', '', 0, '', 0, 0, '', 0),
+(9, 1, 1, 'Basketball_Men', 'match9', '', 0, '', 0, 0, '', 0),
+(10, 1, 1, 'Basketball_Men', 'match10', '', 0, '', 0, 0, '', 0),
+(11, 1, 1, 'Basketball_Men', 'match11', '', 0, '', 0, 0, '', 0),
+(12, 1, 1, 'Basketball_Men', 'match12', '', 0, '', 0, 0, '', 0),
+(13, 1, 1, 'Basketball_Men', 'match13', '', 0, '', 0, 0, '', 0),
+(14, 1, 1, 'Basketball_Men', 'match14', '', 0, '', 0, 0, '', 0),
+(15, 1, 1, 'Basketball_Men', 'match15', '', 0, '', 0, 0, '', 0),
+(16, 1, 1, 'Basketball_Men', 'match16', '', 0, '', 0, 0, '', 0),
+(17, 1, 1, 'Basketball_Men', 'match17', '', 0, '', 0, 0, '', 0),
+(18, 1, 1, 'Basketball_Men', 'match18', '', 0, '', 0, 0, '', 0),
+(19, 1, 1, 'Basketball_Men', 'match19', '', 0, '', 0, 0, '', 0),
+(20, 1, 1, 'Basketball_Men', 'match20', '', 0, '', 0, 0, '', 0),
+(21, 1, 1, 'Basketball_Men', 'match21', '', 0, '', 0, 0, '', 0),
+(22, 1, 1, 'Basketball_Men', 'BYE', '', 6, 'Team Name', 0, 0, '', 0),
+(23, 1, 1, 'Basketball_Men', 'BYE', '', 2, 'Team Name', 0, 0, '', 0),
+(24, 1, 1, 'Basketball_Men', 'BYE', '', 1, 'Team Name', 0, 0, '', 0),
+(25, 1, 1, 'Basketball_Men', 'BYE', '', 3, 'Team Name', 0, 0, '', 0),
+(26, 1, 1, 'Basketball_Men', 'BYE', '', 5, 'Team Name', 0, 0, '', 0),
+(27, 2, 2, 'Basketball_Men', 'match1', 'Round 1', 15, 'Team Name', 0, 16, 'Team Name', 0),
+(28, 2, 2, 'Basketball_Men', 'match2', 'Round 1', 17, 'Team Name', 0, 12, 'Team Name', 0),
+(29, 2, 2, 'Basketball_Men', 'match3', 'Round 1', 13, 'Team Name', 0, 18, 'Team Name', 0),
+(30, 2, 2, 'Basketball_Men', 'match4', '', 0, '', 0, 0, '', 0),
+(31, 2, 2, 'Basketball_Men', 'match5', '', 0, '', 0, 0, '', 0),
+(32, 2, 2, 'Basketball_Men', 'match6', '', 0, '', 0, 0, '', 0),
+(33, 2, 2, 'Basketball_Men', 'match7', '', 0, '', 0, 0, '', 0),
+(34, 2, 2, 'Basketball_Men', 'match8', '', 0, '', 0, 0, '', 0),
+(35, 2, 2, 'Basketball_Men', 'match9', '', 0, '', 0, 0, '', 0),
+(36, 2, 2, 'Basketball_Men', 'match10', '', 0, '', 0, 0, '', 0),
+(37, 2, 2, 'Basketball_Men', 'match11', '', 0, '', 0, 0, '', 0),
+(38, 2, 2, 'Basketball_Men', 'match12', '', 0, '', 0, 0, '', 0),
+(39, 2, 2, 'Basketball_Men', 'match13', '', 0, '', 0, 0, '', 0),
+(40, 2, 2, 'Basketball_Men', 'BYE', '', 14, 'Team Name', 0, 0, '', 0),
+(41, 3, 3, 'Basketball_Men', 'match1', 'Round 1', 22, 'Team Name', 0, 20, 'Team Name', 0),
+(42, 3, 3, 'Basketball_Men', 'match2', 'Round 1', 21, 'Team Name', 0, 19, 'Team Name', 0),
+(43, 3, 3, 'Basketball_Men', 'match3', '', 0, '', 0, 0, '', 0),
+(44, 3, 3, 'Basketball_Men', 'match4', '', 0, '', 0, 0, '', 0),
+(45, 3, 3, 'Basketball_Men', 'match5', '', 0, '', 0, 0, '', 0),
+(46, 3, 3, 'Basketball_Men', 'match6', '', 0, '', 0, 0, '', 0),
+(47, 3, 3, 'Basketball_Men', 'match7', '', 0, '', 0, 0, '', 0),
+(48, 4, 4, 'Basketball_Men', 'match1', 'Round 1', 24, 'Team Name', 0, 25, 'Team Name', 0),
+(49, 4, 4, 'Basketball_Men', 'match2', '', 0, '', 0, 0, '', 0),
+(50, 4, 4, 'Basketball_Men', 'match3', '', 0, '', 0, 0, '', 0),
+(51, 4, 4, 'Basketball_Men', 'match4', '', 0, '', 0, 0, '', 0),
+(52, 4, 4, 'Basketball_Men', 'match5', '', 0, '', 0, 0, '', 0),
+(53, 4, 4, 'Basketball_Men', 'BYE', '', 23, 'Team Name', 0, 0, '', 0),
+(54, 5, 4, 'Basketball_Men', 'match1', 'Round 1', 26, 'Team Name', 0, 28, 'Team Name', 0),
+(55, 5, 4, 'Basketball_Men', 'match2', '', 0, '', 0, 0, '', 0),
+(56, 5, 4, 'Basketball_Men', 'match3', '', 0, '', 0, 0, '', 0),
+(57, 5, 4, 'Basketball_Men', 'match4', '', 0, '', 0, 0, '', 0),
+(58, 5, 4, 'Basketball_Men', 'match5', '', 0, '', 0, 0, '', 0),
+(59, 5, 4, 'Basketball_Men', 'BYE', '', 27, 'Team Name', 0, 0, '', 0),
+(60, 6, 1, 'Basketball_Women', 'match1', 'Round 1', 36, 'Team Name', 0, 30, 'Team Name', 0),
+(61, 6, 1, 'Basketball_Women', 'match2', 'Round 1', 33, 'Team Name', 0, 38, 'Team Name', 0),
+(62, 6, 1, 'Basketball_Women', 'match3', 'Round 1', 31, 'Team Name', 0, 32, 'Team Name', 0),
+(63, 6, 1, 'Basketball_Women', 'match4', '', 0, '', 0, 0, '', 0),
+(64, 6, 1, 'Basketball_Women', 'match5', '', 0, '', 0, 0, '', 0),
+(65, 6, 1, 'Basketball_Women', 'match6', '', 0, '', 0, 0, '', 0),
+(66, 6, 1, 'Basketball_Women', 'match7', '', 0, '', 0, 0, '', 0),
+(67, 6, 1, 'Basketball_Women', 'match8', '', 0, '', 0, 0, '', 0),
+(68, 6, 1, 'Basketball_Women', 'match9', '', 0, '', 0, 0, '', 0),
+(69, 6, 1, 'Basketball_Women', 'match10', '', 0, '', 0, 0, '', 0),
+(70, 6, 1, 'Basketball_Women', 'match11', '', 0, '', 0, 0, '', 0),
+(71, 6, 1, 'Basketball_Women', 'match12', '', 0, '', 0, 0, '', 0),
+(72, 6, 1, 'Basketball_Women', 'match13', '', 0, '', 0, 0, '', 0),
+(73, 6, 1, 'Basketball_Women', 'match14', '', 0, '', 0, 0, '', 0),
+(74, 6, 1, 'Basketball_Women', 'match15', '', 0, '', 0, 0, '', 0),
+(75, 6, 1, 'Basketball_Women', 'match16', '', 0, '', 0, 0, '', 0),
+(76, 6, 1, 'Basketball_Women', 'match17', '', 0, '', 0, 0, '', 0),
+(77, 6, 1, 'Basketball_Women', 'match18', '', 0, '', 0, 0, '', 0),
+(78, 6, 1, 'Basketball_Women', 'match19', '', 0, '', 0, 0, '', 0),
+(79, 6, 1, 'Basketball_Women', 'match20', '', 0, '', 0, 0, '', 0),
+(80, 6, 1, 'Basketball_Women', 'match21', '', 0, '', 0, 0, '', 0),
+(81, 6, 1, 'Basketball_Women', 'BYE', '', 34, 'Team Name', 0, 0, '', 0),
+(82, 6, 1, 'Basketball_Women', 'BYE', '', 39, 'Team Name', 0, 0, '', 0),
+(83, 6, 1, 'Basketball_Women', 'BYE', '', 35, 'Team Name', 0, 0, '', 0),
+(84, 6, 1, 'Basketball_Women', 'BYE', '', 37, 'Team Name', 0, 0, '', 0),
+(85, 6, 1, 'Basketball_Women', 'BYE', '', 29, 'Team Name', 0, 0, '', 0),
+(86, 7, 1, 'Vollayball_Women', 'match1', 'Round 1', 50, 'Team Name', 0, 46, 'Team Name', 0),
+(87, 7, 1, 'Vollayball_Women', 'match2', 'Round 1', 42, 'Team Name', 0, 43, 'Team Name', 0),
+(88, 7, 1, 'Vollayball_Women', 'match3', 'Round 1', 45, 'Team Name', 0, 41, 'Team Name', 0),
+(89, 7, 1, 'Vollayball_Women', 'match4', '', 0, '', 0, 0, '', 0),
+(90, 7, 1, 'Vollayball_Women', 'match5', '', 0, '', 0, 0, '', 0),
+(91, 7, 1, 'Vollayball_Women', 'match6', '', 0, '', 0, 0, '', 0),
+(92, 7, 1, 'Vollayball_Women', 'match7', '', 0, '', 0, 0, '', 0),
+(93, 7, 1, 'Vollayball_Women', 'match8', '', 0, '', 0, 0, '', 0),
+(94, 7, 1, 'Vollayball_Women', 'match9', '', 0, '', 0, 0, '', 0),
+(95, 7, 1, 'Vollayball_Women', 'match10', '', 0, '', 0, 0, '', 0),
+(96, 7, 1, 'Vollayball_Women', 'match11', '', 0, '', 0, 0, '', 0),
+(97, 7, 1, 'Vollayball_Women', 'match12', '', 0, '', 0, 0, '', 0),
+(98, 7, 1, 'Vollayball_Women', 'match13', '', 0, '', 0, 0, '', 0),
+(99, 7, 1, 'Vollayball_Women', 'match14', '', 0, '', 0, 0, '', 0),
+(100, 7, 1, 'Vollayball_Women', 'match15', '', 0, '', 0, 0, '', 0),
+(101, 7, 1, 'Vollayball_Women', 'match16', '', 0, '', 0, 0, '', 0),
+(102, 7, 1, 'Vollayball_Women', 'match17', '', 0, '', 0, 0, '', 0),
+(103, 7, 1, 'Vollayball_Women', 'match18', '', 0, '', 0, 0, '', 0),
+(104, 7, 1, 'Vollayball_Women', 'match19', '', 0, '', 0, 0, '', 0),
+(105, 7, 1, 'Vollayball_Women', 'match20', '', 0, '', 0, 0, '', 0),
+(106, 7, 1, 'Vollayball_Women', 'match21', '', 0, '', 0, 0, '', 0),
+(107, 7, 1, 'Vollayball_Women', 'BYE', '', 49, 'Team Name', 0, 0, '', 0),
+(108, 7, 1, 'Vollayball_Women', 'BYE', '', 47, 'Team Name', 0, 0, '', 0),
+(109, 7, 1, 'Vollayball_Women', 'BYE', '', 44, 'Team Name', 0, 0, '', 0),
+(110, 7, 1, 'Vollayball_Women', 'BYE', '', 40, 'Team Name', 0, 0, '', 0),
+(111, 7, 1, 'Vollayball_Women', 'BYE', '', 48, 'Team Name', 0, 0, '', 0);
 
 -- --------------------------------------------------------
 
@@ -143,7 +264,7 @@ CREATE TABLE `percentage` (
 INSERT INTO `percentage` (`id`, `percentageFrom`, `last_data`, `percent`) VALUES
 (1, 'pending_account', 3, 50),
 (2, 'approved_account', 1, -50),
-(3, 'total_events', 6, -14.29),
+(3, 'total_events', 7, -12.5),
 (4, 'total_matches', 8, 33.33);
 
 -- --------------------------------------------------------
@@ -163,44 +284,6 @@ CREATE TABLE `players` (
   `age1` int(11) NOT NULL,
   `player_number` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `players`
---
-
-INSERT INTO `players` (`id`, `game_id`, `event_id`, `team_id`, `name`, `age`, `name1`, `age1`, `player_number`) VALUES
-(1, 24, 16, 9, 'Ejie Cabales Florida', 19, '', 0, 'player1'),
-(2, 24, 16, 9, 'Athena Joy Campania', 21, '', 0, 'player2'),
-(3, 24, 16, 9, 'Please add player name!', 0, '', 0, 'player3'),
-(4, 24, 16, 9, 'Please add player name!', 0, '', 0, 'player4'),
-(5, 24, 16, 9, 'Please add player name!', 0, '', 0, 'player5'),
-(6, 24, 16, 9, 'Please add player name!', 0, '', 0, 'player6'),
-(7, 24, 16, 9, 'Please add player name!', 0, '', 0, 'player7'),
-(8, 24, 16, 9, 'Please add player name!', 0, '', 0, 'player8'),
-(9, 24, 16, 9, 'Please add player name!', 0, '', 0, 'player9'),
-(10, 24, 16, 9, 'Please add player name!', 0, '', 0, 'player10'),
-(11, 24, 16, 9, 'Please add player name!', 0, '', 0, 'player11'),
-(12, 24, 16, 9, 'Please add player name!', 0, '', 0, 'player12'),
-(13, 24, 16, 9, 'Please add player name!', 0, '', 0, 'player13'),
-(14, 24, 16, 9, 'Please add player name!', 0, '', 0, 'player14'),
-(55, 25, 16, 13, 'Ejie Cabales Florida', 19, '', 0, 'player1'),
-(56, 25, 16, 13, 'Athena Joy Campania', 21, '', 0, 'player2'),
-(57, 25, 16, 13, 'Please add player name!', 0, '', 0, 'player3'),
-(58, 25, 16, 13, 'Please add player name!', 0, '', 0, 'player4'),
-(59, 25, 16, 13, 'Please add player name!', 0, '', 0, 'player5'),
-(60, 25, 16, 13, 'Please add player name!', 0, '', 0, 'player6'),
-(61, 25, 16, 13, 'Please add player name!', 0, '', 0, 'player7'),
-(62, 25, 16, 13, 'Please add player name!', 0, '', 0, 'player8'),
-(63, 25, 16, 13, 'Please add player name!', 0, '', 0, 'player9'),
-(64, 25, 16, 13, 'Please add player name!', 0, '', 0, 'player10'),
-(65, 26, 16, 17, 'Ejie Cabales Florida', 19, 'Athena Joy Barola Campania', 21, 'player1'),
-(66, 27, 16, 21, 'Athena Joy Campania', 21, '', 0, 'player1'),
-(67, 28, 16, 25, 'Ejie Cabales Florida', 19, '', 0, 'player1'),
-(68, 29, 16, 29, 'Athena Joy Campania', 21, '', 0, 'player1'),
-(69, 30, 16, 33, 'Ejie Cabales Florida', 19, '', 0, 'player1'),
-(70, 31, 16, 37, 'Athena Joy Campania', 21, '', 0, 'player1'),
-(71, 36, 16, 41, 'Athena Joy Campania', 21, 'Ejie Cabales Florida', 19, 'player1'),
-(72, 36, 16, 41, 'Please add player1 name!', 0, 'Please add player2 name!', 0, 'player2');
 
 -- --------------------------------------------------------
 
@@ -222,41 +305,13 @@ CREATE TABLE `registered_game` (
 --
 
 INSERT INTO `registered_game` (`id`, `event_id`, `game_type`, `status`, `img`, `CreatedTeam`) VALUES
-(1, 16, 'Basketball_Men', 'need_information', 'stored_images/basketball.avif', 1),
-(2, 16, 'Basketball_Women', 'need_information', 'stored_images/basketball.avif', 0),
-(3, 16, 'Vollayball_Men', 'need_information', 'stored_images/volleyball.png', 0),
-(4, 16, 'Vollayball_Women', 'need_information', 'stored_images/volleyball.png', 0),
-(5, 16, 'Softball_Men', 'need_information', 'stored_images/softball.png', 0),
-(6, 16, 'Softball_Women', 'need_information', 'stored_images/softball.png', 0),
-(7, 16, 'Throws_Men', 'need_information', 'stored_images/throws.jpg', 0),
-(8, 16, 'Throws_Women', 'need_information', 'stored_images/throws.jpg', 0),
-(9, 16, 'Jumps_Men', 'need_information', 'stored_images/jumps.jpg', 0),
-(10, 16, 'Jumps_Women', 'need_information', 'stored_images/jumps.jpg', 0),
-(11, 16, 'MLBB', 'need_information', 'stored_images/mobile_legends.jpg', 0),
-(12, 16, 'Badminton_Single_Men', 'need_information', 'stored_images/badminton.jpg', 0),
-(13, 16, 'Badminton_Double_Men', 'need_information', 'stored_images/badminton.jpg', 0),
-(14, 16, 'Badminton_Single_Women', 'need_information', 'stored_images/badminton.jpg', 0),
-(15, 16, 'Badminton_Double_Women', 'need_information', 'stored_images/badminton.jpg', 0),
-(16, 16, 'Table_tennis_Single_Men', 'need_information', 'stored_images/table_tennis.jpg', 0),
-(17, 16, 'Table_tennis_Double_Men', 'need_information', 'stored_images/table_tennis.jpg', 0),
-(18, 16, 'Table_tennis_Single_Women', 'need_information', 'stored_images/table_tennis.jpg', 0),
-(19, 16, 'Table_tennis_Double_Women', 'need_information', 'stored_images/table_tennis.jpg', 0),
-(20, 16, 'Futsal_Men', 'need_information', 'stored_images/futsal.jpg', 0),
-(21, 16, 'Futsal_Women', 'need_information', 'stored_images/futsal.jpg', 0),
-(22, 16, 'Chess', 'need_information', 'stored_images/chess.webp', 0),
-(23, 16, 'Archery', 'need_information', 'stored_images/archery.png', 0),
-(24, 16, 'Creative_Folk_Dance', 'need_information', 'stored_images/folkDance.png', 1),
-(25, 16, 'Pop_Dance', 'need_information', 'stored_images/popDance.jpg', 1),
-(26, 16, 'Vocal_Duet', 'need_information', 'stored_images/vocalDuet.webp', 1),
-(27, 16, 'Pop_Solo', 'need_information', 'stored_images/popSolo.webp', 1),
-(28, 16, 'Charcoal_Rendering', 'need_information', 'stored_images/charcoalRendering.jpg', 1),
-(29, 16, 'Pencil_Drawing', 'need_information', 'stored_images/pencilDrawing.jpg', 1),
-(30, 16, 'Painting', 'need_information', 'stored_images/painting.jpg', 1),
-(31, 16, 'Poster_Making', 'need_information', 'stored_images/posterMaking.webp', 1),
-(33, 16, 'Phone_Photography', 'need_information', 'stored_images/phonePhotography.jpg', 1),
-(34, 16, 'Mr_and_Mrs_Panagtigi', 'need_information', 'stored_images/mrsAndmrs.jpg', 0),
-(35, 16, 'Mass_Dance', 'need_information', 'stored_images/massDance.webp', 1),
-(36, 16, 'Dance_Sports', 'need_information', 'stored_images/dance-sport.png', 1);
+(1, 1, 'Basketball_Men', 'submitted', 'stored_images/basketball.avif', 1),
+(2, 2, 'Basketball_Men', 'submitted', 'stored_images/basketball.avif', 1),
+(3, 3, 'Basketball_Men', 'submitted', 'stored_images/basketball.avif', 1),
+(4, 4, 'Basketball_Men', 'submitted', 'stored_images/basketball.avif', 1),
+(5, 4, 'Basketball_Men', 'submitted', 'stored_images/basketball.avif', 1),
+(6, 1, 'Basketball_Women', 'submitted', 'stored_images/basketball.avif', 1),
+(7, 1, 'Vollayball_Women', 'submitted', 'stored_images/volleyball.png', 1);
 
 -- --------------------------------------------------------
 
@@ -269,8 +324,10 @@ CREATE TABLE `teams` (
   `game_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
   `team_name` varchar(255) NOT NULL,
+  `team_number` int(11) NOT NULL,
   `logo` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
+  `ifBye` varchar(255) NOT NULL,
   `number_of_player` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -278,55 +335,57 @@ CREATE TABLE `teams` (
 -- Dumping data for table `teams`
 --
 
-INSERT INTO `teams` (`id`, `game_id`, `event_id`, `team_name`, `logo`, `status`, `number_of_player`) VALUES
-(1, 1, 16, 'Team Name', '../logo/default.png', '', 0),
-(2, 1, 16, 'Team Name', '../logo/default.png', '', 0),
-(3, 1, 16, 'Team Name', '../logo/default.png', '', 0),
-(4, 1, 16, 'Team Name', '../logo/default.png', '', 0),
-(5, 35, 16, 'Team Name', '../logo/default.png', '', 0),
-(6, 35, 16, 'Team Name', '../logo/default.png', '', 0),
-(7, 35, 16, 'Team Name', '../logo/default.png', '', 0),
-(8, 35, 16, 'Team Name', '../logo/default.png', '', 0),
-(9, 24, 16, 'Winchester Wolves', '../logo/d71cb5616ba9f10a3861fdee10d0903d.jpg', 'detailed', 14),
-(10, 24, 16, 'Team Name', '../logo/default.png', '', 0),
-(11, 24, 16, 'Team Name', '../logo/default.png', '', 0),
-(12, 24, 16, 'Team Name', '../logo/default.png', '', 0),
-(13, 25, 16, 'Winchester Wolves', '../logo/75051c62111423912c02a45a376c7481.jpg', 'detailed', 10),
-(14, 25, 16, 'Team Name', '../logo/default.png', '', 0),
-(15, 25, 16, 'Team Name', '../logo/default.png', '', 0),
-(16, 25, 16, 'Team Name', '../logo/default.png', '', 0),
-(17, 26, 16, 'Winchester Wolves', '../logo/2d7d005452a964b60acc78bf36e8af66.jpg', 'detailed', 1),
-(18, 26, 16, 'Team Name', '../logo/default.png', '', 0),
-(19, 26, 16, 'Team Name', '../logo/default.png', '', 0),
-(20, 26, 16, 'Team Name', '../logo/default.png', '', 0),
-(21, 27, 16, 'Winchester Wolves', '../logo/a2c09806ed8ed151389396f2c457e8d1.jpg', 'detailed', 1),
-(22, 27, 16, 'Team Name', '../logo/default.png', '', 0),
-(23, 27, 16, 'Team Name', '../logo/default.png', '', 0),
-(24, 27, 16, 'Team Name', '../logo/default.png', '', 0),
-(25, 28, 16, 'Winchester Wolves', '../logo/6d51336390ef4f2b6f49493e51cfbdd2.jpg', 'detailed', 1),
-(26, 28, 16, 'Team Name', '../logo/default.png', '', 0),
-(27, 28, 16, 'Team Name', '../logo/default.png', '', 0),
-(28, 28, 16, 'Team Name', '../logo/default.png', '', 0),
-(29, 29, 16, 'Winchester Wolves', '../logo/d45d81acb7dc8d8fb8ec43a4d33d0f04.jpg', 'detailed', 1),
-(30, 29, 16, 'Team Name', '../logo/default.png', '', 0),
-(31, 29, 16, 'Team Name', '../logo/default.png', '', 0),
-(32, 29, 16, 'Team Name', '../logo/default.png', '', 0),
-(33, 30, 16, 'Winchester Wolves', '../logo/dde8e03c94b9dc922bd31afab461a976.jpg', 'detailed', 1),
-(34, 30, 16, 'Team Name', '../logo/default.png', '', 0),
-(35, 30, 16, 'Team Name', '../logo/default.png', '', 0),
-(36, 30, 16, 'Team Name', '../logo/default.png', '', 0),
-(37, 31, 16, 'Winchester Wolves', '../logo/70cd92d090c0f3620478c6382cbbde85.jpg', 'detailed', 1),
-(38, 31, 16, 'Team Name', '../logo/default.png', '', 0),
-(39, 31, 16, 'Team Name', '../logo/default.png', '', 0),
-(40, 31, 16, 'Team Name', '../logo/default.png', '', 0),
-(41, 36, 16, 'Winchester Wolves', '../logo/c0d5dbd5f03f1d062b06c5b77f4c9941.jpg', 'detailed', 2),
-(42, 36, 16, 'Team Name', '../logo/default.png', '', 0),
-(43, 36, 16, 'Team Name', '../logo/default.png', '', 0),
-(44, 36, 16, 'Team Name', '../logo/default.png', '', 0),
-(45, 33, 16, 'Team Name', '../logo/default.png', '', 0),
-(46, 33, 16, 'Team Name', '../logo/default.png', '', 0),
-(47, 33, 16, 'Team Name', '../logo/default.png', '', 0),
-(48, 33, 16, 'Team Name', '../logo/default.png', '', 0);
+INSERT INTO `teams` (`id`, `game_id`, `event_id`, `team_name`, `team_number`, `logo`, `status`, `ifBye`, `number_of_player`) VALUES
+(1, 1, 1, 'Team Name', 1, '../logo/default.png', '', '', 0),
+(2, 1, 1, 'Team Name', 2, '../logo/default.png', '', '', 0),
+(3, 1, 1, 'Team Name', 3, '../logo/default.png', '', '', 0),
+(4, 1, 1, 'Team Name', 4, '../logo/default.png', '', '', 0),
+(5, 1, 1, 'Team Name', 5, '../logo/default.png', '', '', 0),
+(6, 1, 1, 'Team Name', 6, '../logo/default.png', '', '', 0),
+(7, 1, 1, 'Team Name', 7, '../logo/default.png', '', '', 0),
+(8, 1, 1, 'Team Name', 8, '../logo/default.png', '', '', 0),
+(9, 1, 1, 'Team Name', 9, '../logo/default.png', '', '', 0),
+(10, 1, 1, 'Team Name', 10, '../logo/default.png', '', '', 0),
+(11, 1, 1, 'Team Name', 11, '../logo/default.png', '', '', 0),
+(12, 2, 2, 'Team Name', 1, '../logo/default.png', '', '', 0),
+(13, 2, 2, 'Team Name', 2, '../logo/default.png', '', '', 0),
+(14, 2, 2, 'Team Name', 3, '../logo/default.png', '', '', 0),
+(15, 2, 2, 'Team Name', 4, '../logo/default.png', '', '', 0),
+(16, 2, 2, 'Team Name', 5, '../logo/default.png', '', '', 0),
+(17, 2, 2, 'Team Name', 6, '../logo/default.png', '', '', 0),
+(18, 2, 2, 'Team Name', 7, '../logo/default.png', '', '', 0),
+(19, 3, 3, 'Team Name', 1, '../logo/default.png', '', '', 0),
+(20, 3, 3, 'Team Name', 2, '../logo/default.png', '', '', 0),
+(21, 3, 3, 'Team Name', 3, '../logo/default.png', '', '', 0),
+(22, 3, 3, 'Team Name', 4, '../logo/default.png', '', '', 0),
+(23, 4, 4, 'Team Name', 1, '../logo/default.png', '', '', 0),
+(24, 4, 4, 'Team Name', 2, '../logo/default.png', '', '', 0),
+(25, 4, 4, 'Team Name', 3, '../logo/default.png', '', '', 0),
+(26, 5, 4, 'Team Name', 1, '../logo/default.png', '', '', 0),
+(27, 5, 4, 'Team Name', 2, '../logo/default.png', '', '', 0),
+(28, 5, 4, 'Team Name', 3, '../logo/default.png', '', '', 0),
+(29, 6, 1, 'Team Name', 1, '../logo/default.png', '', '', 0),
+(30, 6, 1, 'Team Name', 2, '../logo/default.png', '', '', 0),
+(31, 6, 1, 'Team Name', 3, '../logo/default.png', '', '', 0),
+(32, 6, 1, 'Team Name', 4, '../logo/default.png', '', '', 0),
+(33, 6, 1, 'Team Name', 5, '../logo/default.png', '', '', 0),
+(34, 6, 1, 'Team Name', 6, '../logo/default.png', '', '', 0),
+(35, 6, 1, 'Team Name', 7, '../logo/default.png', '', '', 0),
+(36, 6, 1, 'Team Name', 8, '../logo/default.png', '', '', 0),
+(37, 6, 1, 'Team Name', 9, '../logo/default.png', '', '', 0),
+(38, 6, 1, 'Team Name', 10, '../logo/default.png', '', '', 0),
+(39, 6, 1, 'Team Name', 11, '../logo/default.png', '', '', 0),
+(40, 7, 1, 'Team Name', 1, '../logo/default.png', '', '', 0),
+(41, 7, 1, 'Team Name', 2, '../logo/default.png', '', '', 0),
+(42, 7, 1, 'Team Name', 3, '../logo/default.png', '', '', 0),
+(43, 7, 1, 'Team Name', 4, '../logo/default.png', '', '', 0),
+(44, 7, 1, 'Team Name', 5, '../logo/default.png', '', '', 0),
+(45, 7, 1, 'Team Name', 6, '../logo/default.png', '', '', 0),
+(46, 7, 1, 'Team Name', 7, '../logo/default.png', '', '', 0),
+(47, 7, 1, 'Team Name', 8, '../logo/default.png', '', '', 0),
+(48, 7, 1, 'Team Name', 9, '../logo/default.png', '', '', 0),
+(49, 7, 1, 'Team Name', 10, '../logo/default.png', '', '', 0),
+(50, 7, 1, 'Team Name', 11, '../logo/default.png', '', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -339,15 +398,15 @@ ALTER TABLE `accounts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `basketball_match`
---
-ALTER TABLE `basketball_match`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `game_matches`
+--
+ALTER TABLE `game_matches`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -391,16 +450,16 @@ ALTER TABLE `accounts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `basketball_match`
---
-ALTER TABLE `basketball_match`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `game_matches`
+--
+ALTER TABLE `game_matches`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `matches`
@@ -418,19 +477,19 @@ ALTER TABLE `percentage`
 -- AUTO_INCREMENT for table `players`
 --
 ALTER TABLE `players`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `registered_game`
 --
 ALTER TABLE `registered_game`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
