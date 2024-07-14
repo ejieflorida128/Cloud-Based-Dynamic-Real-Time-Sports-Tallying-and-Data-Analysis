@@ -54,7 +54,7 @@ function getDoubleEliminationMatches($number, $game_id, $event_id, $gameType, $c
 // Function to insert total matches into the database
 function insertIntoDatabaseWithTheTotalMatchesValue($value, $numTeams, $game_id, $event_id, $gameType, $conn) {
     for ($x = 1; $x <= $value; $x++) {  // Loop sa total number sa matches
-        $match = 'match' . $x;  // Likay ang label sa match
+        $match = $x;  // Likay ang label sa match
         $sqlForInsertingMatchesValues = "INSERT INTO game_matches (game_id, event_id, game_type, match_info, team1, team1_name, team2, team2_name) VALUES ('$game_id', '$event_id', '$gameType', '$match', 'Insert Information', '', 'Insert Information', '')";
         if (mysqli_query($conn, $sqlForInsertingMatchesValues)) {
             error_log("Match $match inserted successfully.");
@@ -123,7 +123,7 @@ function generateFirstRoundMatches($numTeams, $numByes, $game_id, $event_id, $ga
 // Function to update ang first round sa matches with ang actual nga IDs ug mga pangalan sa teams
 function updateFirstRoundMatches($playingTeams, $game_id, $event_id, $gameType, $conn) {
     // Retrieve ang existing nga Round 1 matches aron i-update sila
-    $sqlFetchMatches = "SELECT id FROM game_matches WHERE game_id = $game_id AND match_info LIKE 'match%' AND team1 = 'Insert Information'";
+    $sqlFetchMatches = "SELECT id FROM game_matches WHERE game_id = $game_id AND match_info LIKE '%' AND team1 = 'Insert Information'";
     $result = mysqli_query($conn, $sqlFetchMatches);
     if (!$result) {
         error_log("Error fetching Round 1 matches: " . mysqli_error($conn));
@@ -147,7 +147,7 @@ function updateFirstRoundMatches($playingTeams, $game_id, $event_id, $gameType, 
             $team2_name = $playingTeams[$index * 2 + 1]['team_name'];
 
             // Update ang match with actual nga IDs ug mga pangalan sa teams
-            $sqlForUpdatingMatches = "UPDATE game_matches SET team1 = '$team1', team1_name = '$team1_name', team2 = '$team2', team2_name = '$team2_name', status = 'Round 1' WHERE id = $match_id";
+            $sqlForUpdatingMatches = "UPDATE game_matches SET team1 = '$team1', team1_name = '$team1_name', team2 = '$team2', team2_name = '$team2_name', status = 'game', round = 'Round1' WHERE id = $match_id";
             if (mysqli_query($conn, $sqlForUpdatingMatches)) {
                 error_log("Match $match_id updated to Round 1 with teams $team1_name and $team2_name successfully.");
             } else {

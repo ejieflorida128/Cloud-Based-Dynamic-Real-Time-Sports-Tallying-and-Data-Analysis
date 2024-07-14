@@ -212,6 +212,33 @@ session_start();
             <span class="nav-link-text ms-1">Program</span>
           </a>
         </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link  " href="scoring_info/loadToScoreList.php">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+            <svg width="45px" height="45px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000000" stroke-width="2">
+  <path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z" fill="grey" stroke="grey" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>
+
+
+
+                <title>office</title>
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <g transform="translate(1716.000000, 291.000000)">
+                      <g id="office" transform="translate(153.000000, 2.000000)">
+                        <path class="color-background opacity-6" d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z"></path>
+                        <path class="color-background" d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75 C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775 0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z M12.25,36.75 L7,36.75 L7,33.25 L12.25,33.25 L12.25,36.75 Z M12.25,29.75 L7,29.75 L7,26.25 L12.25,26.25 L12.25,29.75 Z M35,36.75 L29.75,36.75 L29.75,33.25 L35,33.25 L35,36.75 Z M35,29.75 L29.75,29.75 L29.75,26.25 L35,26.25 L35,29.75 Z M35,22.75 L29.75,22.75 L29.75,19.25 L35,19.25 L35,22.75 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <span class="nav-link-text ms-1">Score List</span>
+          </a>
+        </li>
         
         
      
@@ -443,7 +470,7 @@ session_start();
                                                 
                                                   <?php 
 
-                                                          $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE (game_type != 'Creative_Folk_Dance' OR game_type != 'Pop_Dance' OR game_type != 'Vocal_Duet' OR game_type != 'Pop_Solo' OR game_type != 'Charcoal_Rendering' OR game_type != 'Pencil_Drawing' OR game_type != 'Painting' OR game_type != 'Poster_Making' OR game_type != 'Phone_Photography' OR game_type != 'Mr_and_Mrs_Panagtigi' OR game_type != 'Mass_Dance' OR game_type != 'Dance_Sports') AND  event_id = $id";
+                                                          $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE (game_type = 'Basketball_Men' OR game_type = 'Basketball_Women' OR game_type = 'Vollayball_Men' OR game_type = 'Vollayball_Women' OR game_type = 'Softball_Men' OR game_type = 'Softball_Women' OR game_type = 'Runs_Men' OR game_type = 'Runs_Women' OR game_type = 'Throws_Men' OR game_type = 'Throws_Women' OR game_type = 'Jumps_Men' OR game_type = 'Jumps_Women' OR game_type = 'MLBB' OR game_type = 'Badminton_Single_Men' OR game_type = 'Badminton_Double_Men' OR game_type = 'Badminton_Single_Women' OR game_type = 'Badminton_Double_Women' OR game_type = 'Table_tennis_Single_Men' OR game_type = 'Table_tennis_Double_Men' OR game_type = 'Table_tennis_Single_Women' OR game_type = 'Table_tennis_Double_Women' OR game_type = 'Futsal_Men' OR game_type = 'Futsal_Women' OR game_type = 'Chess' OR game_type = 'Archery') AND  event_id = $id";
                                                           $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
 
                                                           while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){
