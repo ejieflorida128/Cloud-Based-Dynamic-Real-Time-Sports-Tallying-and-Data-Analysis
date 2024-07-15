@@ -147,7 +147,8 @@ function updateFirstRoundMatches($playingTeams, $game_id, $event_id, $gameType, 
             $team2_name = $playingTeams[$index * 2 + 1]['team_name'];
 
             // Update ang match with actual nga IDs ug mga pangalan sa teams
-            $sqlForUpdatingMatches = "UPDATE game_matches SET team1 = '$team1', team1_name = '$team1_name', team2 = '$team2', team2_name = '$team2_name', status = 'game', round = 'Round1' WHERE id = $match_id";
+            $rnd = 1;
+            $sqlForUpdatingMatches = "UPDATE game_matches SET team1 = '$team1', team1_name = '$team1_name', team2 = '$team2', team2_name = '$team2_name', status = 'game', round = '$rnd' WHERE id = $match_id";
             if (mysqli_query($conn, $sqlForUpdatingMatches)) {
                 error_log("Match $match_id updated to Round 1 with teams $team1_name and $team2_name successfully.");
             } else {

@@ -2,203 +2,208 @@
 session_start();
 include('../connection/conn.php');
 
-// Enable error reporting
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-// Check if the form was submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
-    $teamOneScore = isset($_POST['teamOneScore']) ? $_POST['teamOneScore'] : null;
-    $teamTwoScore = isset($_POST['teamTwoScore']) ? $_POST['teamTwoScore'] : null;
-    $gameType = isset($_POST['game_type']) ? $_POST['game_type'] : null;
-    $gameId = isset($_POST['game_id']) ? $_POST['game_id'] : null;
-    $eventId = isset($_POST['event_id']) ? $_POST['event_id'] : null;
-    $id = isset($_POST['id']) ? $_POST['id'] : null;
-    $teamOneName = isset($_POST['teamOneName']) ? $_POST['teamOneName'] : null;
-    $teamTwoName = isset($_POST['teamTwoName']) ? $_POST['teamTwoName'] : null;
-    $match_info = isset($_POST['match_info']) ? $_POST['match_info'] : null;
+            $teamOneScore = isset($_POST['teamOneScore']) ? $_POST['teamOneScore'] : null;
+            $teamTwoScore = isset($_POST['teamTwoScore']) ? $_POST['teamTwoScore'] : null;
+            $teamOneName = isset($_POST['teamOneName']) ? $_POST['teamOneName'] : null;
+            $teamTwoName = isset($_POST['teamTwoName']) ? $_POST['teamTwoName'] : null;
+            $team1_id = isset($_POST['team1_id']) ? $_POST['team1_id'] : null;
+            $team2_id = isset($_POST['team2_id']) ? $_POST['team2_id'] : null;
+            $gameType = isset($_POST['game_type']) ? $_POST['game_type'] : null;
+            $gameId = isset($_POST['game_id']) ? $_POST['game_id'] : null;
+            $eventId = isset($_POST['event_id']) ? $_POST['event_id'] : null;
+            $id = isset($_POST['id']) ? $_POST['id'] : null;
+            
+            if($teamOneScore > $teamTwoScore){
+                    $winnerId = $team1_id;
+                    $loserId = $team2_id;
 
-    // Update game scores
-    $sqlForUpdate = "UPDATE game_matches SET team_one_score = ?, team_two_score = ? WHERE id = ?";
-    $stmt = $conn->prepare($sqlForUpdate);
-    if ($stmt === false) {
-        die('Prepare failed: ' . htmlspecialchars($conn->error));
-    }
 
-    $stmt->bind_param("iii", $teamOneScore, $teamTwoScore, $id);
-    if (!$stmt->execute()) {
-        die('Execute failed: ' . htmlspecialchars($stmt->error));
-    }
-    $stmt->close();
+                    $sqlFOrWinner = "UPDATE teams SET last_match_status = 'Winner', winner_number = winner_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND team_name = '$teamOneName'";
+                    mysqli_query($conn,$sqlFOrWinner);
+                    $sqlForLoser = "UPDATE teams SET last_match_status = 'Loser', lose_number = lose_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND team_name = '$teamTwoName'";
+                    mysqli_query($conn,$sqlForLoser);
 
-    // Generate and update next round matches
-    updateNextRoundMatches($conn, $eventId, $gameType, $teamOneName, $teamTwoName, $match_info);
+            }else{
+                    $winnerId = $team2_id;
+                    $loserId = $team1_id;
 
-    // Redirect to the game list page
-    header('Location: game_list.php?event_id=' . urlencode($eventId) . '&game_id=' . urlencode($gameId) . '&game_type=' . urlencode($gameType));
-    exit;
-} else {
-    echo 'No form data submitted.';
-}
+                    $sqlFOrWinner = "UPDATE teams SET last_match_status = 'Winner', winner_number = winner_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND team_name = '$teamTwoName'";
+                    mysqli_query($conn,$sqlFOrWinner);
+                    $sqlForLoser = "UPDATE teams SET last_match_status = 'Loser', lose_number = lose_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND team_name = '$teamOneName'";
+                    mysqli_query($conn,$sqlForLoser);
+            }
 
-// Function to update the next round matches
-function updateNextRoundMatches($conn, $eventId, $gameType, $teamOneName, $teamTwoName, $match_info) {
-    // Fetch all completed matches for the current event and game type
-    $sql = "SELECT * FROM game_matches WHERE event_id = ? AND game_type = ? AND team_one_score IS NOT NULL AND team_two_score IS NOT NULL";
-    $stmt = $conn->prepare($sql);
-    if ($stmt === false) {
-        die('Prepare failed: ' . htmlspecialchars($conn->error));
-    }
+            $sqlUpdateOfWinnerAndLoserId = "UPDATE game_matches SET team_one_score = $teamOneScore, team_two_score = $teamTwoScore, winner_id = $winnerId, loser_id = $loserId, status = 'SCORE' WHERE id = $id";
+            mysqli_query($conn,$sqlUpdateOfWinnerAndLoserId);
 
-    $stmt->bind_param("ss", $eventId, $gameType);
-    $stmt->execute();
-    $result = $stmt->get_result();
+            // call the function para ma kuha ang value sa current na round
+            $currentRound = getCurrentRound($conn,$gameId,$eventId);
 
-    // Track winners and byes
-    $winners = [];
-    $byes = [];
+            // call the function para ma check if naa pay wala na score sa round 
+            $checkRound = checkIfThereStillMatchesNotScoredInThisRound($conn,$gameId,$eventId,$currentRound);
+            if($checkRound == false){
+                    // call the function para ma balik sa game list na page!
+                    backToGameList($eventId,$gameId,$gameType);
+            }else{
+                //    check natu if naa bay bye!
+                    $bye = checkIfByeExist($conn,$eventId,$gameId);
 
-    while ($row = $result->fetch_assoc()) {
-        if (isset($row['team_one_score'], $row['team_two_score'], $row['team1'], $row['team2'])) {
-            if ($row['team_one_score'] > $row['team_two_score']) {
-                if ($row['team1'] != 0) {
-                    $winners[] = $row['team1'];
-                }
+                    // call the genratedRound function para e execute
+                    generateNewRound($conn,$eventId,$gameId,$bye,$gameType);
+                    
+                    
+            }
+
+
+        }
+
+
+
+    // function para ma generate new round and matches
+   // function para ma generate new round and matches
+function generateNewRound($conn,$eventId,$gameId,$bye,$gameType){
+    if($bye == true){
+        // if naay bye
+        $sql = "SELECT * FROM game_matches WHERE event_id = $eventId AND game_id = $gameId AND (match_info = 'BYE' OR status = 'SCORE') ORDER BY id DESC";
+        $query = mysqli_query($conn, $sql);
+
+        $teamId = [];
+        $teamName = [];
+        $count = 0;
+
+        $nextIdOfMatch = getNextIdOfMatchToBeUpdated($conn, $eventId, $gameId) + 1;
+
+        while($test = mysqli_fetch_assoc($query)){
+            if($test['match_info'] == 'BYE'){
+                $teamId[$count] = $test['team1'];
+                $teamName[$count] = $test['team1_name'];
             } else {
-                if ($row['team2'] != 0) {
-                    $winners[] = $row['team2'];
+                if($test['team_one_score'] > $test['team_two_score']){
+                    $teamId[$count] = $test['team1'];
+                    $teamName[$count] = $test['team1_name'];
+
+                    
+                } else {
+                    $teamId[$count] = $test['team2'];
+                    $teamName[$count] = $test['team2_name'];
+
+                   
                 }
             }
-        }
-    }
 
-    // Debug output
-    echo "Winners: " . implode(', ', $winners) . "<br>";
+            $count++;
 
-    // Get teams with byes
-    $sqlByes = "SELECT * FROM game_matches WHERE event_id = ? AND game_type = ? AND match_info = 'BYE'";
-    $stmtByes = $conn->prepare($sqlByes);
-    if ($stmtByes === false) {
-        die('Prepare failed: ' . htmlspecialchars($conn->error));
-    }
-
-    $stmtByes->bind_param("ss", $eventId, $gameType);
-    $stmtByes->execute();
-    $resultByes = $stmtByes->get_result();
-
-    while ($rowByes = $resultByes->fetch_assoc()) {
-        if ($rowByes['team1'] != 0) {
-            $byes[] = $rowByes['team1']; // Only need one team per bye row
-        }
-    }
-
-    // Debug output
-    echo "Byes after fetching: " . implode(', ', $byes) . "<br>";
-
-    // Determine next round pairings
-    $nextRoundMatches = getNextRoundPairings($winners, $byes);
-
-    // Debug output
-    echo "Next Round Matches: " . print_r($nextRoundMatches, true) . "<br>";
-
-    // Update existing matches in the database
-    updateMatches($conn, $eventId, $gameType, $nextRoundMatches, $teamOneName, $teamTwoName, $match_info);
-}
-
-// Function to update matches in the database
-function updateMatches($conn, $eventId, $gameType, $matches, $teamOneName, $teamTwoName, $match_info) {
-    $round = 'Round2'; // Set the round variable
-    // $matchNumber = $match_info;
-    
-    // Update query with match_info included
-    // $sqlUpdate = "UPDATE game_matches SET team1 = ?, team2 = ?, round = ?, match_info = ? WHERE event_id = ? AND game_type = ? AND team1 IS NULL AND team2 IS NULL AND status = ''";
-    // $stmtUpdate = $conn->prepare($sqlUpdate);
-    // if ($stmtUpdate === false) {
-    //     die('Prepare failed: ' . htmlspecialchars($conn->error));
-    // }
-
-    $matchNumber = 1 + $match_info; // Start match numbering from 1
-
-    foreach ($matches as $match) {
-        $teamOneId = isset($match['team_one_id']) ? $match['team_one_id'] : null;
-        $teamTwoId = isset($match['team_two_id']) ? $match['team_two_id'] : null;
-
-        // Ensure we are only updating valid matches
-        if ($teamOneId != null && $teamTwoId != null) {
-            // Debug output with match number
-
-            $EVENT_ID = $_SESSION['EVENT_ID'];
-            $GAME_ID = $_SESSION['GAME_ID'];
-            $t1 = '';
-            $t2 = '';
-            
-            $sqlGetTeamInformation1 = "SELECT * FROM teams WHERE event_id = $EVENT_ID AND game_id = $GAME_ID AND team_number = $teamOneId";
-            $query1 = mysqli_query($conn,$sqlGetTeamInformation1);
-
-            while($getResult = mysqli_fetch_assoc($query1)){
-                $t1 = $getResult['team_name'];
+            if($count == 2){
               
 
-                
-             }
+                $sqlForUpdate = "UPDATE game_matches SET team1 = $teamId[0], team1_name = '$teamName[0]', team2 = $teamId[1], team2_name = '$teamName[1]', status = 'game', round = 2 WHERE id = $nextIdOfMatch";
+                mysqli_query($conn, $sqlForUpdate);
 
-             $sqlGetTeamInformation2 = "SELECT * FROM teams WHERE event_id = $EVENT_ID AND game_id = $GAME_ID AND team_number = $teamTwoId";
-             $query2 = mysqli_query($conn,$sqlGetTeamInformation2);
- 
-             while($getResult = mysqli_fetch_assoc($query2)){
-                 $t2 = $getResult['team_name'];
-               
- 
-                 
-              }
+                // Debug: Check if the update was successful
+                if(mysqli_affected_rows($conn) > 0){
+                    echo "Next match updated successfully.<br>";
+                } else {
+                    echo "Failed to update next match.<br>";
+                }
 
-          
+                echo 'id = ' .$nextIdOfMatch . '<br>';
+                echo 'round = '.$newRound . '<br>';
 
-         
-           echo "Updating match " . $matchNumber . " in $round: team_one_id = $teamOneId ($t1), team_two_id = $teamTwoId ($t2)<br>";
+                echo 'teamId1 = '. $teamId[0] . '<br>';
+                echo 'teamName1 = '. $teamName[0] . '<br>';
+                echo 'teamId2 = '. $teamId[1] . '<br>';
+                echo 'teamName2 = '.$teamName[1] . '<br>';
 
-           $updateMatch = "UPDATE game_matches SET status = 'game', round = '$round', team1 = '$teamOneId', team1_name = '$t1', team2 = '$teamTwoId', team2_name = '$t2' WHERE match_info = '$matchNumber' AND game_id = '$GAME_ID' AND event_id = '$EVENT_ID'";
-              mysqli_query($conn,$updateMatch);
-            
-            // $stmtUpdate->bind_param("ssssss", $teamOneId, $teamTwoId, $round, $match_info, $eventId, $gameType);
-            // if (!$stmtUpdate->execute()) {
-            //     die('Execute failed: ' . htmlspecialchars($stmtUpdate->error));
-            // }
+                // Reset the arrays and count for the next pair
+                $teamId = [];
+                $teamName = [];
+                $count = 0;
 
-            // $updateMatchRound2 = "UPDATE game_matches"
-            $matchNumber++; // Increment the match number
+                // Move to the next match ID
+                $nextIdOfMatch++;
+            }
         }
-    }
 
-    // $stmtUpdate->close();
+        $deleteBye = "DELETE FROM game_matches WHERE game_id = $gameId AND event_id = $eventId AND match_info = 'BYE'";
+            if(mysqli_query($conn,$deleteBye)){
+                echo 'delete succesfully';
+            }
+
+        // Call the function para mo balik sa game list na page!
+        backToGameList($eventId, $gameId, $gameType);
+    } else {
+        // if walay bye, add your logic for generating new rounds without byes here
+
+        echo 'no code yet!';
+    }
 }
 
-// Function to get the next round pairings
-function getNextRoundPairings($winners, $byes) {
-    $matches = [];
 
-    // Pair byes with each other first
-    while (count($byes) > 1) {
-        $teamOne = array_shift($byes);
-        $teamTwo = array_shift($byes);
-        $matches[] = ['team_one_id' => $teamOne, 'team_two_id' => $teamTwo];
+    // function para kuhaon ang last id na nag score
+    function getNextIdOfMatchToBeUpdated($conn,$eventId,$gameId){
+
+        $sql = "SELECT id FROM game_matches WHERE status = 'SCORE' AND event_id = $eventId AND game_id = $gameId ORDER BY id DESC LIMIT 1";
+        $query = mysqli_query($conn,$sql);
+        $result = mysqli_fetch_assoc($query);
+
+        return $result['id'];
+
+    }
+        
+
+    // function to check if naay bye
+    function checkIfByeExist($conn,$eventId,$gameId){
+        $sql = "SELECT * FROM game_matches WHERE event_id = $eventId AND game_id = $gameId AND match_info = 'BYE'";
+        $query = mysqli_query($conn,$sql);
+        $bye = 0;
+
+        while($test = mysqli_fetch_assoc($query)){
+            $bye++;
+        }
+
+        if($bye == 0){
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
-    // If there's an odd number of byes, pair the remaining bye with a winner
-    if (count($byes) === 1 && !empty($winners)) {
-        $byeTeam = array_shift($byes);
-        $winner = array_shift($winners);
-        $matches[] = ['team_one_id' => $byeTeam, 'team_two_id' => $winner];
+    // function To Proceed Back To Game List
+    function backToGameList($eventId,$gameId,$gameType){
+        header('Location: game_list.php?event_id=' . urlencode($eventId) . '&game_id=' . urlencode($gameId) . '&game_type=' . urlencode($gameType));          
     }
 
-    // Pair remaining winners
-    while (count($winners) > 1) {
-        $teamOne = array_shift($winners);
-        $teamTwo = array_shift($winners);
-        $matches[] = ['team_one_id' => $teamOne, 'team_two_id' => $teamTwo];
+    // function para ma know and current round
+    function getCurrentRound($conn,$gameId,$eventId){
+        $sql = "SELECT MAX(round) AS max_value FROM game_matches WHERE game_id = 1 AND event_id = 1";
+            $query = mysqli_query($conn,$sql);
+
+            $result = mysqli_fetch_assoc($query);
+
+            return $result['max_value'];
+    }
+    
+
+    // function para ma detect if na scoran naba ang tanan na matches na ani na round
+    function checkIfThereStillMatchesNotScoredInThisRound($conn,$gameId,$eventId,$currentRound){
+
+            $sql = "SELECT * FROM game_matches WHERE game_id = $gameId AND event_id = $eventId AND round = $currentRound AND status = 'game'";
+            $query = mysqli_query($conn,$sql);
+            $value = 0;
+
+            while($getValue = mysqli_fetch_assoc($query)){
+                $value++;
+            }
+
+            if($value == 0){
+                    return true;
+            }else{
+                return false;
+            }
+
     }
 
-    return $matches;
-}
 ?>

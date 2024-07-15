@@ -288,124 +288,113 @@ session_start();
                                                   
 
             <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Match Info</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Team Info</th>
-                      
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Win</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Lose</th>
-                      <th class="text-secondary opacity-7">Score Option</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  <?php
+            <table class="table align-items-center mb-0">
+  <thead>
+    <tr>
+      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Match Info</th>
+      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Team Info</th>
+      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Win</th>
+      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Lose</th>
+      <th class="text-secondary opacity-7">Score Option</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $event_id = $_GET['event_id'];
+    $game_id = $_GET['game_id'];
+    $game_type = $_GET['game_type'];
 
-                      $event_id = $_GET['event_id'];
-                      $game_id = $_GET['game_id'];
-                      $game_type = $_GET['game_type'];
+    $sqlSelectAllDataInGameMatches = "SELECT * FROM game_matches WHERE game_id = $game_id AND event_id = $event_id AND game_type = '$game_type' AND ( status = 'game' OR status = 'SCORE')";
+    $resultQuery = mysqli_query($conn, $sqlSelectAllDataInGameMatches);
+    
+    while ($getDataOfMacthInfo = mysqli_fetch_assoc($resultQuery)) {
+        $team1 = $getDataOfMacthInfo['team1_name'];
+        $team2 = $getDataOfMacthInfo['team2_name'];
 
-                      $sqlSelectAllDataInGameMatches = "SELECT * FROM game_matches WHERE game_id = $game_id AND event_id = $event_id AND game_type = '$game_type' AND status = 'game'";
-                      $resultQuery = mysqli_query($conn,$sqlSelectAllDataInGameMatches);
-                      
-                      
-                      while($getDataOfMacthInfo = mysqli_fetch_assoc($resultQuery)){
+        $winner = 'on-going';
+        $loser = 'on-going';
 
-                        $team1 = $getDataOfMacthInfo['team1_name'];
-                        $team2 = $getDataOfMacthInfo['team2_name'];
+        if ($getDataOfMacthInfo['team_one_score'] > $getDataOfMacthInfo['team_two_score']) {
+            $winner = $team1;
+            $loser = $team2;
+        } else if ($getDataOfMacthInfo['team_one_score'] < $getDataOfMacthInfo['team_two_score']) {
+            $winner = $team2;
+            $loser = $team1;
+        }
+
+        // Generate a unique modal ID
+        $modalId = 'modal_' . $getDataOfMacthInfo['id'];
+    ?>
+    <tr>
+      <td>
+        <div class="d-flex px-2 py-1">
+          <div>
+            <?php echo $team1 ?> <span style="font-weight: bolder; color: orange;">VS</span> <?php echo $team2 ?>
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="text-xs font-weight-bold mb-0"><?php echo $getDataOfMacthInfo['game_type']; ?></p>
+        <p class="text-xs text-secondary mb-0">Match <?php echo $getDataOfMacthInfo['match_info']; ?></p>
+      </td>
+      <td class="align-middle text-center text-sm">
+        <span class="badge badge-sm bg-gradient-success"><?php echo $winner; ?></span>
+      </td>
+      <td class="align-middle text-center text-sm">
+        <span class="badge badge-sm bg-gradient-danger"><?php echo $loser; ?></span>
+      </td>
+      <td class="align-middle text-center text-sm">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#<?php echo $modalId; ?>">
+          Score
+        </button>
+      </td>
+    </tr>
+
+    <!-- Modal -->
+    <div class="modal fade" id="<?php echo $modalId; ?>" tabindex="-1" aria-labelledby="<?php echo $modalId; ?>Label" aria-hidden="true" style="margin-top: 60px;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="<?php echo $modalId; ?>Label">Score Input</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Form starts here -->
+            <form action="generateAnotherRound.php" method="post">
+              <label for="team1_score_<?php echo $getDataOfMacthInfo['id']; ?>"><?php echo $team1 ?>'s Score: </label>
+              <input type="number" name="teamOneScore" id="team1_score_<?php echo $getDataOfMacthInfo['id']; ?>" class="form-control" value="<?php echo $getDataOfMacthInfo['team_one_score']; ?>">
+
+              <label for="team2_score_<?php echo $getDataOfMacthInfo['id']; ?>"><?php echo $team2 ?>'s Score: </label>
+              <input type="number" name="teamTwoScore" id="team2_score_<?php echo $getDataOfMacthInfo['id']; ?>" class="form-control" value="<?php echo $getDataOfMacthInfo['team_two_score']; ?>">
+
+              <!-- Hidden inputs to pass additional data -->
+              <input type="hidden" name="game_type" value="<?php echo $getDataOfMacthInfo['game_type']; ?>">
+              <input type="hidden" name="game_id" value="<?php echo $getDataOfMacthInfo['game_id']; ?>">
+              <input type="hidden" name="event_id" value="<?php echo $getDataOfMacthInfo['event_id']; ?>">
+              <input type="hidden" name="id" value="<?php echo $getDataOfMacthInfo['id']; ?>">
+              <input type="hidden" name="teamOneName" value="<?php echo $getDataOfMacthInfo['team1_name']; ?>">
+              <input type="hidden" name="teamTwoName" value="<?php echo $getDataOfMacthInfo['team2_name']; ?>">
+              <input type="hidden" name="match_info" value="<?php echo $getDataOfMacthInfo['match_info']; ?>">
+              <input type="hidden" name="team1_id" value="<?php echo $getDataOfMacthInfo['team1']; ?>">
+              <input type="hidden" name="team2_id" value="<?php echo $getDataOfMacthInfo['team2']; ?>">
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <!-- Submit button inside the form -->
+                <input type="submit" class="btn btn-success" value="Confirm Score">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php
+    }
+    ?>
+  </tbody>
+</table>
 
 
-                        $winner = 'on-going';
-                        $loser = 'on-going';
-
-                        if($getDataOfMacthInfo['team_one_score'] > $getDataOfMacthInfo['team_two_score']){
-                            $winner = $team1;
-                            $loser = $team2;
-                        }else if($getDataOfMacthInfo['team_one_score'] < $getDataOfMacthInfo['team_two_score']){
-                            $winner = $team2;
-                            $loser = $team1;
-                        }
-                        
-
-                      
-
-                    ?>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <?php echo $team1 ?> <span style = "font-weight: bolder; color: orange;">VS</span> <?php echo $team2 ?>
-                          </div>
-                         
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0"><?php echo $getDataOfMacthInfo['game_type']; ?></p>
-                        <p class="text-xs text-secondary mb-0">Match <?php echo $getDataOfMacthInfo['match_info']; ?></p>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-success"><?php echo $winner; ?></span>
-                      </td>ext-
-                      <td class="align-middle text-center t-sm">
-                        <span class="badge badge-sm bg-gradient-danger"><?php echo $loser; ?></span>
-                      </td>
-                      <td class="align-middle text-center t-sm">
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Score
-                      </button>
-
-                         
-                      </td>
-                        <!-- Modal -->
-                          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 60px;">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  <!-- Form starts here -->
-                                  <form action="generateAnotherRound.php" method="post">
-                                    <label for="team1_score"><?php echo $team1 ?>'s Score: </label>
-                                    <input type="number" name="teamOneScore" id="team1_score" class="form-control" value="<?php echo $getDataOfMacthInfo['team_one_score']; ?>">
-
-                                    <label for="team2_score"><?php echo $team2 ?>'s Score: </label>
-                                    <input type="number" name="teamTwoScore" id="team2_score" class="form-control" value="<?php echo $getDataOfMacthInfo['team_two_score']; ?>">
-
-                                    <!-- Hidden inputs to pass additional data -->
-                                    <input type="hidden" name="game_type" value="<?php echo $getDataOfMacthInfo['game_type']; ?>">
-                                    <input type="hidden" name="game_id" value="<?php echo $getDataOfMacthInfo['game_id']; ?>">
-                                    <input type="hidden" name="event_id" value="<?php echo $getDataOfMacthInfo['event_id']; ?>">
-                                    <input type="hidden" name="id" value="<?php echo $getDataOfMacthInfo['id']; ?>">
-                                    <input type="hidden" name="teamOneName" value="<?php echo $getDataOfMacthInfo['team1_name']; ?>">
-                                    <input type="hidden" name="teamTwoName" value="<?php echo $getDataOfMacthInfo['team2_name']; ?>">
-                                    <input type="hidden" name="match_info" value="<?php echo $getDataOfMacthInfo['match_info']; ?>">
-                                    
-                                    <!-- Form ends here -->
-                               
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                  <!-- Submit button inside the form -->
-                                  <input type="submit" class="btn btn-success" value = "Confirm Score">
-                                </div>
-                              </div>
-                            </div>
-                            </form>
-                          </div>
-
-                  
-                    </tr>
-
-                    <?php
-
-                        }
-
-                    ?>
-                  </tbody>
-                </table>
               </div>
 
 
