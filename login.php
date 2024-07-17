@@ -1,7 +1,7 @@
 <?php
 session_start();
 	include('connection/conn.php');
-
+  // okayyyy
 	if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		$username = $_POST['username'];
 		$password = $_POST['password'];
@@ -57,7 +57,7 @@ session_start();
 		<div class="container-login100" style="background-image: url('background_image/bg2.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					Account Login
+					Account Login 
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5" action="login.php" method="post">
 					<div class="wrap-input100 validate-input" data-validate="Enter username">
