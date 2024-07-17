@@ -324,6 +324,7 @@ session_start();
 
         // Generate a unique modal ID
         $modalId = 'modal_' . $getDataOfMacthInfo['id'];
+        $modalId1 = 'modal1_' . $getDataOfMacthInfo['id'];
     ?>
     <tr>
       <td>
@@ -344,9 +345,15 @@ session_start();
         <span class="badge badge-sm bg-gradient-danger"><?php echo $loser; ?></span>
       </td>
       <td class="align-middle text-center text-sm">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#<?php echo $modalId; ?>">
-          Score
-        </button>
+        <?php if($getDataOfMacthInfo['status'] == 'SCORE'){ ?>
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#<?php echo $modalId1; ?>">
+              View Score
+            </button>
+        <?php } else { ?>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#<?php echo $modalId; ?>" style = "width: 120px;">
+              Score
+            </button>
+        <?php } ?>
       </td>
     </tr>
 
@@ -388,11 +395,51 @@ session_start();
         </div>
       </div>
     </div>
+
+
+     <!-- Modal -->
+     <div class="modal fade" id="<?php echo $modalId1; ?>" tabindex="-1" aria-labelledby="<?php echo $modalId1; ?>Label" aria-hidden="true" style="margin-top: 60px;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="<?php echo $modalId1; ?>Label">View Score</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Form starts here -->
+           
+              <label for="team1_score_<?php echo $getDataOfMacthInfo['id']; ?>"><?php echo $team1 ?>'s Score: </label>
+              <input type="number" name="teamOneScore" id="team1_score_<?php echo $getDataOfMacthInfo['id']; ?>" class="form-control" value="<?php echo $getDataOfMacthInfo['team_one_score']; ?>" disabled>
+
+              <label for="team2_score_<?php echo $getDataOfMacthInfo['id']; ?>"><?php echo $team2 ?>'s Score: </label>
+              <input type="number" name="teamTwoScore" id="team2_score_<?php echo $getDataOfMacthInfo['id']; ?>" class="form-control" value="<?php echo $getDataOfMacthInfo['team_two_score']; ?>" disabled>
+
+              <!-- Hidden inputs to pass additional data -->
+              <input type="hidden" name="game_type" value="<?php echo $getDataOfMacthInfo['game_type']; ?>">
+              <input type="hidden" name="game_id" value="<?php echo $getDataOfMacthInfo['game_id']; ?>">
+              <input type="hidden" name="event_id" value="<?php echo $getDataOfMacthInfo['event_id']; ?>">
+              <input type="hidden" name="id" value="<?php echo $getDataOfMacthInfo['id']; ?>">
+              <input type="hidden" name="teamOneName" value="<?php echo $getDataOfMacthInfo['team1_name']; ?>">
+              <input type="hidden" name="teamTwoName" value="<?php echo $getDataOfMacthInfo['team2_name']; ?>">
+              <input type="hidden" name="match_info" value="<?php echo $getDataOfMacthInfo['match_info']; ?>">
+              <input type="hidden" name="team1_id" value="<?php echo $getDataOfMacthInfo['team1']; ?>">
+              <input type="hidden" name="team2_id" value="<?php echo $getDataOfMacthInfo['team2']; ?>">
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+               
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
     <?php
     }
     ?>
   </tbody>
 </table>
+
 
 
               </div>
