@@ -80,7 +80,8 @@ session_start();
 	</div>
 	
 	<div id="dropDownSelect1"></div>
-
+			<!-- ejie florida -->
+			 
 	<?php if (isset($modalForNoResult)): ?>
 	<div class="modal" id="noResultModal" tabindex="-1" role="dialog" style = "margin-top: 80px;">
 	  <div class="modal-dialog" role="document">
