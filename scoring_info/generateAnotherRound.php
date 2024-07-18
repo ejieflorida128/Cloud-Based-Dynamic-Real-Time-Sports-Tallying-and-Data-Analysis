@@ -3,6 +3,8 @@
 session_start();
 include('../connection/conn.php');
 
+// for athena
+
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             $teamOneScore = isset($_POST['teamOneScore']) ? $_POST['teamOneScore'] : null;
