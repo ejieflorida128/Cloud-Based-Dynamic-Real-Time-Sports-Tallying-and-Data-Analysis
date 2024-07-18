@@ -4,6 +4,7 @@ session_start();
 include('../connection/conn.php');
 
 // for athena
+// new checkout please check!
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
