@@ -5,6 +5,7 @@ include('../connection/conn.php');
 
 // for athena
 // new checkout please check!
+// 1 and 2 and 3 and 4 and 5 hehe new kuan!
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
