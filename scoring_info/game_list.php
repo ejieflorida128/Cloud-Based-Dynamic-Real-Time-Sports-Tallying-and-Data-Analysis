@@ -368,12 +368,47 @@ session_start();
           <div class="modal-body">
             <!-- Form starts here -->
             <form action="generateAnotherRound.php" method="post">
-              <label for="team1_score_<?php echo $getDataOfMacthInfo['id']; ?>"><?php echo $team1 ?>'s Score: </label>
-              <input type="number" name="teamOneScore" id="team1_score_<?php echo $getDataOfMacthInfo['id']; ?>" class="form-control" value="<?php echo $getDataOfMacthInfo['team_one_score']; ?>">
+             
+            <?php
+                if ($getDataOfMacthInfo['game_type'] == 'MLBB') {
+                    $victory = 100;
+                    $defeat = 50;
 
-              <label for="team2_score_<?php echo $getDataOfMacthInfo['id']; ?>"><?php echo $team2 ?>'s Score: </label>
-              <input type="number" name="teamTwoScore" id="team2_score_<?php echo $getDataOfMacthInfo['id']; ?>" class="form-control" value="<?php echo $getDataOfMacthInfo['team_two_score']; ?>">
+                    echo '<label for="match_result_team1_' . $getDataOfMacthInfo['id'] . '">' . $team1 . ' Match Result: </label>';
+                    echo '<select name="teamOneScore" id="match_result_team1_' . $getDataOfMacthInfo['id'] . '" class="form-control" onchange="updateMatchResult(' . $getDataOfMacthInfo['id'] . ', \'team1\')">';
+                    echo '<option value = "none">Select Match Result</option>';
+                    echo '<option value="' . $victory . '">Victory</option>';
+                    echo '<option value="' . $defeat . '">Defeat</option>';
+                    echo '</select>';
 
+                    echo '<label for="match_result_team2_' . $getDataOfMacthInfo['id'] . '">' . $team2 . ' Match Result: </label>';
+                    echo '<select name="teamTwoScore" id="match_result_team2_' . $getDataOfMacthInfo['id'] . '" class="form-control" onchange="updateMatchResult(' . $getDataOfMacthInfo['id'] . ', \'team2\')">';
+                    echo '<option value = "none">Select Match Result</option>';
+                    echo '<option value="' . $victory . '">Victory</option>';
+                    echo '<option value="' . $defeat . '">Defeat</option>';
+                    echo '</select>';
+                } else {
+                    echo '<label for="team1_score_' . $getDataOfMacthInfo['id'] . '">' . $team1 . '\'s Score: </label>';
+                    echo '<input type="number" name="teamOneScore" id="team1_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="' . $getDataOfMacthInfo['team_one_score'] . '">';
+
+                    echo '<label for="team2_score_' . $getDataOfMacthInfo['id'] . '">' . $team2 . '\'s Score: </label>';
+                    echo '<input type="number" name="teamTwoScore" id="team2_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="' . $getDataOfMacthInfo['team_two_score'] . '">';
+                }
+                ?>
+
+                <script>
+                function updateMatchResult(matchId, team) {
+                    var team1Select = document.getElementById('match_result_team1_' + matchId);
+                    var team2Select = document.getElementById('match_result_team2_' + matchId);
+
+                    if (team === 'team1') {
+                        team2Select.value = team1Select.value === '100' ? '50' : '100';
+                    } else {
+                        team1Select.value = team2Select.value === '100' ? '50' : '100';
+                    }
+                }
+                </script>
+       
               <!-- Hidden inputs to pass additional data -->
               <input type="hidden" name="game_type" value="<?php echo $getDataOfMacthInfo['game_type']; ?>">
               <input type="hidden" name="game_id" value="<?php echo $getDataOfMacthInfo['game_id']; ?>">
@@ -408,11 +443,31 @@ session_start();
           <div class="modal-body">
             <!-- Form starts here -->
            
-              <label for="team1_score_<?php echo $getDataOfMacthInfo['id']; ?>"><?php echo $team1 ?>'s Score: </label>
-              <input type="number" name="teamOneScore" id="team1_score_<?php echo $getDataOfMacthInfo['id']; ?>" class="form-control" value="<?php echo $getDataOfMacthInfo['team_one_score']; ?>" disabled>
+             
+            <?php
+                if ($getDataOfMacthInfo['game_type'] == 'MLBB') {
+                    if ($getDataOfMacthInfo['team_one_score'] == 100) {
+                        echo '<label for="team1_score_' . $getDataOfMacthInfo['id'] . '">' . $team1 . ' Match Result: </label>';
+                        echo '<input type="text" name="teamOneScore" id="team1_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="Victory" disabled>';
 
-              <label for="team2_score_<?php echo $getDataOfMacthInfo['id']; ?>"><?php echo $team2 ?>'s Score: </label>
-              <input type="number" name="teamTwoScore" id="team2_score_<?php echo $getDataOfMacthInfo['id']; ?>" class="form-control" value="<?php echo $getDataOfMacthInfo['team_two_score']; ?>" disabled>
+                        echo '<label for="team2_score_' . $getDataOfMacthInfo['id'] . '">' . $team2 . ' Match Result: </label>';
+                        echo '<input type="text" name="teamTwoScore" id="team2_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="Defeat" disabled>';
+                    } else {
+                        echo '<label for="team1_score_' . $getDataOfMacthInfo['id'] . '">' . $team1 . ' Match Result: </label>';
+                        echo '<input type="text" name="teamOneScore" id="team1_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="Defeat" disabled>';
+
+                        echo '<label for="team2_score_' . $getDataOfMacthInfo['id'] . '">' . $team2 . ' Match Result: </label>';
+                        echo '<input type="text" name="teamTwoScore" id="team2_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="Victory" disabled>';
+                    }
+                } else {
+                    echo '<label for="team1_score_' . $getDataOfMacthInfo['id'] . '">' . $team1 . '\'s Score: </label>';
+                    echo '<input type="number" name="teamOneScore" id="team1_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="' . $getDataOfMacthInfo['team_one_score'] . '" disabled>';
+
+                    echo '<label for="team2_score_' . $getDataOfMacthInfo['id'] . '">' . $team2 . '\'s Score: </label>';
+                    echo '<input type="number" name="teamTwoScore" id="team2_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="' . $getDataOfMacthInfo['team_two_score'] . '" disabled>';
+                }
+            ?>
+
 
               <!-- Hidden inputs to pass additional data -->
               <input type="hidden" name="game_type" value="<?php echo $getDataOfMacthInfo['game_type']; ?>">

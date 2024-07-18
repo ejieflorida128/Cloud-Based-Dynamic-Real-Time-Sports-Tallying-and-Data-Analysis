@@ -20,23 +20,9 @@ if (mysqli_query($conn, $update)) {
 if ($gameType == 'Basketball_Men' || $gameType == 'Basketball_Women' || $gameType == 'Vollayball_Men' || $gameType == 'Vollayball_Women' || $gameType == 'Softball_Men' || $gameType == 'Softball_Women' || $gameType == 'MLBB' || $gameType == 'Futsal_Men' || $gameType == 'Futsal_Women') {
     // Sugdi ang double elimination match generation process
     getDoubleEliminationMatches($team_count, $game_id, $event_id, $gameType, $conn);
-} else {
-        // else statement : TODO
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //else statement : TODO
+} else if($gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Badminton_Double_Women' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Table_tennis_Double_Women'){
+    // handle games like sa mga teams with player ang style like table tennis and badmnton 
+    
 }
 
 header('Location: ../addGames.php?id=' . urlencode($event_id) . '&teamCount=' . urlencode($team_count));  // Redirect sa addGames page with event_id ug team_count parameters

@@ -411,13 +411,10 @@ session_start();
                                                                 <option value="Vollayball_Women">Volleybal Women's Category</option>
                                                                 <option value="Softball_Men">Softball Men's Category</option>
                                                                 <option value="Softball_Women">Softball Women's Category</option>
-                                                                <option value="Runs_Men">Runs Men's Category</option>
-                                                                <option value="Runs_Women">Runs Women's Category</option>
-                                                                <option value="Throws_Men">Throws Men's Category</option>
-                                                                <option value="Throws_Women">Throws Women's Category</option>
-                                                                <option value="Jumps_Men">Jumps Men's Category</option>
-                                                                <option value="Jumps_Women">Jumps Women's Category</option>
+                                                                <option value="Futsal_Men">Futsal_Men</option>
+                                                                <option value="Futsal_Women">Futsal_Women</option>                             
                                                                 <option value="MLBB">Mobile Legend</option>
+
                                                                 <option value="Badminton_Single_Men">Badminton Single Men's Category</option>
                                                                 <option value="Badminton_Double_Men">Badminton Double Men's Category</option>
                                                                 <option value="Badminton_Single_Women">Badminton Single Women's Category</option>
@@ -426,8 +423,14 @@ session_start();
                                                                 <option value="Table_tennis_Double_Men">Table Tennis Double Men's Category</option>
                                                                 <option value="Table_tennis_Single_Women">Table Tennis Single Women's Category</option>
                                                                 <option value="Table_tennis_Double_Women">Table Tennis Double Women's Category</option>
-                                                                <option value="Futsal_Men">Futsal_Men</option>
-                                                                <option value="Futsal_Women">Futsal_Women</option>                                            
+
+                                                              
+                                                                <option value="Runs_Men">Runs Men's Category</option>
+                                                                <option value="Runs_Women">Runs Women's Category</option>
+                                                                <option value="Throws_Men">Throws Men's Category</option>
+                                                                <option value="Throws_Women">Throws Women's Category</option>
+                                                                <option value="Jumps_Men">Jumps Men's Category</option>
+                                                                <option value="Jumps_Women">Jumps Women's Category</option>                                            
                                                                 <option value="Chess">Chess</option>
                                                                 <option value="Archery">Archery</option>
 
