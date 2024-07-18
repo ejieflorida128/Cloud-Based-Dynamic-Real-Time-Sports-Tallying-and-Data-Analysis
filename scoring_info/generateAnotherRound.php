@@ -1,5 +1,5 @@
 <?php
-// new update code
+
 session_start();
 include('../connection/conn.php');
 
