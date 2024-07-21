@@ -310,16 +310,31 @@ session_start();
     while ($getDataOfMacthInfo = mysqli_fetch_assoc($resultQuery)) {
         $team1 = $getDataOfMacthInfo['team1_name'];
         $team2 = $getDataOfMacthInfo['team2_name'];
+        $team1_1 = $getDataOfMacthInfo['team1_name1'];
+        $team2_2 = $getDataOfMacthInfo['team2_name2'];
 
         $winner = 'on-going';
         $loser = 'on-going';
+       
 
         if ($getDataOfMacthInfo['team_one_score'] > $getDataOfMacthInfo['team_two_score']) {
             $winner = $team1;
             $loser = $team2;
+            
+            if (isset($team1_1) && isset($team2_2)){
+              $winner1 = $team1_1;
+              $loser1 = $team2_2;
+            }
+           
         } else if ($getDataOfMacthInfo['team_one_score'] < $getDataOfMacthInfo['team_two_score']) {
             $winner = $team2;
             $loser = $team1;
+
+            if (isset($team1_1) && isset($team2_2)){
+              $winner1 = $team2_2;
+              $loser1 = $team1_1;
+            }
+           
         }
 
         // Generate a unique modal ID
@@ -330,7 +345,16 @@ session_start();
       <td>
         <div class="d-flex px-2 py-1">
           <div>
-            <?php echo $team1 ?> <span style="font-weight: bolder; color: orange;">VS</span> <?php echo $team2 ?>
+
+          <?php
+              if (isset($team1_1) && isset($team2_2)) {
+                  echo '<p>' . $team1 . ' and ' . $team1_1 . ' <span style="font-weight: bolder; color: orange;">VS</span> ' . $team2 . ' and ' . $team2_2 . '</p>';
+              } else {
+                  echo '<h6>' . $team1 . ' <span style="font-weight: bolder; color: orange;">VS</span> ' . $team2 . '</h6>';
+              }
+           ?>
+
+           
           </div>
         </div>
       </td>
@@ -339,10 +363,10 @@ session_start();
         <p class="text-xs text-secondary mb-0">Match <?php echo $getDataOfMacthInfo['match_info']; ?></p>
       </td>
       <td class="align-middle text-center text-sm">
-        <span class="badge badge-sm bg-gradient-success"><?php echo $winner; ?></span>
+        <span class="badge badge-sm bg-gradient-success"><?php echo $winner . ' and '. $winner1; ?></span>
       </td>
       <td class="align-middle text-center text-sm">
-        <span class="badge badge-sm bg-gradient-danger"><?php echo $loser; ?></span>
+        <span class="badge badge-sm bg-gradient-danger"><?php echo $loser . ' and ' . $loser1; ?></span>
       </td>
       <td class="align-middle text-center text-sm">
         <?php if($getDataOfMacthInfo['status'] == 'SCORE'){ ?>
@@ -387,6 +411,12 @@ session_start();
                     echo '<option value="' . $victory . '">Victory</option>';
                     echo '<option value="' . $defeat . '">Defeat</option>';
                     echo '</select>';
+                }else if($getDataOfMacthInfo['game_type'] == 'Badminton_Double_Men' || $getDataOfMacthInfo['game_type'] == 'Badminton_Double_Women' || $getDataOfMacthInfo['game_type'] == 'Table_tennis_Double_Men' || $getDataOfMacthInfo['game_type'] == 'Table_tennis_Double_Women'){
+                      echo '<label for="team1_score_' . $getDataOfMacthInfo['id'] . '">' . $team1 . ' and '.$team1_1. '\'s Score: </label>';
+                      echo '<input type="number" name="teamOneScore" id="team1_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="' . $getDataOfMacthInfo['team_one_score'] . '">';
+
+                      echo '<label for="team2_score_' . $getDataOfMacthInfo['id'] . '">' . $team2 . ' and '.$team2_2. '\'s Score: </label>';
+                      echo '<input type="number" name="teamTwoScore" id="team2_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="' . $getDataOfMacthInfo['team_two_score'] . '">';
                 } else {
                     echo '<label for="team1_score_' . $getDataOfMacthInfo['id'] . '">' . $team1 . '\'s Score: </label>';
                     echo '<input type="number" name="teamOneScore" id="team1_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="' . $getDataOfMacthInfo['team_one_score'] . '">';
@@ -416,6 +446,8 @@ session_start();
               <input type="hidden" name="id" value="<?php echo $getDataOfMacthInfo['id']; ?>">
               <input type="hidden" name="teamOneName" value="<?php echo $getDataOfMacthInfo['team1_name']; ?>">
               <input type="hidden" name="teamTwoName" value="<?php echo $getDataOfMacthInfo['team2_name']; ?>">
+              <input type="hidden" name="teamOneName1" value="<?php echo $getDataOfMacthInfo['team1_name1']; ?>">
+              <input type="hidden" name="teamTwoName1" value="<?php echo $getDataOfMacthInfo['team2_name2']; ?>">
               <input type="hidden" name="match_info" value="<?php echo $getDataOfMacthInfo['match_info']; ?>">
               <input type="hidden" name="team1_id" value="<?php echo $getDataOfMacthInfo['team1']; ?>">
               <input type="hidden" name="team2_id" value="<?php echo $getDataOfMacthInfo['team2']; ?>">
@@ -459,6 +491,12 @@ session_start();
                         echo '<label for="team2_score_' . $getDataOfMacthInfo['id'] . '">' . $team2 . ' Match Result: </label>';
                         echo '<input type="text" name="teamTwoScore" id="team2_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="Victory" disabled>';
                     }
+                }else if($getDataOfMacthInfo['game_type'] == 'Badminton_Double_Men' || $getDataOfMacthInfo['game_type'] == 'Badminton_Double_Women' || $getDataOfMacthInfo['game_type'] == 'Table_tennis_Double_Men' || $getDataOfMacthInfo['game_type'] == 'Table_tennis_Double_Women'){
+                  echo '<label for="team1_score_' . $getDataOfMacthInfo['id'] . '">' . $team1 . ' and '.$team1_1. '\'s Score: </label>';
+                  echo '<input type="number" name="teamOneScore" id="team1_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="' . $getDataOfMacthInfo['team_one_score'] . '" disabled>';
+
+                  echo '<label for="team2_score_' . $getDataOfMacthInfo['id'] . '">' . $team2 . ' and '.$team2_2. '\'s Score: </label>';
+                  echo '<input type="number" name="teamTwoScore" id="team2_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="' . $getDataOfMacthInfo['team_two_score'] . '" disabled>';
                 } else {
                     echo '<label for="team1_score_' . $getDataOfMacthInfo['id'] . '">' . $team1 . '\'s Score: </label>';
                     echo '<input type="number" name="teamOneScore" id="team1_score_' . $getDataOfMacthInfo['id'] . '" class="form-control" value="' . $getDataOfMacthInfo['team_one_score'] . '" disabled>';

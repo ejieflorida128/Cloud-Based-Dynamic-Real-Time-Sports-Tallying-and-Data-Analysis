@@ -41,6 +41,7 @@ function getDoubleEliminationMatchesWithSingleAndDoubleCategory($number, $game_i
         $winner_number = $players - 1;  // Number sa matches sa winner's bracket
         $loser_number = $players - 1;   // Number sa matches sa loser's bracket
         $totalmatches = $winner_number + $loser_number + 1;  // Total number sa matches
+        
     }
    
 
