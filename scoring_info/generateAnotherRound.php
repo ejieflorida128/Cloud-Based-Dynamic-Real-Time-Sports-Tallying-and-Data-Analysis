@@ -77,9 +77,9 @@ include('../connection/conn.php');
                         
                 }
 
-            }else if($gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Badminton_Double_Women' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Table_tennis_Double_Women'){
+            }else if($gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Badminton_Double_Women' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Table_tennis_Double_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
                     // handle games like sa mga teams with player ang style like table tennis and badmnton 
-                    if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women'){
+                    if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
                         // singles  
                             if($teamOneScore > $teamTwoScore){
                                         $winnerId = $team1_id;
@@ -93,7 +93,7 @@ include('../connection/conn.php');
                                             mysqli_query($conn,$sqlForLoser);
                                             DetermineBracketWithSingleAndDoubleCategory($conn,$eventId,$gameId,$loserId,"Loser",$gameType);
                 
-                                            specialMatchPendingWithSingleAndDoubleCategory($conn,$eventId,$gameId,$id,$winnerId,$teamOneName);
+                                            specialMatchPendingWithSingleAndDoubleCategory($conn,$eventId,$gameId,$id,$winnerId,$teamOneName,'',$gameType);
                     
                     
                     
@@ -112,7 +112,7 @@ include('../connection/conn.php');
                                             mysqli_query($conn,$sqlForLoser);
                                             DetermineBracketWithSingleAndDoubleCategory($conn,$eventId,$gameId,$loserId,"Loser",$gameType);
                     
-                                            specialMatchPendingWithSingleAndDoubleCategory($conn,$eventId,$gameId,$id,$winnerId,$teamTwoName);
+                                            specialMatchPendingWithSingleAndDoubleCategory($conn,$eventId,$gameId,$id,$winnerId,$teamTwoName,'',$gameType);
                                     
                                 }
                     }else{
@@ -188,7 +188,7 @@ include('../connection/conn.php');
 
     // function ne para ma determine if loser or winner bracket sija with single and double category
     function DetermineBracketWithSingleAndDoubleCategory($conn,$eventId,$gameId,$id,$condition,$gameType){
-        if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women'){
+        if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
             // singles
             $sqlCheck = "SELECT * FROM players WHERE event_id = $eventId AND game_id = $gameId and id = $id";
             $query = mysqli_query($conn,$sqlCheck);
@@ -231,7 +231,7 @@ include('../connection/conn.php');
  // function para ma check if need ba e update and current na match with single and double category
  function specialMatchPendingWithSingleAndDoubleCategory($conn,$eventId,$gameId,$id,$winnerId,$name,$name1,$gameType){
 
-    if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women'){
+    if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
         // singles
         $nextId = $id + 1;
         $sql = "SELECT * FROM game_matches WHERE id = $nextId";
@@ -272,7 +272,7 @@ include('../connection/conn.php');
     // function para ma generate new round and matches
     function generateNewRoundWIthSingleAndDoubleCategory($conn,$eventId,$gameId,$bye,$gameType){
 
-        if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women'){
+        if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
             // singles
             if($bye == true){
 
@@ -361,9 +361,10 @@ include('../connection/conn.php');
                    if($checkValue == 2){
         
                         $team_name = [];
+                        $team_name1 = [];
                         $team_id = [];
         
-                        LastGamesWithSingleAndDoubleCategory($conn,$eventId,$gameId,$team_name,$team_id,$gameType); 
+                        LastGamesWithSingleAndDoubleCategory($conn,$eventId,$gameId,$team_name,$team_name1,$team_id,$gameType); 
                        
                          
                          $team_name1 = $team_name[0];
@@ -881,7 +882,7 @@ include('../connection/conn.php');
      // function for last games with single and double category
      function LastGamesWithSingleAndDoubleCategory($conn,$eventId,$gameId,&$team_name,&$team_name_1,&$team_id,$gameType){
 
-        if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women'){
+        if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
             // singles
 
             $sql = "SELECT * FROM players WHERE event_id = $eventId AND game_id = $gameId AND lose_number < 2";
@@ -911,7 +912,7 @@ include('../connection/conn.php');
      // function para ma ma butang ang mga value sa winner team sa array with single and double category
      function getThisRoundWinnerIdsWithSingleAndDoubleCategory($conn, $eventId, $gameId, &$thisRoundMatchesArr,$gameType) {
 
-        if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women'){
+        if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
             // singles
                 $sql = "SELECT * FROM players pl JOIN game_matches gm ON pl.id = gm.winner_id WHERE pl.event_id = $eventId AND pl.game_id = $gameId AND gm.event_id = $eventId AND gm.game_id = $gameId AND ( pl.bracket = 'W' AND pl.lose_number < 2)";
                 $query = mysqli_query($conn, $sql);
@@ -944,7 +945,7 @@ include('../connection/conn.php');
     // function para ma generate ang match with single and double category
     function generateMatchWithSingleAndDoubleCategory($conn,$eventId,$gameId,$teamOneId,$teamTwoId,$lastScoreId,$roundValue,$gameType){
 
-        if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women'){
+        if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
             // singles
             $sqlgetData1 = "SELECT * FROM players WHERE event_id = $eventId AND game_id = $gameId AND id = $teamOneId";
             $query1 = mysqli_query($conn,$sqlgetData1);
@@ -988,7 +989,7 @@ include('../connection/conn.php');
 //function para generate sa bungkig na team with single and double category
 function generateHalfMatchWithSingleAndDoubleCategory($conn,$eventId,$gameId,$lastTeamId,$roundValue,$lastScoreId,$gameType){
 
-    if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women'){
+    if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
         // singles
         $sqlgetData1 = "SELECT * FROM players WHERE event_id = $eventId AND game_id = $gameId AND id = $lastTeamId";
         $query1 = mysqli_query($conn,$sqlgetData1);

@@ -20,7 +20,7 @@ if (mysqli_query($conn, $update)) {
 if ($gameType == 'Basketball_Men' || $gameType == 'Basketball_Women' || $gameType == 'Vollayball_Men' || $gameType == 'Vollayball_Women' || $gameType == 'Softball_Men' || $gameType == 'Softball_Women' || $gameType == 'MLBB' || $gameType == 'Futsal_Men' || $gameType == 'Futsal_Women') {
     // Sugdi ang double elimination match generation process
     getDoubleEliminationMatches($team_count, $game_id, $event_id, $gameType, $conn);
-} else if($gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Badminton_Double_Women' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Table_tennis_Double_Women'){
+} else if($gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Badminton_Double_Women' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Table_tennis_Double_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
     // handle games like sa mga teams with player ang style like table tennis and badmnton 
     getDoubleEliminationMatchesWithSingleAndDoubleCategory($team_count, $game_id, $event_id, $gameType, $conn);
 }
@@ -31,8 +31,12 @@ exit();  // Exit the script
 // function to calculate total matches sa game nga naay single or double category
 function getDoubleEliminationMatchesWithSingleAndDoubleCategory($number, $game_id, $event_id, $gameType, $conn){
 
-    if($gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Double_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Double_Men'){
-        $players = $number * 3;
+    if($gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Double_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Chess' || $gameType == 'Archery'){
+        if($gameType == 'Chess' || $gameType == 'Archery'){
+            $players = $number;
+        }else{
+            $players = $number * 3;
+        }
         $winner_number = $players - 1;  // Number sa matches sa winner's bracket
         $loser_number = $players - 1;   // Number sa matches sa loser's bracket
         $totalmatches = $winner_number + $loser_number + 1;  // Total number sa matches
@@ -81,7 +85,7 @@ function calculateGameStatusAndRoundWithSingleAndDoubleCategory($numPlayers, $ga
 function generateFirstRoundMatchesWithSingleAndDoubleCategory($numPlayers, $numByes, $game_id, $event_id, $gameType, $conn) {
     // Retrieve the players from the database
     $players = [];
-    if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women'){
+    if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
         // single
         $result = mysqli_query($conn, "SELECT id, name FROM players WHERE game_id = $game_id");
         if (!$result) {
@@ -162,7 +166,7 @@ function generateFirstRoundMatchesWithSingleAndDoubleCategory($numPlayers, $numB
 // Function to update ang first round sa matches with ang actual nga IDs ug mga pangalan sa teams game with single and double category
 function updateFirstRoundMatchesWithSingleAndDoubleCategory($playingPlayers, $game_id, $event_id, $gameType, $conn) {
 
-    if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women'){
+    if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
         // singles
          // Retrieve ang existing nga Round 1 matches aron i-update sila
                     $sqlFetchMatches = "SELECT id FROM game_matches WHERE game_id = $game_id AND match_info LIKE '%' AND team1 = 'Insert Information'";

@@ -274,6 +274,8 @@ session_start();
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
+            <a href="viewDetails.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&number_of_teams=<?php echo $_SESSION['NUMBER_OF_TEAMS']; ?>" class="btn btn-danger">Back</a>
+
               <h6><?php echo $_GET['game_type'] ?> 's Score Table</h6>
               
             </div>
@@ -347,9 +349,12 @@ session_start();
           <div>
 
           <?php
-              if (isset($team1_1) && isset($team2_2)) {
+              if($team2 == 'PENDING'){
+                $pend = 'PENDING';
+                echo '<p>' . $team1 . ' and ' . $team1_1 . ' <span style="font-weight: bolder; color: orange;">VS</span> ' . $pend . '</p>';
+              }else if (!empty($team1_1) && !empty($team2_2)) {
                   echo '<p>' . $team1 . ' and ' . $team1_1 . ' <span style="font-weight: bolder; color: orange;">VS</span> ' . $team2 . ' and ' . $team2_2 . '</p>';
-              } else {
+              }else {
                   echo '<h6>' . $team1 . ' <span style="font-weight: bolder; color: orange;">VS</span> ' . $team2 . '</h6>';
               }
            ?>
@@ -363,10 +368,25 @@ session_start();
         <p class="text-xs text-secondary mb-0">Match <?php echo $getDataOfMacthInfo['match_info']; ?></p>
       </td>
       <td class="align-middle text-center text-sm">
-        <span class="badge badge-sm bg-gradient-success"><?php echo $winner . ' and '. $winner1; ?></span>
+      
+             <?php
+             if (!empty($winner) && !empty($winner1)) {
+                 echo '<span class="badge badge-sm bg-gradient-success">' . $winner . ' and ' . $winner1 . '</span>';
+             } else {
+                 echo '<span class="badge badge-sm bg-gradient-success">' . $winner . '</span>';
+             }
+             ?>
+             
+        
       </td>
       <td class="align-middle text-center text-sm">
-        <span class="badge badge-sm bg-gradient-danger"><?php echo $loser . ' and ' . $loser1; ?></span>
+      <?php
+             if (!empty($winner) && !empty($winner1)) {
+                 echo '<span class="badge badge-sm bg-gradient-danger">' . $loser . ' and ' . $loser1 . '</span>';
+             } else {
+                 echo '<span class="badge badge-sm bg-gradient-danger">' . $loser . '</span>';
+             }
+             ?>
       </td>
       <td class="align-middle text-center text-sm">
         <?php if($getDataOfMacthInfo['status'] == 'SCORE'){ ?>
