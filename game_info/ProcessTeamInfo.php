@@ -61,8 +61,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                
                       for($x = 1; $x <= $number_of_player; $x++){
                                 $value = 'player'.$x;
-                                $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number) VALUES ('$game_id','$event_id','$team_id','','','$value')";
-                                mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                                if($gameType == 'Creative_Folk_Dance' || $gameType == 'Pop_Dance'){
+                                    $sqlForInsertingPlayerInformation = "INSERT INTO dance_performance (game_id,event_id,team_id,name,age,dancer_number) VALUES ('$game_id','$event_id','$team_id','','','$value')";
+                                     mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                                }else{
+                                    $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number) VALUES ('$game_id','$event_id','$team_id','','','$value')";
+                                     mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                                }
+                                
                          }
 
                 
