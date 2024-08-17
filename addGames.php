@@ -9,15 +9,13 @@ session_start();
     
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
-      
-
-     
 
         //  $_SESSION['team_count'] = $_POST['team_count'];
 
 
         $event_id = $_POST['event_id'];
         $game_type = $_POST['match_type'];
+        $eliminationGame = $_POST['EliminationType'];
 
 
         $numberOfPlayer = $_SESSION['number_of_player'];
@@ -79,7 +77,7 @@ session_start();
             $pic = 'stored_images/massDance.webp';
           }
 
-          $sqlForRegisterGame = "INSERT INTO registered_game (event_id,game_type,status,img,CreatedTeam) VALUES ('$event_id','$game_type','need_information','$pic',0)";
+          $sqlForRegisterGame = "INSERT INTO registered_game (event_id,game_type,status,img,CreatedTeam,EliminationType) VALUES ('$event_id','$game_type','need_information','$pic',0,'$eliminationGame')";
           mysqli_query($conn,$sqlForRegisterGame);
 
 
@@ -403,7 +401,7 @@ session_start();
                                             <form action="addGames.php" method = "post">
                                                         <div class="modal-body">
                                                             <label for="program">Program name:</label>
-                                                            <select name="match_type" class = "form-control">
+                                                            <select name="match_type" class = "form-control" id = "programSelect" onchange="updateGameType()">
                                                               <option value="none">None</option>
                                                                 <option value="Basketball_Men">Basketball Men's Category</option>
                                                                 <option value="Basketball_Women">Basketball Women's Category</option>
@@ -450,6 +448,34 @@ session_start();
                                                                 
 
                                                               </select>
+                                                              <label for="type">Game type:</label>
+                                                              <select name="EliminationType" id="type" class = "form-select">
+                                                                  <option value="SEG" selected>Single Elimination Game</option>
+                                                                  <option value="DEG">Double Elimination Game</option>
+                                                                  <option value="SRRG">Single Round Robin Game</option>
+                                                                  
+
+                                                              </select>
+
+                                                              <script>
+                                                                    function updateGameType() {
+                                                                        var programSelect = document.getElementById('programSelect').value;
+                                                                        var gameTypeSelect = document.getElementById('type');
+                                                                        
+                                                                        gameTypeSelect.innerHTML = ''; // Clear the current options
+                                                                        
+                                                                        if (programSelect === 'Basketball_Men' || programSelect === 'Basketball_Women' || programSelect === 'Vollayball_Men' || programSelect === 'Vollayball_Women' || programSelect === 'MLBB') {
+                                                                            gameTypeSelect.innerHTML = `
+                                                                                <option value="SEG" disabled>Single Elimination Game</option>
+                                                                                <option value="DEG">Double Elimination Game</option>
+                                                                                <option value="SRRG" selected>Single Round Robin Game</option>`;
+                                                                        }else {
+                                                                              gameTypeSelect.innerHTML = `
+                                                                                <option value="SEG" selected>Single Elimination Game</option>
+                                                                                <option value="DEG">Double Elimination Game</option>`;
+                                                                        }
+                                                                    }
+                                                                    </script>
                                                               <input type="text" hidden name = "team_count" value = "<?php echo $_GET['teamCount'];  ?>">
                                                               <input type="text" hidden name = "event_id" value = "<?php  echo $_GET['id'];?>">
                                                         </div>

@@ -20,8 +20,8 @@ include('../connection/conn.php');
             $id = isset($_POST['id']) ? $_POST['id'] : null;
 
             if ($gameType == 'Basketball_Men' || $gameType == 'Basketball_Women' || $gameType == 'Vollayball_Men' || $gameType == 'Vollayball_Women' || $gameType == 'Softball_Men' || $gameType == 'Softball_Women' || $gameType == 'MLBB' || $gameType == 'Futsal_Men' || $gameType == 'Futsal_Women'){
-                    // game on list kanang nag kuan ug by teams
-                    if($teamOneScore > $teamTwoScore){
+            // game on list kanang nag kuan ug by teams
+                if($teamOneScore > $teamTwoScore){
                         $winnerId = $team1_id;
                         $loserId = $team2_id;
                   
