@@ -22,7 +22,14 @@ $EliType = $_SESSION['EliminationType'];
             // Tawga ang function base sa game type
             if ($gameType == 'Basketball_Men' || $gameType == 'Basketball_Women' || $gameType == 'Vollayball_Men' || $gameType == 'Vollayball_Women' || $gameType == 'Softball_Men' || $gameType == 'Softball_Women' || $gameType == 'MLBB' || $gameType == 'Futsal_Men' || $gameType == 'Futsal_Women') {
                 // Sugdi ang double elimination match generation process
-                getDoubleEliminationMatches($team_count, $game_id, $event_id, $gameType, $conn);
+               
+                if($EliType == 'DEG'){
+                    getDoubleEliminationMatches($team_count, $game_id, $event_id, $gameType, $conn);
+                }else if($EliType == 'SRRG'){
+                    // Round Robin
+                    generateRoundRobinMatches($team_count,$game_id,$event_id,$gameType,$conn);
+
+                }
             } else if($gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Badminton_Double_Women' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Table_tennis_Double_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
                 // handle games like sa mga teams with player ang style like table tennis and badmnton 
                 if($EliType == 'SEG'){
@@ -38,11 +45,86 @@ $EliType = $_SESSION['EliminationType'];
             exit();  // Exit the script
 
 
+            function generateRoundRobinMatches($team_count, $game_id, $event_id, $gameType, $conn) {
+            //    e retrieve natu  ang mga list sa teams 
+                $teams = [];
+                $sql = "SELECT id, team_name FROM teams WHERE game_id = $game_id";
+                $result = mysqli_query($conn, $sql);
+                if (!$result) {
+                    error_log("Error fetching teams: " . mysqli_error($conn));
+                    return;
+                }
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $teams[] = $row;
+                }
+            
+                // e ensure natu if sakto ba ang na retrieve na team tanan  
+                if (count($teams) != $team_count) {
+                    error_log("Team count mismatch. Expected: $team_count, Found: " . count($teams));
+                    return;
+                }
+            
+                // if odd ang team then matik atua e list as bye
+                if ($team_count % 2 != 0) {
+                    $teams[] = ['id' => null, 'team_name' => 'BYE'];
+                    $team_count++;
+                }
+            
+                // geenrate new matches and then para iwas mitmatch
+                $matches = [];
+                $rounds = [];
+            
+                // algo ne para sa round and matches na ma create
+                for ($round = 0; $round < $team_count - 1; $round++) {
+                    for ($i = 0; $i < $team_count / 2; $i++) {
+                        $team1 = $teams[($round + $i) % ($team_count - 1)];
+                        $team2 = $teams[($team_count - 1 - $i + $round) % ($team_count - 1)];
+                        if ($i == 0) {
+                            $team2 = $teams[$team_count - 1];
+                        }
+            
+                        // skip natu if naay ma labyan na bye
+                        if ($team1['id'] !== null && $team2['id'] !== null && $team1['id'] !== $team2['id']) {
+                            $rounds[$round][] = [
+                                'game_id' => $game_id,
+                                'event_id' => $event_id,
+                                'game_type' => $gameType,
+                                'team1' => $team1['id'],
+                                'team1_name' => $team1['team_name'],
+                                'team2' => $team2['id'],
+                                'team2_name' => $team2['team_name'],
+                                'match_info' => 'Round Robin Match - Round ' . ($round + 1)
+                            ];
+                        }
+                    }
+                }
+            
+                // atua e procced and round
+                foreach ($rounds as $roundMatches) {
+                    foreach ($roundMatches as $match) {
+                        $matches[] = $match;
+                    }
+                }
+            
+                // Insert matches sa database table
+                foreach ($matches as $match) {
+                    $sql = "INSERT INTO game_matches (game_id, event_id, game_type, match_info, team1, team1_name, team2, team2_name) 
+                            VALUES ('{$match['game_id']}', '{$match['event_id']}', '{$match['game_type']}', '{$match['match_info']}', '{$match['team1']}', '{$match['team1_name']}', '{$match['team2']}', '{$match['team2_name']}')";
+                    if (mysqli_query($conn, $sql)) {
+                        error_log("Match between {$match['team1_name']} and {$match['team2_name']} inserted successfully.");
+                    } else {
+                        error_log("Error inserting match between {$match['team1_name']} and {$match['team2_name']}: " . mysqli_error($conn));
+                    }
+                }
+            }
+            
+            
 
+            
 
 
              // function to calculate total matches sa game nga naay single or double category
-      function getDoubleEliminationMatchesWithSingleAndDoubleCategory($number, $game_id, $event_id, $gameType, $conn){
+        function getDoubleEliminationMatchesWithSingleAndDoubleCategory($number, $game_id, $event_id, $gameType, $conn){
 
         if($gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Double_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Chess' || $gameType == 'Archery'){
             if($gameType == 'Chess' || $gameType == 'Archery'){
