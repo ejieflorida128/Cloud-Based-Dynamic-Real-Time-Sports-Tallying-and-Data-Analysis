@@ -93,7 +93,8 @@ $EliType = $_SESSION['EliminationType'];
                                 'team1_name' => $team1['team_name'],
                                 'team2' => $team2['id'],
                                 'team2_name' => $team2['team_name'],
-                                'match_info' => 'Round Robin Match - Round ' . ($round + 1)
+                                'match_info' => $round + 1,
+                                'round' => 1
                             ];
                         }
                     }
