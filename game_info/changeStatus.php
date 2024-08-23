@@ -23,8 +23,10 @@ $EliType = $_SESSION['EliminationType'];
             if ($gameType == 'Basketball_Men' || $gameType == 'Basketball_Women' || $gameType == 'Vollayball_Men' || $gameType == 'Vollayball_Women' || $gameType == 'Softball_Men' || $gameType == 'Softball_Women' || $gameType == 'MLBB' || $gameType == 'Futsal_Men' || $gameType == 'Futsal_Women') {
                 // Sugdi ang double elimination match generation process
                
-                if($EliType == 'DEG'){
-                    getDoubleEliminationMatches($team_count, $game_id, $event_id, $gameType, $conn);
+                if($EliType == 'SEG'){
+                      getSingleEliminationMatches($team_count, $game_id, $event_id, $gameType, $conn);
+                }else if($EliType == 'DEG'){
+                      getDoubleEliminationMatches($team_count, $game_id, $event_id, $gameType, $conn);
                 }else if($EliType == 'SRRG'){
                     // Round Robin
                     generateRoundRobinMatches($team_count,$game_id,$event_id,$gameType,$conn);
@@ -576,9 +578,31 @@ $EliType = $_SESSION['EliminationType'];
 
         insertIntoDatabaseWithTheTotalMatchesValue($totalmatches, $number, $game_id, $event_id, $gameType, $conn);  // Insert ang mga matches sa database
     }
+     // Function to calculate total matches for double elimination for SEG
+     function getSingleEliminationMatches($number, $game_id, $event_id, $gameType, $conn) {
+        
+        $totalmatches = $number - 1;  // Total number sa matches
+
+        insertIntoDatabaseWithTheTotalMatchesValueForSEG($totalmatches, $number, $game_id, $event_id, $gameType, $conn);  // Insert ang mga matches sa database
+    }
 
     // Function to insert total matches into the database
     function insertIntoDatabaseWithTheTotalMatchesValue($value, $numTeams, $game_id, $event_id, $gameType, $conn) {
+        for ($x = 1; $x <= $value; $x++) {  // Loop sa total number sa matches
+            $match = $x;  // Likay ang label sa match
+            $sqlForInsertingMatchesValues = "INSERT INTO game_matches (game_id, event_id, game_type, match_info, team1, team1_name, team2, team2_name) VALUES ('$game_id', '$event_id', '$gameType', '$match', 'Insert Information', '', 'Insert Information', '')";
+            if (mysqli_query($conn, $sqlForInsertingMatchesValues)) {
+                error_log("Match $match inserted successfully.");
+            } else {
+                error_log("Error inserting match $match: " . mysqli_error($conn));
+            }
+        }
+
+        calculateGameStatusAndRound($numTeams, $game_id, $event_id, $gameType, $conn);  // Calculate ang first round ug byes
+    }
+
+     // Function to insert total matches into the database for SEG
+     function insertIntoDatabaseWithTheTotalMatchesValueForSEG($value, $numTeams, $game_id, $event_id, $gameType, $conn) {
         for ($x = 1; $x <= $value; $x++) {  // Loop sa total number sa matches
             $match = $x;  // Likay ang label sa match
             $sqlForInsertingMatchesValues = "INSERT INTO game_matches (game_id, event_id, game_type, match_info, team1, team1_name, team2, team2_name) VALUES ('$game_id', '$event_id', '$gameType', '$match', 'Insert Information', '', 'Insert Information', '')";

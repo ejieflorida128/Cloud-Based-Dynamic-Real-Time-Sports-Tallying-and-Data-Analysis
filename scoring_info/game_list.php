@@ -317,6 +317,8 @@ session_start();
 
         $winner = 'on-going';
         $loser = 'on-going';
+        $winner1 = 'on-going';
+        $loser1 = 'on-going';
        
 
         if ($getDataOfMacthInfo['team_one_score'] > $getDataOfMacthInfo['team_two_score']) {
@@ -385,7 +387,7 @@ session_start();
                  echo '<span class="badge badge-sm bg-gradient-danger">' . $loser . ' and ' . $loser1 . '</span>';
              } else {
                  echo '<span class="badge badge-sm bg-gradient-danger">' . $loser . '</span>';
-             }
+             }  
              ?>
       </td>
       <td class="align-middle text-center text-sm">
