@@ -15,7 +15,20 @@ session_start();
 
         $event_id = $_POST['event_id'];
         $game_type = $_POST['match_type'];
-        $eliminationGame = $_POST['EliminationType'];
+        // $eliminationGame = $_POST['EliminationType'];
+        $checkGame = $_POST['EliminationType'];
+
+        if($checkGame == 'SEG' || $checkGame == 'DEG' || $checkGame == 'SRRG'){
+
+          $eliminationGame = $checkGame;
+          $meter = 'null';
+
+
+        }else if($checkGame == '100meter' || $checkGame == '200meter' || $checkGame == '400meter'){
+          $eliminationGame = 'null';
+          $meter = $checkGame;
+        }
+
 
 
         $numberOfPlayer = $_SESSION['number_of_player'];
@@ -77,7 +90,7 @@ session_start();
             $pic = 'stored_images/massDance.webp';
           }
 
-          $sqlForRegisterGame = "INSERT INTO registered_game (event_id,game_type,status,img,CreatedTeam,EliminationType) VALUES ('$event_id','$game_type','need_information','$pic',0,'$eliminationGame')";
+          $sqlForRegisterGame = "INSERT INTO registered_game (event_id,game_type,status,img,CreatedTeam,EliminationType,meters) VALUES ('$event_id','$game_type','need_information','$pic',0,'$eliminationGame','$meter')";
           mysqli_query($conn,$sqlForRegisterGame);
 
 
@@ -469,7 +482,15 @@ session_start();
                                                                                 <option value="SEG">Single Elimination Game</option>
                                                                                 <option value="DEG">Double Elimination Game</option>
                                                                                 <option value="SRRG" selected>Single Round Robin Game</option>`;
-                                                                        }else {
+                                                                        }else if(programSelect === 'Runs_Men' || programSelect === 'Runs_Women'){
+                                                                          gameTypeSelect.innerHTML = `
+                                                                                <option value="runs" selected>All Option</option>
+                                                                               `;
+                                                                        }else if(programSelect === 'Throws_Men' || programSelect === 'Throws_Women'){
+
+                                                                        }else if(programSelect === 'Jumps_Men' || programSelect === 'Jumps_Women'){
+                                                                          
+                                                                        }else{
                                                                               gameTypeSelect.innerHTML = `
                                                                                 <option value="SEG" selected>Single Elimination Game</option>
                                                                                 <option value="DEG">Double Elimination Game</option>`;

@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $gameType = $_SESSION['GameType'];
 
 
-    if($number_of_player >= 5 || $gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Double_Women' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Double_Women' || $gameType == 'Dance_Sports' || $gameType == 'Chess' || $gameType == 'Archery' || $gameType == 'Vocal_Duet' || $gameType == 'Pop_Solo' || $gameType == 'Charcoal_Rendering' || $gameType == 'Pencil_Drawing' || $gameType == 'Painting' || $gameType == 'Poster_Making' || $gameType == 'Phone_Photography' || $gameType == 'Mr_and_Mrs_Panagtigi'){
+    if($number_of_player >= 5 || $gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Double_Women' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Double_Women' || $gameType == 'Dance_Sports' || $gameType == 'Chess' || $gameType == 'Archery' || $gameType == 'Vocal_Duet' || $gameType == 'Pop_Solo' || $gameType == 'Charcoal_Rendering' || $gameType == 'Pencil_Drawing' || $gameType == 'Painting' || $gameType == 'Poster_Making' || $gameType == 'Phone_Photography' || $gameType == 'Mr_and_Mrs_Panagtigi' || $gameType == 'Runs_Men' || $gameType == 'Runs_Women' || $gameType == 'Throws_Men' || $gameType == 'Throws_Women' || $gameType == 'Jumps_Men' || $gameType == 'Jumps_Women'){
       $team_name = $_POST['team_name'];
       
 
@@ -58,18 +58,48 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 $gameType = $_SESSION['GameType'];
                 $team_id = $_SESSION['idOfTeam'];
 
-               
-                      for($x = 1; $x <= $number_of_player; $x++){
+               if($gameType == 'Runs_Men' || $gameType == 'Runs_Women'){
+                        for($x = 1; $x <= 2; $x++){
+                            $value = 'player'.$x;
+                           
+                                $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number,choose_type) VALUES ('$game_id','$event_id','$team_id','','','$value','100meter')";
+                                mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                          
+                            
+                          }
+
+                          for($x = 1; $x <= 2; $x++){
+                            $value = 'player'.$x;
+                           
+                                $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number,choose_type) VALUES ('$game_id','$event_id','$team_id','','','$value','200meter')";
+                                mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                          
+                            
+                          }
+
+                          for($x = 1; $x <= 4; $x++){
+                            $value = 'player'.$x;
+                           
+                                $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number,choose_type) VALUES ('$game_id','$event_id','$team_id','','','$value','400meter')";
+                                mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                          
+                            
+                          }
+
+               }else{
+                            for($x = 1; $x <= $number_of_player; $x++){
                                 $value = 'player'.$x;
                                 if($gameType == 'Creative_Folk_Dance' || $gameType == 'Pop_Dance'){
                                     $sqlForInsertingPlayerInformation = "INSERT INTO dance_performance (game_id,event_id,team_id,name,age,dancer_number) VALUES ('$game_id','$event_id','$team_id','','','$value')";
-                                     mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                                    mysqli_query($conn,$sqlForInsertingPlayerInformation);
                                 }else{
                                     $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number) VALUES ('$game_id','$event_id','$team_id','','','$value')";
-                                     mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                                    mysqli_query($conn,$sqlForInsertingPlayerInformation);
                                 }
                                 
-                         }
+                        }
+               }
+                     
 
                 
 

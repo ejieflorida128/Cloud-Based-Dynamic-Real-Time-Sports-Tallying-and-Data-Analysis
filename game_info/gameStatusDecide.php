@@ -8,15 +8,17 @@ $event_id = $_GET['eventId'];
 $gameType = $_GET['gameType'];
 $teamCount = $_SESSION['teamCount'];
 
-$sqlGetEliType = "SELECT EliminationType FROM registered_game WHERE id = $gameId";
+$sqlGetEliType = "SELECT EliminationType, meters FROM registered_game WHERE id = $gameId";
 $query = mysqli_query($conn,$sqlGetEliType);
 $result = mysqli_fetch_assoc($query);
 
 $_SESSION['EliminationType'] = $result['EliminationType'];
+$_SESSION['meter'] = $result['meters'];
 
 $_SESSION['GameId'] = $gameId;
 $_SESSION['EventId'] = $event_id;
 $_SESSION['GameType'] = $gameType;
+
 
 if($gameStatus == 0){
     // Insert teams into the database

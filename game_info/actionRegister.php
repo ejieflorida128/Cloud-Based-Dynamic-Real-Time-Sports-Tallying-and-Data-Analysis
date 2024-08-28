@@ -72,17 +72,43 @@
                     }else if($gameType == 'Runs_Men' || $gameType == 'Runs_Women'){
                       // start sa statement sa runs
 
-                      for($x = 1; $x <= $numberOfPlayer; $x++){
+                      for($x = 1; $x <= 2; $x++){
 
                         $name = $_POST['name'.$x];
                         $age = $_POST['age'.$x];
 
                         $player = 'player'.$x;
 
-                        $update = "UPDATE players SET name = '$name', age = '$age' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+
+                        $update = "UPDATE players SET name = '$name', age = '$age' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player' AND choose_type = '100meter'";
                         mysqli_query($conn,$update);
 
                     }
+
+                    for($x = 1; $x <= 2; $x++){
+
+                      $name = $_POST['name1'.$x];
+                      $age = $_POST['age1'.$x];
+
+                      $player = 'player'.$x;
+
+                      $update = "UPDATE players SET name = '$name', age = '$age', choose_type = '200meter' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player' AND choose_type = '200meter'";
+                      mysqli_query($conn,$update);
+
+                  }
+
+                  for($x = 1; $x <= 4; $x++){
+
+                    $name = $_POST['name2'.$x];
+                    $age = $_POST['age2'.$x];
+
+                    $player = 'player'.$x;
+
+                    $update = "UPDATE players SET name = '$name', age = '$age', choose_type = '400meter' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player' AND choose_type = '400meter'";
+                    mysqli_query($conn,$update);
+
+                  }
+
 
                     header('Location: addTeamMember.php?id='.urldecode($team_id));
 
