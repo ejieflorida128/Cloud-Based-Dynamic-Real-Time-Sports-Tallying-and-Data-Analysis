@@ -293,6 +293,9 @@ session_start();
                                                 $event_id = $_GET['event_id'];
                                                 $game_id = $_GET['game_id'];
                                                 $game_type = $_GET['game_type'];
+                                                $meter100 = '100meter';
+                                                $meter200 = '200meter';
+                                                $meter400 = '400meter';
 
                                             ?>
 
@@ -300,7 +303,7 @@ session_start();
                                 <!-- 100 meters -->
 
                                 <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
-                                    <a href="100.php?event_id=<?php $event_id ?>&&game_id=<?php $game_id ?>&&game_type=<?php $game_type ?>"
+                                    <a href="../runs_score/runs.php?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&meter=<?php echo $meter100 ?>"
                                       class="event-box" style="display: block; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; overflow: hidden; background-color: white; transition: transform 0.3s;">
                                         <div class="pictures" style="display: flex; justify-content: center; padding: 20px;">
                                             <img src="../background_image/100meter.jpg" style="width: 150px; height: 150px; border-radius: 15px;">
@@ -313,7 +316,7 @@ session_start();
 
                                 <!-- 200 meters -->
                                 <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
-                                    <a href="field.php?event_id=<?php $event_id ?>&&game_id=<?php $game_id ?>&&game_type=<?php $game_type ?>"
+                                    <a href="../runs_score/runs.php?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&meter=<?php echo $meter200 ?>"
                                       class="event-box" style="display: block; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; overflow: hidden; background-color: white; transition: transform 0.3s;">
                                         <div class="pictures" style="display: flex; justify-content: center; padding: 20px;">
                                             <img src="../background_image/200meter.jpg" style="width: 150px; height: 150px; border-radius: 15px;">
@@ -326,7 +329,7 @@ session_start();
 
                                 <!-- 400 meters relays -->
                                 <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
-                                   <a href="field.php?event_id=<?php $event_id ?>&&game_id=<?php $game_id ?>&&game_type=<?php $game_type ?>" 
+                                   <a href="../runs_score/runs.php?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&meter=<?php echo $meter400 ?>" 
                                       class="event-box" style="display: block; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; overflow: hidden; background-color: white; transition: transform 0.3s;">
                                         <div class="pictures" style="display: flex; justify-content: center; padding: 20px;">
                                             <img src="../background_image/400meter.jpg" style="width: 150px; height: 150px; border-radius: 15px;">
