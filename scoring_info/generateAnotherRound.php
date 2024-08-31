@@ -361,6 +361,40 @@ include('../connection/conn.php');
 
             }else if($eliType == 'SRRG'){
                     // for single round robin
+                    /*
+                    $teamOneScore = isset($_POST['teamOneScore']) ? $_POST['teamOneScore'] : null;
+                  ` $teamTwoScore = isset($_POST['teamTwoScore']) ? $_POST['teamTwoScore'] : null;
+                    $teamOneName = isset($_POST['teamOneName']) ? $_POST['teamOneName'] : null;
+                    $teamTwoName = isset($_POST['teamTwoName']) ? $_POST['teamTwoName'] : null;
+                    $teamOneName1 = isset($_POST['teamOneName1']) ? $_POST['teamOneName1'] : null;
+                    $teamTwoName1 = isset($_POST['teamTwoName1']) ? $_POST['teamTwoName1'] : null;
+                    $team1_id = isset($_POST['team1_id']) ? $_POST['team1_id'] : null;
+                    $team2_id = isset($_POST['team2_id']) ? $_POST['team2_id'] : null;
+                    $gameType = isset($_POST['game_type']) ? $_POST['game_type'] : null;
+                    $gameId = isset($_POST['game_id']) ? $_POST['game_id'] : null;
+                    $eventId = isset($_POST['event_id']) ? $_POST['event_id'] : null;
+                    $id = isset($_POST['id']) ? $_POST['id'] : null;
+
+                    $eliType = getEliType($conn,$gameId);`
+                    */
+
+
+                      echo $teamOneScore;
+                      echo $id;
+                    if($teamOneScore > $teamTwoScore){
+                            $winner = $team1_id;
+                            $loser = $team2_id;
+                    }else{
+                        $winner = $team2_id;
+                        $loser = $team1_id;
+                    }
+
+                    $updateSRRB = "UPDATE game_matches SET team_one_score = '$teamOneScore', team_two_score = '$teamTwoScore', winner_id = '$winner', loser_id = '$loser' WHERE id = '$id'";
+                    mysqli_query($conn,$updateSRRB);
+
+                    backToGameList($eventId,$gameId,$gameType);
+
+                    
 
             }
 

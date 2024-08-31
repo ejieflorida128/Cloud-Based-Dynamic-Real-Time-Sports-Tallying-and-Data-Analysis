@@ -111,8 +111,8 @@ $EliType = $_SESSION['EliminationType'];
             
                 // Insert matches sa database table
                 foreach ($matches as $match) {
-                    $sql = "INSERT INTO game_matches (game_id, event_id, game_type, match_info, team1, team1_name, team2, team2_name) 
-                            VALUES ('{$match['game_id']}', '{$match['event_id']}', '{$match['game_type']}', '{$match['match_info']}', '{$match['team1']}', '{$match['team1_name']}', '{$match['team2']}', '{$match['team2_name']}')";
+                    $sql = "INSERT INTO game_matches (game_id, event_id, game_type, match_info, team1, team1_name, team2, team2_name,status) 
+                            VALUES ('{$match['game_id']}', '{$match['event_id']}', '{$match['game_type']}', '{$match['match_info']}', '{$match['team1']}', '{$match['team1_name']}', '{$match['team2']}', '{$match['team2_name']}','game')";
                     if (mysqli_query($conn, $sql)) {
                         error_log("Match between {$match['team1_name']} and {$match['team2_name']} inserted successfully.");
                     } else {
