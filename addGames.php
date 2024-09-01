@@ -491,7 +491,9 @@ session_start();
                                                                                 <option value="throws" selected>All Option</option>
                                                                                `; 
                                                                         }else if(programSelect === 'Jumps_Men' || programSelect === 'Jumps_Women'){
-                                                                          
+                                                                          gameTypeSelect.innerHTML = `      
+                                                                                <option value="jumps" selected>All Option</option>
+                                                                               `; 
                                                                         }else{
                                                                               gameTypeSelect.innerHTML = `
                                                                                 <option value="SEG" selected>Single Elimination Game</option>

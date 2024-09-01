@@ -299,7 +299,9 @@ session_start();
                                                 $javelin = 'javelin';
                                                 $discus = 'discus';
                                                 $shotput = 'shotput';
-
+                                                $long = 'long';
+                                                $high = 'high';
+                                                $triple = 'triple';
                                             ?>
 
                             <div class="table-responsive p-0" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; padding: 20px;">
@@ -398,7 +400,55 @@ session_start();
                                 </div>
                                         
 
-                                <?php } ?>  
+                                <?php }else if($game_type == 'Jumps_Men' || $game_type == 'Jumps_Women'){?>
+                                  
+                                  
+
+                                          <!-- jumps -->
+
+
+                                  <!-- long -->
+                                  <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
+                                    <a href="../jumps_score/jumps.php?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&meter=<?php echo $long ?>"
+                                      class="event-box" style="display: block; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; overflow: hidden; background-color: white; transition: transform 0.3s;">
+                                        <div class="pictures" style="display: flex; justify-content: center; padding: 20px;">
+                                            <img src="../background_image/long.jpg" style="width: 150px; height: 150px; border-radius: 15px;">
+                                        </div>
+                                        <div class="information" style="padding: 10px; text-align: center;">
+                                            <h3 style="margin: 0; font-size: 18px;">Long Jumps</h3>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <!-- high -->
+                                <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
+                                    <a href="../jumps_score/jumps.php?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&meter=<?php echo $high ?>"
+                                      class="event-box" style="display: block; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; overflow: hidden; background-color: white; transition: transform 0.3s;">
+                                        <div class="pictures" style="display: flex; justify-content: center; padding: 20px;">
+                                            <img src="../background_image/high.jpg" style="width: 150px; height: 150px; border-radius: 15px;">
+                                        </div>
+                                        <div class="information" style="padding: 10px; text-align: center;">
+                                            <h3 style="margin: 0; font-size: 18px;">High Jumps</h3>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <!-- triple -->
+                                <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
+                                   <a href="../jumps_score/jumps.php?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&meter=<?php echo $triple ?>" 
+                                      class="event-box" style="display: block; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; overflow: hidden; background-color: white; transition: transform 0.3s;">
+                                        <div class="pictures" style="display: flex; justify-content: center; padding: 20px;">
+                                            <img src="../background_image/triple.jpg" style="width: 150px; height: 150px; border-radius: 15px;">
+                                        </div>
+                                        <div class="information" style="padding: 10px; text-align: center;">
+                                            <h3 style="margin: 0; font-size: 18px;">Triple Jumps</h3>
+                                        </div>
+                                    </a>
+                                </div>
+
+
+
+                                  <?php  }?>
 
                                 
                             </div>

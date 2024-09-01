@@ -114,7 +114,35 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                                     
                             }
 
-                    }else{
+                    }else if($gameType == 'Jumps_Men' || $gameType == 'Jumps_Women'){
+                        for($x = 1; $x <= 2; $x++){
+                            $value = 'player'.$x;
+                        
+                                $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number,choose_type) VALUES ('$game_id','$event_id','$team_id','','','$value','long')";
+                                mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                        
+                            
+                        }
+
+                        for($x = 1; $x <= 2; $x++){
+                            $value = 'player'.$x;
+                        
+                                $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number,choose_type) VALUES ('$game_id','$event_id','$team_id','','','$value','high')";
+                                mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                        
+                            
+                        }
+
+                        for($x = 1; $x <= 2; $x++){
+                            $value = 'player'.$x;
+                        
+                                $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number,choose_type) VALUES ('$game_id','$event_id','$team_id','','','$value','triple')";
+                                mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                        
+                            
+                             }
+
+                     }else{
                                             for($x = 1; $x <= $number_of_player; $x++){
                                                 $value = 'player'.$x;
                                                 if($gameType == 'Creative_Folk_Dance' || $gameType == 'Pop_Dance'){
