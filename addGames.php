@@ -24,7 +24,7 @@ session_start();
           $meter = 'null';
 
 
-        }else if($checkGame == '100meter' || $checkGame == '200meter' || $checkGame == '400meter'){
+        }else if($checkGame == 'runs' || $checkGame == 'throws'){
           $eliminationGame = 'null';
           $meter = $checkGame;
         }
@@ -487,7 +487,9 @@ session_start();
                                                                                 <option value="runs" selected>All Option</option>
                                                                                `;
                                                                         }else if(programSelect === 'Throws_Men' || programSelect === 'Throws_Women'){
-
+                                                                              gameTypeSelect.innerHTML = `      
+                                                                                <option value="throws" selected>All Option</option>
+                                                                               `; 
                                                                         }else if(programSelect === 'Jumps_Men' || programSelect === 'Jumps_Women'){
                                                                           
                                                                         }else{

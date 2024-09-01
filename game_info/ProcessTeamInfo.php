@@ -86,19 +86,47 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                             
                           }
 
-               }else{
-                            for($x = 1; $x <= $number_of_player; $x++){
-                                $value = 'player'.$x;
-                                if($gameType == 'Creative_Folk_Dance' || $gameType == 'Pop_Dance'){
-                                    $sqlForInsertingPlayerInformation = "INSERT INTO dance_performance (game_id,event_id,team_id,name,age,dancer_number) VALUES ('$game_id','$event_id','$team_id','','','$value')";
-                                    mysqli_query($conn,$sqlForInsertingPlayerInformation);
-                                }else{
-                                    $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number) VALUES ('$game_id','$event_id','$team_id','','','$value')";
-                                    mysqli_query($conn,$sqlForInsertingPlayerInformation);
-                                }
+               }else if($gameType == 'Throws_Men' || $gameType == 'Throws_Women'){
+                                for($x = 1; $x <= 2; $x++){
+                                    $value = 'player'.$x;
                                 
-                        }
-               }
+                                        $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number,choose_type) VALUES ('$game_id','$event_id','$team_id','','','$value','javelin')";
+                                        mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                                
+                                    
+                                }
+
+                                for($x = 1; $x <= 2; $x++){
+                                    $value = 'player'.$x;
+                                
+                                        $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number,choose_type) VALUES ('$game_id','$event_id','$team_id','','','$value','discus')";
+                                        mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                                
+                                    
+                                }
+
+                                for($x = 1; $x <= 2; $x++){
+                                    $value = 'player'.$x;
+                                
+                                        $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number,choose_type) VALUES ('$game_id','$event_id','$team_id','','','$value','shotput')";
+                                        mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                                
+                                    
+                            }
+
+                    }else{
+                                            for($x = 1; $x <= $number_of_player; $x++){
+                                                $value = 'player'.$x;
+                                                if($gameType == 'Creative_Folk_Dance' || $gameType == 'Pop_Dance'){
+                                                    $sqlForInsertingPlayerInformation = "INSERT INTO dance_performance (game_id,event_id,team_id,name,age,dancer_number) VALUES ('$game_id','$event_id','$team_id','','','$value')";
+                                                    mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                                                }else{
+                                                    $sqlForInsertingPlayerInformation = "INSERT INTO players (game_id,event_id,team_id,name,age,player_number) VALUES ('$game_id','$event_id','$team_id','','','$value')";
+                                                    mysqli_query($conn,$sqlForInsertingPlayerInformation);
+                                                }
+                                                
+                                        }
+                            }
                      
 
                 

@@ -296,11 +296,20 @@ session_start();
                                                 $meter100 = '100meter';
                                                 $meter200 = '200meter';
                                                 $meter400 = '400meter';
+                                                $javelin = 'javelin';
+                                                $discus = 'discus';
+                                                $shotput = 'shotput';
 
                                             ?>
 
-                                            <div class="table-responsive p-0" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; padding: 20px;">
+                            <div class="table-responsive p-0" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; padding: 20px;">
                                 <!-- 100 meters -->
+
+                                <?php  
+                                        if($game_type == 'Runs_Men' || $game_type == 'Runs_Women'){
+
+                                        
+                                    ?>
 
                                 <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
                                     <a href="../runs_score/runs.php?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&meter=<?php echo $meter100 ?>"
@@ -339,6 +348,59 @@ session_start();
                                         </div>
                                     </a>
                                 </div>
+
+                                <?php  
+                                        }else if($game_type == 'Throws_Men' || $game_type == 'Throws_Women'){
+
+                                        
+                                ?>
+
+                                  <!-- throws -->
+
+
+                                  <!-- javelin -->
+                                  <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
+                                    <a href="../throws_score/throws.php?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&meter=<?php echo $javelin ?>"
+                                      class="event-box" style="display: block; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; overflow: hidden; background-color: white; transition: transform 0.3s;">
+                                        <div class="pictures" style="display: flex; justify-content: center; padding: 20px;">
+                                            <img src="../background_image/javelin.avif" style="width: 150px; height: 150px; border-radius: 15px;">
+                                        </div>
+                                        <div class="information" style="padding: 10px; text-align: center;">
+                                            <h3 style="margin: 0; font-size: 18px;">Javelin</h3>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <!-- discus -->
+                                <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
+                                    <a href="../throws_score/throws.php?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&meter=<?php echo $discus ?>"
+                                      class="event-box" style="display: block; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; overflow: hidden; background-color: white; transition: transform 0.3s;">
+                                        <div class="pictures" style="display: flex; justify-content: center; padding: 20px;">
+                                            <img src="../background_image/discus.jpg" style="width: 150px; height: 150px; border-radius: 15px;">
+                                        </div>
+                                        <div class="information" style="padding: 10px; text-align: center;">
+                                            <h3 style="margin: 0; font-size: 18px;">Discus</h3>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <!-- shotput -->
+                                <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
+                                   <a href="../throws_score/throws.php  ?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&meter=<?php echo $shotput ?>" 
+                                      class="event-box" style="display: block; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; overflow: hidden; background-color: white; transition: transform 0.3s;">
+                                        <div class="pictures" style="display: flex; justify-content: center; padding: 20px;">
+                                            <img src="../background_image/shotput.jpg" style="width: 150px; height: 150px; border-radius: 15px;">
+                                        </div>
+                                        <div class="information" style="padding: 10px; text-align: center;">
+                                            <h3 style="margin: 0; font-size: 18px;">Shot put</h3>
+                                        </div>
+                                    </a>
+                                </div>
+                                        
+
+                                <?php } ?>  
+
+                                
                             </div>
 
           </div>

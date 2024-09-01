@@ -305,7 +305,7 @@ ob_end_flush();
 
                                         $meter = $_GET['meter'];
 
-                                        if($meter == '100meter'){
+                                        if($meter == 'javelin'){
                                                 echo'
                                                    <div class="table-responsive p-0">
                                                                 <table class="table align-items-center mb-0">
@@ -325,7 +325,7 @@ ob_end_flush();
                                                                     $event_id = $_GET['event_id'];
                                                                     $game_type = $_GET['game_type'];
 
-                                                                    $getPlayersForRuns = "SELECT * FROM players WHERE game_id = '$game_id' AND event_id = '$event_id' AND choose_type = '100meter'";
+                                                                    $getPlayersForRuns = "SELECT * FROM players WHERE game_id = '$game_id' AND event_id = '$event_id' AND choose_type = 'javelin'";
                                                                     $queryForRuns = mysqli_query($conn,$getPlayersForRuns);
 
                                                                     while($getNowRuns = mysqli_fetch_assoc($queryForRuns)){
@@ -369,7 +369,7 @@ ob_end_flush();
                                                                                             <td class="align-middle text-center">';
                                                                                                 
 
-                                                                                            if ($getNowRuns['First_Try'] == 0) {
+                                                                                            if ($getNowRuns['Set1'] == 0 ) {
                                                                                              
                                                                                               echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#score' . $uniqueId . '">
                                                                                                       Score
@@ -393,11 +393,18 @@ ob_end_flush();
                                                                                                                         </div>
                                                                                                                         <div class="modal-body">
                                                                                                                                 <div class="form-group">
-                                                                                                                                <label for="raceTime" style="text-align: left; display: block;">Enter Race Time (in seconds):</label>
+                                                                                                                               <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required>
 
-                                                                                                                                <input type="number" class="form-control" id="raceTime" name="raceTime" value="' . htmlspecialchars($getNowRuns['First_Try']) . '" step="0.01" min="0" required>
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required>
+
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required>
+
                                                                                                                                 <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
-                                                                                                                                   <input type="hidden" name="check" value="100meter">
+                                                                                                                                <input type="hidden" name="check" value="javelin">
+
                                                                                                                             
 
                                                                                                                                 ';                                                                                                          
@@ -423,11 +430,19 @@ ob_end_flush();
                                                                                                                         </div>
                                                                                                                         <div class="modal-body">
                                                                                                                                 <div class="form-group">
-                                                                                                                                <label for="raceTime" style="text-align: left; display: block;">Enter Race Time (in seconds):</label>
+                                                                                                                               <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required disabled>
 
-                                                                                                                                <input type="number" class="form-control" id="raceTime" name="raceTime" value="' . htmlspecialchars($getNowRuns['First_Try']) . '" step="0.01" min="0" disabled>
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required disabled>
+
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required disabled>
+
                                                                                                                                 <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
+                                                                                                                                <input type="hidden" name="check" value="javelin">
 
+                                                                                                                         
                                                                                                                                 ';                                                                                                          
                                                                                                                                echo' </div>
                                                                                                                         </div>
@@ -449,7 +464,7 @@ ob_end_flush();
                                                                        
 
                                                            
-                                        }else if($meter == '200meter'){
+                                        }else if($meter == 'discus'){
                                           echo'
                                           <div class="table-responsive p-0">
                                                        <table class="table align-items-center mb-0">
@@ -469,7 +484,7 @@ ob_end_flush();
                                                            $event_id = $_GET['event_id'];
                                                            $game_type = $_GET['game_type'];
 
-                                                           $getPlayersForRuns = "SELECT * FROM players WHERE game_id = '$game_id' AND event_id = '$event_id' AND choose_type = '200meter'";
+                                                           $getPlayersForRuns = "SELECT * FROM players WHERE game_id = '$game_id' AND event_id = '$event_id' AND choose_type = 'discus'";
                                                            $queryForRuns = mysqli_query($conn,$getPlayersForRuns);
 
                                                            while($getNowRuns = mysqli_fetch_assoc($queryForRuns)){
@@ -512,17 +527,17 @@ ob_end_flush();
                                                                                    <td class="align-middle text-center">';
                                                                                        
 
-                                                                                   if ($getNowRuns['First_Try'] == 0) {
-                                                                                    
-                                                                                     echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#score' . $uniqueId . '">
-                                                                                             Score
-                                                                                           </button>';
-                                                                                 } else {
-                                                                                    
-                                                                                     echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#view' . $uniqueId . '">
-                                                                                             View
-                                                                                           </button>';
-                                                                                 }
+                                                                                   if ($getNowRuns['Set1'] == 0 ) {
+                                                                                             
+                                                                                    echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#score' . $uniqueId . '">
+                                                                                            Score
+                                                                                          </button>';
+                                                                                } else {
+                                                                                   
+                                                                                    echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#view' . $uniqueId . '">
+                                                                                            View
+                                                                                          </button>';
+                                                                                }
                                                                                  
 
                                                                                           echo' 
@@ -536,12 +551,19 @@ ob_end_flush();
                                                                                                                </div>
                                                                                                                <div class="modal-body">
                                                                                                                        <div class="form-group">
-                                                                                                                      <label for="raceTime" style="text-align: left; display: block;">Enter Race Time (in seconds):</label>
+                                                                                                                      <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required>
 
-                                                                                                                       <input type="number" class="form-control" id="raceTime" name="raceTime" value="' . htmlspecialchars($getNowRuns['First_Try']) . '" step="0.01" min="0" required>
-                                                                                                                       <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
-                                                                                                                         <input type="hidden" name="check" value="200meter">
-                                                                                                                         
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required>
+
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required>
+
+                                                                                                                                <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
+                                                                                                                                <input type="hidden" name="check" value="discus">
+
+                                                                                                                            
                                                                                                                        ';                                                                                                          
                                                                                                                       echo' </div>
                                                                                                                </div>
@@ -565,10 +587,17 @@ ob_end_flush();
                                                                                                                </div>
                                                                                                                <div class="modal-body">
                                                                                                                        <div class="form-group">
-                                                                                                                       <label for="raceTime" style="text-align: left; display: block;">Enter Race Time (in seconds):</label>
+                                                                                                                        <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required disabled>
 
-                                                                                                                       <input type="number" class="form-control" id="raceTime" name="raceTime" value="' . htmlspecialchars($getNowRuns['First_Try']) . '" step="0.01" min="0" disabled>
-                                                                                                                       <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required disabled>
+
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required disabled>
+
+                                                                                                                                <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
+                                                                                                                                <input type="hidden" name="check" value="discus">
 
                                                                                                                        ';                                                                                                          
                                                                                                                       echo' </div>
@@ -589,159 +618,162 @@ ob_end_flush();
                                                                    ';
                                                              }
                                                 
-                                        }else if($meter == '400meter'){
-                                          echo '
-                                          <div class="table-responsive p-0">
-                                              <table class="table align-items-center mb-0">
-                                                  <thead>
-                                                      <tr>
-                                                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                                                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-                                                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
-                                                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Options</th>
-                                                      </tr>
-                                                  </thead>
-                                                  <tbody>';
-                                      
-                                      $game_id = $_GET['game_id'];
-                                      $event_id = $_GET['event_id'];
-                                      $game_type = $_GET['game_type'];
-                                      
-                                      // Fetch players grouped by team
-                                      $getPlayersForRuns = "SELECT * FROM players WHERE game_id = '$game_id' AND event_id = '$event_id' AND choose_type = '400meter'";
-                                      $queryForRuns = mysqli_query($conn, $getPlayersForRuns);
-                                      
-                                      $teamMembers = [];
-                                      $teamButtons = [];
-                                      
-                                      while ($getNowRuns = mysqli_fetch_assoc($queryForRuns)) {
-                                          $team_id = $getNowRuns['team_id'];
-                                          
-                                          if (!isset($teamMembers[$team_id])) {
-                                              $teamMembers[$team_id] = [];
-                                              $teamButtons[$team_id] = $getNowRuns['First_Try'];
-                                          }
-                                          
-                                          $teamMembers[$team_id][] = $getNowRuns;
-                                      }
-                                      
-                                      // Iterate over each team
-                                      foreach ($teamMembers as $team_id => $players) {
-                                          $uniqueId = 'modal' . $team_id;
-                                      
-                                          // Get team info
-                                          $getTeamInfo = "SELECT * FROM teams WHERE id = $team_id";
-                                          $queryGetTeamInfo = mysqli_query($conn, $getTeamInfo);
-                                          $getResult = mysqli_fetch_assoc($queryGetTeamInfo);
-                                      
-                                          // Start team row
-                                          echo '<tr>
-                                          <td colspan="5" style=" border-radius: 10px; background-color: #f0f0f0; text-align: center;">
-                                              <div style="display: inline-block; width: 50%; text-align: left; position:relative; left: 10px; font-weight: bold;">
-                                                  ' . htmlspecialchars($getResult['team_name']) . '
-                                              </div>
-                                              <div style="display: inline-block; width: 50%; text-align: right;  position: relative; top: 7px; left: -20px;">
-                                                  ' . ($teamButtons[$team_id] == 0 ? 
-                                                      '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#score' . htmlspecialchars($uniqueId) . '">Score</button>' :
-                                                      '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#view' . htmlspecialchars($uniqueId) . '">View</button>') . '
-                                              </div>
-                                          </td>
-                                      </tr>';
-                                  
-                                      
-                                          // Display team members
-                                          foreach ($players as $player) {
-                                              echo '
-                                                  <tr>
-                                                      <td>
-                                                          <div class="d-flex px-2 py-1">
-                                                              <div>
-                                                                  <img src="../stored_images/person.png" class="avatar avatar-sm me-3" alt="user1">
-                                                              </div>
-                                                              <div class="d-flex flex-column justify-content-center">
-                                                                  <h6 class="mb-0 text-sm">' . htmlspecialchars($player['name']) . '</h6>
-                                                                  <p class="text-xs text-secondary mb-0">' . htmlspecialchars($player['player_number']) . '</p>
-                                                              </div>
-                                                          </div>
-                                                      </td>
-                                                      <td>
-                                                          <p class="text-xs font-weight-bold mb-0">' . htmlspecialchars($getResult['team_name']) . '</p>
-                                                          <p class="text-xs text-secondary mb-0">Panagiti Team</p>
-                                                      </td>
-                                                      <td class="align-middle text-center">
-                                                          <img src="' . htmlspecialchars($getResult['logo']) . '" class="avatar avatar-sm me-1" alt="user1">
-                                                      </td>
-                                                      <td class="align-middle text-center">
-                                                          <span class="text-secondary text-xs font-weight-bold">' . htmlspecialchars($player['choose_type']) . '</span>
-                                                      </td>
-                                                       <td class="align-middle text-center">
-                                                          <span class="text-secondary text-xs font-weight-bold">' . htmlspecialchars($player['First_Try']) . ' second/s</span>
-                                                      </td>
-                                                  </tr>';
-                                          }
-                                      
-                                          // Display Score and View buttons
-                                         
-                                      
-                                          // Modal for scoring
-                                          echo '
-                                              <div class="modal fade" id="score' . htmlspecialchars($uniqueId) . '" tabindex="-1" role="dialog" aria-labelledby="score' . htmlspecialchars($uniqueId) . 'Label" aria-hidden="true">
-                                                  <div class="modal-dialog" role="document">
-                                                      <div class="modal-content">
-                                                          <form action="option.php" method="post">  
-                                                              <div class="modal-header">
-                                                                  <h5 class="modal-title" id="score' . htmlspecialchars($uniqueId) . 'Label">Score Board</h5>
-                                                              </div>
-                                                              <div class="modal-body">
-                                                                  <div class="form-group">
-                                                                      <label for="raceTime" style="text-align: left; display: block;">Enter Race Time (in seconds):</label>
-                                                                      <input type="number" class="form-control" id="raceTime" name="raceTime" step="0.01" min="0" required value = '.htmlspecialchars($player['First_Try']).'>
-                                                                      <input type="hidden" name="PlayerId" value="' . htmlspecialchars($team_id) . '">
-                                                                      <input type="hidden" name="check" value="400meter">
-                                                                      <input type="hidden" name="team_id" value="'.htmlspecialchars($team_id).'">
+                                        }else if($meter == 'shotput'){
+                                            echo'
+                                            <div class="table-responsive p-0">
+                                                         <table class="table align-items-center mb-0">
+                                                         <thead>
+                                                             <tr>
+                                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
+                                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
+                                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
+                                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Options</th>
+                                                             </tr>
+                                                         </thead>
+                                                         <tbody>
+                                                             ';
+  
+                                                             $game_id = $_GET['game_id'];
+                                                             $event_id = $_GET['event_id'];
+                                                             $game_type = $_GET['game_type'];
+  
+                                                             $getPlayersForRuns = "SELECT * FROM players WHERE game_id = '$game_id' AND event_id = '$event_id' AND choose_type = 'shotput'";
+                                                             $queryForRuns = mysqli_query($conn,$getPlayersForRuns);
+  
+                                                             while($getNowRuns = mysqli_fetch_assoc($queryForRuns)){
+  
+                                                                 $team_id = $getNowRuns['team_id'];
+                                                                 $uniqueId = 'modal' . $getNowRuns['id'];
+                                                                 
+                                                                 $getTeamInfo = "SELECT * FROM teams WHERE id = $team_id";
+                                                                 $queryGetTeamInfo = mysqli_query($conn,$getTeamInfo);
+  
+                                                                 $getResult = mysqli_fetch_assoc($queryGetTeamInfo);
+  
+                                                                     echo '
+                                                                             <tr>
+                                                                                     <td>
+                                                                                         <div class="d-flex px-2 py-1">
+                                                                                         <div>
+                                                                                             <img src="../stored_images/person.png" class="avatar avatar-sm me-3" alt="user1">
+                                                                                         </div>
+                                                                                         <div class="d-flex flex-column justify-content-center">
+                                                                                             <h6 class="mb-0 text-sm">'.$getNowRuns['name'].'</h6>
+                                                                                             <p class="text-xs text-secondary mb-0">'.$getNowRuns['player_number'].'</p>
+                                                                                         </div>
+                                                                                         </div>
+                                                                                     </td>
+                                                                                     <td>
+                                                                                         <p class="text-xs font-weight-bold mb-0">
+                                                                                             '.
+                                                                                                 $getResult['team_name']
+                                                                                             .'
+                                                                                         </p>
+                                                                                         <p class="text-xs text-secondary mb-0">Panagiti Team</p>
+                                                                                     </td>
+                                                                                     <td class="align-middle text-center">
+                                                                                              <img src="'.$getResult['logo'].'" class="avatar avatar-sm me-1" alt="user1">
+                                                                                     </td>
+                                                                                     <td class="align-middle text-center">
+                                                                                         <span class="text-secondary text-xs font-weight-bold">'.$getNowRuns['choose_type'].'</span>
+                                                                                     </td>
+                                                                                     <td class="align-middle text-center">';
+                                                                                         
+  
+                                                                                     if ($getNowRuns['Set1'] == 0 ) {
+                                                                                             
+                                                                                        echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#score' . $uniqueId . '">
+                                                                                                Score
+                                                                                              </button>';
+                                                                                    } else {
+                                                                                       
+                                                                                        echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#view' . $uniqueId . '">
+                                                                                                View
+                                                                                              </button>';
+                                                                                    }
+                                                                                   
+  
+                                                                                            echo' 
+                                                                                            <div class="modal fade" id="score'.$uniqueId.'" tabindex="-1" role="dialog" aria-labelledby="score'.$uniqueId.'Label" aria-hidden="true">
+                                                                                                 <div class="modal-dialog" role="document">
+                                                                                                     <div class="modal-content">
+                                                                                                         <form action="option.php" method="post">  
+                                                                                                                  <div class="modal-header">
+                                                                                                                   <h5 class="modal-title" id="score'.$uniqueId.'Label">Score Board</h5>
+                                                                                                         
+                                                                                                                 </div>
+                                                                                                                 <div class="modal-body">
+                                                                                                                         <div class="form-group">
+                                                                                                                       <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required>
 
-                                                                  </div>
-                                                              </div>
-                                                              <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                                  <input type="submit" class="btn btn-success" value="Confirm Score">
-                                                              </div>
-                                                          </form>
-                                                      </div>
-                                                  </div>
-                                              </div>';
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required>
+
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required>
+
+                                                                                                                                <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
+                                                                                                                                <input type="hidden" name="check" value="shotput">
+
+                                                                                                 
+                                                                                                                         ';                                                                                                          
+                                                                                                                        echo' </div>
+                                                                                                                 </div>
+                                                                                                                 <div class="modal-footer">
+                                                                                                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                                                                     <input type = "submit" class="btn btn-success" value = "Confirm Score">
+                                                                                                                 </div>
+                                                                                                         </form>
+                                                                                                     </div>
+                                                                                                 </div>
+                                                                                                 </div>
+  
+  
+                                                                                                 <div class="modal fade" id="view'.$uniqueId.'" tabindex="-1" role="dialog" aria-labelledby="view'.$uniqueId.'Label" aria-hidden="true">
+                                                                                                 <div class="modal-dialog" role="document">
+                                                                                                     <div class="modal-content">
+                                                                                                         <form action="option.php" method="post">  
+                                                                                                                  <div class="modal-header">
+                                                                                                                   <h5 class="modal-title" id="view'.$uniqueId.'Label">View Score</h5>
+                                                                                                         
+                                                                                                                 </div>
+                                                                                                                 <div class="modal-body">
+                                                                                                                         <div class="form-group">
+                                                                                                                          <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required disabled>
+
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required disabled>
+
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required disabled>
+
+                                                                                                                                <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
+                                                                                                                                <input type="hidden" name="check" value="shotput">
+
+                                                                                                                         ';                                                                                                          
+                                                                                                                        echo' </div>
+                                                                                                                 </div>
+                                                                                                                 <div class="modal-footer">
+                                                                                                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                                                                    
+                                                                                                                 </div>
+                                                                                                         </form>
+                                                                                                     </div>
+                                                                                                 </div>
+                                                                                                 </div>
+  
+  
+                                                                                     </td>  
+                                                                                     
+                                                                             </tr>   
+                                                                     ';
+                                                               }
+                                                  
                                       
-                                          // Modal for viewing
-                                          echo '
-                                              <div class="modal fade" id="view' . htmlspecialchars($uniqueId) . '" tabindex="-1" role="dialog" aria-labelledby="view' . htmlspecialchars($uniqueId) . 'Label" aria-hidden="true">
-                                                  <div class="modal-dialog" role="document">
-                                                      <div class="modal-content">
-                                                          <form action="option.php" method="post">  
-                                                              <div class="modal-header">
-                                                                  <h5 class="modal-title" id="view' . htmlspecialchars($uniqueId) . 'Label">View Score</h5>
-                                                              </div>
-                                                              <div class="modal-body">
-                                                                  <div class="form-group">
-                                                                      <label for="raceTime" style="text-align: left; display: block;">Race Time (in seconds):</label>
-                                                                      <input type="number" class="form-control" id="raceTime" name="raceTime" step="0.01" min="0" value = '.htmlspecialchars($player['First_Try']).' disabled>
-                                                                      <input type="hidden" name="PlayerId" value="' . htmlspecialchars($team_id) . '">
-                                                                  </div>
-                                                              </div>
-                                                              <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                              </div>
-                                                          </form>
-                                                      </div>
-                                                  </div>
-                                              </div>';
-                                      
-                                          echo '<tr><td colspan="5" style="height: 60px;"></td></tr>';
-                                      }
-                                      
-                                      echo '  </tbody>
-                                              </table>
-                                          </div>';
+                                     
                                       
                                         }else{
                                             header('Location: ../scoring_info/field.php?event_id='.urldecode($_SESSION['EVENT_ID']).'&game_id='.urldecode($_SESSION['GAME_ID']).'&game_type='.urldecode($_SESSION['GAME_TYPE']));
