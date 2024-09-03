@@ -31,6 +31,8 @@ $EliType = $_SESSION['EliminationType'];
                     // Round Robin
                     generateRoundRobinMatches($team_count,$game_id,$event_id,$gameType,$conn);
 
+                }else if($EliType == 'MSEG'){
+                    getModifiedSingleEliminationMatches($team_count, $game_id, $event_id, $gameType, $conn);
                 }
             } else if($gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Badminton_Double_Women' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Table_tennis_Double_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
                 // handle games like sa mga teams with player ang style like table tennis and badmnton 
@@ -582,6 +584,13 @@ $EliType = $_SESSION['EliminationType'];
      function getSingleEliminationMatches($number, $game_id, $event_id, $gameType, $conn) {
         
         $totalmatches = $number - 1;  // Total number sa matches
+
+        insertIntoDatabaseWithTheTotalMatchesValueForSEG($totalmatches, $number, $game_id, $event_id, $gameType, $conn);  // Insert ang mga matches sa database
+    }
+
+    function getModifiedSingleEliminationMatches($number, $game_id, $event_id, $gameType, $conn) {
+        
+        $totalmatches = 4;  // Total number sa matches
 
         insertIntoDatabaseWithTheTotalMatchesValueForSEG($totalmatches, $number, $game_id, $event_id, $gameType, $conn);  // Insert ang mga matches sa database
     }

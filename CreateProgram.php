@@ -312,10 +312,14 @@ session_start();
                                                             <label for="program">Program name:</label>
                                                             <input type="text" id = "program" name = "program_name" class = "form-control">
                                                             <label for="no">Number of Teams:</label>
-                                                            <input type="number" id = "no" name = "number_of_teams" class = "form-control">
+                                                            <?php
+
+                                                            $value = 4;
+                                                            ?>
+                                                            <input type="number" id = "no" name = "number_of_teams" class = "form-control" readonly value = '<?php echo $value ?>'>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                                         <input type="submit" value = "Create" class = "btn btn-success">
                                                         
                                                     </div>

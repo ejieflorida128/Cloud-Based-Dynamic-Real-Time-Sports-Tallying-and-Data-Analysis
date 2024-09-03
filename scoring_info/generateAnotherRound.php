@@ -345,12 +345,15 @@ include('../connection/conn.php');
                                             // call the function para ma balik sa game list na page!
                                             backToGameList($eventId,$gameId,$gameType);
                                         }else{
-                                            //    check natu if naa bay bye!
-                                                $bye = checkIfByeExist($conn,$eventId,$gameId);
+
+
+                                            $bye = checkIfByeExist($conn,$eventId,$gameId);
                             
-                                                // call the genratedRound function para e execute
-                                                  
-                                                  generateNewRoundWIthSingleAndDoubleCategoryForSEG($conn,$eventId,$gameId,$bye,$gameType);
+                                            // call the genratedRound function para e execute
+                                              
+                                              generateNewRoundWIthSingleAndDoubleCategoryForSEG($conn,$eventId,$gameId,$bye,$gameType);
+                                      
+                                                
                                                 
                                                 
                                                 
@@ -389,16 +392,238 @@ include('../connection/conn.php');
                         $loser = $team1_id;
                     }
 
-                    $updateSRRB = "UPDATE game_matches SET team_one_score = '$teamOneScore', team_two_score = '$teamTwoScore', winner_id = '$winner', loser_id = '$loser' WHERE id = '$id'";
+                    $updateSRRB = "UPDATE game_matches SET team_one_score = '$teamOneScore', team_two_score = '$teamTwoScore', winner_id = '$winner', loser_id = '$loser', status = 'SCORE' WHERE id = '$id'";
                     mysqli_query($conn,$updateSRRB);
 
                     backToGameList($eventId,$gameId,$gameType);
 
                     
 
-            }
+            }else if($eliType == 'MSEG'){
+                // for single elinmination game
+         
+            if ($gameType == 'Basketball_Men' || $gameType == 'Basketball_Women' || $gameType == 'Vollayball_Men' || $gameType == 'Vollayball_Women' || $gameType == 'Softball_Men' || $gameType == 'Softball_Women' || $gameType == 'MLBB' || $gameType == 'Futsal_Men' || $gameType == 'Futsal_Women'){
+                // game on list kanang nag kuan ug by teams
+                    if($teamOneScore > $teamTwoScore){
+                            $winnerId = $team1_id;
+                            $loserId = $team2_id;
+                      
+                                $sqlFOrWinner = "UPDATE teams SET last_match_status = 'Winner', winner_number = winner_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND team_name = '$teamOneName'";
+                                mysqli_query($conn,$sqlFOrWinner);
+                                
+                                DetermineBracket($conn,$eventId,$gameId,$winnerId,"Winner");
+                                
+                                $sqlForLoser = "UPDATE teams SET last_match_status = 'Loser', bracket_status = 1, lose_number = lose_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND team_name = '$teamTwoName'";
+                                mysqli_query($conn,$sqlForLoser);
+                               
+                         
+                              
+                    }else{
+                            $winnerId = $team2_id;
+                            $loserId = $team1_id;
+        
+                  
+                                $sqlFOrWinner = "UPDATE teams SET last_match_status = 'Winner', winner_number = winner_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND team_name = '$teamTwoName'";
+                                mysqli_query($conn,$sqlFOrWinner);
+
+                                DetermineBracket($conn,$eventId,$gameId,$winnerId,"Winner");
+        
+                                $sqlForLoser = "UPDATE teams SET last_match_status = 'Loser', bracket_status = 1, lose_number = lose_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND team_name = '$teamOneName'";
+                                mysqli_query($conn,$sqlForLoser);
+                              
+        
+                               
+                         
+                    }
 
 
+        
+                    $sqlUpdateOfWinnerAndLoserId = "UPDATE game_matches SET team_one_score = $teamOneScore, team_two_score = $teamTwoScore, winner_id = $winnerId, loser_id = $loserId, status = 'SCORE' WHERE id = $id";
+                    mysqli_query($conn,$sqlUpdateOfWinnerAndLoserId);
+        
+                    // call the function para ma kuha ang value sa current na round
+                    $currentRound = getCurrentRound($conn,$gameId,$eventId);
+
+                  
+                    // call the function para ma check if naa pay wala na score sa round 
+                    $checkRound = checkIfThereStillMatchesNotScoredInThisRound($conn,$gameId,$eventId,$currentRound);
+                    if($checkRound == false){
+                            // call the function para ma balik sa game list na page!
+                                
+                                    backToGameList($eventId,$gameId,$gameType);
+                                
+                    }else{
+                        
+                            $nextRound = $currentRound + 1;
+
+                            if($nextRound == 2){
+                                    // for bronze or 3rd runner up ( winner )
+
+                                    $type = 'bronze';
+
+                                    getNewGameForCustom($conn,$gameId,$eventId,$type);
+                                        
+
+                            }else if($nextRound == 3){
+                                    // for finals ( winner ) 1st and ( loser ) 2nd
+
+                                    $type = 'silverANDgold';
+
+                                    getNewGameForCustom($conn,$gameId,$eventId,$type);
+                            }else{
+                                backToGameList($eventId,$gameId,$gameType);
+                            }
+
+                            backToGameList($eventId,$gameId,$gameType);
+                            
+                            
+                    }
+    
+                  }else if($gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Badminton_Double_Women' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Table_tennis_Double_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
+                        // handle games like sa mga teams with player ang style like table tennis and badmnton 
+                        if($gameType == 'Badminton_Single_Men' || $gameType == 'Table_tennis_Single_Men' || $gameType == 'Badminton_Single_Women' || $gameType == 'Table_tennis_Single_Women' || $gameType == 'Chess' || $gameType == 'Archery'){
+                            // singles  
+                                if($teamOneScore > $teamTwoScore){
+                                            $winnerId = $team1_id;
+                                            $loserId = $team2_id;
+                                    
+                                                $sqlFOrWinner = "UPDATE players SET last_match_status = 'Winner', winner_number = winner_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND name = '$teamOneName'";
+                                                mysqli_query($conn,$sqlFOrWinner);
+                                                
+                                                DetermineBracketWithSingleAndDoubleCategory($conn,$eventId,$gameId,$winnerId,"Winner",$gameType);
+                                                
+                                                $sqlForLoser = "UPDATE players SET last_match_status = 'Loser', bracket_status = 1, lose_number = lose_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND name = '$teamTwoName'";
+                                                mysqli_query($conn,$sqlForLoser);
+                                              
+                    
+                                                specialMatchPendingWithSingleAndDoubleCategory($conn,$eventId,$gameId,$id,$winnerId,$teamOneName,'',$gameType);
+                        
+                        
+                        
+                                                    
+                                            
+                                    }else{
+                                            $winnerId = $team2_id;
+                                            $loserId = $team1_id;
+                        
+                                
+                                                $sqlFOrWinner = "UPDATE players SET last_match_status = 'Winner', winner_number = winner_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND name = '$teamTwoName'";
+                                                mysqli_query($conn,$sqlFOrWinner);
+                                                DetermineBracketWithSingleAndDoubleCategory($conn,$eventId,$gameId,$winnerId,"Winner",$gameType);
+                        
+                                                $sqlForLoser = "UPDATE players SET last_match_status = 'Loser', bracket_status = 1, lose_number = lose_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND name = '$teamOneName'";
+                                                mysqli_query($conn,$sqlForLoser);
+                                               
+                        
+                                                specialMatchPendingWithSingleAndDoubleCategory($conn,$eventId,$gameId,$id,$winnerId,$teamTwoName,'',$gameType);
+                                        
+                                    }
+                        }else{
+                            // doubles 
+                                        if($teamOneScore > $teamTwoScore){
+                                            $winnerId = $team1_id;
+                                            $loserId = $team2_id;
+                                    
+                                                $sqlFOrWinner = "UPDATE players SET last_match_status = 'Winner', winner_number = winner_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND name = '$teamOneName' AND name1 = '$teamOneName1'";
+                                                mysqli_query($conn,$sqlFOrWinner);
+                                                DetermineBracketWithSingleAndDoubleCategory($conn,$eventId,$gameId,$winnerId,"Winner",$gameType);
+                                                
+                                                $sqlForLoser = "UPDATE players SET last_match_status = 'Loser', lose_number = lose_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND name = '$teamTwoName' AND name1 = '$teamTwoName1'";
+                                                mysqli_query($conn,$sqlForLoser);
+                                                DetermineBracketWithSingleAndDoubleCategory($conn,$eventId,$gameId,$loserId,"Loser",$gameType);
+                    
+                                                specialMatchPendingWithSingleAndDoubleCategory($conn,$eventId,$gameId,$id,$winnerId,$teamOneName,$teamOneName1,$gameType);
+                        
+                        
+                        
+                                                    
+                                            
+                                    }else{
+                                            $winnerId = $team2_id;
+                                            $loserId = $team1_id;
+                        
+                                
+                                                $sqlFOrWinner = "UPDATE players SET last_match_status = 'Winner', winner_number = winner_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND name = '$teamTwoName' AND name1 = '$teamTwoName1'";
+                                                mysqli_query($conn,$sqlFOrWinner);
+                                                DetermineBracketWithSingleAndDoubleCategory($conn,$eventId,$gameId,$winnerId,"Winner",$gameType);
+                        
+                                                $sqlForLoser = "UPDATE players SET last_match_status = 'Loser', lose_number = lose_number + 1 WHERE game_id = $gameId AND event_id = $eventId AND name = '$teamOneName' AND name1 = '$teamOneName1'";
+                                                mysqli_query($conn,$sqlForLoser);
+                                                DetermineBracketWithSingleAndDoubleCategory($conn,$eventId,$gameId,$loserId,"Loser",$gameType);
+                                                
+                        
+                                                specialMatchPendingWithSingleAndDoubleCategory($conn,$eventId,$gameId,$id,$winnerId,$teamTwoName,$teamTwoName1,$gameType);
+                                            
+                                     }
+                         }
+
+                }
+            
+                   
+        
+        
+        }
+    }
+    
+
+
+
+        
+    
+
+
+
+        
+
+        // generate match for Modified Game
+        function getNewGameForCustom($conn,$gameId,$eventId,$type){
+
+
+                if($type == 'bronze'){
+                        // for 3rd  
+                                $getMatchesFor2ndRound = "SELECT * FROM teams WHERE game_id = '$gameId' AND event_id = '$eventId' AND last_match_status = 'Loser'";
+                                $query = mysqli_query($conn,$getMatchesFor2ndRound);
+
+                                $loserTeam = [];
+                                $loserId = [];
+                                while($getData = mysqli_fetch_assoc($query)){
+                                    $loserTeam[] = $getData['team_name'];
+                                    $loserId[] = $getData['id'];
+                                }
+
+                                $team1 = $loserTeam[0];
+                                $team2 = $loserTeam[1];
+                                $team1Id = $loserId[0];
+                                $team2Id = $loserId[1];
+                                $match_info = 3;
+
+                                $update2ndRound = "UPDATE game_matches SET status = 'game', round = '2', team1 = '$team1Id', team1_name = '$team1', team2 = '$team2Id', team2_name = '$team2' WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = '$match_info'";
+                                mysqli_query($conn,$update2ndRound);
+
+                }else{
+                        // for 1st and 2nd
+
+
+                        $getMatchesFor3ndRound = "SELECT * FROM teams WHERE game_id = '$gameId' AND event_id = '$eventId' AND bracket = 'W'";
+                                $query = mysqli_query($conn,$getMatchesFor3ndRound);
+
+                                $WinnerTeam = [];
+                                $WinnerId = [];
+                                while($getData = mysqli_fetch_assoc($query)){
+                                    $WinnerTeam[] = $getData['team_name'];
+                                    $WinnerId[] = $getData['id'];
+                                }
+
+                                $team1 = $WinnerTeam[0];
+                                $team2 = $WinnerTeam[1];
+                                $team1Id = $WinnerId[0];
+                                $team2Id = $WinnerId[1];
+                                $match_info = 4;
+
+                                $update3ndRound = "UPDATE game_matches SET status = 'game', round = '3', team1 = '$team1Id', team1_name = '$team1', team2 = '$team2Id', team2_name = '$team2' WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = '$match_info'";
+                                mysqli_query($conn,$update3ndRound);
+
+                }
         }
 
 
@@ -409,7 +634,7 @@ include('../connection/conn.php');
             $result = mysqli_fetch_assoc($query);
 
             return $result['EliminationType'];
-    }
+        }
 
     // function ne para ma determine if loser or winner bracket sija with single and double category
     function DetermineBracketWithSingleAndDoubleCategory($conn,$eventId,$gameId,$id,$condition,$gameType){

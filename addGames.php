@@ -18,7 +18,7 @@ session_start();
         // $eliminationGame = $_POST['EliminationType'];
         $checkGame = $_POST['EliminationType'];
 
-        if($checkGame == 'SEG' || $checkGame == 'DEG' || $checkGame == 'SRRG'){
+        if($checkGame == 'SEG' || $checkGame == 'DEG' || $checkGame == 'SRRG' || $checkGame == 'MSEG'){
 
           $eliminationGame = $checkGame;
           $meter = 'null';
@@ -479,9 +479,10 @@ session_start();
                                                                         
                                                                         if (programSelect === 'Basketball_Men' || programSelect === 'Basketball_Women' || programSelect === 'Vollayball_Men' || programSelect === 'Vollayball_Women' || programSelect === 'MLBB' || programSelect === 'Softball_Men' || programSelect === 'Softball_Women' || programSelect === 'Futsal_Men' || programSelect === 'Futsal_Women' ) {
                                                                             gameTypeSelect.innerHTML = `
+                                                                                <option value="MSEG" selected>Custom Elimination with Placement Matches</option>
                                                                                 <option value="SEG">Single Elimination Game</option>
                                                                                 <option value="DEG">Double Elimination Game</option>
-                                                                                <option value="SRRG" selected>Single Round Robin Game</option>`;
+                                                                                <option value="SRRG">Single Round Robin Game</option>`;
                                                                         }else if(programSelect === 'Runs_Men' || programSelect === 'Runs_Women'){
                                                                           gameTypeSelect.innerHTML = `
                                                                                 <option value="runs" selected>All Option</option>
