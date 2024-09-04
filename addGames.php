@@ -54,9 +54,9 @@ session_start();
             $pic = 'stored_images/jumps.jpg';
           }else if($game_type == 'MLBB'){
             $pic = 'stored_images/mobile_legends.jpg';
-          }else if($game_type == 'Badminton_Single_Men' || $game_type == 'Badminton_Double_Men' || $game_type == 'Badminton_Single_Women' || $game_type == 'Badminton_Double_Women'){
+          }else if($game_type == 'Badminton_Men' || $game_type == 'Badminton_Women'){
             $pic = 'stored_images/badminton.jpg';
-          }else if($game_type == 'Table_tennis_Single_Men' || $game_type == 'Table_tennis_Double_Men' || $game_type == 'Table_tennis_Single_Women' || $game_type == 'Table_tennis_Double_Women'){
+          }else if($game_type == 'Table_tennis_Men' || $game_type == 'Table_tennis_Women'){
             $pic = 'stored_images/table_tennis.jpg';
           }else if($game_type == 'Futsal_Men' || $game_type == 'Futsal_Women'){
             $pic = 'stored_images/futsal.jpg';
@@ -426,14 +426,11 @@ session_start();
                                                                 <option value="Futsal_Women">Futsal_Women</option>                             
                                                                 <option value="MLBB">Mobile Legend</option>
 
-                                                                <option value="Badminton_Single_Men">Badminton Single Men's Category</option>
-                                                                <option value="Badminton_Double_Men">Badminton Double Men's Category</option>
-                                                                <option value="Badminton_Single_Women">Badminton Single Women's Category</option>
-                                                                <option value="Badminton_Double_Women">Badminton Double Women's Category</option>
-                                                                <option value="Table_tennis_Single_Men">Table Tennis Single Men's Category</option>
-                                                                <option value="Table_tennis_Double_Men">Table Tennis Double Men's Category</option>
-                                                                <option value="Table_tennis_Single_Women">Table Tennis Single Women's Category</option>
-                                                                <option value="Table_tennis_Double_Women">Table Tennis Double Women's Category</option>
+                                                                <option value="Badminton_Men">Badminton Men's Category</option>                                                              
+                                                                <option value="Badminton_Women">Badminton Women's Category</option>                                                            
+                                                                <option value="Table_tennis_Men">Table Tennis Men's Category</option>                                                    
+                                                                <option value="Table_tennis_Women">Table Tennis Women's Category</option>
+                                                                
 
                                                               
                                                                 <option value="Runs_Men">Runs Men's Category</option>
@@ -497,7 +494,8 @@ session_start();
                                                                                `; 
                                                                         }else{
                                                                               gameTypeSelect.innerHTML = `
-                                                                                <option value="SEG" selected>Single Elimination Game</option>
+                                                                                <option value="MSEG" selected>Custom Elimination with Placement Matches</option>
+                                                                                <option value="SEG">Single Elimination Game</option>
                                                                                 <option value="DEG">Double Elimination Game</option>`;
                                                                         }
                                                                     }
@@ -515,7 +513,7 @@ session_start();
                                     </div>
                                     </div>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Add Event
+                                    Add Game
                                 </button>
                                 </div>
                                 <div class = "content">
@@ -525,7 +523,7 @@ session_start();
                                                 
                                                   <?php 
 
-                                                          $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE (game_type = 'Basketball_Men' OR game_type = 'Basketball_Women' OR game_type = 'Vollayball_Men' OR game_type = 'Vollayball_Women' OR game_type = 'Softball_Men' OR game_type = 'Softball_Women' OR game_type = 'Runs_Men' OR game_type = 'Runs_Women' OR game_type = 'Throws_Men' OR game_type = 'Throws_Women' OR game_type = 'Jumps_Men' OR game_type = 'Jumps_Women' OR game_type = 'MLBB' OR game_type = 'Badminton_Single_Men' OR game_type = 'Badminton_Double_Men' OR game_type = 'Badminton_Single_Women' OR game_type = 'Badminton_Double_Women' OR game_type = 'Table_tennis_Single_Men' OR game_type = 'Table_tennis_Double_Men' OR game_type = 'Table_tennis_Single_Women' OR game_type = 'Table_tennis_Double_Women' OR game_type = 'Futsal_Men' OR game_type = 'Futsal_Women' OR game_type = 'Chess' OR game_type = 'Archery') AND  event_id = $id";
+                                                          $sqlForGameAvailInThisEvent = "SELECT * FROM registered_game WHERE (game_type = 'Basketball_Men' OR game_type = 'Basketball_Women' OR game_type = 'Vollayball_Men' OR game_type = 'Vollayball_Women' OR game_type = 'Softball_Men' OR game_type = 'Softball_Women' OR game_type = 'Runs_Men' OR game_type = 'Runs_Women' OR game_type = 'Throws_Men' OR game_type = 'Throws_Women' OR game_type = 'Jumps_Men' OR game_type = 'Jumps_Women' OR game_type = 'MLBB' OR game_type = 'Badminton_Men' OR game_type = 'Badminton_Women' OR game_type = 'Table_tennis_Men' OR game_type = 'Table_tennis_Women'  OR game_type = 'Futsal_Men' OR game_type = 'Futsal_Women' OR game_type = 'Chess' OR game_type = 'Archery') AND  event_id = $id";
                                                           $resultForGameAvail = mysqli_query($conn,$sqlForGameAvailInThisEvent);
 
                                                           while($checkResultForGameAvail = mysqli_fetch_assoc($resultForGameAvail)){

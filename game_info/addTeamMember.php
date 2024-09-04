@@ -349,16 +349,16 @@
                                                                 }else if($_SESSION['GameType'] == 'Jumps_Men' || $_SESSION['GameType'] == 'Jumps_Women'){
                                                                   $val = 2;
                                                                   echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . $val . '">';
-                                                                }else if($_SESSION['GameType'] == 'Badminton_Single_Men'|| $_SESSION['GameType'] == 'Badminton_Double_Men'){
-                                                                  $val = 3;
-                                                                  echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . $val . '">';
-                                                                }else if($_SESSION['GameType'] == 'Badminton_Single_Women'|| $_SESSION['GameType'] == 'Badminton_Double_Women'){
+                                                                }else if($_SESSION['GameType'] == 'Badminton_Men'){
                                                                   $val = 2;
                                                                   echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . $val . '">';
-                                                                }else if($_SESSION['GameType'] == 'Table_tennis_Single_Men' || $_SESSION['GameType'] == 'Table_tennis_Double_Men'){
-                                                                  $val = 3;
+                                                                }else if($_SESSION['GameType'] == 'Badminton_Women'){
+                                                                  $val = 2;
                                                                   echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . $val . '">';
-                                                                }else if($_SESSION['GameType'] == 'Table_tennis_Single_Women' || $_SESSION['GameType'] == 'Table_tennis_Double_Women'){
+                                                                }else if($_SESSION['GameType'] == 'Table_tennis_Men'){
+                                                                  $val = 2;
+                                                                  echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . $val . '">';
+                                                                }else if($_SESSION['GameType'] == 'Table_tennis_Women'){
                                                                   $val = 2;
                                                                   echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . $val . '">';
                                                                 }else if($_SESSION['GameType'] == 'Dance_Sports'){
@@ -1410,10 +1410,10 @@
 
                                                                   // end sa MLBB
 
-                                                              }else if($game_type == 'Badminton_Single_Men' || $game_type == 'Badminton_Single_Women'){
-                                                                  // start sa Badminton single
+                                                              }else if($game_type == 'Badminton_Men' || $game_type == 'Badminton_Women'){
+                                                                  // start sa Badminton single and double
 
-                                                                        if($game_type == 'Badminton_Single_Men'){
+                                                                        if($game_type == 'Badminton_Men'){
                                                                               // for men
 
                                                                               echo '
@@ -1421,10 +1421,10 @@
                                                                               <div class = "container">
                                                                                    <form action="actionRegister.php" method = "post">
                                                                                            <div class="part1">
-                                                                                                 <h5>3 players</h5>
+                                                                                                 <h5>Single Category Match</h5>
                                                                                              <div class="row">';
                                                                                                      
-                                                                                                                 for($x = 1; $x <=3; $x++){
+                                                                                                                 for($x = 1; $x <=1; $x++){
               
                                                                                                                    $condition = 'player'.$x;
               
@@ -1462,6 +1462,71 @@
                                                                                                                                </div>
                                                                                                                                ";
                                                                                                                  }
+                                                                                                     
+                                                                                                       
+                                                                                                     
+                                                                                          echo'   </div>
+                                                                                               
+                                                                                       </div>
+
+                                                                                        <div class="part2">
+                                                                                                 <h5>Double Category Match</h5>
+                                                                                             <div class="row">';
+                                                                                                     
+                                                                                                                 for($x = 2; $x <=2; $x++){
+              
+                                                                                                                   $condition = 'player'.$x;
+              
+                                                                                                                   $game_id = $_SESSION['GameId'];
+                                                                                                                   $event_id = $_SESSION['EventId'];
+                                                                                                                  $gameType = $_SESSION['GameType'];
+                                                                                                                  $team_id = $_SESSION['idOfTeam'];
+                                                                                                                   
+                                                                                                                     $selectFromPlayers = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$condition'";
+                                                                                                                     $queryForPlayers = mysqli_query($conn,$selectFromPlayers);
+              
+                                                                                                                     $getData = mysqli_fetch_assoc($queryForPlayers);
+              
+                                                                                                                     if (empty($getData['name'])) {
+                                                                                                                       $name1 = 'Please add player name!';
+                                                                                                                       $name1_1 = 'Please add player name!';
+                                                                                                                   } else {
+                                                                                                                       $name1 = htmlspecialchars($getData['name']);
+                                                                                                                       $name1_1 = htmlspecialchars($getData['name1']);
+                                                                                                                   }
+              
+                                                                                                                    
+                                                                                                                        $age1 = isset($getData['age']) ? htmlspecialchars($getData['age']) : 0;
+                                                                                                                        $age1_1 = isset($getData['age1']) ? htmlspecialchars($getData['age1']) : 0;
+              
+                                                                                                                        $getName1 = 'name1'.$x;
+                                                                                                                        $getAge1 = 'age1'.$x;
+
+                                                                                                                        $getAge2 = 'age2' .$x;
+                                                                                                                        $getName2 = 'name2'. $x;
+              
+                                                                                                                     
+                                                                                                                 
+                                                                                                                      
+                                                                                                                 }
+
+                                                                                                              
+
+                                                                                                                 echo "
+                                                                                                                 <div class='box' class='col-md-4 col-sm-6' style='box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 45%; height: 400px;'>
+                                                                                                                     <label style='margin-top: 30px;'>Player 1 Name: </label>
+                                                                                                                     <input type='text' class='form-control'name = '$getName1' value='$name1'> 
+                                                                                                                     <label style='margin-top: 10px;'>Player 1 Age: </label>
+                                                                                                                     <input type='text' class='form-control' name = '$getAge1' value='$age1'>
+
+
+                                                                                                                      <label style='margin-top: 30px;'>Player 2 Name: </label>
+                                                                                                                     <input type='text' class='form-control'name = '$getName2' value='$name1_1'> 
+                                                                                                                     <label style='margin-top: 10px;'>Player 2 Age: </label>
+                                                                                                                     <input type='text' class='form-control' name = '$getAge2' value='$age1_1'>
+                                                                                                                      
+                                                                                                                 </div>
+                                                                                                                 ";
                                                                                                      
                                                                                                        
                                                                                                      
@@ -1487,10 +1552,10 @@
                                                                               <div class = "container">
                                                                                    <form action="actionRegister.php" method = "post">
                                                                                            <div class="part1">
-                                                                                                 <h5>2 players</h5>
+                                                                                                 <h5>Single Category Match</h5>
                                                                                              <div class="row">';
                                                                                                      
-                                                                                                                 for($x = 1; $x <=2; $x++){
+                                                                                                                 for($x = 1; $x <=1; $x++){
               
                                                                                                                    $condition = 'player'.$x;
               
@@ -1534,6 +1599,71 @@
                                                                                           echo'   </div>
                                                                                                
                                                                                        </div>
+
+                                                                                        <div class="part2">
+                                                                                                 <h5>Double Category Match</h5>
+                                                                                             <div class="row">';
+                                                                                                     
+                                                                                                                 for($x = 2; $x <=2; $x++){
+              
+                                                                                                                   $condition = 'player'.$x;
+              
+                                                                                                                   $game_id = $_SESSION['GameId'];
+                                                                                                                   $event_id = $_SESSION['EventId'];
+                                                                                                                  $gameType = $_SESSION['GameType'];
+                                                                                                                  $team_id = $_SESSION['idOfTeam'];
+                                                                                                                   
+                                                                                                                     $selectFromPlayers = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$condition'";
+                                                                                                                     $queryForPlayers = mysqli_query($conn,$selectFromPlayers);
+              
+                                                                                                                     $getData = mysqli_fetch_assoc($queryForPlayers);
+              
+                                                                                                                     if (empty($getData['name'])) {
+                                                                                                                       $name1 = 'Please add player name!';
+                                                                                                                       $name1_1 = 'Please add player name!';
+                                                                                                                   } else {
+                                                                                                                       $name1 = htmlspecialchars($getData['name']);
+                                                                                                                       $name1_1 = htmlspecialchars($getData['name1']);
+                                                                                                                   }
+              
+                                                                                                                    
+                                                                                                                        $age1 = isset($getData['age']) ? htmlspecialchars($getData['age']) : 0;
+                                                                                                                        $age1_1 = isset($getData['age1']) ? htmlspecialchars($getData['age1']) : 0;
+              
+                                                                                                                        $getName1 = 'name1'.$x;
+                                                                                                                        $getAge1 = 'age1'.$x;
+
+                                                                                                                        $getAge2 = 'age2' .$x;
+                                                                                                                        $getName2 = 'name2'. $x;
+              
+                                                                                                                     
+                                                                                                                 
+                                                                                                                      
+                                                                                                                 }
+
+                                                                                                              
+
+                                                                                                                 echo "
+                                                                                                                 <div class='box' class='col-md-4 col-sm-6' style='box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 45%; height: 400px;'>
+                                                                                                                     <label style='margin-top: 30px;'>Player 1 Name: </label>
+                                                                                                                     <input type='text' class='form-control'name = '$getName1' value='$name1'> 
+                                                                                                                     <label style='margin-top: 10px;'>Player 1 Age: </label>
+                                                                                                                     <input type='text' class='form-control' name = '$getAge1' value='$age1'>
+
+
+                                                                                                                      <label style='margin-top: 30px;'>Player 2 Name: </label>
+                                                                                                                     <input type='text' class='form-control'name = '$getName2' value='$name1_1'> 
+                                                                                                                     <label style='margin-top: 10px;'>Player 2 Age: </label>
+                                                                                                                     <input type='text' class='form-control' name = '$getAge2' value='$age1_1'>
+                                                                                                                      
+                                                                                                                 </div>
+                                                                                                                 ";
+                                                                                                     
+                                                                                                       
+                                                                                                     
+                                                                                          echo'   </div>
+                                                                                               
+                                                                                       </div>
                                                                                     
                                                                                        <div class = "submit">
                                                                                            <input type = "submit" value = "Confirm Players" class = "btn btn-success">
@@ -1547,202 +1677,24 @@
                                                                               // end sa for women
                                                                         }
 
-                                                                  // end sa Badminton single
+                                                                  // end sa Badminton single and double
 
-                                                              }else if($game_type == 'Badminton_Double_Men' || $game_type == 'Badminton_Double_Women'){
-
-                                                                  // start sa double badminton
-
-                                                                  if($game_type == 'Badminton_Double_Men'){
-                                                                    // for men
-
-                                                                    echo '
-
-                                                                    <div class = "container">
-                                                                         <form action="actionRegister.php" method = "post">
-                                                                                 <div class="part1">
-                                                                                       <h5>3 players</h5>
-                                                                                   <div class="row">';
-                                                                                           
-                                                                                                       for($x = 1; $x <=3; $x++){
-    
-                                                                                                         $condition = 'player'.$x;
-    
-                                                                                                         $game_id = $_SESSION['GameId'];
-                                                                                                         $event_id = $_SESSION['EventId'];
-                                                                                                        $gameType = $_SESSION['GameType'];
-                                                                                                        $team_id = $_SESSION['idOfTeam'];
-                                                                                                         
-                                                                                                           $selectFromPlayers = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$condition'";
-                                                                                                           $queryForPlayers = mysqli_query($conn,$selectFromPlayers);
-    
-                                                                                                           $getData = mysqli_fetch_assoc($queryForPlayers);
-    
-                                                                                                           if (empty($getData['name'])) {
-                                                                                                             $name1 = 'Please add player1 name!';
-                                                                                                         } else {
-                                                                                                             $name1 = htmlspecialchars($getData['name']);
-                                                                                                         }
-
-                                                                                                         if (empty($getData['name1'])) {
-                                                                                                          $name2 = 'Please add player2 name!';
-                                                                                                      } else {
-                                                                                                          $name2 = htmlspecialchars($getData['name1']);
-                                                                                                      }
-
-                                                                                                         
-    
-                                                                                                          
-                                                                                                              $age1 = isset($getData['age']) ? htmlspecialchars($getData['age']) : 0;
-                                                                                                              $age2 = isset($getData['age1']) ? htmlspecialchars($getData['age1']) : 0;
-    
-                                                                                                              $getName1 = 'name1'.$x;
-                                                                                                              $getAge1 = 'age1'.$x;
-                                                                                                              $getName2 = 'name2'.$x;
-                                                                                                              $getAge2 = 'age2'.$x;
-
-                                                                                                              
-    
-                                                                                                           
-                                                                                                       
-                                                                                                              echo "
-                                                                                                                     <div class='box' class='col-md-4 col-sm-6' style='box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 45%; height: 350px;'>
-                                                                                                                         <label style='margin-top: 2px;'>Player1 Name: </label>
-                                                                                                                         <input type='text' class='form-control'name = '$getName1' value='$name1'> 
-                                                                                                                         <label style='margin-top: 10px;'>Player1 Age: </label>
-                                                                                                                         <input type='text' class='form-control' name = '$getAge1' value='$age1'>
-
-                                                                                                                          <label style='margin-top: 30px;'>Player2 Name: </label>
-                                                                                                                         <input type='text' class='form-control'name = '$getName2' value='$name2'> 
-                                                                                                                         <label style='margin-top: 10px;'>Player2 Age: </label>
-                                                                                                                         <input type='text' class='form-control' name = '$getAge2' value='$age2'>
-                                                                                                                          
-                                                                                                                     </div>
-                                                                                                                     ";
-                                                                                                       }
-                                                                                           
-                                                                                             
-                                                                                           
-                                                                                echo'   </div>
-                                                                                     
-                                                                             </div>
-                                                                          
-                                                                             <div class = "submit">
-                                                                                 <input type = "submit" value = "Confirm Players" class = "btn btn-success">
-                                                                             </div>
-                                                                             
-                                                                         </form>
-                                                                 </div>
-                                                                       
-                                                                   ';
-
-                                                                    // end sa for men
-                                                              }else{
-                                                                    // for women  
-
-                                                                    echo '
-
-                                                                    <div class = "container">
-                                                                         <form action="actionRegister.php" method = "post">
-                                                                                 <div class="part1">
-                                                                                       <h5>2 players</h5>
-                                                                                   <div class="row">';
-                                                                                           
-                                                                                                       for($x = 1; $x <=2; $x++){
-    
-                                                                                                         $condition = 'player'.$x;
-    
-                                                                                                         $game_id = $_SESSION['GameId'];
-                                                                                                         $event_id = $_SESSION['EventId'];
-                                                                                                        $gameType = $_SESSION['GameType'];
-                                                                                                        $team_id = $_SESSION['idOfTeam'];
-                                                                                                         
-                                                                                                           $selectFromPlayers = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$condition'";
-                                                                                                           $queryForPlayers = mysqli_query($conn,$selectFromPlayers);
-    
-                                                                                                           $getData = mysqli_fetch_assoc($queryForPlayers);
-    
-                                                                                                           if (empty($getData['name'])) {
-                                                                                                             $name1 = 'Please add player1 name!';
-                                                                                                         } else {
-                                                                                                             $name1 = htmlspecialchars($getData['name']);
-                                                                                                         }
-
-                                                                                                         if (empty($getData['name1'])) {
-                                                                                                          $name2 = 'Please add player2 name!';
-                                                                                                      } else {
-                                                                                                          $name2 = htmlspecialchars($getData['name1']);
-                                                                                                      }
-
-                                                                                                         
-    
-                                                                                                          
-                                                                                                              $age1 = isset($getData['age']) ? htmlspecialchars($getData['age']) : 0;
-                                                                                                              $age2 = isset($getData['age1']) ? htmlspecialchars($getData['age1']) : 0;
-    
-                                                                                                              $getName1 = 'name1'.$x;
-                                                                                                              $getAge1 = 'age1'.$x;
-                                                                                                              $getName2 = 'name2'.$x;
-                                                                                                              $getAge2 = 'age2'.$x;
-
-                                                                                                              
-    
-                                                                                                           
-                                                                                                       
-                                                                                                              echo "
-                                                                                                                     <div class='box' class='col-md-4 col-sm-6' style='box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 45%; height: 350px;'>
-                                                                                                                         <label style='margin-top: 2px;'>Player1 Name: </label>
-                                                                                                                         <input type='text' class='form-control'name = '$getName1' value='$name1'> 
-                                                                                                                         <label style='margin-top: 10px;'>Player1 Age: </label>
-                                                                                                                         <input type='text' class='form-control' name = '$getAge1' value='$age1'>
-
-                                                                                                                          <label style='margin-top: 30px;'>Player2 Name: </label>
-                                                                                                                         <input type='text' class='form-control'name = '$getName2' value='$name2'> 
-                                                                                                                         <label style='margin-top: 10px;'>Player2 Age: </label>
-                                                                                                                         <input type='text' class='form-control' name = '$getAge2' value='$age2'>
-                                                                                                                          
-                                                                                                                     </div>
-                                                                                                                     ";
-                                                                                                       }
-                                                                                           
-                                                                                             
-                                                                                           
-                                                                                echo'   </div>
-                                                                                     
-                                                                             </div>
-                                                                          
-                                                                             <div class = "submit">
-                                                                                 <input type = "submit" value = "Confirm Players" class = "btn btn-success">
-                                                                             </div>
-                                                                             
-                                                                         </form>
-                                                                 </div>
-                                                                       
-                                                                   ';
-
-                                                                   
-
-                                                                    // end sa for women
-                                                              }
-
-                                                                  // end sa double badminton
-
-                                                              }else if($game_type == 'Table_tennis_Single_Men' || $game_type == 'Table_tennis_Single_Women'){
+                                                              }else if($game_type == 'Table_tennis_Men' || $game_type == 'Table_tennis_Women'){
 
                                                                     // start sa single table tennis
 
-                                                                    if($game_type == 'Table_tennis_Single_Men'){
+                                                                    if($game_type == 'Table_tennis_Men'){
                                                                       // for men
 
                                                                       echo '
-
+  
                                                                       <div class = "container">
                                                                            <form action="actionRegister.php" method = "post">
                                                                                    <div class="part1">
-                                                                                         <h5>3 players</h5>
+                                                                                         <h5>Single Category Match</h5>
                                                                                      <div class="row">';
                                                                                              
-                                                                                                         for($x = 1; $x <=3; $x++){
+                                                                                                         for($x = 1; $x <=1; $x++){
       
                                                                                                            $condition = 'player'.$x;
       
@@ -1786,6 +1738,71 @@
                                                                                   echo'   </div>
                                                                                        
                                                                                </div>
+
+                                                                                <div class="part2">
+                                                                                         <h5>Double Category Match</h5>
+                                                                                     <div class="row">';
+                                                                                             
+                                                                                                         for($x = 2; $x <=2; $x++){
+      
+                                                                                                           $condition = 'player'.$x;
+      
+                                                                                                           $game_id = $_SESSION['GameId'];
+                                                                                                           $event_id = $_SESSION['EventId'];
+                                                                                                          $gameType = $_SESSION['GameType'];
+                                                                                                          $team_id = $_SESSION['idOfTeam'];
+                                                                                                           
+                                                                                                             $selectFromPlayers = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$condition'";
+                                                                                                             $queryForPlayers = mysqli_query($conn,$selectFromPlayers);
+      
+                                                                                                             $getData = mysqli_fetch_assoc($queryForPlayers);
+      
+                                                                                                             if (empty($getData['name'])) {
+                                                                                                               $name1 = 'Please add player name!';
+                                                                                                               $name1_1 = 'Please add player name!';
+                                                                                                           } else {
+                                                                                                               $name1 = htmlspecialchars($getData['name']);
+                                                                                                               $name1_1 = htmlspecialchars($getData['name1']);
+                                                                                                           }
+      
+                                                                                                            
+                                                                                                                $age1 = isset($getData['age']) ? htmlspecialchars($getData['age']) : 0;
+                                                                                                                $age1_1 = isset($getData['age1']) ? htmlspecialchars($getData['age1']) : 0;
+      
+                                                                                                                $getName1 = 'name1'.$x;
+                                                                                                                $getAge1 = 'age1'.$x;
+
+                                                                                                                $getAge2 = 'age2' .$x;
+                                                                                                                $getName2 = 'name2'. $x;
+      
+                                                                                                             
+                                                                                                         
+                                                                                                              
+                                                                                                         }
+
+                                                                                                      
+
+                                                                                                         echo "
+                                                                                                         <div class='box' class='col-md-4 col-sm-6' style='box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 45%; height: 400px;'>
+                                                                                                             <label style='margin-top: 30px;'>Player 1 Name: </label>
+                                                                                                             <input type='text' class='form-control'name = '$getName1' value='$name1'> 
+                                                                                                             <label style='margin-top: 10px;'>Player 1 Age: </label>
+                                                                                                             <input type='text' class='form-control' name = '$getAge1' value='$age1'>
+
+
+                                                                                                              <label style='margin-top: 30px;'>Player 2 Name: </label>
+                                                                                                             <input type='text' class='form-control'name = '$getName2' value='$name1_1'> 
+                                                                                                             <label style='margin-top: 10px;'>Player 2 Age: </label>
+                                                                                                             <input type='text' class='form-control' name = '$getAge2' value='$age1_1'>
+                                                                                                              
+                                                                                                         </div>
+                                                                                                         ";
+                                                                                             
+                                                                                               
+                                                                                             
+                                                                                  echo'   </div>
+                                                                                       
+                                                                               </div>
                                                                             
                                                                                <div class = "submit">
                                                                                    <input type = "submit" value = "Confirm Players" class = "btn btn-success">
@@ -1801,14 +1818,14 @@
                                                                       // for women  
 
                                                                       echo '
-
+  
                                                                       <div class = "container">
                                                                            <form action="actionRegister.php" method = "post">
                                                                                    <div class="part1">
-                                                                                         <h5>2 players</h5>
+                                                                                         <h5>Single Category Match</h5>
                                                                                      <div class="row">';
                                                                                              
-                                                                                                         for($x = 1; $x <=2; $x++){
+                                                                                                         for($x = 1; $x <=1; $x++){
       
                                                                                                            $condition = 'player'.$x;
       
@@ -1846,6 +1863,71 @@
                                                                                                                        </div>
                                                                                                                        ";
                                                                                                          }
+                                                                                             
+                                                                                               
+                                                                                             
+                                                                                  echo'   </div>
+                                                                                       
+                                                                               </div>
+
+                                                                                <div class="part2">
+                                                                                         <h5>Double Category Match</h5>
+                                                                                     <div class="row">';
+                                                                                             
+                                                                                                         for($x = 2; $x <=2; $x++){
+      
+                                                                                                           $condition = 'player'.$x;
+      
+                                                                                                           $game_id = $_SESSION['GameId'];
+                                                                                                           $event_id = $_SESSION['EventId'];
+                                                                                                          $gameType = $_SESSION['GameType'];
+                                                                                                          $team_id = $_SESSION['idOfTeam'];
+                                                                                                           
+                                                                                                             $selectFromPlayers = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$condition'";
+                                                                                                             $queryForPlayers = mysqli_query($conn,$selectFromPlayers);
+      
+                                                                                                             $getData = mysqli_fetch_assoc($queryForPlayers);
+      
+                                                                                                             if (empty($getData['name'])) {
+                                                                                                               $name1 = 'Please add player name!';
+                                                                                                               $name1_1 = 'Please add player name!';
+                                                                                                           } else {
+                                                                                                               $name1 = htmlspecialchars($getData['name']);
+                                                                                                               $name1_1 = htmlspecialchars($getData['name1']);
+                                                                                                           }
+      
+                                                                                                            
+                                                                                                                $age1 = isset($getData['age']) ? htmlspecialchars($getData['age']) : 0;
+                                                                                                                $age1_1 = isset($getData['age1']) ? htmlspecialchars($getData['age1']) : 0;
+      
+                                                                                                                $getName1 = 'name1'.$x;
+                                                                                                                $getAge1 = 'age1'.$x;
+
+                                                                                                                $getAge2 = 'age2' .$x;
+                                                                                                                $getName2 = 'name2'. $x;
+      
+                                                                                                             
+                                                                                                         
+                                                                                                              
+                                                                                                         }
+
+                                                                                                      
+
+                                                                                                         echo "
+                                                                                                         <div class='box' class='col-md-4 col-sm-6' style='box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 45%; height: 400px;'>
+                                                                                                             <label style='margin-top: 30px;'>Player 1 Name: </label>
+                                                                                                             <input type='text' class='form-control'name = '$getName1' value='$name1'> 
+                                                                                                             <label style='margin-top: 10px;'>Player 1 Age: </label>
+                                                                                                             <input type='text' class='form-control' name = '$getAge1' value='$age1'>
+
+
+                                                                                                              <label style='margin-top: 30px;'>Player 2 Name: </label>
+                                                                                                             <input type='text' class='form-control'name = '$getName2' value='$name1_1'> 
+                                                                                                             <label style='margin-top: 10px;'>Player 2 Age: </label>
+                                                                                                             <input type='text' class='form-control' name = '$getAge2' value='$age1_1'>
+                                                                                                              
+                                                                                                         </div>
+                                                                                                         ";
                                                                                              
                                                                                                
                                                                                              
@@ -1866,184 +1948,6 @@
                                                                 }
 
                                                                     // end sa single table tennis 
-
-                                                              }else if($game_type == 'Table_tennis_Double_Men' || $game_type == 'Table_tennis_Double_Women'){
-                                                                    // start sa double table tennis     
-
-                                                                    if($game_type == 'Table_tennis_Double_Men'){
-                                                                      // for men
-  
-                                                                      echo '
-  
-                                                                      <div class = "container">
-                                                                           <form action="actionRegister.php" method = "post">
-                                                                                   <div class="part1">
-                                                                                         <h5>3 players</h5>
-                                                                                     <div class="row">';
-                                                                                             
-                                                                                                         for($x = 1; $x <=3; $x++){
-      
-                                                                                                           $condition = 'player'.$x;
-      
-                                                                                                           $game_id = $_SESSION['GameId'];
-                                                                                                           $event_id = $_SESSION['EventId'];
-                                                                                                          $gameType = $_SESSION['GameType'];
-                                                                                                          $team_id = $_SESSION['idOfTeam'];
-                                                                                                           
-                                                                                                             $selectFromPlayers = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$condition'";
-                                                                                                             $queryForPlayers = mysqli_query($conn,$selectFromPlayers);
-      
-                                                                                                             $getData = mysqli_fetch_assoc($queryForPlayers);
-      
-                                                                                                             if (empty($getData['name'])) {
-                                                                                                               $name1 = 'Please add player1 name!';
-                                                                                                           } else {
-                                                                                                               $name1 = htmlspecialchars($getData['name']);
-                                                                                                           }
-  
-                                                                                                           if (empty($getData['name1'])) {
-                                                                                                            $name2 = 'Please add player2 name!';
-                                                                                                        } else {
-                                                                                                            $name2 = htmlspecialchars($getData['name1']);
-                                                                                                        }
-  
-                                                                                                           
-      
-                                                                                                            
-                                                                                                                $age1 = isset($getData['age']) ? htmlspecialchars($getData['age']) : 0;
-                                                                                                                $age2 = isset($getData['age1']) ? htmlspecialchars($getData['age1']) : 0;
-      
-                                                                                                                $getName1 = 'name1'.$x;
-                                                                                                                $getAge1 = 'age1'.$x;
-                                                                                                                $getName2 = 'name2'.$x;
-                                                                                                                $getAge2 = 'age2'.$x;
-  
-                                                                                                                
-      
-                                                                                                             
-                                                                                                         
-                                                                                                                echo "
-                                                                                                                       <div class='box' class='col-md-4 col-sm-6' style='box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 45%; height: 350px;'>
-                                                                                                                           <label style='margin-top: 2px;'>Player1 Name: </label>
-                                                                                                                           <input type='text' class='form-control'name = '$getName1' value='$name1'> 
-                                                                                                                           <label style='margin-top: 10px;'>Player1 Age: </label>
-                                                                                                                           <input type='text' class='form-control' name = '$getAge1' value='$age1'>
-  
-                                                                                                                            <label style='margin-top: 30px;'>Player2 Name: </label>
-                                                                                                                           <input type='text' class='form-control'name = '$getName2' value='$name2'> 
-                                                                                                                           <label style='margin-top: 10px;'>Player2 Age: </label>
-                                                                                                                           <input type='text' class='form-control' name = '$getAge2' value='$age2'>
-                                                                                                                            
-                                                                                                                       </div>
-                                                                                                                       ";
-                                                                                                         }
-                                                                                             
-                                                                                               
-                                                                                             
-                                                                                  echo'   </div>
-                                                                                       
-                                                                               </div>
-                                                                            
-                                                                               <div class = "submit">
-                                                                                   <input type = "submit" value = "Confirm Players" class = "btn btn-success">
-                                                                               </div>
-                                                                               
-                                                                           </form>
-                                                                   </div>
-                                                                         
-                                                                     ';
-  
-                                                                      // end sa for men
-                                                                }else{
-                                                                      // for women  
-  
-                                                                      echo '
-  
-                                                                      <div class = "container">
-                                                                           <form action="actionRegister.php" method = "post">
-                                                                                   <div class="part1">
-                                                                                         <h5>2 players</h5>
-                                                                                     <div class="row">';
-                                                                                             
-                                                                                                         for($x = 1; $x <=2; $x++){
-      
-                                                                                                           $condition = 'player'.$x;
-      
-                                                                                                           $game_id = $_SESSION['GameId'];
-                                                                                                           $event_id = $_SESSION['EventId'];
-                                                                                                          $gameType = $_SESSION['GameType'];
-                                                                                                          $team_id = $_SESSION['idOfTeam'];
-                                                                                                           
-                                                                                                             $selectFromPlayers = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$condition'";
-                                                                                                             $queryForPlayers = mysqli_query($conn,$selectFromPlayers);
-      
-                                                                                                             $getData = mysqli_fetch_assoc($queryForPlayers);
-      
-                                                                                                             if (empty($getData['name'])) {
-                                                                                                               $name1 = 'Please add player1 name!';
-                                                                                                           } else {
-                                                                                                               $name1 = htmlspecialchars($getData['name']);
-                                                                                                           }
-  
-                                                                                                           if (empty($getData['name1'])) {
-                                                                                                            $name2 = 'Please add player2 name!';
-                                                                                                        } else {
-                                                                                                            $name2 = htmlspecialchars($getData['name1']);
-                                                                                                        }
-  
-                                                                                                           
-      
-                                                                                                            
-                                                                                                                $age1 = isset($getData['age']) ? htmlspecialchars($getData['age']) : 0;
-                                                                                                                $age2 = isset($getData['age1']) ? htmlspecialchars($getData['age1']) : 0;
-      
-                                                                                                                $getName1 = 'name1'.$x;
-                                                                                                                $getAge1 = 'age1'.$x;
-                                                                                                                $getName2 = 'name2'.$x;
-                                                                                                                $getAge2 = 'age2'.$x;
-  
-                                                                                                                
-      
-                                                                                                             
-                                                                                                         
-                                                                                                                echo "
-                                                                                                                       <div class='box' class='col-md-4 col-sm-6' style='box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 45%; height: 350px;'>
-                                                                                                                           <label style='margin-top: 2px;'>Player1 Name: </label>
-                                                                                                                           <input type='text' class='form-control'name = '$getName1' value='$name1'> 
-                                                                                                                           <label style='margin-top: 10px;'>Player1 Age: </label>
-                                                                                                                           <input type='text' class='form-control' name = '$getAge1' value='$age1'>
-  
-                                                                                                                            <label style='margin-top: 30px;'>Player2 Name: </label>
-                                                                                                                           <input type='text' class='form-control'name = '$getName2' value='$name2'> 
-                                                                                                                           <label style='margin-top: 10px;'>Player2 Age: </label>
-                                                                                                                           <input type='text' class='form-control' name = '$getAge2' value='$age2'>
-                                                                                                                            
-                                                                                                                       </div>
-                                                                                                                       ";
-                                                                                                         }
-                                                                                             
-                                                                                               
-                                                                                             
-                                                                                  echo'   </div>
-                                                                                       
-                                                                               </div>
-                                                                            
-                                                                               <div class = "submit">
-                                                                                   <input type = "submit" value = "Confirm Players" class = "btn btn-success">
-                                                                               </div>
-                                                                               
-                                                                           </form>
-                                                                   </div>
-                                                                         
-                                                                     ';
-  
-                                                                     
-  
-                                                                      // end sa for women
-                                                                }
-  
-
-                                                                    // end sa double table tennis
 
                                                               }else if($game_type == 'Futsal_Men' || $game_type == 'Futsal_Women'){
 

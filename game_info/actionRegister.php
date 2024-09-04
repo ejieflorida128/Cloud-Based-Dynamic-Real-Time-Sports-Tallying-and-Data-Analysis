@@ -217,10 +217,10 @@
                       header('Location: addTeamMember.php?id='.urldecode($team_id));
 
                         // end sa MLBB
-                  }else if($gameType == 'Badminton_Single_Men' || $gameType == 'Badminton_Single_Women'){
+                  }else if($gameType == 'Badminton_Men' || $gameType == 'Badminton_Women'){
                         // start sa single badminton
 
-                        for($x = 1; $x <= $numberOfPlayer; $x++){
+                        for($x = 1; $x <= 1; $x++){
 
                           $name = $_POST['name'.$x];
                           $age = $_POST['age'.$x];
@@ -231,34 +231,28 @@
                           mysqli_query($conn,$update);
   
                       }
+
+                      for($x = 2; $x <= 2; $x++){
+
+                        $name = $_POST['name1'.$x];
+                        $age = $_POST['age1'.$x];
+  
+                        $name1 = $_POST['name2'.$x];
+                        $age1 = $_POST['age2'.$x];
+  
+                        
+  
+                        $player = 'player'.$x;
+  
+                        $update = "UPDATE players SET name = '$name', age = '$age', name1 = '$name1', age1 = '$age1' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+                        mysqli_query($conn,$update);
+  
+                    }
   
                       header('Location: addTeamMember.php?id='.urldecode($team_id));
 
                         // end sa single badminton
-                  }else if($gameType == 'Badminton_Double_Men' || $gameType == 'Badminton_Double_Women'){
-                    // start sa double badminton
-
-                    for($x = 1; $x <= $numberOfPlayer; $x++){
-
-                      $name = $_POST['name1'.$x];
-                      $age = $_POST['age1'.$x];
-
-                      $name1 = $_POST['name2'.$x];
-                      $age1 = $_POST['age2'.$x];
-
-                      
-
-                      $player = 'player'.$x;
-
-                      $update = "UPDATE players SET name = '$name', age = '$age', name1 = '$name1', age1 = '$age1' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
-                      mysqli_query($conn,$update);
-
-                  }
-
-                  header('Location: addTeamMember.php?id='.urldecode($team_id));
-
-                    // end sa double badminton
-              }else if($gameType == 'Table_tennis_Single_Men' || $gameType == 'Table_tennis_Single_Women'){
+                  }else if($gameType == 'Table_tennis_Men' || $gameType == 'Table_tennis_Women'){
                 // start sa single table tennis
 
                 for($x = 1; $x <= $numberOfPlayer; $x++){
@@ -273,33 +267,29 @@
 
               }
 
+              for($x = 2; $x <= 2; $x++){
+
+                $name = $_POST['name1'.$x];
+                $age = $_POST['age1'.$x];
+
+                $name1 = $_POST['name2'.$x];
+                $age1 = $_POST['age2'.$x];
+
+                
+
+                $player = 'player'.$x;
+
+                $update = "UPDATE players SET name = '$name', age = '$age', name1 = '$name1', age1 = '$age1' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
+                mysqli_query($conn,$update);
+
+            }
+
+
+
               header('Location: addTeamMember.php?id='.urldecode($team_id));
 
                 // end sa single table tennis
-          }else if($gameType == 'Table_tennis_Double_Men' || $gameType == 'Table_tennis_Double_Women'){
-            // start sa double badminton
-
-            for($x = 1; $x <= $numberOfPlayer; $x++){
-
-              $name = $_POST['name1'.$x];
-              $age = $_POST['age1'.$x];
-
-              $name1 = $_POST['name2'.$x];
-              $age1 = $_POST['age2'.$x];
-
-              
-
-              $player = 'player'.$x;
-
-              $update = "UPDATE players SET name = '$name', age = '$age', name1 = '$name1', age1 = '$age1' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
-              mysqli_query($conn,$update);
-
-          }
-
-          header('Location: addTeamMember.php?id='.urldecode($team_id));
-
-            // end sa double badminton
-      }else if($gameType == 'Futsal_Men' || $gameType == 'Futsal_Women'){
+          }else if($gameType == 'Futsal_Men' || $gameType == 'Futsal_Women'){
         // start sa futsal
 
         for($x = 1; $x <= $numberOfPlayer; $x++){
