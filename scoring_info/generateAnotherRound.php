@@ -499,7 +499,7 @@ include('../connection/conn.php');
                                                 specialMatchPendingWithSingleAndDoubleCategory($conn,$eventId,$gameId,$id,$winnerId,$teamOneName,'',$gameType);
                         
                         
-                        
+                                   
                                                     
                                             
                                     }else{
@@ -519,7 +519,43 @@ include('../connection/conn.php');
                                         
                                     }
 
-                                    echo 'modify here for MSEG  ';
+                                    $sqlUpdateOfWinnerAndLoserId = "UPDATE game_matches SET team_one_score = $teamOneScore, team_two_score = $teamTwoScore, winner_id = $winnerId, loser_id = $loserId, status = 'SCORE' WHERE id = $id";
+                                    mysqli_query($conn,$sqlUpdateOfWinnerAndLoserId);
+
+
+                                      // call the function para ma kuha ang value sa current na round
+                                    $currentRound = getCurrentRound($conn,$gameId,$eventId);
+                                    $checkRound = checkIfThereStillMatchesNotScoredInThisRound($conn,$gameId,$eventId,$currentRound);
+                                    if($checkRound == false){
+                                        // call the function para ma balik sa game list na page!
+
+                                      
+                                                backToGameList($eventId,$gameId,$gameType);
+                                            
+                                }else{
+                                    $nextRound = $currentRound + 1;
+
+                                    if($nextRound == 2){
+                                            // for bronze or 3rd runner up ( winner )
+        
+                                            $type = 'bronze';
+        
+                                            getNewGameForCustomSolo($conn,$gameId,$eventId,$type);
+                                                
+        
+                                    }else if($nextRound == 3){
+                                            // for finals ( winner ) 1st and ( loser ) 2nd
+        
+                                            $type = 'silverANDgold';
+        
+                                            getNewGameForCustomSolo($conn,$gameId,$eventId,$type);
+                                    }else{
+                                        backToGameList($eventId,$gameId,$gameType);
+                                    }
+        
+                                    backToGameList($eventId,$gameId,$gameType);
+                                }
+                                    
                         }
 
                 }
@@ -590,6 +626,58 @@ include('../connection/conn.php');
 
                 }
         }
+
+          // generate match for Modified Game
+          function getNewGameForCustomSolo($conn,$gameId,$eventId,$type){
+
+          
+
+            if($type == 'bronze'){
+                    // for 3rd  
+                            $getMatchesFor2ndRound = "SELECT * FROM players WHERE game_id = '$gameId' AND event_id = '$eventId' AND last_match_status = 'Loser'";
+                            $query = mysqli_query($conn,$getMatchesFor2ndRound);
+
+                            $loserName = [];
+                            $loserId = [];
+                            while($getData = mysqli_fetch_assoc($query)){
+                                $loserName[] = $getData['name'];
+                                $loserId[] = $getData['id'];
+                            }
+
+                            $Name1 = $loserName[0];
+                            $Name2 = $loserName[1];
+                            $Name1Id = $loserId[0];
+                            $Name2Id = $loserId[1];
+                            $match_info = 3;
+
+                            $update2ndRound = "UPDATE game_matches SET status = 'game', round = '2', team1 = '$Name1Id', team1_name = '$Name1', team2 = '$Name2Id', team2_name = '$Name2' WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = '$match_info'";
+                            mysqli_query($conn,$update2ndRound);
+
+            }else{
+                    // for 1st and 2nd
+
+
+                    $getMatchesFor3ndRound = "SELECT * FROM players WHERE game_id = '$gameId' AND event_id = '$eventId' AND bracket = 'W'";
+                            $query = mysqli_query($conn,$getMatchesFor3ndRound);
+
+                            $WinnerName = [];
+                            $WinnerId = [];
+                            while($getData = mysqli_fetch_assoc($query)){
+                                $WinnerName[] = $getData['name'];
+                                $WinnerId[] = $getData['id'];
+                            }
+
+                            $Name1 = $WinnerName[0];
+                            $Name2 = $WinnerName[1];
+                            $Name1Id = $WinnerId[0];
+                            $Name2Id = $WinnerId[1];
+                            $match_info = 4;
+
+                            $update3ndRound = "UPDATE game_matches SET status = 'game', round = '3', team1 = '$Name1Id', team1_name = '$Name1', team2 = '$Name2Id', team2_name = '$Name2' WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = '$match_info'";
+                            mysqli_query($conn,$update3ndRound);
+
+            }
+    }
 
 
         // get eliminationtype 
