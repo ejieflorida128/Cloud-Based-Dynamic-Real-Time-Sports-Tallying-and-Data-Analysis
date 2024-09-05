@@ -4,7 +4,8 @@ session_start();
     include('../connection/conn.php');
 
     $_SESSION['EVENT_ID'] = $_GET['event_id'];
-    $_SESSION['NUMBER_OF_TEAMS'] = $_GET['number_of_teams'];
+    $_SESSION['GAME_ID'] = $_GET['game_id'];
+
 
 
 
@@ -18,8 +19,9 @@ session_start();
   <link rel="apple-touch-icon" sizes="76x76" href="../template/AdminTemplate/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../template/AdminTemplate/assets/img/favicon.png">
   <title>
-    View and Score an event
+    Scoring Page
   </title>
+  
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
@@ -159,7 +161,7 @@ session_start();
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Cloud Based Realtime Event</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Score Data</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Score Teams</li>
           </ol>
         
         </nav>
@@ -273,263 +275,77 @@ session_start();
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Event List Information</h6>
+            <a href="viewDetails.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&number_of_teams=<?php echo $_SESSION['NUMBER_OF_TEAMS']; ?>" class="btn btn-danger">Back</a>
+
+             
               
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                         <!-- start here para sa new content sa profile! -->
-                         <div class="container" style = " padding: 40px;">
+                         <div class="container" style = " padding: 40px; margin: 10px;">
                                
                                 <div class = "content">
                                     <div class="container-fluid">
                                             <div class="row" >
-                                                
-                                                    <!-- here code aria e butang -->
+                                                  
+                                            <?php
+                                                $event_id = $_GET['event_id'];
+                                                $game_id = $_GET['game_id'];
+                                                $game_type = $_GET['game_type'];
 
-                                                        <h4>Game Category</h4>
+                                                $single = 'single';
+                                                $double = 'double';
+                                               
+                                            ?>
 
-                                                            <?php
-                                                                $EVENT_ID = $_GET['event_id'];
+                            <div class="table-responsive p-0" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; padding: 20px;">
+                               
+                                <?php  
+                                        if($game_type == 'Badminton_Men' || $game_type == 'Badminton_Women' || $game_type == 'Table_tennis_Men' || $game_type == 'Table_tennis_Women'){
 
-                                                               
-                                                                $sqlForGameCategory = "SELECT * FROM registered_game WHERE (game_type = 'Basketball_Men' OR game_type = 'Basketball_Women' OR game_type = 'Vollayball_Men' OR game_type = 'Vollayball_Women' OR game_type = 'Softball_Men' OR game_type = 'Softball_Women' OR game_type = 'Runs_Men' OR game_type = 'Runs_Women' OR game_type = 'Throws_Men' OR game_type = 'Throws_Women' OR game_type = 'Jumps_Men' OR game_type = 'Jumps_Women' OR game_type = 'MLBB' OR game_type = 'Badminton_Men' OR game_type = 'Badminton_Women' OR game_type = 'Table_tennis_Men' OR game_type = 'Table_tennis_Women' OR game_type = 'Futsal_Men' OR game_type = 'Futsal_Women' OR game_type = 'Chess' OR game_type = 'Archery') AND event_id = $EVENT_ID AND status = 'submitted'";
-                                                                $queryForGameCategory = mysqli_query($conn,$sqlForGameCategory);
+                                        
+                                    ?>
 
-                                                                while($getDataForGameCategory = mysqli_fetch_assoc($queryForGameCategory)){
-
-                                                                    $pic = $getDataForGameCategory['img'];
-                                                                    $GAME_TYPE = $getDataForGameCategory['game_type'];
-                                                                    $GAME_ID = $getDataForGameCategory['id'];
-
-                                                                    if($GAME_TYPE == 'Runs_Men' || $GAME_TYPE == 'Runs_Women' || $GAME_TYPE == 'Throws_Men' || $GAME_TYPE == 'Throws_Women' || $GAME_TYPE == 'Jumps_Men' || $GAME_TYPE == 'Jumps_Women'){
-                                                                      echo "
-                                                                      <a href = 'field.php?event_id=$EVENT_ID&&game_id=$GAME_ID&&game_type=$GAME_TYPE' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
-                                                                  <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
-                                                                  <img src = '../$pic' style = 'width: 150px; height: 150px;'>
-                                                                  </div>
-
-                                                                  <div class='information' style = 'margin-top: 20px;'>
-
-                                                                              <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$GAME_TYPE</h6></div>
-                                                                                <div class = 'status' style = 'display: flex; justify-content: center;'>More Information</div>
-                                                                              
-                                                                              
-
-                                                                  </div>
-                                                                  
-                                                          </a>   
-                                                                ";
-                                                                    }else if($GAME_TYPE == 'Badminton_Men' || $GAME_TYPE == 'Badminton_Women' || $GAME_TYPE == 'Table_tennis_Men' || $GAME_TYPE == 'Table_tennis_Women'){
-
-                                                                      echo "
-                                                                      <a href = 'decide.php?event_id=$EVENT_ID&&game_id=$GAME_ID&&game_type=$GAME_TYPE' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
-                                                                  <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
-                                                                  <img src = '../$pic' style = 'width: 150px; height: 150px;'>
-                                                                  </div>
-
-                                                                  <div class='information' style = 'margin-top: 20px;'>
-
-                                                                              <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$GAME_TYPE</h6></div>
-                                                                                <div class = 'status' style = 'display: flex; justify-content: center;'>More Information</div>
-                                                                              
-                                                                              
-
-                                                                  </div>
-                                                                  
-                                                          </a>   
-                                                                ";
-
-                                                                    }else{
-                                                                      echo "
-                                                                      <a href = 'game_list.php?event_id=$EVENT_ID&&game_id=$GAME_ID&&game_type=$GAME_TYPE' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
-                                                                  <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
-                                                                  <img src = '../$pic' style = 'width: 150px; height: 150px;'>
-                                                                  </div>
-
-                                                                  <div class='information' style = 'margin-top: 20px;'>
-
-                                                                              <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$GAME_TYPE</h6></div>
-                                                                                <div class = 'status' style = 'display: flex; justify-content: center;'>More Information</div>
-                                                                              
-                                                                              
-
-                                                                  </div>
-                                                                  
-                                                          </a>   
-                                                                ";
-                                                                    }
-                                                                    
-                                                                     
-                                                                }
-                                                            ?>
-
-                                                        <h4>Dance Category</h4>
-                                                            
-                                                        <?php
-                                                                $EVENT_ID = $_GET['event_id'];
-
-                                                               
-                                                                $sqlForGameCategory = "SELECT * FROM registered_game WHERE (game_type = 'Creative_Folk_Dance' OR game_type = 'Pop_Dance') AND event_id = $EVENT_ID AND status = 'submitted'";
-                                                                $queryForGameCategory = mysqli_query($conn,$sqlForGameCategory);
-
-                                                                while($getDataForGameCategory = mysqli_fetch_assoc($queryForGameCategory)){
-
-                                                                    $pic = $getDataForGameCategory['img'];
-                                                                    $GAME_TYPE = $getDataForGameCategory['game_type'];
-                                                                    $GAME_ID = $getDataForGameCategory['id'];
-                                                                    
-                                                                        echo "
-                                                                              <a href = '../dance_score/dance_performance.php?event_id=$EVENT_ID&&game_id=$GAME_ID&&game_type=$GAME_TYPE' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
-                                                                          <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
-                                                                          <img src = '../$pic' style = 'width: 150px; height: 150px;'>
-                                                                          </div>
-
-                                                                          <div class='information' style = 'margin-top: 20px;'>
-
-                                                                                      <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$GAME_TYPE</h6></div>
-                                                                                        <div class = 'status' style = 'display: flex; justify-content: center;'>More Information</div>
-                                                                                      
-                                                                                      
-
-                                                                          </div>
-                                                                          
-                                                                  </a>   
-                                                                        ";
-                                                                }
-                                                            ?>
-
-
-                                                        <h4>Music Category</h4>
-
-                                                        <?php
-                                                                $EVENT_ID = $_GET['event_id'];
-
-                                                               
-                                                                $sqlForGameCategory = "SELECT * FROM registered_game WHERE (game_type = 'Vocal_Duet' OR game_type = 'Pop_Solo') AND event_id = $EVENT_ID AND status = 'submitted'";
-                                                                $queryForGameCategory = mysqli_query($conn,$sqlForGameCategory);
-
-                                                                while($getDataForGameCategory = mysqli_fetch_assoc($queryForGameCategory)){
-
-                                                                    $pic = $getDataForGameCategory['img'];
-                                                                    $GAME_TYPE = $getDataForGameCategory['game_type'];
-                                                                    $GAME_ID = $getDataForGameCategory['id'];
-                                                                    
-                                                                        echo "
-                                                                              <a href = '../music_score/music_performance.php?event_id=$EVENT_ID&&game_id=$GAME_ID&&game_type=$GAME_TYPE' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
-                                                                          <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
-                                                                          <img src = '../$pic' style = 'width: 150px; height: 150px;'>
-                                                                          </div>
-
-                                                                          <div class='information' style = 'margin-top: 20px;'>
-
-                                                                                      <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$GAME_TYPE</h6></div>
-                                                                                        <div class = 'status' style = 'display: flex; justify-content: center;'>More Information</div>
-                                                                                      
-                                                                                      
-
-                                                                          </div>
-                                                                          
-                                                                  </a>   
-                                                                        ";
-                                                                }
-                                                            ?>
-
-                                                            <h4>Visual Arts Category</h4>
-
-                                                            <?php
-                                                                $EVENT_ID = $_GET['event_id'];
-
-                                                               
-                                                                $sqlForGameCategory = "SELECT * FROM registered_game WHERE (game_type = 'Charcoal_Rendering' OR game_type = 'Pencil_Drawing' OR game_type = 'Painting' OR game_type = 'Poster_Making' OR game_type = 'Phone_Photography' ) AND event_id = $EVENT_ID AND status = 'submitted'";
-                                                                $queryForGameCategory = mysqli_query($conn,$sqlForGameCategory);
-
-                                                                while($getDataForGameCategory = mysqli_fetch_assoc($queryForGameCategory)){
-
-                                                                    $pic = $getDataForGameCategory['img'];
-                                                                    $GAME_TYPE = $getDataForGameCategory['game_type'];
-                                                                    $GAME_ID = $getDataForGameCategory['id'];
-                                                                    
-                                                                        echo "
-                                                                              <a href = '../visual_art_score/visual_performance.php?event_id=$EVENT_ID&&game_id=$GAME_ID&&game_type=$GAME_TYPE' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
-                                                                          <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
-                                                                          <img src = '../$pic' style = 'width: 150px; height: 150px;'>
-                                                                          </div>
-
-                                                                          <div class='information' style = 'margin-top: 20px;'>
-
-                                                                                      <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$GAME_TYPE</h6></div>
-                                                                                        <div class = 'status' style = 'display: flex; justify-content: center;'>More Information</div>
-                                                                                      
-                                                                                      
-
-                                                                          </div>
-                                                                          
-                                                                  </a>   
-                                                                        ";
-                                                                }
-                                                            ?>
-
-
-                                                        <h4>Special Category</h4>
-                                                            
-                                                        <?php
-                                                                $EVENT_ID = $_GET['event_id'];
-
-                                                               
-                                                                $sqlForGameCategory = "SELECT * FROM registered_game WHERE (game_type = 'Dance_Sports' OR game_type = 'Mr_and_Mrs_Panagtigi' OR game_type = 'Mass_Dance') AND event_id = $EVENT_ID AND status = 'submitted'";
-                                                                $queryForGameCategory = mysqli_query($conn,$sqlForGameCategory);
-
-                                                                while($getDataForGameCategory = mysqli_fetch_assoc($queryForGameCategory)){
-
-                                                                    $pic = $getDataForGameCategory['img'];
-                                                                    $GAME_TYPE = $getDataForGameCategory['game_type'];
-                                                                    $GAME_ID = $getDataForGameCategory['id'];
-                                                                    
-                                                                        echo "
-                                                                              <a href = '../special_score/special_performance.php?event_id=$EVENT_ID&&game_id=$GAME_ID&&game_type=$GAME_TYPE' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
-                                                                          <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
-                                                                          <img src = '../$pic' style = 'width: 150px; height: 150px;'>
-                                                                          </div>
-
-                                                                          <div class='information' style = 'margin-top: 20px;'>
-
-                                                                                      <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$GAME_TYPE</h6></div>
-                                                                                        <div class = 'status' style = 'display: flex; justify-content: center;'>More Information</div>
-                                                                                      
-                                                                                      
-
-                                                                          </div>
-                                                                          
-                                                                  </a>   
-                                                                        ";
-                                                                }
-                                                            ?>
-
-                                                        
-
-                                                    <!-- end sa code nga ge butang -->
-
-                                                    
-                                            </div>
-                                    </div>
+                                <!-- Single Category -->
+                                <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
+                                    <a href="../singleDouble/score.php?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&type=<?php echo $single ?>"
+                                      class="event-box" style="display: block; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; overflow: hidden; background-color: white; transition: transform 0.3s;">
+                                        <div class="pictures" style="display: flex; justify-content: center; padding: 20px;">
+                                            <img src="../background_image/single.webp" style="width: 150px; height: 150px; border-radius: 15px;">
+                                        </div>
+                                        <div class="information" style="padding: 10px; text-align: center;">
+                                            <h3 style="margin: 0; font-size: 18px;">Single Category</h3>
+                                        </div>
+                                    </a>
                                 </div>
-                           
 
-                           
+                                <!-- Double Category -->
+                                <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
+                                    <a href="../singleDouble/score.php?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&type=<?php echo $double ?>"
+                                      class="event-box" style="display: block; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; overflow: hidden; background-color: white; transition: transform 0.3s;">
+                                        <div class="pictures" style="display: flex; justify-content: center; padding: 20px;">
+                                            <img src="../background_image/double.webp" style="width: 150px; height: 150px; border-radius: 15px;">
+                                        </div>
+                                        <div class="information" style="padding: 10px; text-align: center;">
+                                            <h3 style="margin: 0; font-size: 18px;">Double Category</h3>
+                                        </div>
+                                    </a>
+                                </div>
 
-                            
+                                <?php } ?>
+                                
+                            </div>
 
-                         </div>
-              </div>
-            </div>
+
+
           </div>
         </div>
       </div>
       <div class="row">
       
       </div>
-      <footer class="footer pt-3  ">
+      <footer class="footer pt-5  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4">

@@ -76,8 +76,16 @@ $EliType = $_SESSION['EliminationType'];
 
                 $player =  4; 
                 $matches =  $player - 1; //for single elimination matches 
-
                     
+
+                if($game_type == 'Chess' || $game_type == 'Archery'){
+                    for ($x = 1; $x <= $matches; $x++){
+
+                        $insertNewMatchesForBadmintonAndTTennis = "INSERT INTO game_matches (game_id,event_id,game_type,match_info,EliType) VALUES ('$game_id','$event_id','$game_type','$x','SEG')";
+                        mysqli_query($conn,$insertNewMatchesForBadmintonAndTTennis);
+
+                    }
+                }else{
                     for ($x = 1; $x <= $matches; $x++){
 
                         $insertNewMatchesForBadmintonAndTTennis = "INSERT INTO game_matches (game_id,event_id,game_type,match_info,type,EliType) VALUES ('$game_id','$event_id','$game_type','$x','single','SEG')";
@@ -91,8 +99,11 @@ $EliType = $_SESSION['EliminationType'];
                         mysqli_query($conn,$insertNewMatchesForBadmintonAndTTennis);
 
                     }
+                }
+                    
+                   
 
-                    updateDataForBadmintonAndTableTennisModified($conn,$event_id,$game_id,);
+                    updateDataForBadmintonAndTableTennisModified($conn,$event_id,$game_id,$game_type);
 
 
 
@@ -104,7 +115,14 @@ $EliType = $_SESSION['EliminationType'];
                 $player =  4; 
                 $matches = 2 * ($player - 1); //for double elimination matches 
 
-                    
+                if($game_type == 'Chess' || $game_type == 'Archery'){
+                    for ($x = 1; $x <= $matches; $x++){
+
+                        $insertNewMatchesForBadmintonAndTTennis = "INSERT INTO game_matches (game_id,event_id,game_type,match_info,EliType) VALUES ('$game_id','$event_id','$game_type','$x','DEG')";
+                        mysqli_query($conn,$insertNewMatchesForBadmintonAndTTennis);
+
+                    }
+                }else{
                     for ($x = 1; $x <= $matches; $x++){
 
                         $insertNewMatchesForBadmintonAndTTennis = "INSERT INTO game_matches (game_id,event_id,game_type,match_info,type,EliType) VALUES ('$game_id','$event_id','$game_type','$x','single','DEG')";
@@ -118,8 +136,10 @@ $EliType = $_SESSION['EliminationType'];
                         mysqli_query($conn,$insertNewMatchesForBadmintonAndTTennis);
 
                     }
+                }
+                   
 
-                    updateDataForBadmintonAndTableTennisModifiedDouble($conn,$event_id,$game_id,);
+                    updateDataForBadmintonAndTableTennisModifiedDouble($conn,$event_id,$game_id,$game_type);
 
 
 
@@ -133,7 +153,14 @@ $EliType = $_SESSION['EliminationType'];
            
                 $matches = 4; //for MODIFIED LADDER TYPE
 
-                    
+                if($game_type == 'Chess' || $game_type == 'Archery'){
+                    for ($x = 1; $x <= $matches; $x++){
+
+                        $insertNewMatchesForBadmintonAndTTennis = "INSERT INTO game_matches (game_id,event_id,game_type,match_info,EliType) VALUES ('$game_id','$event_id','$game_type','$x','MSEG')";
+                        mysqli_query($conn,$insertNewMatchesForBadmintonAndTTennis);
+
+                    }
+                }else{
                     for ($x = 1; $x <= $matches; $x++){
 
                         $insertNewMatchesForBadmintonAndTTennis = "INSERT INTO game_matches (game_id,event_id,game_type,match_info,type,EliType) VALUES ('$game_id','$event_id','$game_type','$x','single','MSEG')";
@@ -147,174 +174,255 @@ $EliType = $_SESSION['EliminationType'];
                         mysqli_query($conn,$insertNewMatchesForBadmintonAndTTennis);
 
                     }
+                }
+                   
 
-                    updateDataForBadmintonAndTableTennisModifiedMMM($conn,$event_id,$game_id,);
+                    updateDataForBadmintonAndTableTennisModifiedMMM($conn,$event_id,$game_id,$game_type);
 
 
 
             }
 
 
-            function updateDataForBadmintonAndTableTennisModified($conn, $event_id, $game_id) {
-                $playerName1 = [];
-                $playerId1 = [];
-                
-                $playerName2_1 = [];
-                $playerId2_1 = [];
-                $playerName2_2 = [];
-                $playerId2_2 = [];
-                
-                // Get data for player1
-                $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1'";
-                $result1 = mysqli_query($conn, $getAllData);
-                while ($get1 = mysqli_fetch_assoc($result1)) {
-                    $playerName1[] = $get1['name'];
-                    $playerId1[] = $get1['id'];
-                }
-            
-                // Get data for player2
-                $getAllData1 = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player2'";
-                $result2 = mysqli_query($conn, $getAllData1);
-                while ($get2 = mysqli_fetch_assoc($result2)) {
-                    $playerName2_1[] = $get2['name']; // Assuming player2's name
-                    $playerId2_1[] = $get2['id']; // Assuming player2's ID
-            
-                    // Assuming you meant to fetch additional teammates or other players' names and IDs here:
-                    $playerName2_2[] = $get2['name1']; // Adjust this based on actual field
-                    $playerId2_2[] = $get2['id']; // Adjust this based on actual field
-                }
-            
-                // Update single matches
-                $updateSingle1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[0]}', team1_name = '{$playerName1[0]}', team2 = '{$playerId1[1]}', team2_name = '{$playerName1[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1 AND type = 'single'";
-                mysqli_query($conn, $updateSingle1);
-            
-                $updateSingle2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[2]}', team1_name = '{$playerName1[2]}', team2 = '{$playerId1[3]}', team2_name = '{$playerName1[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2 AND type = 'single'";
-                mysqli_query($conn, $updateSingle2);
-            
-                // Update double matches
-                $updateDouble1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId2_1[0]}', team1_name = '{$playerName2_1[0]}', team1_1 = '{$playerId2_2[0]}', team1_name1 = '{$playerName2_2[0]}', team2 = '{$playerId2_1[1]}', team2_name = '{$playerName2_1[1]}', team2_2 = '{$playerId2_2[1]}', team2_name2 = '{$playerName2_2[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1 AND type = 'double'";
-                mysqli_query($conn, $updateDouble1);
-            
-                $updateDouble2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId2_1[2]}', team1_name = '{$playerName2_1[2]}', team1_1 = '{$playerId2_2[2]}', team1_name1 = '{$playerName2_2[2]}', team2 = '{$playerId2_1[3]}', team2_name = '{$playerName2_1[3]}', team2_2 = '{$playerId2_2[3]}', team2_name2 = '{$playerName2_2[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2 AND type = 'double'";
-                mysqli_query($conn, $updateDouble2);
+            function updateDataForBadmintonAndTableTennisModified($conn, $event_id, $game_id,$game_type) {
 
-                $playerName1 = [];
-                $playerId1 = [];
+                if($game_type == 'Chess' || $game_type == 'Archery'){
+                    $playerName1 = [];
+                    $playerId1 = [];
+
+                     // Get data for player1
+                     $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1'";
+                     $result1 = mysqli_query($conn, $getAllData);
+                     while ($get1 = mysqli_fetch_assoc($result1)) {
+                         $playerName1[] = $get1['name'];
+                         $playerId1[] = $get1['id'];
+                     }
+
+                     $updateSingle1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[0]}', team1_name = '{$playerName1[0]}', team2 = '{$playerId1[1]}', team2_name = '{$playerName1[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1";
+                     mysqli_query($conn, $updateSingle1);
+                 
+                     $updateSingle2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[2]}', team1_name = '{$playerName1[2]}', team2 = '{$playerId1[3]}', team2_name = '{$playerName1[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2";
+                     mysqli_query($conn, $updateSingle2);
+
+                     $playerName1 = [];
+                     $playerId1 = [];
+
+
+                }else{
+                    $playerName1 = [];
+                    $playerId1 = [];
+                    
+                    $playerName2_1 = [];
+                    $playerId2_1 = [];
+                    $playerName2_2 = [];
+                    $playerId2_2 = [];
+                    
+                    // Get data for player1
+                    $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1'";
+                    $result1 = mysqli_query($conn, $getAllData);
+                    while ($get1 = mysqli_fetch_assoc($result1)) {
+                        $playerName1[] = $get1['name'];
+                        $playerId1[] = $get1['id'];
+                    }
                 
-                $playerName2_1 = [];
-                $playerId2_1 = [];
-                $playerName2_2 = [];
-                $playerId2_2 = [];
+                    // Get data for player2
+                    $getAllData1 = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player2'";
+                    $result2 = mysqli_query($conn, $getAllData1);
+                    while ($get2 = mysqli_fetch_assoc($result2)) {
+                        $playerName2_1[] = $get2['name']; // Assuming player2's name
+                        $playerId2_1[] = $get2['id']; // Assuming player2's ID
+                
+                        // Assuming you meant to fetch additional teammates or other players' names and IDs here:
+                        $playerName2_2[] = $get2['name1']; // Adjust this based on actual field
+                        $playerId2_2[] = $get2['id']; // Adjust this based on actual field
+                    }
+                
+                    // Update single matches
+                    $updateSingle1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[0]}', team1_name = '{$playerName1[0]}', team2 = '{$playerId1[1]}', team2_name = '{$playerName1[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1 AND type = 'single'";
+                    mysqli_query($conn, $updateSingle1);
+                
+                    $updateSingle2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[2]}', team1_name = '{$playerName1[2]}', team2 = '{$playerId1[3]}', team2_name = '{$playerName1[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2 AND type = 'single'";
+                    mysqli_query($conn, $updateSingle2);
+                
+                    // Update double matches
+                    $updateDouble1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId2_1[0]}', team1_name = '{$playerName2_1[0]}', team1_1 = '{$playerId2_2[0]}', team1_name1 = '{$playerName2_2[0]}', team2 = '{$playerId2_1[1]}', team2_name = '{$playerName2_1[1]}', team2_2 = '{$playerId2_2[1]}', team2_name2 = '{$playerName2_2[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1 AND type = 'double'";
+                    mysqli_query($conn, $updateDouble1);
+                
+                    $updateDouble2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId2_1[2]}', team1_name = '{$playerName2_1[2]}', team1_1 = '{$playerId2_2[2]}', team1_name1 = '{$playerName2_2[2]}', team2 = '{$playerId2_1[3]}', team2_name = '{$playerName2_1[3]}', team2_2 = '{$playerId2_2[3]}', team2_name2 = '{$playerName2_2[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2 AND type = 'double'";
+                    mysqli_query($conn, $updateDouble2);
+    
+                    $playerName1 = [];
+                    $playerId1 = [];
+                    
+                    $playerName2_1 = [];
+                    $playerId2_1 = [];
+                    $playerName2_2 = [];
+                    $playerId2_2 = [];
+                }
+
+              
             }
 
 
 
-            function updateDataForBadmintonAndTableTennisModifiedDouble($conn, $event_id, $game_id) {
-                $playerName1 = [];
-                $playerId1 = [];
-                
-                $playerName2_1 = [];
-                $playerId2_1 = [];
-                $playerName2_2 = [];
-                $playerId2_2 = [];
-                
-                // Get data for player1
-                $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1'";
-                $result1 = mysqli_query($conn, $getAllData);
-                while ($get1 = mysqli_fetch_assoc($result1)) {
-                    $playerName1[] = $get1['name'];
-                    $playerId1[] = $get1['id'];
-                }
-            
-                // Get data for player2
-                $getAllData1 = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player2'";
-                $result2 = mysqli_query($conn, $getAllData1);
-                while ($get2 = mysqli_fetch_assoc($result2)) {
-                    $playerName2_1[] = $get2['name']; // Assuming player2's name
-                    $playerId2_1[] = $get2['id']; // Assuming player2's ID
-            
-                    // Assuming you meant to fetch additional teammates or other players' names and IDs here:
-                    $playerName2_2[] = $get2['name1']; // Adjust this based on actual field
-                    $playerId2_2[] = $get2['id']; // Adjust this based on actual field
-                }
-            
-                // Update single matches
-                $updateSingle1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[0]}', team1_name = '{$playerName1[0]}', team2 = '{$playerId1[1]}', team2_name = '{$playerName1[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1 AND type = 'single'";
-                mysqli_query($conn, $updateSingle1);
-            
-                $updateSingle2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[2]}', team1_name = '{$playerName1[2]}', team2 = '{$playerId1[3]}', team2_name = '{$playerName1[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2 AND type = 'single'";
-                mysqli_query($conn, $updateSingle2);
-            
-                // Update double matches
-                $updateDouble1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId2_1[0]}', team1_name = '{$playerName2_1[0]}', team1_1 = '{$playerId2_2[0]}', team1_name1 = '{$playerName2_2[0]}', team2 = '{$playerId2_1[1]}', team2_name = '{$playerName2_1[1]}', team2_2 = '{$playerId2_2[1]}', team2_name2 = '{$playerName2_2[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1 AND type = 'double'";
-                mysqli_query($conn, $updateDouble1);
-            
-                $updateDouble2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId2_1[2]}', team1_name = '{$playerName2_1[2]}', team1_1 = '{$playerId2_2[2]}', team1_name1 = '{$playerName2_2[2]}', team2 = '{$playerId2_1[3]}', team2_name = '{$playerName2_1[3]}', team2_2 = '{$playerId2_2[3]}', team2_name2 = '{$playerName2_2[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2 AND type = 'double'";
-                mysqli_query($conn, $updateDouble2);
+            function updateDataForBadmintonAndTableTennisModifiedDouble($conn, $event_id, $game_id,$game_type) {
 
-                $playerName1 = [];
-                $playerId1 = [];
+                if($game_type == 'Chess' || $game_type == 'Archery'){
+                    $playerName1 = [];
+                    $playerId1 = [];
+
+                     // Get data for player1
+                     $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1'";
+                     $result1 = mysqli_query($conn, $getAllData);
+                     while ($get1 = mysqli_fetch_assoc($result1)) {
+                         $playerName1[] = $get1['name'];
+                         $playerId1[] = $get1['id'];
+                     }
+
+                     $updateSingle1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[0]}', team1_name = '{$playerName1[0]}', team2 = '{$playerId1[1]}', team2_name = '{$playerName1[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1";
+                     mysqli_query($conn, $updateSingle1);
+                 
+                     $updateSingle2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[2]}', team1_name = '{$playerName1[2]}', team2 = '{$playerId1[3]}', team2_name = '{$playerName1[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2";
+                     mysqli_query($conn, $updateSingle2);
+
+                     $playerName1 = [];
+                     $playerId1 = [];
+
+
+                }else{
+                    $playerName1 = [];
+                    $playerId1 = [];
+                    
+                    $playerName2_1 = [];
+                    $playerId2_1 = [];
+                    $playerName2_2 = [];
+                    $playerId2_2 = [];
+                    
+                    // Get data for player1
+                    $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1'";
+                    $result1 = mysqli_query($conn, $getAllData);
+                    while ($get1 = mysqli_fetch_assoc($result1)) {
+                        $playerName1[] = $get1['name'];
+                        $playerId1[] = $get1['id'];
+                    }
                 
-                $playerName2_1 = [];
-                $playerId2_1 = [];
-                $playerName2_2 = [];
-                $playerId2_2 = [];
+                    // Get data for player2
+                    $getAllData1 = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player2'";
+                    $result2 = mysqli_query($conn, $getAllData1);
+                    while ($get2 = mysqli_fetch_assoc($result2)) {
+                        $playerName2_1[] = $get2['name']; // Assuming player2's name
+                        $playerId2_1[] = $get2['id']; // Assuming player2's ID
+                
+                        // Assuming you meant to fetch additional teammates or other players' names and IDs here:
+                        $playerName2_2[] = $get2['name1']; // Adjust this based on actual field
+                        $playerId2_2[] = $get2['id']; // Adjust this based on actual field
+                    }
+                
+                    // Update single matches
+                    $updateSingle1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[0]}', team1_name = '{$playerName1[0]}', team2 = '{$playerId1[1]}', team2_name = '{$playerName1[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1 AND type = 'single'";
+                    mysqli_query($conn, $updateSingle1);
+                
+                    $updateSingle2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[2]}', team1_name = '{$playerName1[2]}', team2 = '{$playerId1[3]}', team2_name = '{$playerName1[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2 AND type = 'single'";
+                    mysqli_query($conn, $updateSingle2);
+                
+                    // Update double matches
+                    $updateDouble1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId2_1[0]}', team1_name = '{$playerName2_1[0]}', team1_1 = '{$playerId2_2[0]}', team1_name1 = '{$playerName2_2[0]}', team2 = '{$playerId2_1[1]}', team2_name = '{$playerName2_1[1]}', team2_2 = '{$playerId2_2[1]}', team2_name2 = '{$playerName2_2[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1 AND type = 'double'";
+                    mysqli_query($conn, $updateDouble1);
+                
+                    $updateDouble2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId2_1[2]}', team1_name = '{$playerName2_1[2]}', team1_1 = '{$playerId2_2[2]}', team1_name1 = '{$playerName2_2[2]}', team2 = '{$playerId2_1[3]}', team2_name = '{$playerName2_1[3]}', team2_2 = '{$playerId2_2[3]}', team2_name2 = '{$playerName2_2[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2 AND type = 'double'";
+                    mysqli_query($conn, $updateDouble2);
+    
+                    $playerName1 = [];
+                    $playerId1 = [];
+                    
+                    $playerName2_1 = [];
+                    $playerId2_1 = [];
+                    $playerName2_2 = [];
+                    $playerId2_2 = [];
+                }
+              
             }
 
 
 
             // MODIFIED FOR Mdeg
 
-            function updateDataForBadmintonAndTableTennisModifiedMMM($conn, $event_id, $game_id) {
-                $playerName1 = [];
-                $playerId1 = [];
-                
-                $playerName2_1 = [];
-                $playerId2_1 = [];
-                $playerName2_2 = [];
-                $playerId2_2 = [];
-                
-                // Get data for player1
-                $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1'";
-                $result1 = mysqli_query($conn, $getAllData);
-                while ($get1 = mysqli_fetch_assoc($result1)) {
-                    $playerName1[] = $get1['name'];
-                    $playerId1[] = $get1['id'];
-                }
-            
-                // Get data for player2
-                $getAllData1 = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player2'";
-                $result2 = mysqli_query($conn, $getAllData1);
-                while ($get2 = mysqli_fetch_assoc($result2)) {
-                    $playerName2_1[] = $get2['name']; // Assuming player2's name
-                    $playerId2_1[] = $get2['id']; // Assuming player2's ID
-            
-                    // Assuming you meant to fetch additional teammates or other players' names and IDs here:
-                    $playerName2_2[] = $get2['name1']; // Adjust this based on actual field
-                    $playerId2_2[] = $get2['id']; // Adjust this based on actual field
-                }
-            
-                // Update single matches
-                $updateSingle1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[0]}', team1_name = '{$playerName1[0]}', team2 = '{$playerId1[1]}', team2_name = '{$playerName1[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1 AND type = 'single'";
-                mysqli_query($conn, $updateSingle1);
-            
-                $updateSingle2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[2]}', team1_name = '{$playerName1[2]}', team2 = '{$playerId1[3]}', team2_name = '{$playerName1[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2 AND type = 'single'";
-                mysqli_query($conn, $updateSingle2);
-            
-                // Update double matches
-                $updateDouble1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId2_1[0]}', team1_name = '{$playerName2_1[0]}', team1_1 = '{$playerId2_2[0]}', team1_name1 = '{$playerName2_2[0]}', team2 = '{$playerId2_1[1]}', team2_name = '{$playerName2_1[1]}', team2_2 = '{$playerId2_2[1]}', team2_name2 = '{$playerName2_2[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1 AND type = 'double'";
-                mysqli_query($conn, $updateDouble1);
-            
-                $updateDouble2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId2_1[2]}', team1_name = '{$playerName2_1[2]}', team1_1 = '{$playerId2_2[2]}', team1_name1 = '{$playerName2_2[2]}', team2 = '{$playerId2_1[3]}', team2_name = '{$playerName2_1[3]}', team2_2 = '{$playerId2_2[3]}', team2_name2 = '{$playerName2_2[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2 AND type = 'double'";
-                mysqli_query($conn, $updateDouble2);
+            function updateDataForBadmintonAndTableTennisModifiedMMM($conn, $event_id, $game_id,$game_type) {
 
-                $playerName1 = [];
-                $playerId1 = [];
+                if($game_type == 'Chess' || $game_type == 'Archery'){
+                    $playerName1 = [];
+                    $playerId1 = [];
+
+                     // Get data for player1
+                     $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1'";
+                     $result1 = mysqli_query($conn, $getAllData);
+                     while ($get1 = mysqli_fetch_assoc($result1)) {
+                         $playerName1[] = $get1['name'];
+                         $playerId1[] = $get1['id'];
+                     }
+
+                     $updateSingle1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[0]}', team1_name = '{$playerName1[0]}', team2 = '{$playerId1[1]}', team2_name = '{$playerName1[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1";
+                     mysqli_query($conn, $updateSingle1);
+                 
+                     $updateSingle2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[2]}', team1_name = '{$playerName1[2]}', team2 = '{$playerId1[3]}', team2_name = '{$playerName1[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2";
+                     mysqli_query($conn, $updateSingle2);
+
+                     $playerName1 = [];
+                     $playerId1 = [];
+
+
+                }else{
+                    $playerName1 = [];
+                    $playerId1 = [];
+                    
+                    $playerName2_1 = [];
+                    $playerId2_1 = [];
+                    $playerName2_2 = [];
+                    $playerId2_2 = [];
+                    
+                    // Get data for player1
+                    $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1'";
+                    $result1 = mysqli_query($conn, $getAllData);
+                    while ($get1 = mysqli_fetch_assoc($result1)) {
+                        $playerName1[] = $get1['name'];
+                        $playerId1[] = $get1['id'];
+                    }
                 
-                $playerName2_1 = [];
-                $playerId2_1 = [];
-                $playerName2_2 = [];
-                $playerId2_2 = [];
+                    // Get data for player2
+                    $getAllData1 = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player2'";
+                    $result2 = mysqli_query($conn, $getAllData1);
+                    while ($get2 = mysqli_fetch_assoc($result2)) {
+                        $playerName2_1[] = $get2['name']; // Assuming player2's name
+                        $playerId2_1[] = $get2['id']; // Assuming player2's ID
+                
+                        // Assuming you meant to fetch additional teammates or other players' names and IDs here:
+                        $playerName2_2[] = $get2['name1']; // Adjust this based on actual field
+                        $playerId2_2[] = $get2['id']; // Adjust this based on actual field
+                    }
+                
+                    // Update single matches
+                    $updateSingle1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[0]}', team1_name = '{$playerName1[0]}', team2 = '{$playerId1[1]}', team2_name = '{$playerName1[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1 AND type = 'single'";
+                    mysqli_query($conn, $updateSingle1);
+                
+                    $updateSingle2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId1[2]}', team1_name = '{$playerName1[2]}', team2 = '{$playerId1[3]}', team2_name = '{$playerName1[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2 AND type = 'single'";
+                    mysqli_query($conn, $updateSingle2);
+                
+                    // Update double matches
+                    $updateDouble1 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId2_1[0]}', team1_name = '{$playerName2_1[0]}', team1_1 = '{$playerId2_2[0]}', team1_name1 = '{$playerName2_2[0]}', team2 = '{$playerId2_1[1]}', team2_name = '{$playerName2_1[1]}', team2_2 = '{$playerId2_2[1]}', team2_name2 = '{$playerName2_2[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 1 AND type = 'double'";
+                    mysqli_query($conn, $updateDouble1);
+                
+                    $updateDouble2 = "UPDATE game_matches SET status = 'game', round = 1, team1 = '{$playerId2_1[2]}', team1_name = '{$playerName2_1[2]}', team1_1 = '{$playerId2_2[2]}', team1_name1 = '{$playerName2_2[2]}', team2 = '{$playerId2_1[3]}', team2_name = '{$playerName2_1[3]}', team2_2 = '{$playerId2_2[3]}', team2_name2 = '{$playerName2_2[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 2 AND type = 'double'";
+                    mysqli_query($conn, $updateDouble2);
+    
+                    $playerName1 = [];
+                    $playerId1 = [];
+                    
+                    $playerName2_1 = [];
+                    $playerId2_1 = [];
+                    $playerName2_2 = [];
+                    $playerId2_2 = [];
+                }
+              
             }
             
 
