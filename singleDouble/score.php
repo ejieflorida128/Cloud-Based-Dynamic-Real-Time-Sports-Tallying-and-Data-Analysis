@@ -1,16 +1,18 @@
 <?php
+// Ensure no whitespace before this line
 ob_start(); 
 session_start();
 include('../connection/conn.php');
 
-$_SESSION['EVENT_ID'] = $_GET['event_id'];
-$_SESSION['GAME_ID'] = $_GET['game_id'];
-$_SESSION['GAME_TYPE'] = $_GET['game_type'];
-$_SESSION['TYPE'] = $_GET['type'];
-
+// Set session variables based on query parameters
+$_SESSION['EVENT_ID'] = $_GET['event_id'] ?? null;
+$_SESSION['GAME_ID'] = $_GET['game_id'] ?? null;
+$_SESSION['GAME_TYPE'] = $_GET['game_type'] ?? null;
+$_SESSION['TYPE'] = $_GET['type'] ?? null;
 
 ob_end_flush(); 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -277,7 +279,7 @@ ob_end_flush();
             <div class="card-header pb-0">
             <div class="topStorage" style = "display: flex; justify-content: space-between;">
               <div class="top1">
-              <a href="../scoring_info/field.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE'] ?>" class="btn btn-danger">Back</a>
+              <a href="../scoring_info/decide.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE'] ?>" class="btn btn-danger">Back</a>
               </div>
               <div class="top2">
               <a href="../scoring_info/field.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE'] ?>" class="btn btn-success">Submit Scores</a>
@@ -306,130 +308,142 @@ ob_end_flush();
                                         $type = $_GET['type'];
 
                                         if($type == 'single'){
-                                                echo'
-                                                   <div class="table-responsive p-0">
-                                                                <table class="table align-items-center mb-0">
-                                                                <thead>
-                                                                    <tr>
-                                                                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Match Information</th>
-                                                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Game Type</th>
-                                                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Winner</th>
-                                                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Loser</th>
-                                                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Options</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    ';
-
-                                                                    $game_id = $_GET['game_id'];
-                                                                    $event_id = $_GET['event_id'];
-                                                                    $game_type = $_GET['game_type'];
-
-                                                                    $getPlayersForSingle = "SELECT * FROM game_matches WHERE game_id = '$game_id' AND event_id = '$event_id' AND type = 'single' AND (status = 'game' || status = 'SCORE')";
-                                                                    $queryForSingle = mysqli_query($conn,$getPlayersForSingle);
-
-
-                                                            while($displayAllSingle = mysqli_fetch_assoc($queryForSingle)){
-                                                              
-
-                                                                if($displayAllSingle['team_one_score'] == 0 && $displayAllSingle['team_two_score'] == 0){
-                                                                    $winner = 'on-going';
-                                                                    $loser = 'on-going';
-
-                                                                }else{
-                                                                    if( $displayAllSingle['team_one_score'] > $displayAllSingle['team_two_score']){
-                                                                            $winner = $displayAllSingle['team1_name'];
-                                                                            $loser = $displayAllSingle['team2_name'];
-                                                                    }else{
-                                                                        $winner = $displayAllSingle['team2_name'];
-                                                                        $loser = $displayAllSingle['team1_name'];
-                                                                    }
-                                                                }
-
-                                                                $uniqueId = $displayAllSingle['id'];
-                                                                echo '
-                                                                <tr>
-                                                                      <td>
-                                                                          <div class="d-flex px-2 py-1">
-                                                                                  '.$displayAllSingle['team1_name'].' <span style = "margin-left: 15px; color: orange; font-weight: bolder; margin-right: 15px;">VS</span> '.$displayAllSingle['team2_name'].'
-                                                                          </div>
-                                                                      </td>
-                                                                      <td>
-                                                                          <p class="text-xs font-weight-bold mb-0">'.$displayAllSingle['game_type'].'</p>
-                                                                          <p class="text-xs text-secondary mb-0">single</p>
-                                                                      </td>
-                                                                      <td class="align-middle text-center text-sm">
-                                                                          <span class="badge badge-sm bg-gradient-success">'.$winner.'</span>
-                                                                      </td>
-                                                                      <td class="align-middle text-center text-sm">
-                                                                          <span class="badge badge-sm bg-gradient-danger">'.$loser.'</span>
-                                                                      </td>
-                                                                      <td class="align-middle text-center text-sm">
-                                                                          ';
-                                                                                if($displayAllSingle['status'] == 'game'){
-                                                                                    echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#score' . $uniqueId . '">
-                                                                                    Score
-                                                                                  </button>';
-                                                                                }else{
-                                                                                    echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#view' . $uniqueId . '">
-                                                                                    View
-                                                                                  </button>';
-                                                                                }
-                                                                          echo '
-                                                                      </td>
-
-                                                                      ';
-                                                                      echo' 
-                                                                      <div class="modal fade" id="score'.$uniqueId.'" tabindex="-1" role="dialog" aria-labelledby="score'.$uniqueId.'Label" aria-hidden="true">
-                                                                           <div class="modal-dialog" role="document">
-                                                                               <div class="modal-content">
-                                                                                   <form action="../scoring_info/generateAnotherRound.php" method="post">  
-                                                                                            <div class="modal-header">
-                                                                                             <h5 class="modal-title" id="score'.$uniqueId.'Label">Score Board</h5>
-                                                                                   
-                                                                                           </div>
-                                                                                           <div class="modal-body">
-                                                                                                   <div class="form-group">
-                                                                                                        <label>'.$displayAllSingle['team1_name'].' \'s Score: </label>
-                                                                                                        <input type = "number" name = "teamOneScore" value = '.$displayAllSingle['team_one_score'].' class = "form-control">
-
-                                                                                                        <label>'.$displayAllSingle['team2_name'].' \'s Score: </label>
-                                                                                                        <input type = "number" name = "teamTwoScore" value = '.$displayAllSingle['team_two_score'].' class = "form-control">
-
-                                                                                                         <input type = "text" name = "teamOneName" value = '.$displayAllSingle['team1_name'].' hidden>
-                                                                                                         <input type = "text" name = "teamTwoName" value = '.$displayAllSingle['team2_name'].' hidden>
-                                                                                                          <input type = "number" name = "team1_id" value = '.$displayAllSingle['team1'].' hidden>
-                                                                                                           <input type = "number" name = "team2_id" value = '.$displayAllSingle['team2'].' hidden>
-                                                                                                           <input type = "text" name = "game_type" value = '.$displayAllSingle['game_type'].' hidden>
-                                                                                                           <input type = "number" name = "game_id" value = '.$displayAllSingle['game_id'].' hidden>
-                                                                                                            <input type = "number" name = "event_id" value = '.$displayAllSingle['event_id'].' hidden>
-                                                                                                             <input type = "number" name = "id" value = '.$displayAllSingle['id'].' hidden>
-                                                                                                             <input type = "text" name = "type" value = '.$displayAllSingle['type'].' hidden>
-                                                                                                             
-                                                                                                             
-                                                                                                     
-                                                                                                   ';                                                                                                          
-                                                                                                  echo' </div>
-                                                                                           </div>
-                                                                                           <div class="modal-footer">
-                                                                                               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                                                               <input type = "submit" class="btn btn-success" value = "Confirm Score">
-                                                                                           </div>
-                                                                                   </form>
-                                                                               </div>
-                                                                           </div>
-                                                                           </div>
-
-                                                                        
-                                                                  </tr>
+                                          echo '
+                                          <div class="table-responsive p-0">
+                                              <table class="table align-items-center mb-0">
+                                                  <thead>
+                                                      <tr>
+                                                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Match Information</th>
+                                                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Game Type</th>
+                                                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Winner</th>
+                                                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Loser</th>
+                                                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Options</th>
+                                                      </tr>
+                                                  </thead>
+                                                  <tbody>
+                                          ';
+                                          
+                                          $game_id = $_GET['game_id'];
+                                          $event_id = $_GET['event_id'];
+                                          $game_type = $_GET['game_type'];
+                                          
+                                          $getPlayersForSingle = "SELECT * FROM game_matches WHERE game_id = '$game_id' AND event_id = '$event_id' AND type = 'single' AND (status = 'game' || status = 'SCORE')";
+                                          $queryForSingle = mysqli_query($conn, $getPlayersForSingle);
+                                          
+                                          while ($displayAllSingle = mysqli_fetch_assoc($queryForSingle)) {
+                                              if ($displayAllSingle['team_one_score'] == 0 && $displayAllSingle['team_two_score'] == 0) {
+                                                  $winner = 'on-going';
+                                                  $loser = 'on-going';
+                                              } else {
+                                                  if ($displayAllSingle['team_one_score'] > $displayAllSingle['team_two_score']) {
+                                                      $winner = $displayAllSingle['team1_name'];
+                                                      $loser = $displayAllSingle['team2_name'];
+                                                  } else {
+                                                      $winner = $displayAllSingle['team2_name'];
+                                                      $loser = $displayAllSingle['team1_name'];
+                                                  }
+                                              }
+                                          
+                                              $uniqueId = $displayAllSingle['id'];
+                                              echo '
+                                              <tr>
+                                                  <td>
+                                                      <div class="d-flex px-2 py-1">
+                                                          ' . $displayAllSingle['team1_name'] . ' <span style="margin-left: 15px; color: orange; font-weight: bolder; margin-right: 15px;">VS</span> ' . $displayAllSingle['team2_name'] . '
+                                                      </div>
+                                                  </td>
+                                                  <td>
+                                                      <p class="text-xs font-weight-bold mb-0">' . $displayAllSingle['game_type'] . '</p>
+                                                      <p class="text-xs text-secondary mb-0">single</p>
+                                                  </td>
+                                                  <td class="align-middle text-center text-sm">
+                                                      <span class="badge badge-sm bg-gradient-success">' . $winner . '</span>
+                                                  </td>
+                                                  <td class="align-middle text-center text-sm">
+                                                      <span class="badge badge-sm bg-gradient-danger">' . $loser . '</span>
+                                                  </td>
+                                                  <td class="align-middle text-center text-sm">
                                                       ';
-                                                            }
-                                                        
-                                                       
-                                                                  
-                                                                       
-
-                                                           
+                                          
+                                              if ($displayAllSingle['status'] == 'game') {
+                                                  echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#score' . $uniqueId . '">Score</button>';
+                                              } else {
+                                                  echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#view' . $uniqueId . '">View</button>';
+                                              }
+                                          
+                                              echo '
+                                                  </td>
+                                              </tr>
+                                              ';
+                                          
+                                              // Score modal
+                                              echo '
+                                              <div class="modal fade" id="score' . $uniqueId . '" tabindex="-1" role="dialog" aria-labelledby="score' . $uniqueId . 'Label" aria-hidden="true">
+                                                  <div class="modal-dialog" role="document">
+                                                      <div class="modal-content">
+                                                          <form action="generateMatches.php" method="post">  
+                                                              <div class="modal-header">
+                                                                  <h5 class="modal-title" id="score' . $uniqueId . 'Label">Score Board</h5>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                                  <div class="form-group">
+                                                                      <label>' . $displayAllSingle['team1_name'] . ' \'s Score: </label>
+                                                                      <input type="number" name="teamOneScore" value="' . $displayAllSingle['team_one_score'] . '" class="form-control">
+                                                                      <label>' . $displayAllSingle['team2_name'] . ' \'s Score: </label>
+                                                                      <input type="number" name="teamTwoScore" value="' . $displayAllSingle['team_two_score'] . '" class="form-control">
+                                                                      <input type="text" name="teamOneName" value="' . $displayAllSingle['team1_name'] . '" hidden>
+                                                                      <input type="text" name="teamTwoName" value="' . $displayAllSingle['team2_name'] . '" hidden>
+                                                                      <input type="number" name="team1_id" value="' . $displayAllSingle['team1'] . '" hidden>
+                                                                      <input type="number" name="team2_id" value="' . $displayAllSingle['team2'] . '" hidden>
+                                                                      <input type="text" name="game_type" value="' . $displayAllSingle['game_type'] . '" hidden>
+                                                                      <input type="number" name="game_id" value="' . $displayAllSingle['game_id'] . '" hidden>
+                                                                      <input type="number" name="event_id" value="' . $displayAllSingle['event_id'] . '" hidden>
+                                                                      <input type="number" name="id" value="' . $displayAllSingle['id'] . '" hidden>
+                                                                      <input type="text" name="type" value="' . $displayAllSingle['type'] . '" hidden>
+                                                                      <input type="text" name="EliType" value="' . $displayAllSingle['EliType'] . '" hidden>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                  <input type="submit" class="btn btn-success" value="Confirm Score">
+                                                              </div>
+                                                          </form>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              ';
+                                          
+                                              // View modal
+                                              echo '
+                                              <div class="modal fade" id="view' . $uniqueId . '" tabindex="-1" role="dialog" aria-labelledby="view' . $uniqueId . 'Label" aria-hidden="true">
+                                                  <div class="modal-dialog" role="document">
+                                                      <div class="modal-content">
+                                                          <div class="modal-header">
+                                                              <h5 class="modal-title" id="view' . $uniqueId . 'Label">View Scores</h5>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                              <div class="form-group">
+                                                                  <label>' . $displayAllSingle['team1_name'] . ' \'s Score: </label>
+                                                                  <input type="number" value="' . $displayAllSingle['team_one_score'] . '" class="form-control" readonly>
+                                                                  <label>' . $displayAllSingle['team2_name'] . ' \'s Score: </label>
+                                                                  <input type="number" value="' . $displayAllSingle['team_two_score'] . '" class="form-control" readonly>
+                                                              </div>
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              ';
+                                          }
+                                          
+                                          echo '
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                          ';
+                                                            
                                         }else if($type == 'double'){
                                           echo'
                                           <div class="table-responsive p-0">
@@ -450,14 +464,110 @@ ob_end_flush();
                                                            $event_id = $_GET['event_id'];
                                                            $game_type = $_GET['game_type'];
 
-                                                           $getPlayersForDouble = "SELECT * FROM players WHERE game_id = '$game_id' AND event_id = '$event_id' AND name1 IS NOT NULL";
-                                                           $queryForDouble = mysqli_query($conn,$getPlayersForDouble);
+                                                           $getPlayersForDouble = "SELECT * FROM game_matches WHERE game_id = '$game_id' AND event_id = '$event_id' AND type = 'double' AND (status = 'game' || status = 'SCORE')";
+                                                            $queryForDouble = mysqli_query($conn,$getPlayersForDouble);
+
+                                                           while($displayAllDouble = mysqli_fetch_assoc($queryForDouble)){
+                                                              
+
+                                                            if($displayAllDouble['team_one_score'] == 0 && $displayAllDouble['team_two_score'] == 0){
+                                                                $winner = 'on-going';
+                                                                $loser = 'on-going';
+
+                                                            }else{
+                                                                if( $displayAllDouble['team_one_score'] > $displayAllDouble['team_two_score']){
+                                                                        $winner = $displayAllDouble['team1_name'] . ' and '. $displayAllDouble['team1_name1'];
+                                                                        $loser = $displayAllDouble['team2_name'] . ' and ' . $displayAllDouble['team2_name2'];
+                                                                }else{
+                                                                    $winner = $displayAllDouble['team2_name'] . ' and ' . $displayAllDouble['team2_name2'];
+                                                                    $loser = $displayAllDouble['team1_name'] . ' and '. $displayAllDouble['team1_name1'];
+                                                                }
+                                                            }
+
+                                                            $uniqueId = $displayAllDouble['id'];
+                                                            echo '
+                                                            <tr>
+                                                                  <td>
+                                                                      <div class="d-flex px-2 py-1">
+                                                                              '.$displayAllDouble['team1_name'].' and '.$displayAllDouble['team1_name1'].' <span style = "margin-left: 15px; color: orange; font-weight: bolder; margin-right: 15px;">VS</span> '.$displayAllDouble['team2_name'].' and '.$displayAllDouble['team2_name2'].'
+                                                                      </div>
+                                                                  </td>
+                                                                  <td>
+                                                                      <p class="text-xs font-weight-bold mb-0">'.$displayAllDouble['game_type'].'</p>
+                                                                      <p class="text-xs text-secondary mb-0">single</p>
+                                                                  </td>
+                                                                  <td class="align-middle text-center text-sm">
+                                                                      <span class="badge badge-sm bg-gradient-success">'.$winner.'</span>
+                                                                  </td>
+                                                                  <td class="align-middle text-center text-sm">
+                                                                      <span class="badge badge-sm bg-gradient-danger">'.$loser.'</span>
+                                                                  </td>
+                                                                  <td class="align-middle text-center text-sm">
+                                                                      ';
+                                                                            if($displayAllDouble['status'] == 'game'){
+                                                                                echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#score' . $uniqueId . '">
+                                                                                Score
+                                                                              </button>';
+                                                                            }else{
+                                                                                echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#view' . $uniqueId . '">
+                                                                                View
+                                                                              </button>';
+                                                                            }
+                                                                      echo '
+                                                                  </td>
+
+                                                                  ';
+                                                                  echo' 
+                                                                  <div class="modal fade" id="score'.$uniqueId.'" tabindex="-1" role="dialog" aria-labelledby="score'.$uniqueId.'Label" aria-hidden="true">
+                                                                       <div class="modal-dialog" role="document">
+                                                                           <div class="modal-content">
+                                                                               <form action="generateMatches.php" method="post">  
+                                                                                        <div class="modal-header">
+                                                                                         <h5 class="modal-title" id="score'.$uniqueId.'Label">Score Board</h5>
+                                                                               
+                                                                                       </div>
+                                                                                       <div class="modal-body">
+                                                                                               <div class="form-group">
+                                                                                                    <label>'.$displayAllDouble['team1_name'].' and '.$displayAllDouble['team1_name1'].' \'s Score: </label>
+                                                                                                    <input type = "number" name = "teamOneScore" value = '.$displayAllDouble['team_one_score'].' class = "form-control">
+
+                                                                                                    <label>'.$displayAllDouble['team2_name'].' and '.$displayAllDouble['team2_name2'].' \'s Score: </label>
+                                                                                                    <input type = "number" name = "teamTwoScore" value = '.$displayAllDouble['team_two_score'].' class = "form-control">
+
+                                                                                                     <input type = "text" name = "teamOneName" value = '.$displayAllDouble['team1_name'].' hidden>
+                                                                                                     <input type = "text" name = "teamTwoName" value = '.$displayAllDouble['team2_name'].' hidden>
+                                                                                                      <input type = "number" name = "team1_id" value = '.$displayAllDouble['team1'].' hidden>
+                                                                                                       <input type = "number" name = "team2_id" value = '.$displayAllDouble['team2'].' hidden>
+                                                                                                       <input type = "text" name = "game_type" value = '.$displayAllDouble['game_type'].' hidden>
+                                                                                                       <input type = "number" name = "game_id" value = '.$displayAllDouble['game_id'].' hidden>
+                                                                                                        <input type = "number" name = "event_id" value = '.$displayAllDouble['event_id'].' hidden>
+                                                                                                         <input type = "number" name = "id" value = '.$displayAllDouble['id'].' hidden>
+                                                                                                         <input type = "text" name = "type" value = '.$displayAllDouble['type'].' hidden>
+                                                                                                           <input type = "text" name = "EliType" value = '.$displayAllDouble['EliType'].' hidden>
+                                                                                                         
+                                                                                                         
+                                                                                                 
+                                                                                               ';                                                                                                          
+                                                                                              echo' </div>
+                                                                                       </div>
+                                                                                       <div class="modal-footer">
+                                                                                           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                                           <input type = "submit" class="btn btn-success" value = "Confirm Score">
+                                                                                       </div>
+                                                                               </form>
+                                                                           </div>
+                                                                       </div>
+                                                                       </div>
+
+                                                                    
+                                                              </tr>
+                                                  ';
+                                                        }
 
 
                                                 
                                         }else{
-                                            header('Location: ../scoring_info/field.php?event_id='.urldecode($_SESSION['EVENT_ID']).'&game_id='.urldecode($_SESSION['GAME_ID']).'&game_type='.urldecode($_SESSION['GAME_TYPE']));
-
+                                          header('Location: score.php?event_id=' . urlencode($_SESSION['EVENT_ID']) . '&game_id=' . urlencode($_SESSION['GAME_ID']) . '&game_type=' . urlencode($_SESSION['GAME_TYPE']). '&type=' . urlencode($_SESSION['TYPE'])); 
                                         }
 
                                         echo '
