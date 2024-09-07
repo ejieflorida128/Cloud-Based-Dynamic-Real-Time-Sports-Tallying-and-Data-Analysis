@@ -21,6 +21,11 @@ ob_end_flush();
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../template/AdminTemplate/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../template/AdminTemplate/assets/img/favicon.png">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
   <title>
     Scoring Page
   </title>
@@ -368,7 +373,7 @@ ob_end_flush();
                                               if ($displayAllSingle['status'] == 'game') {
                                                   echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#score' . $uniqueId . '">Score</button>';
                                               } else {
-                                                  echo '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#view' . $uniqueId . '">View</button>';
+                                                echo '<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#view' . $uniqueId . '">View</button>';
                                               }
                                           
                                               echo '
@@ -418,20 +423,34 @@ ob_end_flush();
                                               <div class="modal fade" id="view' . $uniqueId . '" tabindex="-1" role="dialog" aria-labelledby="view' . $uniqueId . 'Label" aria-hidden="true">
                                                   <div class="modal-dialog" role="document">
                                                       <div class="modal-content">
-                                                          <div class="modal-header">
-                                                              <h5 class="modal-title" id="view' . $uniqueId . 'Label">View Scores</h5>
-                                                          </div>
-                                                          <div class="modal-body">
-                                                              <div class="form-group">
-                                                                  <label>' . $displayAllSingle['team1_name'] . ' \'s Score: </label>
-                                                                  <input type="number" value="' . $displayAllSingle['team_one_score'] . '" class="form-control" readonly>
-                                                                  <label>' . $displayAllSingle['team2_name'] . ' \'s Score: </label>
-                                                                  <input type="number" value="' . $displayAllSingle['team_two_score'] . '" class="form-control" readonly>
+                                                          <form action="generateMatches.php" method="post">  
+                                                              <div class="modal-header">
+                                                                  <h5 class="modal-title" id="view' . $uniqueId . 'Label">Score Board</h5>
                                                               </div>
-                                                          </div>
-                                                          <div class="modal-footer">
-                                                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                          </div>
+                                                              <div class="modal-body">
+                                                                  <div class="form-group">
+                                                                      <label>' . $displayAllSingle['team1_name'] . ' \'s Score: </label>
+                                                                      <input type="number" name="teamOneScore" value="' . $displayAllSingle['team_one_score'] . '" class="form-control">
+                                                                      <label>' . $displayAllSingle['team2_name'] . ' \'s Score: </label>
+                                                                      <input type="number" name="teamTwoScore" value="' . $displayAllSingle['team_two_score'] . '" class="form-control">
+                                                                      <input type="text" name="teamOneName" value="' . $displayAllSingle['team1_name'] . '" hidden>
+                                                                      <input type="text" name="teamTwoName" value="' . $displayAllSingle['team2_name'] . '" hidden>
+                                                                      <input type="number" name="team1_id" value="' . $displayAllSingle['team1'] . '" hidden>
+                                                                      <input type="number" name="team2_id" value="' . $displayAllSingle['team2'] . '" hidden>
+                                                                      <input type="text" name="game_type" value="' . $displayAllSingle['game_type'] . '" hidden>
+                                                                      <input type="number" name="game_id" value="' . $displayAllSingle['game_id'] . '" hidden>
+                                                                      <input type="number" name="event_id" value="' . $displayAllSingle['event_id'] . '" hidden>
+                                                                      <input type="number" name="id" value="' . $displayAllSingle['id'] . '" hidden>
+                                                                      <input type="text" name="type" value="' . $displayAllSingle['type'] . '" hidden>
+                                                                      <input type="text" name="EliType" value="' . $displayAllSingle['EliType'] . '" hidden>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+
+                                                              
+                                                              </div>
+                                                          </form>
                                                       </div>
                                                   </div>
                                               </div>
@@ -517,6 +536,45 @@ ob_end_flush();
                                                                   </td>
 
                                                                   ';
+
+                                                                  echo '
+                                                                  <div class="modal fade" id="view' . $uniqueId . '" tabindex="-1" role="dialog" aria-labelledby="view' . $uniqueId . 'Label" aria-hidden="true">
+                                                                      <div class="modal-dialog" role="document">
+                                                                          <div class="modal-content">
+                                                                              <form action="generateMatches.php" method="post">  
+                                                                                  <div class="modal-header">
+                                                                                      <h5 class="modal-title" id="view' . $uniqueId . 'Label">Score Board</h5>
+                                                                                  </div>
+                                                                                  <div class="modal-body">
+                                                                                      <div class="form-group">
+                                                                                          <label>' . $displayAllDouble['team1_name'] . ' \'s Score: </label>
+                                                                                          <input type="number" name="teamOneScore" value="' . $displayAllDouble['team_one_score'] . '" class="form-control">
+                                                                                          <label>' . $displayAllDouble['team2_name'] . ' \'s Score: </label>
+                                                                                          <input type="number" name="teamTwoScore" value="' . $displayAllDouble['team_two_score'] . '" class="form-control">
+                                                                                          <input type="text" name="teamOneName" value="' . $displayAllDouble['team1_name'] . '" hidden>
+                                                                                          <input type="text" name="teamTwoName" value="' . $displayAllDouble['team2_name'] . '" hidden>
+                                                                                          <input type="number" name="team1_id" value="' . $displayAllDouble['team1'] . '" hidden>
+                                                                                          <input type="number" name="team2_id" value="' . $displayAllDouble['team2'] . '" hidden>
+                                                                                          <input type="text" name="game_type" value="' . $displayAllDouble['game_type'] . '" hidden>
+                                                                                          <input type="number" name="game_id" value="' . $displayAllDouble['game_id'] . '" hidden>
+                                                                                          <input type="number" name="event_id" value="' . $displayAllDouble['event_id'] . '" hidden>
+                                                                                          <input type="number" name="id" value="' . $displayAllDouble['id'] . '" hidden>
+                                                                                          <input type="text" name="type" value="' . $displayAllDouble['type'] . '" hidden>
+                                                                                          <input type="text" name="EliType" value="' . $displayAllDouble['EliType'] . '" hidden>
+                                                                                      </div>
+                                                                                  </div>
+                                                                                  <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+
+                                                                                  </div>
+                                                                              </form>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                                  ';
+
+                                                                  
                                                                   echo' 
                                                                   <div class="modal fade" id="score'.$uniqueId.'" tabindex="-1" role="dialog" aria-labelledby="score'.$uniqueId.'Label" aria-hidden="true">
                                                                        <div class="modal-dialog" role="document">
@@ -547,7 +605,10 @@ ob_end_flush();
                                                                                                          
                                                                                                          
                                                                                                  
-                                                                                               ';                                                                                                          
+                                                                                               ';   
+                                                                                               
+                                                                                               
+                                       
                                                                                               echo' </div>
                                                                                        </div>
                                                                                        <div class="modal-footer">
