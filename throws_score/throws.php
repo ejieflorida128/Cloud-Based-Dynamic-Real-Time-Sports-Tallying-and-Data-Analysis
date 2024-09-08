@@ -594,13 +594,13 @@ $meter = $_GET['meter'];
                                                                                                                </div>
                                                                                                                <div class="modal-body">
                                                                                                                        <div class="form-group">
-                                                                                                                      <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                      <label for="javelinSet1" style="text-align: left; display: block;">Enter Discus Throw (Set 1) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required>
 
-                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Discus Throw (Set 2) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required>
 
-                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Discus Throw (Set 3) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required>
 
                                                                                                                                 <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
@@ -630,13 +630,13 @@ $meter = $_GET['meter'];
                                                                                                                </div>
                                                                                                                <div class="modal-body">
                                                                                                                        <div class="form-group">
-                                                                                                                        <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                        <label for="javelinSet1" style="text-align: left; display: block;">Enter Discus Throw (Set 1) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required disabled>
 
-                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Discus Throw (Set 2) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required disabled>
 
-                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Discus Throw (Set 3) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required disabled>
 
                                                                                                                                 <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
@@ -748,13 +748,13 @@ $meter = $_GET['meter'];
                                                                                                                  </div>
                                                                                                                  <div class="modal-body">
                                                                                                                          <div class="form-group">
-                                                                                                                       <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                       <label for="javelinSet1" style="text-align: left; display: block;">Enter Shotput Throw (Set 1) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required>
 
-                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Shotput Throw (Set 2) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required>
 
-                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Shotput Throw (Set 3) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required>
 
                                                                                                                                 <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
@@ -784,13 +784,13 @@ $meter = $_GET['meter'];
                                                                                                                  </div>
                                                                                                                  <div class="modal-body">
                                                                                                                          <div class="form-group">
-                                                                                                                          <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                          <label for="javelinSet1" style="text-align: left; display: block;">Enter Shotput Throw (Set 1) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required disabled>
 
-                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Shotput Throw (Set 2) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required disabled>
 
-                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Shotput Throw (Set 3) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required disabled>
 
                                                                                                                                 <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">

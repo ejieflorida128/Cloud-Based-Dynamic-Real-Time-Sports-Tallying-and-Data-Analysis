@@ -280,7 +280,50 @@ ob_end_flush();
               <a href="../scoring_info/field.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE'] ?>" class="btn btn-danger">Back</a>
               </div>
               <div class="top2">
-              <a href="../scoring_info/field.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE'] ?>" class="btn btn-success">Submit Scores</a>
+             
+              <?php
+
+$event_id = $_GET['event_id']; 
+$game_id = $_GET['game_id'];    
+$meter = $_GET['meter'];  
+  
+  if($_GET['meter'] == 'long'){
+     $check = "SELECT COUNT(*) AS count FROM players WHERE event_id = '$event_id' AND game_id = '$game_id' AND choose_type = '$meter' AND game = 'Score'";
+     $query = mysqli_query($conn, $check);
+     $result = mysqli_fetch_assoc($query);
+      if($result['count'] == 0){
+          
+     
+ ?>
+         <a href="score.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE']; ?>&&meter=<?php echo $_GET['meter']; ?>" class="btn btn-success">Submit Scores</a> 
+    <?php
+      }
+
+    }else if($_GET['meter'] == 'high'){
+      $check = "SELECT COUNT(*) AS count FROM players WHERE event_id = '$event_id' AND game_id = '$game_id' AND choose_type = '$meter' AND game = 'Score'";
+      $query = mysqli_query($conn, $check);
+      $result = mysqli_fetch_assoc($query);
+       if($result['count'] == 0){
+?>
+  <a href="score.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE']; ?>&&meter=<?php echo $_GET['meter']; ?>" class="btn btn-success">Submit Scores</a> 
+    <?php
+      }
+
+    }else if($_GET['meter'] == 'triple'){
+
+      $check = "SELECT COUNT(*) AS count FROM players WHERE event_id = '$event_id' AND game_id = '$game_id' AND choose_type = '$meter' AND game = 'Score'";
+      $query = mysqli_query($conn, $check);
+      $result = mysqli_fetch_assoc($query);
+       if($result['count'] == 0){
+
+  
+?>
+  <a href="score.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE']; ?>&&meter=<?php echo $_GET['meter']; ?>" class="btn btn-success">Submit Scores</a> 
+    <?php
+      }
+
+    }
+?>
               </div>
             </div>
              
@@ -393,13 +436,13 @@ ob_end_flush();
                                                                                                                         </div>
                                                                                                                         <div class="modal-body">
                                                                                                                                 <div class="form-group">
-                                                                                                                               <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                               <label for="javelinSet1" style="text-align: left; display: block;">Enter Long Jump (Set 1) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required>
 
-                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Long Jump (Set 2) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required>
 
-                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Long Jump (Set 3) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required>
 
                                                                                                                                 <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
@@ -430,13 +473,13 @@ ob_end_flush();
                                                                                                                         </div>
                                                                                                                         <div class="modal-body">
                                                                                                                                 <div class="form-group">
-                                                                                                                               <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                               <label for="javelinSet1" style="text-align: left; display: block;">Enter Long Jump (Set 1) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required disabled>
 
-                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Long Jump (Set 2) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required disabled>
 
-                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Long Jump (Set 3) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required disabled>
 
                                                                                                                                 <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
@@ -551,13 +594,13 @@ ob_end_flush();
                                                                                                                </div>
                                                                                                                <div class="modal-body">
                                                                                                                        <div class="form-group">
-                                                                                                                      <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                      <label for="javelinSet1" style="text-align: left; display: block;">Enter High Jump (Set 1) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required>
 
-                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter High Jump (Set 2) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required>
 
-                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter High Jump (Set 3) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required>
 
                                                                                                                                 <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
@@ -587,13 +630,13 @@ ob_end_flush();
                                                                                                                </div>
                                                                                                                <div class="modal-body">
                                                                                                                        <div class="form-group">
-                                                                                                                        <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                        <label for="javelinSet1" style="text-align: left; display: block;">Enter High Jump (Set 1) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required disabled>
 
-                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter High Jump (Set 2) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required disabled>
 
-                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter High Jump (Set 3) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required disabled>
 
                                                                                                                                 <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
@@ -705,13 +748,13 @@ ob_end_flush();
                                                                                                                  </div>
                                                                                                                  <div class="modal-body">
                                                                                                                          <div class="form-group">
-                                                                                                                       <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                       <label for="javelinSet1" style="text-align: left; display: block;">Enter Triple Jump (Set 1) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required>
 
-                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Triple Jump (Set 2) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required>
 
-                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Triple Jump (Set 3) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required>
 
                                                                                                                                 <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
@@ -741,13 +784,13 @@ ob_end_flush();
                                                                                                                  </div>
                                                                                                                  <div class="modal-body">
                                                                                                                          <div class="form-group">
-                                                                                                                          <label for="javelinSet1" style="text-align: left; display: block;">Enter Javelin Throw (Set 1) Distance (in meters):</label>
+                                                                                                                          <label for="javelinSet1" style="text-align: left; display: block;">Enter Triple Jump (Set 1) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet1" name="Set1" value="' . htmlspecialchars($getNowRuns['Set1']) . '" step="0.01" min="0" required disabled>
 
-                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 2) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet2" style="text-align: left; display: block; margin-top: 10px;">Enter Triple Jump (Set 2) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet2" name="Set2" value="' . htmlspecialchars($getNowRuns['Set2']) . '" step="0.01" min="0" required disabled>
 
-                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Javelin Throw (Set 3) Distance (in meters):</label>
+                                                                                                                                <label for="javelinSet3" style="text-align: left; display: block; margin-top: 10px;">Enter Triple Jump (Set 3) Distance (in meters):</label>
                                                                                                                                 <input type="number" class="form-control" id="javelinSet3" name="Set3" value="' . htmlspecialchars($getNowRuns['Set3']) . '" step="0.01" min="0" required disabled>
 
                                                                                                                                 <input type="hidden" id="hiddenInputName" name="PlayerId" value="' . htmlspecialchars($getNowRuns['id']) . '">
