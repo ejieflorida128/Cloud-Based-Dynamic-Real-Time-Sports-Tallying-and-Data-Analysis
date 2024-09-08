@@ -277,11 +277,54 @@ ob_end_flush();
             <div class="card-header pb-0">
             <div class="topStorage" style = "display: flex; justify-content: space-between;">
               <div class="top1">
-              <a href="../scoring_info/field.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE'] ?>" class="btn btn-danger">Back</a>
+              <a href="../scoring_info/field.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE']; ?>" class="btn btn-danger">Back</a>
               </div>
               <div class="top2">
-              <a href="../scoring_info/field.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE'] ?>" class="btn btn-success">Submit Scores</a>
-              </div>
+             
+                 <?php
+
+$event_id = $_GET['event_id']; 
+$game_id = $_GET['game_id'];    
+$meter = $_GET['meter'];  
+  
+  if($_GET['meter'] == 'javelin'){
+     $check = "SELECT COUNT(*) AS count FROM players WHERE event_id = '$event_id' AND game_id = '$game_id' AND choose_type = '$meter' AND game = 'Score'";
+     $query = mysqli_query($conn, $check);
+     $result = mysqli_fetch_assoc($query);
+      if($result['count'] == 0){
+          
+     
+ ?>
+         <a href="ScoreThrows.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE']; ?>&&meter=<?php echo $_GET['meter']; ?>" class="btn btn-success">Submit Scores</a> 
+    <?php
+      }
+
+    }else if($_GET['meter'] == 'discus'){
+      $check = "SELECT COUNT(*) AS count FROM players WHERE event_id = '$event_id' AND game_id = '$game_id' AND choose_type = '$meter' AND game = 'Score'";
+      $query = mysqli_query($conn, $check);
+      $result = mysqli_fetch_assoc($query);
+       if($result['count'] == 0){
+?>
+  <a href="ScoreThrows.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE']; ?>&&meter=<?php echo $_GET['meter']; ?>" class="btn btn-success">Submit Scores</a> 
+    <?php
+      }
+
+    }else if($_GET['meter'] == 'shotput'){
+
+      $check = "SELECT COUNT(*) AS count FROM players WHERE event_id = '$event_id' AND game_id = '$game_id' AND choose_type = '$meter' AND game = 'Score'";
+      $query = mysqli_query($conn, $check);
+      $result = mysqli_fetch_assoc($query);
+       if($result['count'] == 0){
+
+  
+?>
+  <a href="ScoreThrows.php?event_id=<?php echo $_SESSION['EVENT_ID']; ?>&&game_id=<?php echo $_SESSION['GAME_ID']; ?>&&game_type=<?php echo $_SESSION['GAME_TYPE']; ?>&&meter=<?php echo $_GET['meter']; ?>" class="btn btn-success">Submit Scores</a> 
+    <?php
+      }
+
+    }
+?>
+                </div>
             </div>
              
               
