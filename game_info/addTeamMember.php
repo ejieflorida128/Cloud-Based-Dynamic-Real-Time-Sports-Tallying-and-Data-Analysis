@@ -317,7 +317,7 @@
 
                                                     <div class="form-group" style = "margin: 40px; margin-left: 100px;">
                                                           <label for="team_name">Team Name: </label>
-                                                          <input type="text" id = "team_name" name = "team_name" class = "form-control" style = "width: 35vw;" value = "<?php echo $GETdATA['team_name']; ?>">
+                                                          <input type="text" id = "team_name" name = "team_name" class = "form-control" style = "width: 35vw;" value = "<?php echo $GETdATA['team_name']; ?>" readonly>
                                                             <?php
                                                                     if($game_type == 'Creative_Folk_Dance' || $game_type == 'Pop_Dance' || $game_type == 'Mass_Dance' || $game_type == 'Dance_Sports'){
                                                                       echo '<label for="player_count">Dancer Count: </label>';

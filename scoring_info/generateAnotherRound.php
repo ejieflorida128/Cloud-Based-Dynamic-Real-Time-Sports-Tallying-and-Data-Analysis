@@ -467,10 +467,15 @@ include('../connection/conn.php');
                             }else if($nextRound == 3){
                                     // for finals ( winner ) 1st and ( loser ) 2nd
 
+                                    addMedalTeamGames($conn,$gameId,$eventId,'bronze');
+                                    
+
                                     $type = 'silverANDgold';
 
                                     getNewGameForCustom($conn,$gameId,$eventId,$type);
-                            }else{
+                            }else if($nextRound == 4){
+                                addMedalTeamGames($conn,$gameId,$eventId,'silverANDgold');
+
                                 backToGameList($eventId,$gameId,$gameType);
                             }
 
@@ -545,11 +550,14 @@ include('../connection/conn.php');
         
                                     }else if($nextRound == 3){
                                             // for finals ( winner ) 1st and ( loser ) 2nd
+                                            addMedalPlayers($conn,$gameId,$eventId,'bronze');
         
                                             $type = 'silverANDgold';
         
                                             getNewGameForCustomSolo($conn,$gameId,$eventId,$type);
-                                    }else{
+                                    }else if($nextRound == 4){
+                                        addMedalPlayers($conn,$gameId,$eventId,'silverANDgold');
+                                        
                                         backToGameList($eventId,$gameId,$gameType);
                                     }
         
@@ -567,9 +575,197 @@ include('../connection/conn.php');
     }
     
 
+    function addMedalPlayers($conn,$gameId,$eventId,$type){
+
+        if($type == 'silverANDgold'){
+
+                // silver
+
+                $addSilverSQL = "SELECT * FROM game_matches WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = 4";
+                $querySilver = mysqli_query($conn,$addSilverSQL);
+
+                $loserID = 0;
+                $LoserTeamID = 0;
+                $LoserTeam = '';
+
+                $getSilver = mysqli_fetch_assoc($querySilver);
+
+                $loserID = $getSilver['loser_id'];
+                
+
+                $LoserPlayerSQL = "SELECT * FROM players WHERE id = $loserID";
+                $queryLoserPlayer = mysqli_query($conn,$LoserPlayerSQL);
+
+                $getDataLoserPlayer  = mysqli_fetch_assoc($queryLoserPlayer);
+
+                $LoserTeamID = $getDataLoserPlayer['team_id'];
+
+                // get team
+
+                $LoserTeamSQL = "SELECT * FROM teams WHERE id = $LoserTeamID";
+                $queryLoser = mysqli_query($conn,$LoserTeamSQL);
+
+                $getDataLoser  = mysqli_fetch_assoc($queryLoser);
+
+                $LoserTeam = $getDataLoser['team_name'];
+
+                // update silver medal
+                $updateSilverSQL = "UPDATE tally SET SILVER = SILVER + 1 WHERE event_id = '$eventId' AND team_name = '$LoserTeam'";
+                mysqli_query($conn,$updateSilverSQL);
 
 
-        
+                // gold
+
+                 $addGoldSQL = "SELECT * FROM game_matches WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = 4";
+                 $queryGold = mysqli_query($conn,$addGoldSQL);
+ 
+                 $WinnerID = 0;
+                 $WinnerTeamID = 0;
+                 $WinnerTeam = '';
+ 
+                 $getGold = mysqli_fetch_assoc($queryGold);
+ 
+                 $WinnerID = $getGold['winner_id'];
+                 
+ 
+                 $WinnerPlayerSQL = "SELECT * FROM players WHERE id = $WinnerID";
+                 $queryWinnerPlayer = mysqli_query($conn,$WinnerPlayerSQL);
+ 
+                 $getDataWinnerPlayer  = mysqli_fetch_assoc($queryWinnerPlayer);
+ 
+                 $WinnerTeamID = $getDataWinnerPlayer['team_id'];
+ 
+                 // get team
+ 
+                 $WinnerTeamSQL = "SELECT * FROM teams WHERE id = $WinnerTeamID";
+                 $queryWinner = mysqli_query($conn,$WinnerTeamSQL);
+ 
+                 $getDataWinner  = mysqli_fetch_assoc($queryWinner);
+ 
+                 $WinnerTeam = $getDataWinner['team_name'];
+ 
+                 // update Gold medal
+                 $updateGoldSQL = "UPDATE tally SET GOLD = GOLD + 1 WHERE event_id = '$eventId' AND team_name = '$WinnerTeam'";
+                 mysqli_query($conn,$updateGoldSQL);
+
+              
+        }else{
+            $addGoldSQL = "SELECT * FROM game_matches WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = 3";
+            $queryGold = mysqli_query($conn,$addGoldSQL);
+
+            $WinnerID = 0;
+            $WinnerTeamID = 0;
+            $WinnerTeam = '';
+
+            $getGold = mysqli_fetch_assoc($queryGold);
+
+            $WinnerID = $getGold['winner_id'];
+            
+
+            $WinnerPlayerSQL = "SELECT * FROM players WHERE id = $WinnerID";
+            $queryWinnerPlayer = mysqli_query($conn,$WinnerPlayerSQL);
+
+            $getDataWinnerPlayer  = mysqli_fetch_assoc($queryWinnerPlayer);
+
+            $WinnerTeamID = $getDataWinnerPlayer['team_id'];
+
+            // get team
+
+            $WinnerTeamSQL = "SELECT * FROM teams WHERE id = $WinnerTeamID";
+            $queryWinner = mysqli_query($conn,$WinnerTeamSQL);
+
+            $getDataWinner  = mysqli_fetch_assoc($queryWinner);
+
+            $WinnerTeam = $getDataWinner['team_name'];
+
+            // update Bronze medal
+            $updateBronzeSQL = "UPDATE tally SET BRONZE = BRONZE + 1 WHERE event_id = '$eventId' AND team_name = '$WinnerTeam'";
+            mysqli_query($conn,$updateBronzeSQL);
+        }
+
+}
+
+
+        function addMedalTeamGames($conn,$gameId,$eventId,$type){
+
+                    if($type == 'silverANDgold'){
+
+                            // silver
+
+                            $addSilverSQL = "SELECT * FROM game_matches WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = 4";
+                            $querySilver = mysqli_query($conn,$addSilverSQL);
+
+                            $loserID = 0;
+                            $LoserTeam = '';
+
+                            $getSilver = mysqli_fetch_assoc($querySilver);
+
+                                    $loserID = $getSilver['loser_id'];
+                            
+
+                            $LoserTeamSQL = "SELECT * FROM teams WHERE id = $loserID";
+                            $queryLoser = mysqli_query($conn,$LoserTeamSQL);
+
+                            $getDataLoser  = mysqli_fetch_assoc($queryLoser);
+
+                            $LoserTeam = $getDataLoser['team_name'];
+
+                            // update silver medal
+                            $updateSilverSQL = "UPDATE tally SET SILVER = SILVER + 5 WHERE event_id = '$eventId' AND team_name = '$LoserTeam'";
+                            mysqli_query($conn,$updateSilverSQL);
+
+
+                            // gold
+
+
+                            $addGoldSQL = "SELECT * FROM game_matches WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = 4";
+                            $queryGold = mysqli_query($conn,$addGoldSQL);
+
+                            $winnerID = 0;
+                            $winnerTeam = '';
+
+                            $getGold = mysqli_fetch_assoc($queryGold);
+
+                                    $winnerID = $getGold['winner_id'];
+                            
+
+                            $winnerTeamSQL = "SELECT * FROM teams WHERE id = $winnerID";
+                            $queryWinner = mysqli_query($conn,$winnerTeamSQL);
+
+                            $getDataWinner  = mysqli_fetch_assoc($queryWinner);
+
+                            $winnerTeam = $getDataWinner['team_name'];
+
+                            // update bronze medal
+                            $updateGoldSQL = "UPDATE tally SET GOLD = GOLD + 5 WHERE event_id = '$eventId' AND team_name = '$winnerTeam'";
+                            mysqli_query($conn,$updateGoldSQL);
+
+                          
+                    }else{
+                            $addBronzeSQL = "SELECT * FROM game_matches WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = 3";
+                            $query = mysqli_query($conn,$addBronzeSQL);
+
+                            $winnerID = 0;
+                            $winnerTeam = '';
+
+                            $getBronze = mysqli_fetch_assoc($query);
+
+                                    $winnerID = $getBronze['winner_id'];
+                            
+
+                            $winnerTeamSQL = "SELECT * FROM teams WHERE id = $winnerID";
+                            $queryWinner = mysqli_query($conn,$winnerTeamSQL);
+
+                            $getDataWinner  = mysqli_fetch_assoc($queryWinner);
+
+                            $winnerTeam = $getDataWinner['team_name'];
+
+                            // update bronze medal
+                            $updateBronzeSQL = "UPDATE tally SET BRONZE = BRONZE + 5 WHERE event_id = '$eventId' AND team_name = '$winnerTeam'";
+                            mysqli_query($conn,$updateBronzeSQL);
+                    }
+
+        }
     
 
 
@@ -582,6 +778,7 @@ include('../connection/conn.php');
 
                 if($type == 'bronze'){
                         // for 3rd  
+                            
                                 $getMatchesFor2ndRound = "SELECT * FROM teams WHERE game_id = '$gameId' AND event_id = '$eventId' AND last_match_status = 'Loser'";
                                 $query = mysqli_query($conn,$getMatchesFor2ndRound);
 
@@ -600,6 +797,7 @@ include('../connection/conn.php');
 
                                 $update2ndRound = "UPDATE game_matches SET status = 'game', round = '2', team1 = '$team1Id', team1_name = '$team1', team2 = '$team2Id', team2_name = '$team2' WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = '$match_info'";
                                 mysqli_query($conn,$update2ndRound);
+
 
                 }else{
                         // for 1st and 2nd

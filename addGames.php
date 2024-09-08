@@ -451,9 +451,10 @@ session_start();
                                                                 <option value="Painting">Painting</option>
                                                                 <option value="Poster_Making">On the Spot Poster Making</option>
                                                                 <option value="Phone_Photography">Phone Photography</option>
-                                                                <option value="Mr_and_Mrs_Panagtigi">Mr. and Mrs PANAGTIGI</option>
+                                
                                                                 <option value="Mass_Dance">Mass Dance</option>
                                                                 <option value="Dance_Sports">Dance Sports</option>
+                                                                <option value="Mr_and_Mrs_Panagtigi">Mr. and Mrs. PANAGTIGI</option>
                                                              
                                                                 
 
@@ -492,6 +493,12 @@ session_start();
                                                                           gameTypeSelect.innerHTML = `      
                                                                                 <option value="jumps" selected>All Option</option>
                                                                                `; 
+                                                                        }else if(programSelect === 'Creative_Folk_Dance' || programSelect === 'Pop_Dance' || programSelect === 'Vocal_Duet' || programSelect === 'Pop_Solo' ||  programSelect === 'Charcoal_Rendering' || programSelect === 'Pencil_Drawing' ||  programSelect === 'Painting' || programSelect === 'Poster_Making' || programSelect === 'Phone_Photography' || programSelect === 'Mr_and_Mrs_Panagtigi' || programSelect === 'Mass_Dance' || programSelect === 'Dance_Sports'){
+
+                                                                          gameTypeSelect.innerHTML = `      
+                                                                                <option value="cultural" selected>Default</option>
+                                                                               `; 
+                                                                          
                                                                         }else{
                                                                               gameTypeSelect.innerHTML = `
                                                                                 <option value="MSEG" selected>Custom Elimination with Placement Matches</option>

@@ -317,8 +317,8 @@ session_start();
 
         $winner = 'on-going';
         $loser = 'on-going';
-        $winner1 = 'on-going';
-        $loser1 = 'on-going';
+        $winner1 = '';
+        $loser1 = '';
        
 
         if ($getDataOfMacthInfo['team_one_score'] > $getDataOfMacthInfo['team_two_score']) {

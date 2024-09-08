@@ -22,28 +22,34 @@ $_SESSION['GameType'] = $gameType;
 
 if($gameStatus == 0){
     // Insert teams into the database
-    for($x = 1; $x <= $teamCount; $x++){
-        $sql = "INSERT INTO teams (game_id, event_id, team_name, team_number, logo) VALUES ('$gameId', '$event_id', 'Team Name', '$x', '../logo/default.png')";
+        $team = ['Cyber Falcon','Blazing Biz','Azure Dragons','Valient Sabertooth'];
+        $logo = ['../logo/bsit.jpg','../logo/bsba.jpg','../logo/labhigh.jpg','../logo/educ.jpg'];
+
+    for($x = 0; $x < $teamCount; $x++){
+        $sql = "INSERT INTO teams (game_id, event_id, team_name, team_number, logo) VALUES ('$gameId', '$event_id', '$team[$x]', '$x', '$logo[$x]')";
         mysqli_query($conn, $sql);
     }
 
-    // // Function to calculate the number of teams without byes
-    // function calculateGameStatusAndRound($numTeams){
-    //     $nextPowerOfTwo = pow(2, ceil(log($numTeams) / log(2)));
-    //     $numByes = $nextPowerOfTwo - $numTeams;
-    //     return $numTeams - $numByes;
-    // }
+               
+                $sqlCheckIfExisted = "SELECT * FROM tally WHERE event_id = '$event_id'";
+                $query = mysqli_query($conn, $sqlCheckIfExisted);
 
-    // $notBye = calculateGameStatusAndRound($teamCount);
+          
+                if ($query) {
+                   
+                    $number = mysqli_num_rows($query);
 
-    // // Update teams with bye status
-    // for($y = 1; $y <= $teamCount; $y++){
-    //     if($y > $notBye){
-    //         // Fixed the update query syntax to use AND
-    //         $sqlForBye = "UPDATE teams SET ifBye = 'Bye' WHERE game_id = $gameId AND event_id = $event_id AND team_number = $y";
-    //         mysqli_query($conn, $sqlForBye);
-    //     }
-    // }
+                    if ($number == 0) {
+                        for($x = 0; $x < $teamCount; $x++){
+                            $sql = "INSERT INTO tally (event_id, team_name) VALUES ('$event_id', '$team[$x]')";
+                            mysqli_query($conn, $sql);
+                        }
+                    }
+                } else {
+                    
+                    echo "Error: " . mysqli_error($conn);
+                }
+
 
     $update = 1;
     $sqlForUpdate = "UPDATE registered_game SET CreatedTeam = $update WHERE id = $gameId";
