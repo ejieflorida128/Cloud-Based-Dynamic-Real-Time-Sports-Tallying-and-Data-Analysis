@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2024 at 06:52 AM
+-- Generation Time: Sep 08, 2024 at 04:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -85,7 +85,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `event_name`, `number_of_teams`, `status`, `date`) VALUES
-(1, 'Intramurals 2024', 4, 'on-going', '2024-09-01 02:32:05');
+(1, 'Intramurals 2024', 4, 'on-going', '2024-09-08 02:18:00');
 
 -- --------------------------------------------------------
 
@@ -99,7 +99,9 @@ CREATE TABLE `game_matches` (
   `event_id` int(11) NOT NULL,
   `game_type` varchar(255) NOT NULL,
   `match_info` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
+  `EliType` varchar(255) NOT NULL,
   `round` int(11) NOT NULL,
   `team1` int(11) NOT NULL,
   `team1_name` varchar(255) NOT NULL,
@@ -115,6 +117,20 @@ CREATE TABLE `game_matches` (
   `loser_id` int(11) NOT NULL,
   `generate_round` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `game_matches`
+--
+
+INSERT INTO `game_matches` (`id`, `game_id`, `event_id`, `game_type`, `match_info`, `type`, `status`, `EliType`, `round`, `team1`, `team1_name`, `team1_1`, `team1_name1`, `team_one_score`, `team2`, `team2_name`, `team2_2`, `team2_name2`, `team_two_score`, `winner_id`, `loser_id`, `generate_round`) VALUES
+(1, 1, 1, 'Basketball_Men', '1', '', 'SCORE', '', 1, 1, 'Cyber Falcon', 0, '', 98, 4, 'Valient Sabertooth', 0, '', 87, 1, 4, 0),
+(2, 1, 1, 'Basketball_Men', '2', '', 'SCORE', '', 1, 3, 'Azure Dragons', 0, '', 98, 2, 'Blazing Biz', 0, '', 76, 3, 2, 0),
+(3, 1, 1, 'Basketball_Men', '3', '', 'SCORE', '', 2, 2, 'Blazing Biz', 0, '', 98, 4, 'Valient Sabertooth', 0, '', 100, 4, 2, 0),
+(4, 1, 1, 'Basketball_Men', '4', '', 'SCORE', '', 3, 1, 'Cyber Falcon', 0, '', 100, 3, 'Azure Dragons', 0, '', 98, 1, 3, 0),
+(5, 3, 1, 'Chess', '1', '', 'SCORE', 'MSEG', 1, 41, 'Ejie Florida', 0, '', 87, 42, 'Rogelio Cahigus', 0, '', 100, 42, 41, 0),
+(6, 3, 1, 'Chess', '2', '', 'SCORE', 'MSEG', 1, 43, 'Roel Tigas', 0, '', 98, 44, 'Jomel Bolima', 0, '', 100, 44, 43, 0),
+(7, 3, 1, 'Chess', '3', '', 'SCORE', 'MSEG', 2, 41, 'Ejie Florida', 0, '', 100, 43, 'Roel Tigas', 0, '', 98, 41, 43, 0),
+(8, 3, 1, 'Chess', '4', '', 'SCORE', 'MSEG', 3, 42, 'Rogelio Cahigus', 0, '', 98, 44, 'Jomel Bolima', 0, '', 100, 44, 42, 0);
 
 -- --------------------------------------------------------
 
@@ -168,7 +184,7 @@ CREATE TABLE `percentage` (
 INSERT INTO `percentage` (`id`, `percentageFrom`, `last_data`, `percent`) VALUES
 (1, 'pending_account', 2, -33.33),
 (2, 'approved_account', 2, 100),
-(3, 'total_events', 1, -66.67),
+(3, 'total_events', 0, -100),
 (4, 'total_matches', 8, 33.33);
 
 -- --------------------------------------------------------
@@ -204,94 +220,50 @@ CREATE TABLE `players` (
 --
 
 INSERT INTO `players` (`id`, `game_id`, `event_id`, `team_id`, `name`, `age`, `name1`, `age1`, `choose_type`, `First_Try`, `Set1`, `Set2`, `Set3`, `player_number`, `bracket`, `bracket_status`, `last_match_status`, `winner_number`, `lose_number`) VALUES
-(1, 1, 1, 1, 'Deff', 20, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(2, 1, 1, 1, 'yuff', 20, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(3, 1, 1, 1, 'Deff', 20, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(4, 1, 1, 1, 'yuff', 20, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(5, 1, 1, 1, 'Deff', 20, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(6, 1, 1, 1, 'yuff', 20, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(7, 1, 1, 1, 'lori', 20, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player3', '', 0, '', 0, 0),
-(8, 1, 1, 1, 'comi', 20, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player4', '', 0, '', 0, 0),
-(9, 1, 1, 2, 'Pp1', 20, '', 0, '100meter', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(10, 1, 1, 2, 'pp2', 20, '', 0, '100meter', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(11, 1, 1, 2, 'pp3', 20, '', 0, '200meter', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(12, 1, 1, 2, 'pp4', 20, '', 0, '200meter', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(13, 1, 1, 2, 'pp5', 20, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(14, 1, 1, 2, 'pp6', 20, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(15, 1, 1, 2, 'pp7', 20, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player3', '', 0, '', 0, 0),
-(16, 1, 1, 2, 'pp8', 20, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player4', '', 0, '', 0, 0),
-(17, 2, 1, 5, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(18, 2, 1, 5, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(19, 3, 1, 9, '', 0, '', 0, '100meter', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(20, 3, 1, 9, '', 0, '', 0, '100meter', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(21, 3, 1, 9, '', 0, '', 0, '200meter', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(22, 3, 1, 9, '', 0, '', 0, '200meter', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(23, 3, 1, 9, '', 0, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(24, 3, 1, 9, '', 0, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(25, 3, 1, 9, '', 0, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player3', '', 0, '', 0, 0),
-(26, 3, 1, 9, '', 0, '', 0, '400meter', 0.00, 0.00, 0.00, 0.00, 'player4', '', 0, '', 0, 0),
-(27, 2, 1, 6, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(28, 2, 1, 6, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(29, 2, 1, 7, 'tt1', 20, '', 0, 'javelin', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(30, 2, 1, 7, 'tt2', 20, '', 0, 'javelin', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(31, 2, 1, 7, 'tt3', 20, '', 0, 'discus', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(32, 2, 1, 7, 'tt4', 20, '', 0, 'discus', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(33, 2, 1, 7, 'tt5', 20, '', 0, 'shotput', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(34, 2, 1, 7, 'tt6', 20, '', 0, 'shotput', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(35, 2, 1, 8, 'dd1', 20, '', 0, 'javelin', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(36, 2, 1, 8, 'dd2', 20, '', 0, 'javelin', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(37, 2, 1, 8, 'dd3', 20, '', 0, 'discus', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(38, 2, 1, 8, 'dd4', 20, '', 0, 'discus', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(39, 2, 1, 8, 'dd5', 20, '', 0, 'shotput', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(40, 2, 1, 8, 'dd6', 20, '', 0, 'shotput', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(41, 4, 1, 13, 'pp1', 20, '', 0, 'javelin', 0.00, 14.45, 15.45, 1645.00, 'player1', '', 0, '', 0, 0),
-(42, 4, 1, 13, 'pp2', 20, '', 0, 'javelin', 0.00, 14.56, 16.45, 17.45, 'player2', '', 0, '', 0, 0),
-(43, 4, 1, 13, 'pp3', 20, '', 0, 'discus', 0.00, 12.56, 14.98, 20.45, 'player1', '', 0, '', 0, 0),
-(44, 4, 1, 13, 'pp4', 20, '', 0, 'discus', 0.00, 34.22, 22.45, 18.34, 'player2', '', 0, '', 0, 0),
-(45, 4, 1, 13, 'pp5', 20, '', 0, 'shotput', 0.00, 14.09, 21.67, 18.45, 'player1', '', 0, '', 0, 0),
-(46, 4, 1, 13, 'pp6', 20, '', 0, 'shotput', 0.00, 12.23, 23.45, 24.01, 'player2', '', 0, '', 0, 0),
-(47, 4, 1, 14, 'ii1', 20, '', 0, 'javelin', 0.00, 12.45, 15.23, 19.34, 'player1', '', 0, '', 0, 0),
-(48, 4, 1, 14, 'ii2', 20, '', 0, 'javelin', 0.00, 12.56, 14.26, 16.34, 'player2', '', 0, '', 0, 0),
-(49, 4, 1, 14, 'ii3', 20, '', 0, 'discus', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(50, 4, 1, 14, 'ii4', 20, '', 0, 'discus', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(51, 4, 1, 14, 'ii5', 20, '', 0, 'shotput', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(52, 4, 1, 14, 'ii6', 20, '', 0, 'shotput', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(53, 4, 1, 15, 'jj1', 20, '', 0, 'javelin', 0.00, 34.00, 19.23, 34.34, 'player1', '', 0, '', 0, 0),
-(54, 4, 1, 15, 'jj2', 20, '', 0, 'javelin', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(55, 4, 1, 15, 'jj3', 20, '', 0, 'discus', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(56, 4, 1, 15, 'jj4', 20, '', 0, 'discus', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(57, 4, 1, 15, 'jj5', 20, '', 0, 'shotput', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(58, 4, 1, 15, 'jj6', 20, '', 0, 'shotput', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(59, 4, 1, 16, 'nn1', 20, '', 0, 'javelin', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(60, 4, 1, 16, 'nn2', 20, '', 0, 'javelin', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(61, 4, 1, 16, 'nn3', 20, '', 0, 'discus', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(62, 4, 1, 16, 'nn4', 20, '', 0, 'discus', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(63, 4, 1, 16, 'nn5', 20, '', 0, 'shotput', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(64, 4, 1, 16, 'nn6', 20, '', 0, 'shotput', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(65, 5, 1, 17, 'yy1', 20, '', 0, 'long', 0.00, 34.45, 22.56, 28.45, 'player1', '', 0, '', 0, 0),
-(66, 5, 1, 17, 'yy2', 20, '', 0, 'long', 0.00, 27.23, 28.01, 29.34, 'player2', '', 0, '', 0, 0),
-(67, 5, 1, 17, 'yy3', 20, '', 0, 'high', 0.00, 23.00, 34.54, 21.45, 'player1', '', 0, '', 0, 0),
-(68, 5, 1, 17, 'yy4', 20, '', 0, 'high', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(69, 5, 1, 17, 'yy5', 20, '', 0, 'triple', 0.00, 12.45, 18.23, 19.56, 'player1', '', 0, '', 0, 0),
-(70, 5, 1, 17, 'yy6', 20, '', 0, 'triple', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(71, 5, 1, 18, 'oo1', 20, '', 0, 'long', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(72, 5, 1, 18, 'oo2', 20, '', 0, 'long', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(73, 5, 1, 18, 'oo3', 20, '', 0, 'high', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(74, 5, 1, 18, 'oo4', 20, '', 0, 'high', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(75, 5, 1, 18, 'oo5', 20, '', 0, 'triple', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(76, 5, 1, 18, 'oo6', 20, '', 0, 'triple', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(77, 5, 1, 19, 'tt1', 20, '', 0, 'long', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(78, 5, 1, 19, 'tt2', 20, '', 0, 'long', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(79, 5, 1, 19, 'tt3', 20, '', 0, 'high', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(80, 5, 1, 19, 'tt4', 20, '', 0, 'high', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(81, 5, 1, 19, 'tt5', 20, '', 0, 'triple', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(82, 5, 1, 19, 'tt6', 20, '', 0, 'triple', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(83, 5, 1, 20, 'bb1', 20, '', 0, 'long', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(84, 5, 1, 20, 'bb2', 20, '', 0, 'long', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(85, 5, 1, 20, 'bb3', 20, '', 0, 'high', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(86, 5, 1, 20, 'bb4', 20, '', 0, 'high', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
-(87, 5, 1, 20, 'bb5', 20, '', 0, 'triple', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
-(88, 5, 1, 20, 'bb6', 20, '', 0, 'triple', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0);
+(1, 1, 1, 1, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
+(2, 1, 1, 1, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
+(3, 1, 1, 1, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player3', '', 0, '', 0, 0),
+(4, 1, 1, 1, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player4', '', 0, '', 0, 0),
+(5, 1, 1, 1, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player5', '', 0, '', 0, 0),
+(6, 1, 1, 1, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player6', '', 0, '', 0, 0),
+(7, 1, 1, 1, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player7', '', 0, '', 0, 0),
+(8, 1, 1, 1, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player8', '', 0, '', 0, 0),
+(9, 1, 1, 1, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player9', '', 0, '', 0, 0),
+(10, 1, 1, 1, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player10', '', 0, '', 0, 0),
+(11, 1, 1, 2, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
+(12, 1, 1, 2, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
+(13, 1, 1, 2, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player3', '', 0, '', 0, 0),
+(14, 1, 1, 2, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player4', '', 0, '', 0, 0),
+(15, 1, 1, 2, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player5', '', 0, '', 0, 0),
+(16, 1, 1, 2, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player6', '', 0, '', 0, 0),
+(17, 1, 1, 2, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player7', '', 0, '', 0, 0),
+(18, 1, 1, 2, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player8', '', 0, '', 0, 0),
+(19, 1, 1, 2, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player9', '', 0, '', 0, 0),
+(20, 1, 1, 2, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player10', '', 0, '', 0, 0),
+(21, 1, 1, 3, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
+(22, 1, 1, 3, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
+(23, 1, 1, 3, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player3', '', 0, '', 0, 0),
+(24, 1, 1, 3, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player4', '', 0, '', 0, 0),
+(25, 1, 1, 3, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player5', '', 0, '', 0, 0),
+(26, 1, 1, 3, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player6', '', 0, '', 0, 0),
+(27, 1, 1, 3, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player7', '', 0, '', 0, 0),
+(28, 1, 1, 3, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player8', '', 0, '', 0, 0),
+(29, 1, 1, 3, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player9', '', 0, '', 0, 0),
+(30, 1, 1, 3, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player10', '', 0, '', 0, 0),
+(31, 1, 1, 4, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player1', '', 0, '', 0, 0),
+(32, 1, 1, 4, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player2', '', 0, '', 0, 0),
+(33, 1, 1, 4, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player3', '', 0, '', 0, 0),
+(34, 1, 1, 4, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player4', '', 0, '', 0, 0),
+(35, 1, 1, 4, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player5', '', 0, '', 0, 0),
+(36, 1, 1, 4, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player6', '', 0, '', 0, 0),
+(37, 1, 1, 4, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player7', '', 0, '', 0, 0),
+(38, 1, 1, 4, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player8', '', 0, '', 0, 0),
+(39, 1, 1, 4, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player9', '', 0, '', 0, 0),
+(40, 1, 1, 4, '', 0, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player10', '', 0, '', 0, 0),
+(41, 3, 1, 5, 'Ejie Florida', 10, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player1', '', 1, 'Winner', 1, 1),
+(42, 3, 1, 6, 'Rogelio Cahigus', 10, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player1', 'W', 1, 'Loser', 1, 1),
+(43, 3, 1, 7, 'Roel Tigas', 10, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player1', '', 1, 'Loser', 0, 2),
+(44, 3, 1, 8, 'Jomel Bolima', 10, '', 0, '', 0.00, 0.00, 0.00, 0.00, 'player1', 'W', 1, 'Winner', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -315,11 +287,34 @@ CREATE TABLE `registered_game` (
 --
 
 INSERT INTO `registered_game` (`event_id`, `game_type`, `status`, `img`, `CreatedTeam`, `id`, `EliminationType`, `meters`) VALUES
-(1, 'Runs_Men', 'need_information', 'stored_images/runs.png', 1, 1, 'null', 'runs'),
-(1, 'Throws_Men', 'need_information', 'stored_images/throws.jpg', 1, 2, 'null', 'throws'),
-(1, 'Runs_Women', 'need_information', 'stored_images/runs.png', 1, 3, 'null', 'runs'),
-(1, 'Throws_Men', 'submitted', 'stored_images/throws.jpg', 1, 4, 'null', 'throws'),
-(1, 'Jumps_Men', 'submitted', 'stored_images/jumps.jpg', 1, 5, '', '');
+(1, 'Basketball_Men', 'submitted', 'stored_images/basketball.avif', 1, 1, 'MSEG', 'null'),
+(1, 'Badminton_Men', 'need_information', 'stored_images/badminton.jpg', 0, 2, 'MSEG', 'null'),
+(1, 'Chess', 'submitted', 'stored_images/chess.webp', 1, 3, 'MSEG', 'null');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tally`
+--
+
+CREATE TABLE `tally` (
+  `id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `team_name` varchar(255) NOT NULL,
+  `GOLD` int(11) NOT NULL,
+  `SILVER` int(11) NOT NULL,
+  `BRONZE` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tally`
+--
+
+INSERT INTO `tally` (`id`, `event_id`, `team_name`, `GOLD`, `SILVER`, `BRONZE`) VALUES
+(1, 1, 'Cyber Falcon', 5, 0, 1),
+(2, 1, 'Blazing Biz', 0, 1, 0),
+(3, 1, 'Azure Dragons', 0, 5, 0),
+(4, 1, 'Valient Sabertooth', 1, 0, 5);
 
 -- --------------------------------------------------------
 
@@ -355,26 +350,14 @@ CREATE TABLE `teams` (
 --
 
 INSERT INTO `teams` (`id`, `game_id`, `event_id`, `team_name`, `team_number`, `logo`, `status`, `A`, `B`, `C`, `D`, `E`, `F`, `ifBye`, `number_of_player`, `bracket`, `bracket_status`, `last_match_status`, `lose_number`, `winner_number`) VALUES
-(1, 1, 1, 'Team 1', 1, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 0, '', 0, '', 0, 0),
-(2, 1, 1, 'Team 2', 2, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 0, '', 0, '', 0, 0),
-(3, 1, 1, 'Team Name', 3, '../logo/default.png', '', 0, 0, 0, 0, 0, 0, '', 0, '', 0, '', 0, 0),
-(4, 1, 1, 'Team Name', 4, '../logo/default.png', '', 0, 0, 0, 0, 0, 0, '', 0, '', 0, '', 0, 0),
-(5, 2, 1, 'Team 1', 1, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 2, '', 0, '', 0, 0),
-(6, 2, 1, 'Team 2', 2, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 2, '', 0, '', 0, 0),
-(7, 2, 1, 'Team 3', 3, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 2, '', 0, '', 0, 0),
-(8, 2, 1, 'Team 4', 4, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 2, '', 0, '', 0, 0),
-(9, 3, 1, 'Team 1', 1, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 0, '', 0, '', 0, 0),
-(10, 3, 1, 'Team Name', 2, '../logo/default.png', '', 0, 0, 0, 0, 0, 0, '', 0, '', 0, '', 0, 0),
-(11, 3, 1, 'Team Name', 3, '../logo/default.png', '', 0, 0, 0, 0, 0, 0, '', 0, '', 0, '', 0, 0),
-(12, 3, 1, 'Team Name', 4, '../logo/default.png', '', 0, 0, 0, 0, 0, 0, '', 0, '', 0, '', 0, 0),
-(13, 4, 1, 'T1', 1, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 2, '', 0, '', 0, 0),
-(14, 4, 1, 'T2', 2, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 2, '', 0, '', 0, 0),
-(15, 4, 1, 'T3', 3, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 2, '', 0, '', 0, 0),
-(16, 4, 1, 'T4', 4, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 2, '', 0, '', 0, 0),
-(17, 5, 1, 'Team 1', 1, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 2, '', 0, '', 0, 0),
-(18, 5, 1, 'Team 2', 2, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 2, '', 0, '', 0, 0),
-(19, 5, 1, 'Team 3', 3, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 2, '', 0, '', 0, 0),
-(20, 5, 1, 'Team 4', 4, '../logo/default.png', 'detailed', 0, 0, 0, 0, 0, 0, '', 2, '', 0, '', 0, 0);
+(1, 1, 1, 'Cyber Falcon', 0, '../logo/bsit.jpg', 'detailed', 0, 0, 0, 0, 0, 0, '', 10, 'W', 1, 'Winner', 0, 2),
+(2, 1, 1, 'Blazing Biz', 1, '../logo/bsba.jpg', 'detailed', 0, 0, 0, 0, 0, 0, '', 10, '', 1, 'Loser', 2, 0),
+(3, 1, 1, 'Azure Dragons', 2, '../logo/labhigh.jpg', 'detailed', 0, 0, 0, 0, 0, 0, '', 10, 'W', 1, 'Loser', 1, 1),
+(4, 1, 1, 'Valient Sabertooth', 3, '../logo/educ.jpg', 'detailed', 0, 0, 0, 0, 0, 0, '', 10, '', 1, 'Winner', 1, 1),
+(5, 3, 1, 'Cyber Falcon', 0, '../logo/bsit.jpg', 'detailed', 0, 0, 0, 0, 0, 0, '', 1, '', 0, '', 0, 0),
+(6, 3, 1, 'Blazing Biz', 1, '../logo/bsba.jpg', 'detailed', 0, 0, 0, 0, 0, 0, '', 1, '', 0, '', 0, 0),
+(7, 3, 1, 'Azure Dragons', 2, '../logo/labhigh.jpg', 'detailed', 0, 0, 0, 0, 0, 0, '', 1, '', 0, '', 0, 0),
+(8, 3, 1, 'Valient Sabertooth', 3, '../logo/educ.jpg', 'detailed', 0, 0, 0, 0, 0, 0, '', 1, '', 0, '', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -429,6 +412,12 @@ ALTER TABLE `registered_game`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tally`
+--
+ALTER TABLE `tally`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `teams`
 --
 ALTER TABLE `teams`
@@ -460,7 +449,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `game_matches`
 --
 ALTER TABLE `game_matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `matches`
@@ -478,19 +467,25 @@ ALTER TABLE `percentage`
 -- AUTO_INCREMENT for table `players`
 --
 ALTER TABLE `players`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `registered_game`
 --
 ALTER TABLE `registered_game`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tally`
+--
+ALTER TABLE `tally`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
