@@ -650,16 +650,16 @@ include('../connection/conn.php');
 
               
         }else{
-            $addGoldSQL = "SELECT * FROM game_matches WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = 3";
-            $queryGold = mysqli_query($conn,$addGoldSQL);
+            $addBronzeSQL = "SELECT * FROM game_matches WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = 3";
+            $queryBronze = mysqli_query($conn,$addBronzeSQL);
 
             $WinnerID = 0;
             $WinnerTeamID = 0;
             $WinnerTeam = '';
 
-            $getGold = mysqli_fetch_assoc($queryGold);
+            $getBronze = mysqli_fetch_assoc($queryBronze);
 
-            $WinnerID = $getGold['winner_id'];
+            $WinnerID = $getBronze['winner_id'];
             
 
             $WinnerPlayerSQL = "SELECT * FROM players WHERE id = $WinnerID";
