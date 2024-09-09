@@ -285,11 +285,11 @@ include('../connection/conn.php');
                 </div>
                 <div class="criteria-item">
                     <span>Musicianship</span>
-                    <span>45%</span>
+                    <span>35%</span>
                 </div>
                 <div class="criteria-item">
                     <span>Stage Deportment</span>
-                    <span>10%</span>
+                    <span>20%</span>
                 </div>
                 <div class="criteria-item">
                     <span>Total:</span>
@@ -326,12 +326,12 @@ include('../connection/conn.php');
                                     <input type="number" id="tone-quality" name="A" placeholder="Score (0 - 45)" min="0" max="45" value="<?php echo htmlspecialchars($getResult['A']); ?>">
                                 </div>
                                 <div class="criteria-item">
-                                    <label for="musicianship">Musicianship (45%)</label>
-                                    <input type="number" id="musicianship" name="B" placeholder="Score (0 - 45)" min="0" max="45" value="<?php echo htmlspecialchars($getResult['B']); ?>">
+                                    <label for="musicianship">Musicianship (35%)</label>
+                                    <input type="number" id="musicianship" name="B" placeholder="Score (0 - 35)" min="0" max="35" value="<?php echo htmlspecialchars($getResult['B']); ?>">
                                 </div>
                                 <div class="criteria-item">
-                                    <label for="stage-deportment">Stage Deportment (10%)</label>
-                                    <input type="number" id="stage-deportment" name="C" placeholder="Score (0 - 10)" min="0" max="10" value="<?php echo htmlspecialchars($getResult['C']); ?>">
+                                    <label for="stage-deportment">Stage Deportment (20%)</label>
+                                    <input type="number" id="stage-deportment" name="C" placeholder="Score (0 - 20)" min="0" max="20" value="<?php echo htmlspecialchars($getResult['C']); ?>">
                                 </div>
                                 <div class="criteria-item">
                                     <label for="total">Total:</label>
@@ -368,7 +368,7 @@ include('../connection/conn.php');
                                 document.getElementById('stage-deportment').addEventListener('input', updateTotal);
 
                                 // Initialize total value on page load
-                                window.onload = updateTotal;
+                                window.onload = updateTotal();
                             </script>
                         </form>
 

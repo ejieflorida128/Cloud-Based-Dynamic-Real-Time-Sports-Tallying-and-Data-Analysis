@@ -285,7 +285,7 @@ include('../connection/conn.php');
                 </div>
                 <div class="criteria-item">
                     <span>Blending</span>
-                    <span>30%</span>
+                    <span>25%</span>
                 </div>
                 <div class="criteria-item">
                     <span>Interpretation</span>
@@ -293,7 +293,7 @@ include('../connection/conn.php');
                 </div>
                 <div class="criteria-item">
                     <span>Diction</span>
-                    <span>10%</span>
+                    <span>15%</span>
                 </div>
                 <div class="criteria-item">
                     <span>Stage Deportment</span>
@@ -333,16 +333,16 @@ include('../connection/conn.php');
                                 <input type="number" id="voice-quality" name="A" placeholder="Score (0 - 30)" min="0" max="30" value="<?php echo htmlspecialchars($getResult['A']); ?>">
                             </div>
                             <div class="criteria-item">
-                                <label for="blending">Blending (30%)</label>
-                                <input type="number" id="blending" name="B" placeholder="Score (0 - 30)" min="0" max="30" value="<?php echo htmlspecialchars($getResult['B']); ?>">
+                                <label for="blending">Blending (25%)</label>
+                                <input type="number" id="blending" name="B" placeholder="Score (0 - 25)" min="0" max="25" value="<?php echo htmlspecialchars($getResult['B']); ?>">
                             </div>
                             <div class="criteria-item">
                                 <label for="interpretation">Interpretation (20%)</label>
                                 <input type="number" id="interpretation" name="C" placeholder="Score (0 - 20)" min="0" max="20" value="<?php echo htmlspecialchars($getResult['C']); ?>">
                             </div>
                             <div class="criteria-item">
-                                <label for="diction">Diction (10%)</label>
-                                <input type="number" id="diction" name="D" placeholder="Score (0 - 10)" min="0" max="10" value="<?php echo htmlspecialchars($getResult['D']); ?>">
+                                <label for="diction">Diction (15%)</label>
+                                <input type="number" id="diction" name="D" placeholder="Score (0 - 15)" min="0" max="15" value="<?php echo htmlspecialchars($getResult['D']); ?>">
                             </div>
                             <div class="criteria-item">
                                 <label for="stage-deportment">Stage Deportment (10%)</label>
@@ -388,7 +388,7 @@ include('../connection/conn.php');
                               document.getElementById('stage-deportment').addEventListener('input', updateTotal);
 
                               // Initialize total value on page load
-                              window.onload = updateTotal;
+                              window.onload = updateTotal();
                           </script>
 
                     </form>

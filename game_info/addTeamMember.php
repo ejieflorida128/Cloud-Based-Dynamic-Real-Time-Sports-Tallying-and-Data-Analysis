@@ -2473,14 +2473,14 @@
                                                                                                        
                                                                                                               echo "
                                                                                                                      <div class='box' class='col-md-4 col-sm-6' style='box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 45%; height: 350px;'>
-                                                                                                                         <label style='margin-top: 2px;'>Dancer1 Name: </label>
+                                                                                                                         <label style='margin-top: 2px;'>Singer 1 Name: </label>
                                                                                                                          <input type='text' class='form-control'name = '$getName1' value='$name1'> 
-                                                                                                                         <label style='margin-top: 10px;'>Dancer1 Age: </label>
+                                                                                                                         <label style='margin-top: 10px;'>Singer 1 Age: </label>
                                                                                                                          <input type='text' class='form-control' name = '$getAge1' value='$age1'>
 
-                                                                                                                          <label style='margin-top: 30px;'>Dancer2 Name: </label>
+                                                                                                                          <label style='margin-top: 30px;'>Single 2 Name: </label>
                                                                                                                          <input type='text' class='form-control'name = '$getName2' value='$name2'> 
-                                                                                                                         <label style='margin-top: 10px;'>Dancer2 Age: </label>
+                                                                                                                         <label style='margin-top: 10px;'>Singer 2 Age: </label>
                                                                                                                          <input type='text' class='form-control' name = '$getAge2' value='$age2'>
                                                                                                                           
                                                                                                                      </div>
