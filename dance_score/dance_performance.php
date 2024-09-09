@@ -281,8 +281,36 @@ include('../connection/conn.php');
 
 
                   ?>
-<a href="../scoring_info/viewDetails.php?event_id=<?php echo $_SESSION['EventId'] ?> &&number_of_teams=<?php echo $team_count ?>" class = "btn btn-danger">BACK</a>
+              <div class="divButtons" style = "display: flex; justify-content: space-between">
+                    <div class="button1">
+                    <a href="../scoring_info/viewDetails.php?event_id=<?php echo $_SESSION['EventId'] ?> &&number_of_teams=<?php echo $team_count ?>" class = "btn btn-danger">BACK</a>
+                    </div>
 
+                    <div class="button2">
+
+                      <?php 
+                          $Event_ID = $_SESSION['EventId'];
+                          $Game_ID = $_SESSION['GameId'];
+
+                          $checkIfExist = "SELECT COUNT(*) AS count FROM teams WHERE event_id = '$Event_ID' AND game_id ='$Game_ID' AND game = 'Score'";
+
+                          $result = mysqli_query($conn, $checkIfExist);
+                          $row = mysqli_fetch_assoc($result);
+
+                          if ($row['count'] > 0) {
+                              // Rows exist
+                             
+                          } else {
+                              // No rows exist
+                             
+                        
+
+                      ?>
+                      
+                      <a href="tally.php?event_id=<?php echo $_SESSION['EventId']; ?> &&game_id=<?php echo $_SESSION['GameId']; ?>&&game_type=<?php echo $_SESSION['GameType']; ?>" class = "btn btn-success">Submit Scores</a>
+                            <?php   } ?>
+                    </div>
+              </div>
                 
             </div>
             <div class="card-body px-0 pt-0 pb-2" style = "margin-top: -20px;">

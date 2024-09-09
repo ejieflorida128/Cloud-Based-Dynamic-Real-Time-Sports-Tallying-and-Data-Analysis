@@ -275,120 +275,110 @@ include('../connection/conn.php');
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6>Team Score and Criteria for Judging</h6>
-              <a href="dance_performance.php?event_id=<?php echo $_SESSION['EventId']; ?>&&game_id=<?php echo $_SESSION['GameId']; ?>&&game_type=<?php echo $_SESSION['GameType']; ?>" class = "btn btn-danger">Back</a>
+              <a href="dance_performance.php?event_id=<?php echo $_SESSION['EventId']; ?>&&game_id=<?php echo $_SESSION['GameId']; ?>&&game_type=<?php echo $_SESSION['GameType']; ?>" class="btn btn-danger">Back</a>
 
-                    <div class="criteria-container">
-                            <div class="criteria-title">Criteria for Judging</div>
-                            <div class="criteria-item">
-                                <span>Performance Skill and Mastery of the dance</span>
-                                <span>30%</span>
-                            </div>
-                            <div class="criteria-item">
-                                <span>Interpretation, Creativity, Originality</span>
-                                <span>20%</span>
-                            </div>
-                            <div class="criteria-item">
-                                <span>Costume, Music, Accessories and Equipment</span>
-                                <span>20%</span>
-                            </div>
-                            <div class="criteria-item">
-                                <span>Staging</span>
-                                <span>20%</span>
-                            </div>
-                            <div class="criteria-item">
-                                <span>Over-All Impact</span>
-                                <span>10%</span>
-                            </div>
-                            <div class="criteria-item">
-                                <span>Total:</span>
-                                <span>100%</span>
-                            </div>
-                        </div>
-                         
-                            
+                  <div class="criteria-container">
+                      <div class="criteria-title">Criteria for Judging</div>
+                      <div class="criteria-item">
+                          <span>Performance Skill and Mastery of the dance</span>
+                          <span>30%</span>
+                      </div>
+                      <div class="criteria-item">
+                          <span>Movement Interpretation</span>
+                          <span>25%</span>
+                      </div>
+                      <div class="criteria-item">
+                          <span>Staging</span>
+                          <span>20%</span>
+                      </div>
+                      <div class="criteria-item">
+                          <span>Costume, Accessories and Equipment</span>
+                          <span>15%</span>
+                      </div>
+                      <div class="criteria-item">
+                          <span>Over-All Impact</span>
+                          <span>10%</span>
+                      </div>
+                      <div class="criteria-item">
+                          <span>Total:</span>
+                          <span>100%</span>
+                      </div>
+                  </div>
 
-              </div>
+                  <div class="row" id='secondPart'>
+                      <?php
+                          $team_id = $_GET['team_id'];
+                          $getSql = "SELECT * FROM teams WHERE id = $team_id";
+                          $getQuery = mysqli_query($conn, $getSql);
+                          while ($getResult = mysqli_fetch_assoc($getQuery)) {
+                      ?>
+                      <form action="options.php" method="post">
+                          <div class="criteria-container">
+                              <div class="criteria-title">Scoring Card</div>
+                              <div class="criteria-item">
+                                  <label for="performance-skill">Performance Skill and Mastery of the dance (30%)</label>
+                                  <input type="number" id="performance-skill" name="A" placeholder="Score (0 - 30)" min="0" max="30" value="<?php echo $getResult['A']; ?>">
+                              </div>
+                              <div class="criteria-item">
+                                  <label for="interpretation">Movement Interpretation (25%)</label>
+                                  <input type="number" id="interpretation" name="B" placeholder="Score (0 - 25)" min="0" max="25" value="<?php echo $getResult['B']; ?>">
+                              </div>
+                              <div class="criteria-item">
+                                  <label for="staging">Staging (20%)</label>
+                                  <input type="number" id="staging" name="C" placeholder="Score (0 - 20)" min="0" max="20" value="<?php echo $getResult['C']; ?>">
+                              </div>
+                              <div class="criteria-item">
+                                  <label for="costume">Costume, Accessories and Equipment (15%)</label>
+                                  <input type="number" id="costume" name="D" placeholder="Score (0 - 15)" min="0" max="15" value="<?php echo $getResult['D']; ?>">
+                              </div>
+                              <div class="criteria-item">
+                                  <label for="overall-impact">Over-All Impact (10%)</label>
+                                  <input type="number" id="overall-impact" name="E" placeholder="Score (0 - 10)" min="0" max="10" value="<?php echo $getResult['E']; ?>">
+                              </div>
+                              <div class="criteria-item">
+                                  <label for="total">Total:</label>
+                                  <input type="number" id="total" name="total" placeholder="Score (0 - 100)" min="0" max="100" readonly>
+                              </div>
+                              <input type="text" id="team_id" name="team_id" hidden value="<?php echo $_GET['team_id']; ?>">
+                              <input type="text" id="gameType" name="gameType" hidden value="Creative_Folk_Dance">
 
-              <div class="row" id = 'secondPart'>
-                    <!-- second part of the criteria -->'
+                              <div class="form-actions">
+                                  <input type="submit" class="btn btn-success" value="Submit">
+                              </div>
+                          </div>
+                      </form>
+                      <?php
+                          }
+                      ?>
+                  </div>
 
-                    <?php
-                      $team_id = $_GET['team_id'];
+                  <script>
+                      function updateTotal() {
+                          // Get all input elements for scores and parse their values
+                          const performanceSkill = parseFloat(document.getElementById('performance-skill').value) || 0;
+                          const interpretation = parseFloat(document.getElementById('interpretation').value) || 0;
+                          const staging = parseFloat(document.getElementById('staging').value) || 0;
+                          const costume = parseFloat(document.getElementById('costume').value) || 0;
+                          const overallImpact = parseFloat(document.getElementById('overall-impact').value) || 0;
 
-                    
-                            $getSql = "SELECT * FROM teams WHERE id = $team_id";
-                            $getQuery = mysqli_query($conn,$getSql);
-                            
-                            while($getResult = mysqli_fetch_assoc($getQuery)){
+                          // Calculate total score
+                          const total = performanceSkill + interpretation + staging + costume + overallImpact;
 
-                           
-                    ?>
+                          // Update the total input field
+                          document.getElementById('total').value = total + ' / 100';
+                      }
 
-                    <form action="options.php" method="post">
-                        <div class="criteria-container">
-                        <div class="criteria-title">Scoring Card</div>
-                        <div class="criteria-item">
-                                <label for="performance-skill">Performance Skill and Mastery of the dance (30%)</label>
-                                <input type="number" id="performance-skill" name="A" placeholder="Score (0 - 30)" min="0" max="30" value="<?php echo $getResult['A']; ?>">
-                            </div>
-                            <div class="criteria-item">
-                                <label for="interpretation">Interpretation, Creativity, Originality (20%)</label>
-                                <input type="number" id="interpretation" name="B" placeholder="Score (0 - 20)" min="0" max="20" value="<?php echo $getResult['B']; ?>">
-                            </div>
-                            <div class="criteria-item">
-                                <label for="costume">Costume, Music, Accessories and Equipment (20%)</label>
-                                <input type="number" id="costume" name="C" placeholder="Score (0 - 20)" min="0" max="20" value="<?php echo $getResult['C']; ?>">
-                            </div>
-                            <div class="criteria-item">
-                                <label for="staging">Staging (20%)</label>
-                                <input type="number" id="staging" name="D" placeholder="Score (0 - 20)" min="0" max="20" value="<?php echo $getResult['D']; ?>">
-                            </div>
-                            <div class="criteria-item">
-                                <label for="overall-impact">Over-All Impact (10%)</label>
-                                <input type="number" id="overall-impact" name="E" placeholder="Score (0 - 10)" min="0" max="10" value="<?php echo $getResult['E']; ?>">
-                            </div>
-                            <div class="criteria-item">
-                                <label for="total">Total:</label>
-                                <input type="number" id="total" name="total" placeholder="Score (0 - 100)" min="0" max="100" readonly>
-                            </div>
-                            <input type="text" id="" name="team_id" placeholder="Score (0 - 100)" min="0" max="100" hidden value = "<?php echo $_GET['team_id'] ?>">
-                            <input type="text" id="" name="gameType" placeholder="Score (0 - 100)" min="0" max="100" hidden value = ''>
+                      // Attach event listeners to inputs
+                      document.getElementById('performance-skill').addEventListener('input', updateTotal);
+                      document.getElementById('interpretation').addEventListener('input', updateTotal);
+                      document.getElementById('staging').addEventListener('input', updateTotal);
+                      document.getElementById('costume').addEventListener('input', updateTotal);
+                      document.getElementById('overall-impact').addEventListener('input', updateTotal);
 
-                            <div class="form-actions">
-                                <button type="submit" class = "btn btn-success">Submit</button>
-                            </div>
-                        </div>
+                      // Initialize total value on page load
+                      window.onload = updateTotal();
+                  </script>
 
-                        <?php
-                           }
-                        ?>
-
-                          <script>
-                              function updateTotal() {
-                                  // Get all input elements for scores and parse their values
-                                  const performanceSkill = parseFloat(document.getElementById('performance-skill').value) || 0;
-                                  const interpretation = parseFloat(document.getElementById('interpretation').value) || 0;
-                                  const costume = parseFloat(document.getElementById('costume').value) || 0;
-                                  const staging = parseFloat(document.getElementById('staging').value) || 0;
-                                  const overallImpact = parseFloat(document.getElementById('overall-impact').value) || 0;
-
-                                  // Calculate total score
-                                  const total = performanceSkill + interpretation + costume + staging + overallImpact;
-
-                                  // Update the total input field
-                                  document.getElementById('total').value = total + ' / 100';
-                              }
-
-                              // Attach event listeners to inputs
-                              document.getElementById('performance-skill').addEventListener('input', updateTotal);
-                              document.getElementById('interpretation').addEventListener('input', updateTotal);
-                              document.getElementById('costume').addEventListener('input', updateTotal);
-                              document.getElementById('staging').addEventListener('input', updateTotal);
-                              document.getElementById('overall-impact').addEventListener('input', updateTotal);
-
-                              // Initialize total value on page load
-                              window.onload = updateTotal;
-                          </script>
 
                     </form>
 

@@ -5,7 +5,8 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $game_type = $_POST['gameType'];
             $team_id = $_POST['team_id'];
-            
+
+         
 
          
 
@@ -19,6 +20,8 @@
 
                     $sqlUpdate = "UPDATE teams SET A = $A, B = $B, C = $C, D = $D, E = $E WHERE id = $team_id";
                     mysqli_query($conn,$sqlUpdate);
+
+                
                     header('Location: criteriaForCreativeFolkDance.php?team_id=' . urlencode($team_id)); 
             }else if($game_type == 'Pop_Dance'){
                 $A = isset($_POST['A']) && $_POST['A'] !== '' ? $_POST['A'] : null;
