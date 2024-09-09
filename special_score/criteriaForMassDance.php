@@ -432,7 +432,7 @@ include('../connection/conn.php');
                                 document.getElementById('costumes').addEventListener('input', updateTotal);
 
                                 // Initialize total value on page load
-                                window.onload = updateTotal;
+                                window.onload = updateTotal();
                             </script>
 
 
