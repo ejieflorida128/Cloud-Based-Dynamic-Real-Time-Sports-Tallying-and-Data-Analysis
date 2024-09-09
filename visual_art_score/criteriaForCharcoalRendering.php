@@ -281,7 +281,7 @@ include('../connection/conn.php');
                     <div class="criteria-title">Criteria for Judging</div>
                     <div class="criteria-item">
                         <span>Concept</span>
-                        <span>10</span>
+                        <span>15</span>
                     </div>
                     <div class="criteria-subitem">
                         <ul>
@@ -304,7 +304,7 @@ include('../connection/conn.php');
                     </div>
                     <div class="criteria-item">
                         <span>Composition</span>
-                        <span>10</span>
+                        <span>5</span>
                     </div>
                     <div class="criteria-subitem">
                         <ul>
@@ -342,8 +342,8 @@ include('../connection/conn.php');
                     <div class="criteria-container">
                         <div class="criteria-title">Scoring Card</div>
                         <div class="criteria-item">
-                            <label for="concept">Concept (10)</label>
-                            <input type="number" id="concept" name="A" placeholder="Score (0 - 10)" min="0" max="10" value="<?php echo htmlspecialchars($getResult['A']); ?>">
+                            <label for="concept">Concept (15)</label>
+                            <input type="number" id="concept" name="A" placeholder="Score (0 - 15)" min="0" max="15" value="<?php echo htmlspecialchars($getResult['A']); ?>">
                         </div>
                         <div class="criteria-subitem">
                             <ul>
@@ -362,8 +362,8 @@ include('../connection/conn.php');
                             </ul>
                         </div>
                         <div class="criteria-item">
-                            <label for="composition">Composition (10)</label>
-                            <input type="number" id="composition" name="C" placeholder="Score (0 - 10)" min="0" max="10" value="<?php echo htmlspecialchars($getResult['C']); ?>">
+                            <label for="composition">Composition (5)</label>
+                            <input type="number" id="composition" name="C" placeholder="Score (0 - 5)" min="0" max="5" value="<?php echo htmlspecialchars($getResult['C']); ?>">
                         </div>
                         <div class="criteria-subitem">
                             <ul>
@@ -405,7 +405,7 @@ include('../connection/conn.php');
                     document.getElementById('composition').addEventListener('input', updateTotal);
 
                     // Initialize total value on page load
-                    window.onload = updateTotal;
+                    window.onload = updateTotal();
                 </script>
 
 </form>
