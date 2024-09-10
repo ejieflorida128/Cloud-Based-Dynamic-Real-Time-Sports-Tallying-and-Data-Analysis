@@ -5,6 +5,9 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $game_type = $_POST['gameType'];
             $team_id = $_POST['team_id'];
+            $event_id = $_POST['event_id'];
+            $game_id = $_POST['game_id'];
+            $id = $_POST['id'];
             
 
          
@@ -39,9 +42,9 @@
                 $E = isset($_POST['E']) && $_POST['E'] !== '' ? $_POST['E'] : null;
                 
 
-                    $sqlUpdate = "UPDATE teams SET A = $A, B = $B, C = $C, D = $D, E = $E, F = $F WHERE id = $team_id";
+                    $sqlUpdate = "UPDATE players SET A = $A, B = $B, C = $C, D = $D, E = $E, F = $F WHERE event_id = '$event_id' AND game_id = '$game_id' AND team_id = '$team_id' AND id = '$id'";
                     mysqli_query($conn,$sqlUpdate);
-                    header('Location: criteriaForDanceSports.php?team_id=' . urlencode($team_id)); 
+                    header('Location: criteriaForDanceSports.php?event_id=' . urlencode($event_id) . '&&game_id=' . urlencode($game_id) . '&&team_id=' . urlencode($team_id) . '&&game_type=' . urlencode($game_type) . '&&id=' . urlencode($id)); 
             }
 
 

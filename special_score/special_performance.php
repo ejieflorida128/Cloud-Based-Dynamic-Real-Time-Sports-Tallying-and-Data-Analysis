@@ -34,6 +34,71 @@ include('../connection/conn.php');
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+
+  <style>
+    /* Default desktop styles */
+    .event-box {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        margin: 17px;
+        width: 250px;
+        height: 250px;
+    }
+
+    .pictures {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .pictures img {
+        width: 150px;
+        height: 140px;
+    }
+
+    .information {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .n1, .n2 {
+        font-size: 15px;
+    }
+
+    .and {
+        font-weight: bolder;
+        color: orange;
+        font-size: 12px;
+        margin-top: -20px;
+    }
+
+    /* Responsive for mobile (max-width: 767px) */
+    @media (max-width: 767px) {
+        .event-box {
+            width: 200px; /* Smaller box on mobile */
+            height: auto; /* Adjust height automatically */
+            margin: 10px;
+        }
+
+        .pictures img {
+            width: 100px;
+            height: 90px; /* Smaller image on mobile */
+        }
+
+        .n1, .n2 {
+            font-size: 12px; /* Adjust text size for mobile */
+        }
+
+        .and {
+            font-size: 10px;
+            margin-top: -10px;
+        }
+
+        
+    }
+
+</style>
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -382,31 +447,70 @@ include('../connection/conn.php');
                                                                       
                                                               </a>
                           
-                            ";
-                                  }else if($game_type == 'Dance_Sports'){
-                                    echo "
+                            "; }
+                                  }
 
-                                    <a href = 'criteriaForDanceSports.php?team_id=$teamId' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
-                                                                      <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
-                                                                      <img src = '$logos' style = 'width: 150px; height: 140px;'>
-                                                                      </div>
 
-                                                                      <div class='information' style = 'margin-top: 20px;'>
 
-                                                                                  <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$name</h6></div>
-                                                                                    <div class = 'status' style = 'display: flex; justify-content: center; color: green;'><p>Click to add Score!</p></div>
-                                                                                  
-
-                                                                      </div>
-                                                                      
-                                                              </a>
+                                  if($game_type == 'Dance_Sports'){
                           
-                            ";
+                          
+                                    $selectPlayersFromDanceSports = "SELECT * FROM players 
+                                    WHERE game_id = $game_ID 
+                                    AND event_id = $event_ID 
+                                    AND name != 'Please add player1 name!' 
+                                    AND name1 != 'Please add player2 name!'";
+   
+                                    $queryDanceSport = mysqli_query($conn, $selectPlayersFromDanceSports);
+
+
+                                  
+                                    
+                                    
+                                  
+                                    while($check = mysqli_fetch_assoc($queryDanceSport)){
+                                        $n1 = $check['name'];
+                                        $n2 = $check['name1'];
+
+                                        $game_id = $check['game_id'];
+                                        $event_id = $check['event_id'];
+                                        $team_id = $check['team_id'];
+                                        $id = $check['id'];
+                                        
+                                       
+
+                                          $team_id = $check['team_id'];
+
+                                          $selectTeamInfo = "SELECT * FROM teams WHERE id = $team_id";
+                                          $queryTeamGet = mysqli_query($conn,$selectTeamInfo);
+                                          $resultTeam = mysqli_fetch_assoc($queryTeamGet);
+
+                                          $logoTeam = $resultTeam['logo'];
+                                        echo "
+
+                                       <a href='criteriaForDanceSports.php?event_id=$event_id&&game_id=$game_id&&team_id=$team_id&&game_type=$game_type&&id=$id' class='col-md-4 col-sm-6 event-box'>
+                                            <div class='pictures'>
+                                                <img src='$logoTeam' alt='image'>
+                                            </div>
+                                            
+                                            <div class='information'>
+                                                <p class='n1'>$n1</p>
+                                                <p class='and' style = 'margin-top: -20px;'>AND</p>
+                                                <p class='n2' style = 'margin-top: -20px;'>$n2</p>
+                                            </div>
+                                        </a>
+                                        
+                                       
+                                        ";
+                                        
+                                    }
+
+                                  
                                   }
 
 
                                        
-                                }
+                                
 
 
 

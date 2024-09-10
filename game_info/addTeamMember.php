@@ -362,7 +362,7 @@
                                                                   $val = 2;
                                                                   echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . $val . '">';
                                                                 }else if($_SESSION['GameType'] == 'Dance_Sports'){
-                                                                  $val = 1;
+                                                                  $val = 2;
                                                                   echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . $val . '">';
                                                                 }else if($_SESSION['GameType'] == 'Chess'){
                                                                   $val = 1;
@@ -2074,7 +2074,7 @@
                                                                                        <h5>Dancers</h5>
                                                                                    <div class="row">';
                                                                                            
-                                                                                                       for($x = 1; $x <=1; $x++){
+                                                                                                       for($x = 1; $x <=2; $x++){
     
                                                                                                          $condition = 'player'.$x;
     

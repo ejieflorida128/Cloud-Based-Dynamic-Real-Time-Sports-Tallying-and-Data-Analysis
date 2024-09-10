@@ -310,22 +310,38 @@
   }else if($gameType == 'Dance_Sports'){
     // start sa dancce sports
 
-    for($x = 1; $x <= $numberOfPlayer; $x++){
+    for($x = 1; $x <= 2; $x++){
 
       $name = $_POST['name1'.$x];
       $age = $_POST['age1'.$x];
-
+  
       $name1 = $_POST['name2'.$x];
       $age1 = $_POST['age2'.$x];
-
-      
-
+  
       $player = 'player'.$x;
-
-      $update = "UPDATE players SET name = '$name', age = '$age', name1 = '$name1', age1 = '$age1' WHERE game_id = $game_id AND event_id = $event_id AND team_id = $team_id AND player_number = '$player'";
-      mysqli_query($conn,$update);
-
+  
+      // Check if the name or name1 is empty
+      if(empty($name) || empty($name1)){
+          $update = "UPDATE players 
+             SET name = 'no participant', age = 0, name1 = 'no participant', age1 = 0 
+             WHERE game_id = $game_id 
+             AND event_id = $event_id 
+             AND team_id = $team_id 
+             AND player_number = '$player'";
+  
+          mysqli_query($conn, $update);
+      } else {
+          $update = "UPDATE players 
+             SET name = '$name', age = '$age', name1 = '$name1', age1 = '$age1' 
+             WHERE game_id = $game_id 
+             AND event_id = $event_id 
+             AND team_id = $team_id 
+             AND player_number = '$player'";
+  
+          mysqli_query($conn, $update);
+      }
   }
+  
 
   header('Location: addTeamMember.php?id='.urldecode($team_id));
 

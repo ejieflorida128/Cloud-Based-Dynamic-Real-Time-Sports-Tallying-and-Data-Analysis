@@ -358,9 +358,12 @@ include('../connection/conn.php');
 
                     <?php
                       $team_id = $_GET['team_id'];
+                      $event_id = $_GET['event_id'];
+                      $game_id = $_GET['game_id'];
+                      $id = $_GET['id'];
 
                     
-                            $getSql = "SELECT * FROM teams WHERE id = $team_id";
+                            $getSql = "SELECT * FROM players WHERE event_id = '$event_id' AND game_id = '$game_id' AND team_id = '$team_id' AND id = '$id'";
                             $getQuery = mysqli_query($conn,$getSql);
                             
                             while($getResult = mysqli_fetch_assoc($getQuery)){
@@ -438,6 +441,9 @@ include('../connection/conn.php');
                             </div>
 
                             <input type="text" name="team_id" hidden value="<?php echo htmlspecialchars($_GET['team_id']); ?>">
+                            <input type="text" name="game_id" hidden value="<?php echo htmlspecialchars($_GET['game_id']); ?>">
+                            <input type="text" name="event_id" hidden value="<?php echo htmlspecialchars($_GET['event_id']); ?>">
+                            <input type="text" name="id" hidden value="<?php echo htmlspecialchars($_GET['id']); ?>">
                             <input type="text" name="gameType" hidden value="Dance_Sports">
 
                             <div class="form-actions">

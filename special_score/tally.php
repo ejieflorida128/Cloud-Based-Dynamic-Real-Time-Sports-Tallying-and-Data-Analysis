@@ -48,19 +48,34 @@
 
                 header('Location: special_performance.php?event_id=' . urlencode($event_id) . '&game_id=' . urlencode($game_id) . '&game_type=' . urlencode($game_type));       
             }else if($game_type == 'Dance_Sports'){
+                $team_ids = [];
                 $team_name = [];
 
                 $selectAllScores = " SELECT *, 
                    (A + B + C + D + E + F) AS total_score
-                    FROM teams
+                    FROM players
                     WHERE game_id = '$game_id' 
                     AND event_id = '$event_id'
                     ORDER BY total_score DESC";
         
                 $queryAllScores = mysqli_query($conn,$selectAllScores);
+                        $number = 0;
                 while($getAllData  = mysqli_fetch_assoc($queryAllScores)){
-                        $team_name[] = $getAllData['team_name'];
+                    $number ++;
+                        $team_ids[] = $getAllData['team_id'];
                 }
+
+
+                for($x = 0; $x < $number; $x++){
+                        $condition = $team_ids[$x];
+                          $sqlForTally = "SELECT * FROM teams WHERE id = '$condition'";
+                          $getValue = mysqli_query($conn,$sqlForTally);
+
+                          $result = mysqli_fetch_assoc($getValue);
+                          $teamName = $result['team_name'];
+                          $team_name[$x] = $teamName;
+                }
+              
         
                 $goldTeam = $team_name[0];
                 $silverTeam = $team_name[1];
@@ -85,6 +100,8 @@
 
                 // clear 
                 $team_name = [];
+                $team_ids = [];
+
 
                 header('Location: special_performance.php?event_id=' . urlencode($event_id) . '&game_id=' . urlencode($game_id) . '&game_type=' . urlencode($game_type));     
             }else if($game_type == 'Mr_and_Mrs_Panagtigi'){
