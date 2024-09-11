@@ -34,6 +34,9 @@ ob_end_flush();
   <!-- Nucleo Icons -->
   <link href="../template/AdminTemplate/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../template/AdminTemplate/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <!-- Font Awesome Icons -->
   <script src="../https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="../template/AdminTemplate/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -183,7 +186,7 @@ ob_end_flush();
          
             <li class="nav-item d-flex align-items-center">
               <a href="loadToIndex.php" class="nav-link text-body font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
+                <i class="fa fa-sign-out me-sm-1"></i>
                 <span class="d-sm-inline d-none">Logout</span>
               </a>
             </li>
@@ -201,7 +204,7 @@ ob_end_flush();
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
+               
               </a>
               <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                 <li class="mb-2">
