@@ -20,7 +20,7 @@ include('connection/conn.php');
         <title>Directory Landing Page</title>
 
         <!-- For favicon png -->
-		<link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
+		<link rel="icon" type="image/png" href="template/AdminTemplate/assets/img/favicon.png">
        
         <!--font-awesome.min.css-->
         <link rel="stylesheet" href="assets/css/font-awesome.min.css">
