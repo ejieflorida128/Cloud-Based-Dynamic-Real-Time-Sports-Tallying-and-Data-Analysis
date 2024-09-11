@@ -1,41 +1,26 @@
 <?php
     include('connection/conn.php');
 ?>
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.7
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="template/AdminTemplate/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="template/AdminTemplate/assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assetsDashboard/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="assetsDashboard/img/favicon.png">
   <title>
     Super Admin
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
-  <link href="template/AdminTemplate/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="template/AdminTemplate/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="assetsDashboard/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="assetsDashboard/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="template/AdminTemplate/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="assetsDashboard/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="template/AdminTemplate/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+  <link id="pagestyle" href="assetsDashboard/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
@@ -46,8 +31,8 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html " target="_blank">
-        <img src="template/AdminTemplate/assets/img/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold"> Admin Dashboard</span>
+        <img src="assetsDashboard/img/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold">Admin Menu</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -142,13 +127,13 @@
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-          
+           
           </div>
           <ul class="navbar-nav  justify-content-end">
-           
+
             <li class="nav-item d-flex align-items-center">
-              <a href="loadToIndex.php" class="nav-link text-body font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
+              <a href="goLogout.php" class="nav-link text-body font-weight-bold px-0">
+                <i class="fa fa-sign-out me-sm-1"></i>
                 <span class="d-sm-inline d-none">Logout</span>
               </a>
             </li>
@@ -162,18 +147,16 @@
               </a>
             </li>
             <li class="nav-item px-3 d-flex align-items-center">
-              
+             
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
+             
               <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                 <li class="mb-2">
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="template/AdminTemplate/assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                        <img src="assetsDashboard/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -191,7 +174,7 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="template/AdminTemplate/assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                        <img src="assetsDashboard/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -244,7 +227,7 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
@@ -511,7 +494,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="d-flex flex-column h-100">
-                    <p class="mb-1 pt-2 text-bold">Cloud-Based Realtime Event</p>
+                  <p class="mb-1 pt-2 text-bold">Cloud-Based Realtime Event</p>
                     <h5 class="font-weight-bolder"> Dasboard</h5>
                     <p class="mb-5">Here, we can all observe the percentage increase and understand the level of user interaction, including the number of users involved</p>
                     <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
@@ -521,7 +504,7 @@
                   </div>
                 </div>
                 <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
-                  <div class="bg-gradient-primary border-radius-lg h-100">
+                <div class="bg-gradient-primary border-radius-lg h-100">
                     <img src="template/AdminTemplate/assets/img/shapes/waves-white.svg" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
                     <div class="position-relative d-flex align-items-center justify-content-center h-100">
                       <img class="w-100 position-relative z-index-2 pt-4" src="template/AdminTemplate/assets/img/sports.webp" alt="sports">
@@ -534,7 +517,7 @@
         </div>
         <div class="col-lg-5">
           <div class="card h-100 p-3">
-            <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('template/AdminTemplate/assets/img/ivancik.jpg');">
+          <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('template/AdminTemplate/assets/img/ivancik.jpg');">
               <span class="mask bg-gradient-dark"></span>
               <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
                 <h5 class="text-white font-weight-bolder mb-4 pt-2">Information!</h5>
@@ -548,28 +531,25 @@
           </div>
         </div>
       </div>
-   
-      <div class="row my-4">
-       
-        
-      </div>
+    
+    
       <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4">
-             
+              
             </div>
             <div class="col-lg-6">
               <ul class="nav nav-footer justify-content-center justify-content-lg-end">
               
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-muted" target="_blank">About Us</a>
+                  <a href="" class="nav-link text-muted" target="_blank">About Us</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-muted" target="_blank">Blog</a>
+                  <a href="" class="nav-link text-muted" target="_blank">Blog</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link pe-0 text-muted" target="_blank">License</a>
+                  <a href="" class="nav-link pe-0 text-muted" target="_blank">License</a>
                 </li>
               </ul>
             </div>
@@ -643,18 +623,18 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="template/AdminTemplate/assets/js/core/popper.min.js"></script>
-  <script src="template/AdminTemplate/assets/js/core/bootstrap.min.js"></script>
-  <script src="template/AdminTemplate/assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="template/AdminTemplate/assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="template/AdminTemplate/assets/js/plugins/chartjs.min.js"></script>
+  <script src="assetsDashboard/js/core/popper.min.js"></script>
+  <script src="assetsDashboard/js/core/bootstrap.min.js"></script>
+  <script src="assetsDashboard/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="assetsDashboard/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="assetsDashboard/js/plugins/chartjs.min.js"></script>
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["pending",""],
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [{
           label: "Sales",
           tension: 0.4,
@@ -830,7 +810,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+  <script src="assetsDashboard/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
 </body>
 
 </html>
