@@ -53,32 +53,67 @@ session_start();
 </head>
 <body>
 	
-	<div class="limiter">
-		<div class="container-login100" style="background-image: url('background_image/bg2.jpg');">
-			<div class="wrap-login100 p-t-30 p-b-50">
-				<span class="login100-form-title p-b-41">
-					Account Login 
-				</span>
-				<form class="login100-form validate-form p-b-33 p-t-5" action="login.php" method="post">
-					<div class="wrap-input100 validate-input" data-validate="Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
-						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
-					</div>
+<div class="limiter">
+	<div class="container-login100" style="background-image: url('background_image/bg2.jpg');">
+		<div class="wrap-login100 p-t-30 p-b-50" id = "boxOuter">
+			<span class="login100-form-title p-b-41">
+				Account Login 
+			</span>
+			<form class="login100-form validate-form p-b-33 p-t-5" action="login.php" method="post">
+				<div class="wrap-input100 validate-input" data-validate="Enter username">
+					<input class="input100" type="text" name="username" placeholder="Username">
+					<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+				</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="password" placeholder="Password">
-						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
-					</div>
+				<div class="wrap-input100 validate-input" data-validate="Enter password">
+					<input class="input100" type="password" name="password" placeholder="Password">
+					<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+				</div>
 
-					<div class="container-login100-form-btn m-t-32">
-						<a href="loadToIndex.php" class="btn btn-danger" style="border-radius: 30px; margin-left: -40px; margin-right: 40px; padding-left: 20px; padding-right: 20px;">Back</a>
-                        <input type="submit" value="Log in" class="login100-form-btn">
+				<div class="container-login100-form-btn m-t-32" id="contain" style="display: flex; justify-content: space-around; gap: 10px;">
+					<div class="div">
+						<a href="loadToIndex.php" class="login100-form-btn" id = "backBtn" style="border-radius: 30px; text-decoration: none; padding-left: 10px; padding-right: 10px;">
+							Back
+						</a>
 					</div>
-				</form>
-			</div>
+					<div class="div">
+						<input type="submit" value="Log in" class="login100-form-btn">
+					</div>
+				</div>
+
+				<!-- CSS for mobile view adjustments -->
+				<style>
+				@media (max-width: 768px) {
+						#contain {
+							display: flex;
+							flex-direction: row; /* Keep buttons side by side */
+							justify-content: center; /* Center align buttons */
+							
+						}
+
+						.login100-form-btn {
+							width: auto; /* Ensure buttons don't expand to full width */
+							padding: 10px 20px; /* Adjust padding for touch-friendly size */
+							font-size: 14px; /* Adjust font size for readability */
+							border-radius: 30px; /* Ensure buttons have rounded corners */
+						}
+
+						#boxOuter {
+							margin-top: -70px; /* Adjust margin as needed */
+						}
+
+						.div{
+							margin: 0px;
+						}
+						
+					}
+				</style>
+			</form>
 		</div>
 	</div>
-	
+</div>
+
+
 	<div id="dropDownSelect1"></div>
 			<!-- ejie florida -->
 			 <!-- athena joy barola campania -->
