@@ -212,28 +212,52 @@ include('connection/conn.php');
 								?></p>
 							</div>
 						</li>
-						<li>
-							<div class="single-list-topics-content">
-								<div class="single-list-topics-icon">
-								<i class="fa fa-check" style = "font-size: 50px;"></i>
-								</div>
-								<h2><a href="#">Registered Game</a></h2>
-								<p><?php
-										$selectR = "SELECT * FROM registered_game";
-										$queryR = mysqli_query($conn,$selectR);
-										$R_count = 0;
-										while($resultAccounts = mysqli_fetch_assoc($queryR)){
-												$R_count++;
-										}
-										echo $R_count;
-								?></p>
-							</div>
-						</li>
+						
 					</ul>
 				</div>
 			</div><!--/.container-->
 
 		</section><!--/.list-topics-->
+
+		<style>
+			/* Base styles for the list-topics */
+.list-topics {
+    padding: 20px 0; /* Add padding for spacing */
+}
+
+.list-topics-content ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use flexbox for alignment */
+    flex-wrap: wrap; /* Allow items to wrap */
+    justify-content: space-around; /* Space items evenly */
+}
+
+.single-list-topics-content {
+    text-align: center; /* Center text within each item */
+    margin: 20px; /* Add margin around each item */
+}
+
+.single-list-topics-icon {
+    margin-bottom: 10px; /* Space between icon and text */
+}
+
+/* Responsive styles for mobile view */
+@media (max-width: 768px) {
+    .list-topics-content ul {
+        display: flex; /* Ensure flexbox is used */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
+        justify-content: center; /* Center items vertically */
+    }
+
+    .single-list-topics-content {
+        margin: 10px 0; /* Adjust margin for vertical stacking */
+    }
+}
+
+		</style>
 		<!--list-topics end-->
 
 		<!--works start -->
