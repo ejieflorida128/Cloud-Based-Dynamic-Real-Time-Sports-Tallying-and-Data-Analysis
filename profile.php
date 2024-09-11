@@ -283,100 +283,141 @@ session_start();
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                         <!-- start here para sa new content sa profile! -->
-                         <div class="container" style = " padding: 40px; display: flex;">
+                        <div class="container" style="padding: 40px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
 
-                            <div class = "section1">
-                                    <div class="profileSection" style = "margin-left: 20px;">
-                                        <img src="<?php 
+<div class="section1" style="flex: 1; min-width: 300px; text-align: center; margin-left: -20px; margin-right: 20px;">
+    <div class="profileSection" style="margin: 0 auto;">
+        <img src="<?php 
+            $id = $_SESSION['id'];
+            $selectProfileQuery = "SELECT profile FROM accounts WHERE id = $id";
+            $getProfile = mysqli_query($conn, $selectProfileQuery);
+            while($profileRepresent = mysqli_fetch_assoc($getProfile)){
+                echo $profileRepresent['profile'];
+            }
+        ?>" alt="no image" style="width: 100%; max-width: 300px; height: 300px; border-radius: 10px;">
+    </div>
+</div>
 
-                                            $id = $_SESSION['id'];
+<div class="section2" style="flex: 1; min-width: 300px;">
+    <div class="information" style="margin: 0 auto; margin-top: 40px;">
+        <?php 
+            $idForInformation = $_SESSION['id'];
+            $selectInfoQuery = "SELECT * FROM accounts WHERE id = $idForInformation";
+            $getInfo = mysqli_query($conn, $selectInfoQuery);
+            while($accountRepresent = mysqli_fetch_assoc($getInfo)){
+        ?>
+        <div class="info-block" style="text-align: left; ">
+            <label for="fullname" style="color: gray;">Fullname:</label>
+            <label style="margin-left: 10px;"><?php echo $accountRepresent['fullname']; ?></label><br>
 
-                                            $selectProfileQuery = "SELECT profile FROM accounts WHERE id = $id";
-                                            $getProfile = mysqli_query($conn,$selectProfileQuery);
+            <label for="age" style="color: gray;">Age:</label>
+            <label style="margin-left: 10px;"><?php echo $accountRepresent['age']; ?></label><br>
 
-                                            while($profileRepresent = mysqli_fetch_assoc($getProfile)){
-                                                    echo $profileRepresent['profile'];
-                                            }
-                                            ?>" alt="no image" style = "width: 300px; height: 300px; border-radius: 10px;">
-                                    </div>
-                            </div>
+            <label for="gmail" style="color: gray;">Gmail:</label>
+            <label style="margin-left: 10px;">
+                <?php 
+                    $gmail = $accountRepresent['gmail'];
+                    if($gmail == null){
+                        echo "Please provide necessary information!";
+                    } else {
+                        echo $gmail;
+                    }
+                ?>
+            </label><br>
 
-                            <div class = "section2">
-                                        <div class="information" style = "margin-left: 70px; margin-top: 40px;">
+            <label for="role" style="color: gray;">Role:</label>
+            <label style="margin-left: 10px;">Sports Coordinator</label><br>
+        </div>
 
-                                        <?php 
+                    <div class="buttons" style = "">
+                    <a href="profileEdit.php" class="btn btn-success" style="font-size: 14px; margin-top: 50px; background-color: #26ed2d; color: white; padding: 7px; border-radius: 10px;">EDIT INFORMATION</a>
 
-                                            $idForInformation = $_SESSION['id'];
+<!-- The Modal -->
+<div class="modal fade" id="myModal" style="margin-top: 80px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Confirm Deletion</h4>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are you sure you want to delete your account?
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <a href="profileDelete.php" class="btn btn-success">Confirm</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                                            $selectInfoQuery = "SELECT * FROM accounts WHERE id = $idForInformation";
-                                            $getInfo = mysqli_query($conn,$selectInfoQuery);
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" style="font-size: 14px; margin-top: 50px; background-color: #fc1424; color: white; padding: 7px; border-radius: 10px;">DELETE ACCOUNT</button>
+                    </div>
+        <?php } ?>
+    </div>
+</div>
+</div>
 
-                                            while($accountRepresent = mysqli_fetch_assoc($getInfo)){
+<!-- Add this CSS to style -->
+<style>
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
-                                          
-                                                
-                                            
-                                                     
-                                           
-                                            ?>
+.section1, .section2 {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.section1 {
+    margin-left: 20px;
+    margin-right: 20px; /* Added margin to the right */
+}
+
+.information {
+    margin: 0 auto;
+}
+
+.info-block {
+    text-align: left;
+    margin-left: 75px;
+    
+}
 
 
-                                                <label for="fullname" style = "color: gray;">Fullname:  </label> <label style = "margin-left: 10px;"><?php echo $accountRepresent['fullname'];  ?></label><br>
-                                                <label for="age" style = "color: gray;">Age:  </label> <label style = "margin-left: 10px;"><?php echo $accountRepresent['age']; ?></label><br>
-                                                <label for="gmail" style = "color: gray;">Gmail:  </label> <label style = "margin-left: 10px;"><?php 
 
-                                                $gmail = $accountRepresent['gmail'];
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
 
-                                                if($gmail == null){
-                                                        $textForGmail = "Please provide neccessary information!";
-                                                        echo $textForGmail;
-                                                }else{
-                                                    echo $gmail;
-                                                }
+    .information {
+        margin-top: 20px;
+    }
 
-                                                ?></label><br>
-                                                <label for="role" style = "color: gray;">Role:  </label> <label style = "margin-left: 10px;">Sports Coordinator</label><br>
+    .info-block {
+        text-align: left;
+        margin-left: -8px;
+    }
 
-                                                <a href = "profileEdit.php" class = "btn btn-success" style = "font-size: 14px; position:relative; top: 50px; background-color: #26ed2d; color: white; padding: 7px; border-radius: 10px;">EDIT INFORMATION</a>
-                                                <!-- The Modal -->
-                                                        <div class="modal fade" id="myModal" style = "margin-top: 80px;">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
+    .buttons{
+      margin-left: -40px;
+    }
+}
+</style>
 
-                                                            <!-- Modal Header -->
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title">Confirm Deletion</h4>
 
-                                                            </div>
 
-                                                            <!-- Modal body -->
-                                                            <div class="modal-body">
-                                                                Are you sure you want to delete your account?
-                                                            </div>
 
-                                                            <!-- Modal footer -->
-                                                            <div class="modal-footer">
-                                                                <a href = "profileDelete.php" class="btn btn-success">Confirm</a>
-                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                                            </div>
 
-                                                            </div>
-                                                        </div>
-                                                        </div>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" style = "font-size: 14px; position:relative;border: none; top: 50px; background-color: #fc1424; color: white; padding: 7px; border-radius: 10px;">DELETE ACCOUNT</button>
-                                             
 
-                                            <?php
-
-                                                }
-                                            ?>
-                                                
-                                        </div>
-                            </div>
-
-                            
-
-                         </div>
               </div>
             </div>
           </div>

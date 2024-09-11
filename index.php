@@ -298,17 +298,12 @@ include('connection/conn.php');
 		           	<div class="row">
 			           	<div class="col-sm-3">
 			           		 <div class="navbar-header">
-				                <a class="navbar-brand" href="index.html">list<span>race</span></a>
+				                <a class="navbar-brand" href="index.html">Sports<span>Day</span></a>
 				            </div><!--/.navbar-header-->
 			           	</div>
 			           	<div class="col-sm-9">
 			           		<ul class="footer-menu-item">
-			                    <li class="scroll"><a href="#works">how it works</a></li>
-			                    <li class="scroll"><a href="#explore">explore</a></li>
-			                    <li class="scroll"><a href="#reviews">review</a></li>
-			                    <li class="scroll"><a href="#blog">blog</a></li>
-			                    <li class="scroll"><a href="#contact">contact</a></li>
-			                    <li class=" scroll"><a href="#contact">my account</a></li>
+			                  
 			                </ul><!--/.nav -->
 			           	</div>
 		           </div>
@@ -316,17 +311,14 @@ include('connection/conn.php');
 				<div class="hm-footer-copyright">
 					<div class="row">
 						<div class="col-sm-5">
-							<p>
-								&copy;copyright. designed and developed by <a href="https://www.themesine.com/">themesine</a>
-							</p><!--/p-->
+							
 						</div>
 						<div class="col-sm-7">
 							<div class="footer-social">
-								<span><i class="fa fa-phone"> +1  (222) 777 8888</i></span>
-								<a href="#"><i class="fa fa-facebook"></i></a>	
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-linkedin"></i></a>
-								<a href="#"><i class="fa fa-google-plus"></i></a>
+								<span>Contact Number: <span>09125081976</span></span>
+								<a href="https://www.facebook.com/ejie.florida.7?mibextid=ZbWKwL"><i class="fa fa-facebook"></i></a>					
+								
+								
 							</div>
 						</div>
 					</div>

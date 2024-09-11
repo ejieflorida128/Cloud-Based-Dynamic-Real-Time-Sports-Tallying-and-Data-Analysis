@@ -163,8 +163,8 @@ include('connection/conn.php');
     <div class="container">
             
             <a href="" style = "border: green 1px solid; padding: 10px; border-radius: 10px; background-color: #557C56; color: white; font-weight: bold; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 
-              0 6px 20px rgba(0, 0, 0, 0.19);">DOWNLOAD SCORE TALLY</a>
-        <div class="card-body px-0 pt-0 pb-2" style = "margin-top: 20px;">
+              0 6px 20px rgba(0, 0, 0, 0.19); margin-top: 20px;">DOWNLOAD SCORE TALLY</a>
+        <div class="card-body px-0 pt-0 pb-2" style = "margin-top: 50px;">
             <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                     <thead>

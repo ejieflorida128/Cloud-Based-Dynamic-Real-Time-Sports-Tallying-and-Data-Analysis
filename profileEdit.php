@@ -320,75 +320,140 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Profile Information</h6>
+              <h6>Edit Profile Information</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                         <!-- start here para sa new content sa profile! -->
-                         <div class="container" style = " padding: 40px; display: flex;">
+                        <div class="container" style="padding: 40px; display: flex; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
 
-                            <div class = "section1">
-                                    <div class="profileSection" style = "margin-left: 20px;">
-                                        <img src="<?php 
+<!-- Profile Image Section -->
+<div class="section1" style="flex: 1; min-width: 300px; text-align: center; margin-right: 20px;">
+    <div class="profileSection">
+        <img src="<?php 
+            $id = $_SESSION['id'];
+            $selectProfileQuery = "SELECT profile FROM accounts WHERE id = $id";
+            $getProfile = mysqli_query($conn, $selectProfileQuery);
+            while($profileRepresent = mysqli_fetch_assoc($getProfile)){
+                echo $profileRepresent['profile'];
+            }
+        ?>" alt="no image" id="profileImage" style="width: 300px; height: 300px; border-radius: 10px;">
+    </div>
+</div>
 
-                                            $id = $_SESSION['id'];
+<!-- Profile Information Form Section -->
+<div class="section2" style="flex: 2; min-width: 300px; margin: 20px;">
+    <div class="information">
+        <?php 
+            $idForInformation = $_SESSION['id'];
+            $selectInfoQuery = "SELECT * FROM accounts WHERE id = $idForInformation";
+            $getInfo = mysqli_query($conn, $selectInfoQuery);
+            while($accountRepresent = mysqli_fetch_assoc($getInfo)) {
+        ?>
 
-                                            $selectProfileQuery = "SELECT profile FROM accounts WHERE id = $id";
-                                            $getProfile = mysqli_query($conn,$selectProfileQuery);
+        <form method="post" action="profileEdit.php" enctype="multipart/form-data">
+            <!-- Fullname -->
+              <div class="div">
+              <label style="color: gray;">Fullname:</label><br>
+            <input type="text" name="fullname" value="<?php echo $accountRepresent['fullname']; ?>" class="form-control" style="width: 100%; max-width: 100vw;"><br>
 
-                                            while($profileRepresent = mysqli_fetch_assoc($getProfile)){
-                                                    echo $profileRepresent['profile'];
-                                            }
-                                            ?>" alt="no image"  id = "profileImage" style = "width: 300px; height: 300px; border-radius: 10px;">
-                                    </div>
-                            </div>
+              </div>
+            <!-- Age -->
+              <div class="div" style = "margin-top: -25px;">
+              <label style="color: gray;">Age:</label><br>
+            <input type="number" name="age" value="<?php echo $accountRepresent['age']; ?>" class="form-control" style="width: 100%; max-width: 100vw;"><br>
 
-                            <div class = "section2">
-                                        <div class="information" style = "margin-left: 70px; margin-top: 10px;">
+              </div>
+            <!-- Gmail -->
+              <div class="div" style = "margin-top: -25px;">
+              <label style="color: gray;" >Gmail:</label><br>
+            <input type="text" name="gmail" value="<?php echo $accountRepresent['gmail']; ?>" class="form-control" style="width: 100%; max-width: 100vw;"><br>
 
-                                        <?php 
+              </div>
+            <!-- Profile Photo Upload -->
+            <input type="file" name="profileFile" id="forProfile" hidden onchange="previewImage(event)">
+            
+            <!-- Buttons for Upload and Confirm -->
+            <div class="buttons" style="margin-top: -5px; display: flex; gap: 20px;">
+                <label for="forProfile" class="btn btn-info" style="font-size: 14px; background-color: #4290f5; color: white; padding: 7px; border-radius: 10px;">
+                    SELECT PROFILE PHOTO
+                </label>
+                <input type="submit" value="CONFIRM EDIT" class="btn btn-success" style="font-size: 14px; background-color: #26ed2d; color: white; padding: 7px; border-radius: 10px;">
+            </div>
+        </form>
 
-                                            $idForInformation = $_SESSION['id'];
+        <?php } ?>
+    </div>
+</div>
+</div>
 
-                                            $selectInfoQuery = "SELECT * FROM accounts WHERE id = $idForInformation";
-                                            $getInfo = mysqli_query($conn,$selectInfoQuery);
+<!-- Add this CSS to style -->
+<style>
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
 
-                                            while($accountRepresent = mysqli_fetch_assoc($getInfo)){
+.section1, .section2 {
+    flex: 1;
+    min-width: 300px;
+}
 
-                                          
-                                                
-                                            
-                                                     
-                                           
-                                            ?>
+.section1 {
+    margin: 20px;
+}
 
-                                                   <form method="post" action="profileEdit.php" enctype="multipart/form-data">
-                                                        <label style = "color: gray;">Fullname:</label><br>
-                                                            <input type = "text" name = "fullname" value = "<?php echo $accountRepresent['fullname']; ?>" class = "form-control" style = "width: 35vw;">
-                                                            <label style = "color: gray;">Age:</label><br>
-                                                            <input type = "number" name = "age" value = "<?php echo $accountRepresent['age']; ?>" class = "form-control" style = "width: 5vw;">
-                                                            <label style = "color: gray;">Gmail:</label><br>
-                                                            <input type = "text" name = "gmail" value = "<?php echo $accountRepresent['gmail']; ?>" class = "form-control" style = "width: 35vw;">
+.information {
+    margin-left: 20px;
+    margin-top: 10px;
+}
 
+.buttons {
+    display: flex;
+    gap: 20px;
+}
 
-                                                            <input type="file" name = "profileFile" id = "forProfile" hidden onchange="previewImage(event)">
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    } 
 
-                                                            <div class = "buttons" style = "display: flex">
-                                                                <label for = "forProfile" class = "btn btn-info" style = "font-size: 14px; position:relative; top: 20px; background-color: #4290f5; color: white; padding: 7px; border-radius: 10px;">SELECT PROFILE PHOTO</label>
-                                                                <input type = "submit" value = "CONFIRM EDIT"  class = "btn btn-success" style = "font-size: 14px; position:relative; top: 20px;  left: 20px; background-color: #26ed2d; color: white; padding: 7px; border-radius: 10px;">
-                                                            </div>
-                                                   </form>
+    .buttons {
+        justify-content: center;
+        margin-top: 20px;
+    }
 
-                                              <?php
-                                                    }
-                                              ?>
-                                                
-                                        </div>
-                            </div>
+    .section1{
+      position: relative;
+      right: 45px;
+      padding-right: 20px;
+    }
 
-                            
+    .section2{
+      position: relative;
+      right: 45px;
+    }
+}
+</style>
 
-                         </div>
+<!-- Script to preview the selected image -->
+<script>
+function previewImage(event) {
+    const reader = new FileReader();
+    const imageField = document.getElementById("profileImage");
+
+    reader.onload = function(){
+        if(reader.readyState === 2){
+            imageField.src = reader.result;
+        }
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+
               </div>
             </div>
           </div>

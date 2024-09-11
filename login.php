@@ -72,7 +72,7 @@ session_start();
 
 					<div class="container-login100-form-btn m-t-32">
 						<a href="loadToIndex.php" class="btn btn-danger" style="border-radius: 30px; margin-left: -40px; margin-right: 40px; padding-left: 20px; padding-right: 20px;">Back</a>
-                        <input type="submit" value="Register" class="login100-form-btn">
+                        <input type="submit" value="Log in" class="login100-form-btn">
 					</div>
 				</form>
 			</div>
