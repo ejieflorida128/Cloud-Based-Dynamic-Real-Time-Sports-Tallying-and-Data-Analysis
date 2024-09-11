@@ -339,10 +339,7 @@ include('connection/conn.php');
 						</div>
 						<div class="col-sm-7">
 							<div class="footer-social">
-								<span>Contact Number: <span>09125081976</span></span>
-								<a href="https://www.facebook.com/ejie.florida.7?mibextid=ZbWKwL"><i class="fa fa-facebook"></i></a>					
-								
-								
+			
 							</div>
 						</div>
 					</div>
