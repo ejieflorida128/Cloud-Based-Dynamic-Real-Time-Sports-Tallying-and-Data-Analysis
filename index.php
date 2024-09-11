@@ -146,46 +146,87 @@ include('connection/conn.php');
 						<li>
 							<div class="single-list-topics-content">
 								<div class="single-list-topics-icon">
-									<i class="flaticon-restaurant"></i>
+								<i class="fa fa-calendar" style = "font-size: 50px;"></i>
+
 								</div>
-								<h2><a href="#">resturent</a></h2>
-								<p>150 listings</p>
+								<h2><a href="#">Events</a></h2>
+								<p><?php
+										$selectEvents = "SELECT * FROM events";
+										$queryEvents = mysqli_query($conn,$selectEvents);
+										$event_count = 0;
+										while($resultEvents = mysqli_fetch_assoc($queryEvents)){
+												$event_count++;
+										}
+										echo $event_count;
+								?></p>
 							</div>
 						</li>
 						<li>
 							<div class="single-list-topics-content">
 								<div class="single-list-topics-icon">
-									<i class="flaticon-travel"></i>
+								<i class="fa fa-gamepad" style = "font-size: 50px;"></i>
 								</div>
-								<h2><a href="#">destination</a></h2>
-								<p>214 listings</p>
+								<h2><a href="#">Game Matches</a></h2>
+								<p><?php
+										$selectMatches = "SELECT * FROM game_matches";
+										$queryMatches = mysqli_query($conn,$selectMatches);
+										$matches_count = 0;
+										while($resultMatches = mysqli_fetch_assoc($queryMatches)){
+												$matches_count++;
+										}
+										echo $matches_count;
+								?></p>
 							</div>
 						</li>
 						<li>
 							<div class="single-list-topics-content">
 								<div class="single-list-topics-icon">
-									<i class="flaticon-building"></i>
+								<i class="fa fa-list" style = "font-size: 50px;"></i>
 								</div>
-								<h2><a href="#">hotels</a></h2>
-								<p>185 listings</p>
+								<h2><a href="#">Players</a></h2>
+								<p><?php
+										$selectPlayers = "SELECT * FROM players";
+										$queryPlayers = mysqli_query($conn,$selectPlayers);
+										$players_count = 0;
+										while($resultPlayers = mysqli_fetch_assoc($queryPlayers)){
+												$players_count++;
+										}
+										echo $players_count;
+								?></p>
 							</div>
 						</li>
 						<li>
 							<div class="single-list-topics-content">
 								<div class="single-list-topics-icon">
-									<i class="flaticon-pills"></i>
+								<i class="fa fa-users"  style = "font-size: 50px;"></i>
 								</div>
-								<h2><a href="#">healthcaree</a></h2>
-								<p>200 listings</p>
+								<h2><a href="#">Event Coordinator</a></h2>
+								<p><?php
+										$selectAccounts = "SELECT * FROM accounts";
+										$queryAccounts = mysqli_query($conn,$selectAccounts);
+										$accounts_count = 0;
+										while($resultAccounts = mysqli_fetch_assoc($queryAccounts)){
+												$accounts_count++;
+										}
+										echo $accounts_count;
+								?></p>
 							</div>
 						</li>
 						<li>
 							<div class="single-list-topics-content">
 								<div class="single-list-topics-icon">
-									<i class="flaticon-transport"></i>
+								<i class="fa fa-check" style = "font-size: 50px;"></i>
 								</div>
-								<h2><a href="#">automotion</a></h2>
-								<p>120 listings</p>
+								<h2><a href="#">Registered Game</a></h2>
+								<p><?php
+										$selectR = "SELECT * FROM registered_game";
+										$queryR = mysqli_query($conn,$selectR);
+										$R_count = 0;
+										while($resultAccounts = mysqli_fetch_assoc($queryR)){
+												$R_count++;
+										}
+										echo $R_count;
+								?></p>
 							</div>
 						</li>
 					</ul>
