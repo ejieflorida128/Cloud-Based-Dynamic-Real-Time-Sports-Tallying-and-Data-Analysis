@@ -129,8 +129,8 @@ include('connection/conn.php');
 		<!--welcome-hero start -->
 		<section id="home" class="welcome-hero">
 			<div class="container">
-				<div class="welcome-hero-txt">
-				<h2>Discover the Ultimate Sport Tallying System <br> for All Your Needs</h2> <p> Find the best tools, apps, and solutions for tracking sports scores, stats, and performance in just one click. Whether you're managing a team or analyzing game data, our comprehensive sport tallying system has you covered. </p>
+				<div class="welcome-hero-txt" style = "color: orange;">
+				<h2 >Discover the Ultimate Sport Tallying System <br> for All Your Needs</h2> <br><br><br><p> Find the best tools, apps, and solutions for tracking sports scores, stats, and performance in just one click. Whether you're managing a team or analyzing game data, our comprehensive sport tallying system has you covered. </p>
 				</div>
 				
 			</div>

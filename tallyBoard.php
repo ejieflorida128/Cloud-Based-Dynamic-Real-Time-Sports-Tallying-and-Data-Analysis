@@ -2,6 +2,7 @@
 session_start();
 include('connection/conn.php');
 
+
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -162,9 +163,10 @@ include('connection/conn.php');
         <section id="works" class="works">
     <div class="container">
             
-            <a href="" style = "border: green 1px solid; padding: 10px; border-radius: 10px; background-color: #557C56; color: white; font-weight: bold; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 
+            <a href="print.php?event_id=<?php echo $_GET['event_id']; ?>" style = "border: green 1px solid; padding: 10px; border-radius: 10px; background-color: #557C56; color: white; font-weight: bold; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 
               0 6px 20px rgba(0, 0, 0, 0.19); margin-top: 20px;">DOWNLOAD SCORE TALLY</a>
         <div class="card-body px-0 pt-0 pb-2" style = "margin-top: 50px;">
+           
             <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                     <thead>
@@ -174,6 +176,7 @@ include('connection/conn.php');
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">GOLD</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SILVER</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">BRONZE</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total Medals</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -205,7 +208,8 @@ include('connection/conn.php');
                                     $logo = substr($logo, 3); // Remove the first 3 characters
                                 }
                 
-                                
+                                $totalMedals = $getTeam['GOLD'] + $getTeam['SILVER'] + $getTeam['BRONZE'];
+
 
                                 
                                
@@ -246,6 +250,13 @@ include('connection/conn.php');
                                     <img src="background_image/bronze.png" alt="bronze" class="medal-icon">
                                 </div>
                             </td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center align-items-center" style = "position: relative; top: 10px;">
+                                    <p class="text-xs font-weight-bold mb-0" style = "font-weight: bolder;"><?php echo $totalMedals; ?></p><p style = "font-weight: bolder; color: orange; padding-left: 5px;">Medal/s</p>
+                                    
+                                </div>
+                            </td>
+
                         </tr>
                         <?php  } ?>
                     </tbody>
