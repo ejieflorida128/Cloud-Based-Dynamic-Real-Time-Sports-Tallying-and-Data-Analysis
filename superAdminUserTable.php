@@ -1,17 +1,4 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.7
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <?php
     include('connection/conn.php');
 ?>
@@ -125,6 +112,14 @@
       </ul>
     </div>
     <div class="sidenav-footer mx-3 ">
+      <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
+        <div class="full-background" style="background-image: url('assets/img/curved-images/white-curved.jpg')"></div>
+        <div class="card-body text-start p-3 w-100">
+              <img src="../background_image/scuaa.jpg" style = "width: 180px; height: 180px; border-radius: 20px;">
+        </div>
+      </div>
+     
+    </div>
    
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
