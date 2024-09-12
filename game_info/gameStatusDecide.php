@@ -22,7 +22,7 @@ $_SESSION['GameType'] = $gameType;
 
 if($gameStatus == 0){
     // Insert teams into the database
-        $team = ['Cyber Falcon','Blazing Biz','Azure Dragons','Valient Sabertooth'];
+        $team = ['Cyber Falcon','Blazing Biz','Azure Dragons','Valiant Sabertooth'];
         $logo = ['../logo/bsit.jpg','../logo/bsba.jpg','../logo/labhigh.jpg','../logo/educ.jpg'];
 
     for($x = 0; $x < $teamCount; $x++){

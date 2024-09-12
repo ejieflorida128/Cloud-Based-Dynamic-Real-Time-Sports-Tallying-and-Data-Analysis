@@ -219,8 +219,8 @@ include('connection/conn.php');
                             <td>
                                 <div class="d-flex px-2 py-1">
                                     <div class="d-flex flex-column justify-content-center" style = "display: block;">
-                                        <h6 class="mb-0 text-sm"><?php echo $getTeam['team_name']; ?></h6>
-                                        <p class="text-xs text-secondary mb-0" style = "font-weight: bolder; color: orange;"><?php echo $org; ?></p>
+                                        <h6 class="mb-0 text-sm" style = "font-weight: bolder; font-size: 30px;"><?php echo $getTeam['team_name']; ?></h6>
+                                        <p class="text-xs text-secondary mb-0" style = "font-weight: bolder; color: orange; font-size: 20px;"><?php echo $org; ?></p>
                                     </div>
                                 </div>
                             </td>
@@ -228,31 +228,31 @@ include('connection/conn.php');
                                 <div class="d-flex px-2 py-1">
                                     <div class="d-flex flex-column justify-content-center" style = "display: block;">
                                            
-                                            <img src = '<?php echo $logo; ?> ' style = "width: 40px; hieght: 40px;">
+                                            <img src = '<?php echo $logo; ?> ' style = "width: 80px; hieght: 60px;">
                                     </div>
                                 </div>
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center" style = "position: relative; top: 10px;">
-                                    <p class="text-xs font-weight-bold mb-0"><?php echo $getTeam['GOLD']; ?></p>
-                                    <img src="background_image/gold.png" alt="gold" class="medal-icon">
+                                    <p class="text-xs font-weight-bold mb-0" style = "font-weight: bolder; font-size: 30px; margin-top: 8px;"><?php echo $getTeam['GOLD']; ?></p>
+                                    <img src="background_image/gold.png" alt="gold" class="medal-icon" style = "width: 50px; height: 50px;">
                                 </div>
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center" style = "position: relative; top: 10px;">
-                                    <p class="text-xs font-weight-bold mb-0"><?php echo $getTeam['SILVER']; ?></p>
-                                    <img src="background_image/silver.png" alt="silver" class="medal-icon">
+                                    <p class="text-xs font-weight-bold mb-0"  style = "font-weight: bolder; font-size: 30px; margin-top: 8px;"><?php echo $getTeam['SILVER']; ?></p>
+                                    <img src="background_image/silver.png" alt="silver" class="medal-icon"style = "width: 50px; height: 50px;">
                                 </div>
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center" style = "position: relative; top: 10px;">
-                                    <p class="text-xs font-weight-bold mb-0"><?php echo $getTeam['BRONZE']; ?></p>
-                                    <img src="background_image/bronze.png" alt="bronze" class="medal-icon">
+                                    <p class="text-xs font-weight-bold mb-0"  style = "font-weight: bolder; font-size: 30px; margin-top: 8px;"><?php echo $getTeam['BRONZE']; ?></p>
+                                    <img src="background_image/bronze.png" alt="bronze" class="medal-icon" style = "width: 50px; height: 50px;">
                                 </div>
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center" style = "position: relative; top: 10px;">
-                                    <p class="text-xs font-weight-bold mb-0" style = "font-weight: bolder;"><?php echo $totalMedals; ?></p><p style = "font-weight: bolder; color: orange; padding-left: 5px;">Medal/s</p>
+                                    <p class="text-xs font-weight-bold mb-0"  style = "font-weight: bolder; font-size: 30px;margin-top: 8px;"><?php echo $totalMedals; ?></p><p style = "font-weight: bolder; color: orange; padding-left: 5px;margin-top: 8px; font-size: 20px;">Medal/s</p>
                                     
                                 </div>
                             </td>

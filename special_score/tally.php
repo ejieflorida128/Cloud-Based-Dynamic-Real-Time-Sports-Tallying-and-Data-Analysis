@@ -143,6 +143,48 @@
                 // clear 
                 $team_name = [];
 
+
+
+
+                // WOMEN
+
+
+                $selectAllScores1 = " SELECT *, 
+                (E + F + G + H) AS total_score
+                 FROM teams
+                 WHERE game_id = '$game_id' 
+                 AND event_id = '$event_id'
+                 ORDER BY total_score DESC";
+     
+             $queryAllScores1 = mysqli_query($conn,$selectAllScores1);
+             while($getAllData1  = mysqli_fetch_assoc($queryAllScores1)){
+                     $team_name[] = $getAllData1['team_name'];
+             }
+     
+             $goldTeam1 = $team_name[0];
+             $silverTeam1 = $team_name[1];
+             $bronzeTeam1 = $team_name[2];
+     
+             // gold
+                 $updateGold1 = "UPDATE tally SET GOLD = GOLD + 5 WHERE event_id = $event_id AND team_name = '$goldTeam1'";
+                 mysqli_query($conn,$updateGold1);
+
+               // silver
+               $updateSilver1 = "UPDATE tally SET SILVER = SILVER + 5 WHERE event_id = $event_id AND team_name = '$silverTeam1'";
+               mysqli_query($conn,$updateSilver1);    
+
+             // bronze
+             $updateBronze1= "UPDATE tally SET BRONZE = BRONZE + 5 WHERE event_id = $event_id AND team_name = '$bronzeTeam1'";
+             mysqli_query($conn,$updateBronze1);
+
+
+             // update
+             $updateStatus1 = "UPDATE teams SET game = 'Score' WHERE game_id = '$game_id' AND event_id = '$event_id'";
+             mysqli_query($conn,$updateStatus1);
+
+             // clear 
+             $team_name = [];
+
                 header('Location: special_performance.php?event_id=' . urlencode($event_id) . '&game_id=' . urlencode($game_id) . '&game_type=' . urlencode($game_type));     
             }
 

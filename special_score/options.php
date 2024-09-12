@@ -8,21 +8,35 @@
             $event_id = $_POST['event_id'];
             $game_id = $_POST['game_id'];
             $id = $_POST['id'];
+            $category = $_POST['category'];
             
 
          
 
             if($game_type == 'Mr_and_Mrs_Panagtigi'){
 
-                $A = isset($_POST['A']) && $_POST['A'] !== '' ? $_POST['A'] : null;
-                $B = isset($_POST['B']) && $_POST['B'] !== '' ? $_POST['B'] : null;
-                $C = isset($_POST['C']) && $_POST['C'] !== '' ? $_POST['C'] : null;
-                $D = isset($_POST['D']) && $_POST['D'] !== '' ? $_POST['D'] : null;
-                
+                    if($category == 'Men'){
+                        $A = isset($_POST['A']) && $_POST['A'] !== '' ? $_POST['A'] : null;
+                        $B = isset($_POST['B']) && $_POST['B'] !== '' ? $_POST['B'] : null;
+                        $C = isset($_POST['C']) && $_POST['C'] !== '' ? $_POST['C'] : null;
+                        $D = isset($_POST['D']) && $_POST['D'] !== '' ? $_POST['D'] : null;
+                        
+        
+                            $sqlUpdate = "UPDATE teams SET A = $A, B = $B, C = $C, D = $D WHERE id = $team_id";
+                            mysqli_query($conn,$sqlUpdate);
+                    }else{
+                        $A = isset($_POST['E']) && $_POST['E'] !== '' ? $_POST['E'] : null;
+                        $B = isset($_POST['F']) && $_POST['F'] !== '' ? $_POST['F'] : null;
+                        $C = isset($_POST['G']) && $_POST['G'] !== '' ? $_POST['G'] : null;
+                        $D = isset($_POST['H']) && $_POST['H'] !== '' ? $_POST['H'] : null;
+                        
+        
+                            $sqlUpdate = "UPDATE teams SET E = $A, F = $B, G = $C, H = $D WHERE id = $team_id";
+                            mysqli_query($conn,$sqlUpdate);
+                    }
 
-                    $sqlUpdate = "UPDATE teams SET A = $A, B = $B, C = $C, D = $D WHERE id = $team_id";
-                    mysqli_query($conn,$sqlUpdate);
-                    header('Location: criteriaForMrAndMrsPanagtigi.php?team_id=' . urlencode($team_id)); 
+               
+                    header('Location: criteriaForMrAndMrsPanagtigi.php?team_id=' . urlencode($team_id). '&&category=' . urlencode($category)); 
             }else if($game_type == 'Mass_Dance'){
                 $A = isset($_POST['A']) && $_POST['A'] !== '' ? $_POST['A'] : null;
                 $B = isset($_POST['B']) && $_POST['B'] !== '' ? $_POST['B'] : null;

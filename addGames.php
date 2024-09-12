@@ -468,9 +468,10 @@ session_start();
                                                               </select>
                                                               <label for="type">Game type:</label>
                                                               <select name="EliminationType" id="type" class = "form-select">
-                                                                  <option value="SEG" selected>Single Elimination Game</option>
-                                                                  <option value="DEG">Double Elimination Game</option>
-                                                                  <option value="SRRG">Single Round Robin Game</option>
+                                                                  <option value="none" selected>( Please select a Program! )</option>
+                                                                  <option value="SEG" disabled>Single Elimination Game (Currently Unavailable)</option>
+                                                                  <option value="DEG" disabled>Double Elimination Game (Currently Unavailable)</option>
+                                                                  <option value="SRRG"disabled>Single Round Robin Game (Currently Unavailable)</option>
                                                                   
 
                                                               </select>
@@ -485,9 +486,9 @@ session_start();
                                                                         if (programSelect === 'Basketball_Men' || programSelect === 'Basketball_Women' || programSelect === 'Vollayball_Men' || programSelect === 'Vollayball_Women' || programSelect === 'MLBB' || programSelect === 'Softball_Men' || programSelect === 'Softball_Women' || programSelect === 'Futsal_Men' || programSelect === 'Futsal_Women' ) {
                                                                             gameTypeSelect.innerHTML = `
                                                                                 <option value="MSEG" selected>Custom Elimination with Placement Matches</option>
-                                                                                <option value="SEG">Single Elimination Game</option>
-                                                                                <option value="DEG">Double Elimination Game</option>
-                                                                                <option value="SRRG">Single Round Robin Game</option>`;
+                                                                                <option value="SEG" disabled >Single Elimination Game (Currently Unavailable)</option>
+                                                                                <option value="DEG" disabled>Double Elimination Game (Currently Unavailable)</option>
+                                                                                <option value="SRRG" disabled>Single Round Robin Game (Currently Unavailable)</option>`;
                                                                         }else if(programSelect === 'Runs_Men' || programSelect === 'Runs_Women'){
                                                                           gameTypeSelect.innerHTML = `
                                                                                 <option value="runs" selected>All Option</option>
@@ -509,8 +510,8 @@ session_start();
                                                                         }else{
                                                                               gameTypeSelect.innerHTML = `
                                                                                 <option value="MSEG" selected>Custom Elimination with Placement Matches</option>
-                                                                                <option value="SEG">Single Elimination Game</option>
-                                                                                <option value="DEG">Double Elimination Game</option>`;
+                                                                                <option value="SEG" disabled>Single Elimination Game (Currently Unavailable)</option>
+                                                                                <option value="DEG" disabled>Double Elimination Game (Currently Unavailable)</option>`;
                                                                         }
                                                                     }
                                                                     </script>
@@ -940,6 +941,12 @@ session_start();
                                                                 $eventId = $checkResultForGameAvail['event_id'];
                                                                 $gameStatusNo = 0;
 
+                                                                if($gameType == 'Mr_and_Mrs_Panagtigi'){
+                                                                    $game = 'Mr_and_Ms_Panagtigi';
+                                                                }else{
+                                                                  $game = $gameType;
+                                                                }
+
                                                                 $createdTeam = $checkResultForGameAvail['CreatedTeam'];
 
                                                                   if($createdTeam == 0){
@@ -956,7 +963,7 @@ session_start();
 
                                                                             <div class='information' style = 'margin-top: 20px;'>
 
-                                                                                        <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                        <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$game</h6></div>
                                                                                           <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
                                                                                         
 
@@ -979,7 +986,7 @@ session_start();
 
                                                                               <div class='information' style = 'margin-top: 20px;'>
 
-                                                                                          <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                          <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$game</h6></div>
                                                                                             <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
                                                                                           
 
@@ -994,14 +1001,14 @@ session_start();
 
                                                                         echo"
                                                                           
-                                                                                <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                                <a href = 'scoring_info/score_list.php' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
                                                                                         <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
                                                                                         <img src = '$pic' style = 'width: 150px; height: 150px;'>
                                                                                         </div>
 
                                                                                         <div class='information' style = 'margin-top: 20px;'>
 
-                                                                                                    <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$gameType</h6></div>
+                                                                                                    <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$game</h6></div>
                                                                                                       <div class = 'status' style = 'display: flex; justify-content: center;'>$PrintStatus</div>
                                                                                                     
 

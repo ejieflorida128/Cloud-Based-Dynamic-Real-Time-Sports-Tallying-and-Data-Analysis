@@ -419,16 +419,19 @@ include('../connection/conn.php');
                                   $game_type = $_GET['game_type'];
 
                                   if($game_type == 'Mr_and_Mrs_Panagtigi'){
+
+                                    $men = 'Men';
+                                    $female = 'Women';
                                             echo "
 
-                                            <a href = 'criteriaForMrAndMrsPanagtigi.php?team_id=$teamId' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                            <a href = 'criteriaForMrAndMrsPanagtigi.php?team_id=$teamId&&category=$men' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
                                                                             <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
                                                                             <img src = '$logos' style = 'width: 150px; height: 140px;'>
                                                                             </div>
 
                                                                             <div class='information' style = 'margin-top: 20px;'>
 
-                                                                                        <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$name</h6></div>
+                                                                                        <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$name ( Male )</h6></div>
                                                                                             <div class = 'status' style = 'display: flex; justify-content: center; color: green;'><p>Click to add Score!</p></div>
                                                                                         
 
@@ -437,6 +440,25 @@ include('../connection/conn.php');
                                                                     </a>
                                 
                                     ";
+
+                                    echo "
+
+                                    <a href = 'criteriaForMrAndMrsPanagtigi.php?team_id=$teamId&&category=$female' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                    <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                                    <img src = '$logos' style = 'width: 150px; height: 140px;'>
+                                                                    </div>
+
+                                                                    <div class='information' style = 'margin-top: 20px;'>
+
+                                                                                <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$name ( Female )</h6></div>
+                                                                                    <div class = 'status' style = 'display: flex; justify-content: center; color: green;'><p>Click to add Score!</p></div>
+                                                                                
+
+                                                                    </div>
+                                                                    
+                                                            </a>
+                        
+                            ";
                                   }else if($game_type == 'Mass_Dance'){
                                     echo "
 

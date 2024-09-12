@@ -354,6 +354,7 @@ include('../connection/conn.php');
 
                     <?php
                       $team_id = $_GET['team_id'];
+                      $category = $_GET['category'];
 
                     
                             $getSql = "SELECT * FROM teams WHERE id = $team_id";
@@ -361,10 +362,15 @@ include('../connection/conn.php');
                             
                             while($getResult = mysqli_fetch_assoc($getQuery)){
 
+
+                              if($category == 'Men'){
+
+                              
+
                            
                     ?>
 
-                        <form action="options.php" method="post">
+                          <form action="options.php" method="post">
                             <div class="criteria-container">
                                 <div class="criteria-title">Scoring Card</div>
 
@@ -423,13 +429,87 @@ include('../connection/conn.php');
 
                                 <input type="text" name="team_id" hidden value="<?php echo htmlspecialchars($_GET['team_id']); ?>">
                                 <input type="text" name="gameType" hidden value="Mr_and_Mrs_Panagtigi">
+                                <input type="text" name="category" hidden value="Men">
+                                
 
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>
 
+                           <?php }else if($category == 'Women'){ ?>
+
+
+   <form action="options.php" method="post">
+                            <div class="criteria-container">
+                                <div class="criteria-title">Scoring Card</div>
+
+                                <div class="criteria-item">
+                                    <label for="production-number">Production Number (20%)</label>
+                                    <input type="number" id="production-number" name="E" placeholder="Score (0 - 20)" min="0" max="20" value="<?php echo htmlspecialchars($getResult['E']); ?>">
+                                </div>
+                                <div class="criteria-subitem">
+                                    <ul>
+                                        <li>Overall impact of beauty (face and figure congruence with costume fitting and projection)</li>
+                                        <li>Charm, poise, and grace</li>
+                                        <li>Stage projection and showmanship (timing and control of movements)</li>
+                                    </ul>
+                                </div>
+
+                                <div class="criteria-item">
+                                    <label for="sports-wear">Sports Wear (25%)</label>
+                                    <input type="number" id="sports-wear" name="F" placeholder="Score (0 - 25)" min="0" max="25" value="<?php echo htmlspecialchars($getResult['F']); ?>">
+                                </div>
+                                <div class="criteria-subitem">
+                                    <ul>
+                                        <li>Overall impact of beauty (face and figure congruence with costume fitting and projection)</li>
+                                        <li>Charm, poise, and grace</li>
+                                        <li>Stage projection and showmanship (timing and control of movements)</li>
+                                    </ul>
+                                </div>
+
+                                <div class="criteria-item">
+                                    <label for="modern-terno">Modern Terno (25%)</label>
+                                    <input type="number" id="modern-terno" name="G" placeholder="Score (0 - 25)" min="0" max="25" value="<?php echo htmlspecialchars($getResult['G']); ?>">
+                                </div>
+                                <div class="criteria-subitem">
+                                    <ul>
+                                        <li>Overall impact of beauty (face and figure congruence with costume fitting and projection)</li>
+                                        <li>Charm, poise, and grace</li>
+                                        <li>Stage projection and showmanship (timing and control of movements)</li>
+                                    </ul>
+                                </div>
+
+                                <div class="criteria-item">
+                                    <label for="qa-portion">Question and Answer Portion (30%)</label>
+                                    <input type="number" id="qa-portion" name="H" placeholder="Score (0 - 30)" min="0" max="30" value="<?php echo htmlspecialchars($getResult['H']); ?>">
+                                </div>
+                                <div class="criteria-subitem">
+                                    <ul>
+                                        <li>Content of the Answer</li>
+                                        <li>Delivery of Speech</li>
+                                        <li>Confidence and Overall Presence</li>
+                                    </ul>
+                                </div>
+
+                                <div class="criteria-item">
+                                    <label for="total">Total:</label>
+                                    <input type="text" id="total" name="total" placeholder="Score (0 - 100)" readonly>
+                                </div>
+
+                                <input type="text" name="team_id" hidden value="<?php echo htmlspecialchars($_GET['team_id']); ?>">
+                                <input type="text" name="gameType" hidden value="Mr_and_Mrs_Panagtigi">
+                                <input type="text" name="category" hidden value="Women">
+                                
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+
+
                             <?php
+                                 }
                                                     }
                             ?>
                         </form>

@@ -301,9 +301,15 @@ include('../connection/conn.php');
 
 
                   ?>
-<a href="../addGames.php?id=<?php echo $_SESSION['EventId'] ?> &&teamCount=<?php echo $team_count ?>" class = "btn btn-danger">BACK</a>
+                  <div class="div" style = "display: flex; justify-content: space-between;">
+                    <div class="div">
+                    <a href="../addGames.php?id=<?php echo $_SESSION['EventId'] ?> &&teamCount=<?php echo $team_count ?>" class = "btn btn-danger">BACK</a>
 
-                <a href="changeStatus.php" class = "btn btn-success" style = "margin-left: 30px;">Submit Team Information</a>
+                    </div>
+                      <div class="div">
+                      <a href="changeStatus.php" class = "btn btn-success" style = "margin-left: 30px;">Submit Team Information</a>
+                      </div>
+                  </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2" style = "margin-top: -20px;">
               <div class="table-responsive p-0">
