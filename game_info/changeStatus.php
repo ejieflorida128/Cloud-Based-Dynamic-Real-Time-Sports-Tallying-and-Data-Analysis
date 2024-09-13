@@ -354,7 +354,7 @@ $EliType = $_SESSION['EliminationType'];
                     $playerId1 = [];
 
                      // Get data for player1
-                     $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1'";
+                     $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1' ORDER BY RAND()";
                      $result1 = mysqli_query($conn, $getAllData);
                      while ($get1 = mysqli_fetch_assoc($result1)) {
                          $playerName1[] = $get1['name'];
@@ -381,7 +381,7 @@ $EliType = $_SESSION['EliminationType'];
                     $playerId2_2 = [];
                     
                     // Get data for player1
-                    $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1'";
+                    $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1' ORDER BY RAND()";
                     $result1 = mysqli_query($conn, $getAllData);
                     while ($get1 = mysqli_fetch_assoc($result1)) {
                         $playerName1[] = $get1['name'];
@@ -389,7 +389,7 @@ $EliType = $_SESSION['EliminationType'];
                     }
                 
                     // Get data for player2
-                    $getAllData1 = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player2'";
+                    $getAllData1 = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player2' ORDER BY RAND()";
                     $result2 = mysqli_query($conn, $getAllData1);
                     while ($get2 = mysqli_fetch_assoc($result2)) {
                         $playerName2_1[] = $get2['name']; // Assuming player2's name
