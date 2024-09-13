@@ -602,11 +602,12 @@ session_start();
                                                           ";
                                                               }else{
                                                                 $gameStatusNo = 2;
+                                                                $count = 4;
                                                                   $PrintStatus = '<h6 style = "color: green; margin-top: -5px;" >View Information</h6>';
 
                                                                     echo"
                                                                        
-                                                                            <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                            <a href = 'scoring_info/viewDetails.php?event_id=$eventId&&number_of_teams=$count' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
                                                                                     <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
                                                                                     <img src = '$pic' style = 'width: 150px; height: 150px;'>
                                                                                     </div>
@@ -702,10 +703,10 @@ session_start();
                                                                   }else{
                                                                     $gameStatusNo = 2;
                                                                       $PrintStatus = '<h6 style = "color: green; margin-top: -5px;" >View Information</h6>';
-
+                                                                      $count = 4;
                                                                         echo"
                                                                           
-                                                                                <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                                <a href = 'scoring_info/viewDetails.php?event_id=$eventId&&number_of_teams=$count' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
                                                                                         <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
                                                                                         <img src = '$pic' style = 'width: 150px; height: 150px;'>
                                                                                         </div>
@@ -798,10 +799,10 @@ session_start();
                                                                   }else{
                                                                     $gameStatusNo = 2;
                                                                       $PrintStatus = '<h6 style = "color: green; margin-top: -5px;" >View Information</h6>';
-
+                                                                      $count = 4;
                                                                         echo"
                                                                           
-                                                                                <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                                 <a href = 'scoring_info/viewDetails.php?event_id=$eventId&&number_of_teams=$count' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
                                                                                         <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
                                                                                         <img src = '$pic' style = 'width: 150px; height: 150px;'>
                                                                                         </div>
@@ -895,10 +896,10 @@ session_start();
                                                                   }else{
                                                                     $gameStatusNo = 2;
                                                                       $PrintStatus = '<h6 style = "color: green; margin-top: -5px;" >View Information</h6>';
-
+                                                                        $count = 4;
                                                                         echo"
                                                                           
-                                                                                <a href = 'game_info/gameStatusDecide.php?status=$gameStatusNo&&registerGameId=$registerGameId&&eventId=$eventId&&gameType=$gameType' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                                 <a href = 'scoring_info/viewDetails.php?event_id=$eventId&&number_of_teams=$count' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
                                                                                         <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
                                                                                         <img src = '$pic' style = 'width: 150px; height: 150px;'>
                                                                                         </div>
@@ -998,10 +999,10 @@ session_start();
                                                                   }else{
                                                                     $gameStatusNo = 2;
                                                                       $PrintStatus = '<h6 style = "color: green; margin-top: -5px;" >View Information</h6>';
-
+                                                                    $count = 4;
                                                                         echo"
                                                                           
-                                                                                <a href = 'scoring_info/score_list.php' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                                                <a href = 'scoring_info/viewDetails.php?event_id=$eventId&&number_of_teams=$count' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
                                                                                         <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
                                                                                         <img src = '$pic' style = 'width: 150px; height: 150px;'>
                                                                                         </div>
