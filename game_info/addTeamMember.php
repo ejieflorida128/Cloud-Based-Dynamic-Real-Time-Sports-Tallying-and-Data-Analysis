@@ -425,6 +425,13 @@
                                                                 }else if($_SESSION['GameType'] == 'Mr_and_Mrs_Panagtigi'){
                                                                   $val = 1;
                                                                   echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . $val . '">';
+                                                                }else if($_SESSION['GameType'] == 'Basketball_Men' || $_SESSION['GameType'] == 'Basketball_Women' || $_SESSION['GameType'] == 'Vollayball_Men' || $_SESSION['GameType'] == 'Vollayball_Women' || $_SESSION['GameType'] == 'Softball_Men' || $_SESSION['GameType'] == 'Softball_Women'){
+                                                                  $val = 5;
+                                                                  echo '<input type="number" id="player_count" name="player_count" class="form-control" style="width: 10vw;" value="' . $val . '" min="5" max="15">';
+                                                                  
+                                                                }else if($_SESSION['GameType'] == 'MLBB'){
+                                                                  $val = 5;
+                                                                  echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . $val . '" min="5" max="7">';
                                                                 }else{
                                                                         if($GETdATA['number_of_player'] != 0){
                                                                             echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . htmlspecialchars($GETdATA['number_of_player']) . '" >';
