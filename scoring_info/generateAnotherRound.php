@@ -537,32 +537,63 @@ include('../connection/conn.php');
                                       
                                                 backToGameList($eventId,$gameId,$gameType);
                                             
-                                }else{
-                                    $nextRound = $currentRound + 1;
+                                        }else{
+                                            $nextRound = $currentRound + 1;
 
-                                    if($nextRound == 2){
-                                            // for bronze or 3rd runner up ( winner )
-        
-                                            $type = 'bronze';
-        
-                                            getNewGameForCustomSolo($conn,$gameId,$eventId,$type);
-                                                
-        
-                                    }else if($nextRound == 3){
-                                            // for finals ( winner ) 1st and ( loser ) 2nd
-                                            addMedalPlayers($conn,$gameId,$eventId,'bronze');
-        
-                                            $type = 'silverANDgold';
-        
-                                            getNewGameForCustomSolo($conn,$gameId,$eventId,$type);
-                                    }else if($nextRound == 4){
-                                        addMedalPlayers($conn,$gameId,$eventId,'silverANDgold');
-                                        
-                                        backToGameList($eventId,$gameId,$gameType);
-                                    }
-        
-                                    backToGameList($eventId,$gameId,$gameType);
-                                }
+
+                                           
+
+                                            if($gameType == 'Chess'){
+                                                    if($nextRound == 2){
+                                                        generateChessMatchesRound2($conn,$eventId,$gameId);
+                                                    }else if($nextRound == 3){
+                                                        generateChessMatchesRound3($conn,$eventId,$gameId);
+                                                    }else if($nextRound == 4){
+                                                        // for bronze or 3rd runner up ( winner )
+                    
+                                                        $type = 'bronze';
+                    
+                                                        getNewGameForCustomSoloChess($conn,$gameId,$eventId,$type);
+                                                            
+                    
+                                                    }else if($nextRound == 5){
+                                                        // for finals ( winner ) 1st and ( loser ) 2nd
+                                                        addMedalPlayersChess($conn,$gameId,$eventId,'bronze');
+                    
+                                                        $type = 'silverANDgold';
+                    
+                                                        getNewGameForCustomSoloChess($conn,$gameId,$eventId,$type);
+                                                    }else if($nextRound == 6){
+                                                        addMedalPlayersChess($conn,$gameId,$eventId,'silverANDgold');
+                                                        
+                                                        backToGameList($eventId,$gameId,$gameType);
+                                                    }
+                                            }else{
+                                                if($nextRound == 2){
+                                                    // for bronze or 3rd runner up ( winner )
+                
+                                                    $type = 'bronze';
+                
+                                                    getNewGameForCustomSolo($conn,$gameId,$eventId,$type);
+                                                        
+                
+                                                }else if($nextRound == 3){
+                                                        // for finals ( winner ) 1st and ( loser ) 2nd
+                                                        addMedalPlayers($conn,$gameId,$eventId,'bronze');
+                    
+                                                        $type = 'silverANDgold';
+                    
+                                                        getNewGameForCustomSolo($conn,$gameId,$eventId,$type);
+                                                }else if($nextRound == 4){
+                                                    addMedalPlayers($conn,$gameId,$eventId,'silverANDgold');
+                                                    
+                                                    backToGameList($eventId,$gameId,$gameType);
+                                                }
+                                            }
+                                           
+                
+                                            backToGameList($eventId,$gameId,$gameType);
+                                        }
                                     
                         }
 
@@ -572,6 +603,281 @@ include('../connection/conn.php');
         
         
         }
+    }
+
+
+    function addMedalPlayersChess($conn,$gameId,$eventId,$type){
+
+        if($type == 'silverANDgold'){
+
+                // silver
+
+                $addSilverSQL = "SELECT * FROM game_matches WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = 16";
+                $querySilver = mysqli_query($conn,$addSilverSQL);
+
+                $loserID = 0;
+                $LoserTeamID = 0;
+                $LoserTeam = '';
+
+                $getSilver = mysqli_fetch_assoc($querySilver);
+
+                $loserID = $getSilver['loser_id'];
+                
+
+                $LoserPlayerSQL = "SELECT * FROM players WHERE id = $loserID";
+                $queryLoserPlayer = mysqli_query($conn,$LoserPlayerSQL);
+
+                $getDataLoserPlayer  = mysqli_fetch_assoc($queryLoserPlayer);
+
+                $LoserTeamID = $getDataLoserPlayer['team_id'];
+
+                // get team
+
+                $LoserTeamSQL = "SELECT * FROM teams WHERE id = $LoserTeamID";
+                $queryLoser = mysqli_query($conn,$LoserTeamSQL);
+
+                $getDataLoser  = mysqli_fetch_assoc($queryLoser);
+
+                $LoserTeam = $getDataLoser['team_name'];
+
+                // update silver medal
+                $updateSilverSQL = "UPDATE tally SET SILVER = SILVER + 1 WHERE event_id = '$eventId' AND team_name = '$LoserTeam'";
+                mysqli_query($conn,$updateSilverSQL);
+
+
+                // gold
+
+                 $addGoldSQL = "SELECT * FROM game_matches WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = 16";
+                 $queryGold = mysqli_query($conn,$addGoldSQL);
+ 
+                 $WinnerID = 0;
+                 $WinnerTeamID = 0;
+                 $WinnerTeam = '';
+ 
+                 $getGold = mysqli_fetch_assoc($queryGold);
+ 
+                 $WinnerID = $getGold['winner_id'];
+                 
+ 
+                 $WinnerPlayerSQL = "SELECT * FROM players WHERE id = $WinnerID";
+                 $queryWinnerPlayer = mysqli_query($conn,$WinnerPlayerSQL);
+ 
+                 $getDataWinnerPlayer  = mysqli_fetch_assoc($queryWinnerPlayer);
+ 
+                 $WinnerTeamID = $getDataWinnerPlayer['team_id'];
+ 
+                 // get team
+ 
+                 $WinnerTeamSQL = "SELECT * FROM teams WHERE id = $WinnerTeamID";
+                 $queryWinner = mysqli_query($conn,$WinnerTeamSQL);
+ 
+                 $getDataWinner  = mysqli_fetch_assoc($queryWinner);
+ 
+                 $WinnerTeam = $getDataWinner['team_name'];
+ 
+                 // update Gold medal
+                 $updateGoldSQL = "UPDATE tally SET GOLD = GOLD + 1 WHERE event_id = '$eventId' AND team_name = '$WinnerTeam'";
+                 mysqli_query($conn,$updateGoldSQL);
+
+              
+        }else{
+            $addBronzeSQL = "SELECT * FROM game_matches WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = 15";
+            $queryBronze = mysqli_query($conn,$addBronzeSQL);
+
+            $WinnerID = 0;
+            $WinnerTeamID = 0;
+            $WinnerTeam = '';
+
+            $getBronze = mysqli_fetch_assoc($queryBronze);
+
+            $WinnerID = $getBronze['winner_id'];
+            
+
+            $WinnerPlayerSQL = "SELECT * FROM players WHERE id = $WinnerID";
+            $queryWinnerPlayer = mysqli_query($conn,$WinnerPlayerSQL);
+
+            $getDataWinnerPlayer  = mysqli_fetch_assoc($queryWinnerPlayer);
+
+            $WinnerTeamID = $getDataWinnerPlayer['team_id'];
+
+            // get team
+
+            $WinnerTeamSQL = "SELECT * FROM teams WHERE id = $WinnerTeamID";
+            $queryWinner = mysqli_query($conn,$WinnerTeamSQL);
+
+            $getDataWinner  = mysqli_fetch_assoc($queryWinner);
+
+            $WinnerTeam = $getDataWinner['team_name'];
+
+            // update Bronze medal
+            $updateBronzeSQL = "UPDATE tally SET BRONZE = BRONZE + 1 WHERE event_id = '$eventId' AND team_name = '$WinnerTeam'";
+            mysqli_query($conn,$updateBronzeSQL);
+        }
+
+}
+
+
+    function getNewGameForCustomSoloChess($conn,$gameId,$eventId,$type){
+
+          
+
+        if($type == 'bronze'){
+                    // set finals
+                    $winnnerId = [];
+                    $getMatchesFor3ndRound = "SELECT * FROM players WHERE game_id = '$gameId' AND event_id = '$eventId' AND bracket = 'W' AND last_match_status = 'Winner'";
+                    $query = mysqli_query($conn,$getMatchesFor3ndRound);
+
+                    while($getData = mysqli_fetch_assoc($query)){
+                        $winnnerId[] = $getData['id'];
+                    }
+
+                    for($b = 0; $b < 2; $b++){
+                        $sqlUPdatePlayers = "UPDATE players SET advance = 'last' WHERE id = $winnnerId[$b]";
+                        mysqli_query($conn,$sqlUPdatePlayers);
+                    }
+
+
+                    // for 3rd  
+                        $getMatchesFor2ndRound = "SELECT * FROM players WHERE game_id = '$gameId' AND event_id = '$eventId' AND bracket = 'W' AND last_match_status = 'Loser' AND advance = 'final'";
+                        $query = mysqli_query($conn,$getMatchesFor2ndRound);
+
+                        $loserName = [];
+                        $loserId = [];
+                        while($getData = mysqli_fetch_assoc($query)){
+                            $loserName[] = $getData['name'];
+                            $loserId[] = $getData['id'];
+                        }
+
+                        $Name1 = $loserName[0];
+                        $Name2 = $loserName[1];
+                        $Name1Id = $loserId[0];
+                        $Name2Id = $loserId[1];
+                        $match_info = 15;
+
+                        $update2ndRound = "UPDATE game_matches SET status = 'game', round = '4', team1 = '$Name1Id', team1_name = '$Name1', team2 = '$Name2Id', team2_name = '$Name2' WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = '$match_info'";
+                        mysqli_query($conn,$update2ndRound);
+
+        }else{
+                // for 1st and 2nd
+
+
+                $getMatchesFor3ndRound = "SELECT * FROM players WHERE game_id = '$gameId' AND event_id = '$eventId' AND bracket = 'W' AND last_match_status = 'Winner' AND advance = 'last'";
+                        $query = mysqli_query($conn,$getMatchesFor3ndRound);
+
+                        $WinnerName = [];
+                        $WinnerId = [];
+                        while($getData = mysqli_fetch_assoc($query)){
+                            $WinnerName[] = $getData['name'];
+                            $WinnerId[] = $getData['id'];
+                        }
+
+                        $Name1 = $WinnerName[0];
+                        $Name2 = $WinnerName[1];
+                        $Name1Id = $WinnerId[0];
+                        $Name2Id = $WinnerId[1];
+                        $match_info = 16;
+
+                        $update3ndRound = "UPDATE game_matches SET status = 'game', round = '5', team1 = '$Name1Id', team1_name = '$Name1', team2 = '$Name2Id', team2_name = '$Name2' WHERE game_id = '$gameId' AND event_id = '$eventId' AND match_info = '$match_info'";
+                        mysqli_query($conn,$update3ndRound);
+
+        }
+}
+
+        function generateChessMatchesRound3($conn,$event_id,$game_id){
+            $playerName1 = [];
+            $playerId1 = [];
+        
+
+
+            // Get data for player1
+            $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND bracket = 'W' AND last_match_status = 'Winner' ORDER BY RAND()";
+            $result1 = mysqli_query($conn, $getAllData);
+            while ($get1 = mysqli_fetch_assoc($result1)) {
+                $playerName1[] = $get1['name'];
+                $playerId1[] = $get1['id'];
+            }
+            
+
+            for($y = 0; $y < 4; $y++){
+                    $sqlAdvance = "UPDATE players SET advance = 'final' WHERE id = '$playerId1[$y]'";
+                    mysqli_query($conn,$sqlAdvance);
+            }
+            
+
+
+                $updateSingle1 = "UPDATE game_matches SET status = 'game', round = 3, team1 = '{$playerId1[0]}', team1_name = '{$playerName1[0]}', team2 = '{$playerId1[3]}', team2_name = '{$playerName1[3]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 13";
+                mysqli_query($conn, $updateSingle1);
+            
+                $updateSingle2 = "UPDATE game_matches SET status = 'game', round = 3, team1 = '{$playerId1[1]}', team1_name = '{$playerName1[1]}', team2 = '{$playerId1[2]}', team2_name = '{$playerName1[2]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 14";
+                mysqli_query($conn, $updateSingle2);
+
+                $playerName1 = [];
+                $playerId1 = [];
+        
+
+        }
+
+
+    function generateChessMatchesRound2($conn,$event_id,$game_id){
+        $playerName1 = [];
+        $playerId1 = [];
+        $playerName2 = [];
+        $playerId2 = [];
+        $playerName3 = [];
+        $playerId3 = [];
+        $playerName4 = [];
+        $playerId4 = [];
+
+
+          // Get data for player1
+          $getAllData = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player1' AND bracket = 'W' ORDER BY RAND()";
+          $result1 = mysqli_query($conn, $getAllData);
+          while ($get1 = mysqli_fetch_assoc($result1)) {
+              $playerName1[] = $get1['name'];
+              $playerId1[] = $get1['id'];
+          }
+          
+           // Get data for player2
+           $getAllData2 = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player2' AND bracket = 'W' ORDER BY RAND()";
+           $result2 = mysqli_query($conn, $getAllData2);
+           while ($get2 = mysqli_fetch_assoc($result2)) {
+               $playerName2[] = $get2['name'];
+               $playerId2[] = $get2['id'];
+           }
+
+            // Get data for player3
+            $getAllData3 = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player3' AND bracket = 'W' ORDER BY RAND()";
+            $result3 = mysqli_query($conn, $getAllData3);
+            while ($get3 = mysqli_fetch_assoc($result3)) {
+                $playerName3[] = $get3['name'];
+                $playerId3[] = $get3['id'];
+            }
+
+            // Get data for player4
+            $getAllData4 = "SELECT * FROM players WHERE game_id = $game_id AND event_id = $event_id AND player_number = 'player4' AND bracket = 'W' ORDER BY RAND()";
+            $result4 = mysqli_query($conn, $getAllData4);
+            while ($get4 = mysqli_fetch_assoc($result4)) {
+                $playerName4[] = $get4['name'];
+                $playerId4[] = $get4['id'];
+            }
+
+
+            $updateSingle1 = "UPDATE game_matches SET status = 'game', round = 2, team1 = '{$playerId1[0]}', team1_name = '{$playerName1[0]}', team2 = '{$playerId1[1]}', team2_name = '{$playerName1[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 9";
+            mysqli_query($conn, $updateSingle1);
+        
+            $updateSingle2 = "UPDATE game_matches SET status = 'game', round = 2, team1 = '{$playerId2[0]}', team1_name = '{$playerName2[0]}', team2 = '{$playerId2[1]}', team2_name = '{$playerName2[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 10";
+            mysqli_query($conn, $updateSingle2);
+
+            $updateSingle3 = "UPDATE game_matches SET status = 'game', round = 2, team1 = '{$playerId3[0]}', team1_name = '{$playerName3[0]}', team2 = '{$playerId3[1]}', team2_name = '{$playerName3[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 11";
+            mysqli_query($conn, $updateSingle3);
+        
+            $updateSingle4 = "UPDATE game_matches SET status = 'game', round = 2, team1 = '{$playerId4[0]}', team1_name = '{$playerName4[0]}', team2 = '{$playerId4[1]}', team2_name = '{$playerName4[1]}' WHERE event_id = '$event_id' AND game_id = '$game_id' AND match_info = 12";
+            mysqli_query($conn, $updateSingle4);
+
+       
+
+         
+
     }
     
 
