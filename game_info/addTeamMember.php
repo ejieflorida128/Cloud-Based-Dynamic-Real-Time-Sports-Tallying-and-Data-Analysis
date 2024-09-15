@@ -396,7 +396,7 @@
                                                                   $val = 2;
                                                                   echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . $val . '">';
                                                                 }else if($_SESSION['GameType'] == 'Chess'){
-                                                                  $val = 1;
+                                                                  $val = 4;
                                                                   echo '<input type="text" id="player_count" name="player_count" class="form-control" style="width: 10vw;" readonly value="' . $val . '">';
                                                                 }else if($_SESSION['GameType'] == 'Archery'){
                                                                   $val = 1;
@@ -2194,10 +2194,10 @@
                                                                 <div class = "container">
                                                                      <form action="actionRegister.php" method = "post">
                                                                              <div class="part1">
-                                                                                   <h5>1 player</h5>
+                                                                                   <h5>4 player</h5>
                                                                                <div class="row">';
                                                                                        
-                                                                                                   for($x = 1; $x <=1; $x++){
+                                                                                                   for($x = 1; $x <=4; $x++){
 
                                                                                                      $condition = 'player'.$x;
 
