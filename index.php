@@ -289,12 +289,12 @@ include('connection/conn.php');
             </div>
 			<?php
 $winners = [
-    ['position' => '1st Runner Up', 'gender' => 'Mr', 'team' => 'Mr. Shawn Esguerra', 'img' => 'candidate/blazingBoy.jpg'],
-    ['position' => '1st Runner Up', 'gender' => 'Ms', 'team' => 'Ms. Rhea Galang', 'img' => 'candidate/valiantGirl.jpg'],
-    ['position' => '2nd Runner Up', 'gender' => 'Mr', 'team' => 'Mr. Bhenjie Amparo', 'img' => 'candidate/cyberBoy.jpg'],
-    ['position' => '2nd Runner Up', 'gender' => 'Ms', 'team' => 'Ms. Joanna Espanola', 'img' => 'candidate/blazingGirl.jpg'],
-    ['position' => '3rd Runner Up', 'gender' => 'Mr', 'team' => 'Mr. Nel Vincent Aves', 'img' => 'candidate/azureBoy.jpg'],
-    ['position' => '3rd Runner Up', 'gender' => 'Ms', 'team' => 'Ms. Norabeth Beceril', 'img' => 'candidate/cyberGirl.jpg'],
+    ['position' => '1st Runners-Up', 'gender' => 'Mr', 'team' => 'Mr. Shawn Esguerra', 'img' => 'candidate/blazingBoy.jpg'],
+    ['position' => '1st Runners-Up', 'gender' => 'Ms', 'team' => 'Ms. Rhea Galang', 'img' => 'candidate/valiantGirl.jpg'],
+    ['position' => '2nd Runners-Up', 'gender' => 'Mr', 'team' => 'Mr. Bhenjie Amparo', 'img' => 'candidate/cyberBoy.jpg'],
+    ['position' => '2nd Runners-Up', 'gender' => 'Ms', 'team' => 'Ms. Joanna Espanola', 'img' => 'candidate/blazingGirl.jpg'],
+    ['position' => '3rd Runners-Up', 'gender' => 'Mr', 'team' => 'Mr. Nel Vincent Aves', 'img' => 'candidate/azureBoy.jpg'],
+    ['position' => '3rd Runners-Up', 'gender' => 'Ms', 'team' => 'Ms. Norabeth Beceril', 'img' => 'candidate/cyberGirl.jpg'],
 ];
 ?>
 
@@ -334,12 +334,12 @@ $winners = [
 <?php
 $winners = [
    
-    ['position' => 'Best Photogenic', 'gender' => 'Mr', 'team' => 'Mr. Bhenjie Amparo', 'img' => 'candidate/cyberBoy.jpg'],
-    ['position' => 'Best Photogenic', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
-    ['position' => 'Best Social Media', 'gender' => 'Mr', 'team' => 'Mr. Nel Vincent Aves', 'img' => 'candidate/azureBoy.jpg'],
-    ['position' => 'Best Social Media', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
-    ['position' => 'Best Skeen Life', 'gender' => 'Mr', 'team' => 'Mr. Shawn Esguerra', 'img' => 'candidate/blazingBoy.jpg'],
-    ['position' => 'Best Skeen Life', 'gender' => 'Ms', 'team' => 'Ms. Joanna Espanola', 'img' => 'candidate/blazingGirl.jpg'],
+    ['position' => 'Mr Photogenic', 'gender' => 'Mr', 'team' => 'Mr. Bhenjie Amparo', 'img' => 'candidate/cyberBoy.jpg'],
+    ['position' => 'Ms Photogenic', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
+    ['position' => 'Mr Social Media', 'gender' => 'Mr', 'team' => 'Mr. Nel Vincent Aves', 'img' => 'candidate/azureBoy.jpg'],
+    ['position' => 'Ms Social Media', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
+    ['position' => 'Mr Skeen Life', 'gender' => 'Mr', 'team' => 'Mr. Shawn Esguerra', 'img' => 'candidate/blazingBoy.jpg'],
+    ['position' => 'Ms Skeen Life', 'gender' => 'Ms', 'team' => 'Ms. Joanna Espanola', 'img' => 'candidate/blazingGirl.jpg'],
     ['position' => 'Mr Congeniality', 'gender' => 'Mr', 'team' => 'Mr. Justine Joe Balbon', 'img' => 'candidate/valiantBoy.jpg'],
     ['position' => 'Ms Congeniality', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
 	['position' => 'Best in Production No.', 'gender' => 'Mr', 'team' => 'Mr. Shawn Esguerra', 'img' => 'candidate/blazingBoy.jpg'],
