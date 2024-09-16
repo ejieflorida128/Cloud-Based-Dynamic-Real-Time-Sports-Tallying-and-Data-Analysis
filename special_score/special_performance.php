@@ -422,6 +422,13 @@ include('../connection/conn.php');
 
                                     $men = 'Men';
                                     $female = 'Women';
+
+                                    $getParticipantInfo = "SELECT * FROM players WHERE game_id = '$game_ID' AND event_id = '$event_ID' AND team_id = '$teamId'";
+                                    $queryParticipant = mysqli_query($conn,$getParticipantInfo);
+
+                                    $resultParticipant = mysqli_fetch_assoc($queryParticipant);
+                                    $mr = $resultParticipant['name'];
+                                    $ms = $resultParticipant['name1'];
                                             echo "
 
                                             <a href = 'criteriaForMrAndMrsPanagtigi.php?team_id=$teamId&&category=$men' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
@@ -431,7 +438,7 @@ include('../connection/conn.php');
 
                                                                             <div class='information' style = 'margin-top: 20px;'>
 
-                                                                                        <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$name ( Male )</h6></div>
+                                                                                        <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>Mr. $mr</h6></div>
                                                                                             <div class = 'status' style = 'display: flex; justify-content: center; color: green;'><p>Click to add Score!</p></div>
                                                                                         
 
@@ -450,7 +457,7 @@ include('../connection/conn.php');
 
                                                                     <div class='information' style = 'margin-top: 20px;'>
 
-                                                                                <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$name ( Female )</h6></div>
+                                                                                <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>Ms. $ms</h6></div>
                                                                                     <div class = 'status' style = 'display: flex; justify-content: center; color: green;'><p>Click to add Score!</p></div>
                                                                                 
 
