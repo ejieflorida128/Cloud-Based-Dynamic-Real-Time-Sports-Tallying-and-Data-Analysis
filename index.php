@@ -115,6 +115,7 @@ include('connection/conn.php');
 			                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 			                    <li class=" scroll active"><a href="#home">home</a></li>
 			                    <li class="scroll"><a href="#works">Panagtigi</a></li>
+								<li class=" scroll"><a href="#matches">Matches</a></li>
 			                   
 			                </ul><!--/.nav -->
 			            </div><!-- /.navbar-collapse -->
@@ -308,7 +309,7 @@ include('connection/conn.php');
 
 
 		<!--works start -->
-		<section id="works" class="works">
+		<section id="matches" class="matches">
 			<div class="container">
 				<div class="section-header">
 					<h2 style = "color: orange; font-weight: bolder;">Game Matches</h2>
@@ -344,7 +345,7 @@ include('connection/conn.php');
 								<p>
 								Show the game information by clicking the button below!
 								</p>
-								<a href="showGames/show.php?event_id=<?php echo $getEvents['event_id']; ?>&&game_id=<?php echo $getEvents['id']; ?>&&game_type=<?php echo $getEvents['game_type']; ?>" class="welcome-hero-btn how-work-btn" style="display: inline-block; text-align: center; line-height: 34px;">View Matches</a>
+								<a href="showGames/show.php?event_id=<?php echo $getEvents['event_id']; ?>&&game_id=<?php echo $getEvents['id']; ?>&&game_type=<?php echo $getEvents['game_type']; ?>" class="welcome-hero-btn how-work-btn" style="display: inline-block; text-align: center; line-height: 34px;">View Match</a>
 
 							</div>
 						</div>
