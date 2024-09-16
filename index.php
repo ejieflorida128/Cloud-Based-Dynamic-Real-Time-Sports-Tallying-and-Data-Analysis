@@ -18,7 +18,7 @@ include('connection/conn.php');
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
         <!-- title of site -->
-        <title>Directory Landing Page</title>
+        <title>SLSU Realtime Sport Tallying System</title>
 
         <!-- For favicon png -->
 		<link rel="icon" type="image/png" href="template/AdminTemplate/assets/img/favicon.png">
