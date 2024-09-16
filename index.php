@@ -318,7 +318,7 @@ include('connection/conn.php');
 					<div class="row">
 
 					<?php 
-							$selectAllEvents = "SELECT * FROM registered_game";
+							$selectAllEvents = "SELECT * FROM registered_game WHERE status = 'submitted'";
 							$queryEvents = mysqli_query($conn,$selectAllEvents);
 
 							while($getEvents = mysqli_fetch_assoc($queryEvents)){
