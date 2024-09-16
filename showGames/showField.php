@@ -323,7 +323,7 @@ session_start();
 
                                 <!-- shotput -->
                                 <div class="slot" style="flex-basis: 30%; max-width: 250px; margin: 10px;">
-                                   <a href="throws.php  ?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&meter=<?php echo $shotput ?>" 
+                                   <a href="throws.php?event_id=<?php echo $event_id ?>&&game_id=<?php echo $game_id ?>&&game_type=<?php echo $game_type ?>&&meter=<?php echo $shotput ?>" 
                                       class="event-box" style="display: block; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; overflow: hidden; background-color: white; transition: transform 0.3s;">
                                         <div class="pictures" style="display: flex; justify-content: center; padding: 20px;">
                                             <img src="../background_image/shotput.jpg" style="width: 150px; height: 150px; border-radius: 15px;">
