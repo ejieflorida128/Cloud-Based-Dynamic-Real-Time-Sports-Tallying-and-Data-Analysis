@@ -116,6 +116,7 @@ include('connection/conn.php');
 			                    <li class=" scroll active"><a href="#home">home</a></li>
 			                    <li class="scroll"><a href="#works">Panagtigi</a></li>
 								<li class=" scroll"><a href="#matches">Matches</a></li>
+								<li class=" scroll"><a href="#panagtigiModels">Mr and Ms Panagtigi 2024</a></li>
 			                   
 			                </ul><!--/.nav -->
 			            </div><!-- /.navbar-collapse -->
@@ -262,8 +263,117 @@ include('connection/conn.php');
 		</style>
 		<!--list-topics end-->
 
+
 		<!--works start -->
-		<section id="works" class="works">
+	<!<!--works start -->
+<section id="panagtigiModels" class="panagtigiModels">
+    <div class="container">
+        <div class="section-header">
+            <h2 style="color: orange; font-weight: bolder; font-size: 3rem;">Mr. and Ms. Panagtigi 2024</h2>
+            <p style="font-size: 1.5rem;">Get ready to be dazzled by the stunning and dashing candidates of Mr. and Ms. Panagtigi 2024! Prepare to witness elegance, charm, and beauty like never before!</p>
+        </div><!--/.section-header-->
+        <div class="works-content">
+            <div class="row winners justify-content-center">
+                <div class="col-md-6 col-sm-12 text-center MrWinner">
+				<img src="candidate/valiantBoy.jpg" class="img-fluid" style="width: 200px; height: 200px; border: 2px solid gold; border-radius: 50%;" alt="Mr. Panagtigi">
+					<h2 style = "color: grey; font-weight: bolder; margin-top: 7px;">Mr. Panagtigi 2024</h2>
+					<p>Mr. Justine Joe Balbon</p>
+
+                </div>
+                <div class="col-md-6 col-sm-12 text-center MsWinner">
+				<img src="candidate/azureGirl.jpg" class="img-fluid" style="width: 200px; height: 200px; border: 2px solid gold; border-radius: 50%;" alt="Ms. Panagtigi">
+					<h2 style = "color: grey; font-weight: bolder; margin-top: 7px;">Ms. Panagtigi 2024</h2>
+					<h4 style = "color: grey; font-weight: bolder;"></h4>
+					<p>Ms. Tracy Marie Handog</p>
+                </div>
+            </div>
+			<?php
+$winners = [
+    ['position' => '1st Runner Up', 'gender' => 'Mr', 'team' => 'Mr. Shawn Esguerra', 'img' => 'candidate/blazingBoy.jpg'],
+    ['position' => '1st Runner Up', 'gender' => 'Ms', 'team' => 'Ms. Rhea Galang', 'img' => 'candidate/valiantGirl.jpg'],
+    ['position' => '2nd Runner Up', 'gender' => 'Mr', 'team' => 'Mr. Bhenjie Amparo', 'img' => 'candidate/cyberBoy.jpg'],
+    ['position' => '2nd Runner Up', 'gender' => 'Ms', 'team' => 'Ms. Joanna Espanola', 'img' => 'candidate/blazingGirl.jpg'],
+    ['position' => '3rd Runner Up', 'gender' => 'Mr', 'team' => 'Mr. Nel Vincent Aves', 'img' => 'candidate/azureBoy.jpg'],
+    ['position' => '3rd Runner Up', 'gender' => 'Ms', 'team' => 'Ms. Norabeth Beceril', 'img' => 'candidate/cyberGirl.jpg'],
+];
+?>
+
+<div class="row winners text-center" style="margin-top: 20px;">
+    <?php foreach ($winners as $winner): ?>
+        <div class="col-lg-2 col-md-4 col-sm-6 text-center <?= $winner['gender'] ?>Winner">
+            <img src="<?= $winner['img'] ?>" class="img-fluid" style="width: 200px; height: 200px; border: 2px solid gold; border-radius: 50%;" alt="<?= $winner['gender'] ?> Panagtigi">
+            <h2 style="color: grey; font-weight: bolder; margin-top: 7px;"><?= $winner['position'] ?></h2>
+            <p><?= $winner['team'] ?></p>
+        </div>
+    <?php endforeach; ?>
+</div>
+<div class="title2" style="text-align: center; font-size: 50px; font-weight: bolder; color: orange; margin-top: 20px; margin-bottom: 30px;">
+    Special Awards
+</div>
+
+<style>
+    .title2 {
+        font-size: 50px;
+    }
+
+    /* Adjust the font size for mobile devices */
+    @media (max-width: 768px) {
+        .title2 {
+            font-size: 35px; /* Smaller font size for tablets */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .title2 {
+            font-size: 25px; /* Smaller font size for mobile */
+        }
+    }
+</style>
+
+
+<?php
+$winners = [
+   
+    ['position' => 'Best Photogenic', 'gender' => 'Mr', 'team' => 'Mr. Bhenjie Amparo', 'img' => 'candidate/cyberBoy.jpg'],
+    ['position' => 'Best Photogenic', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
+    ['position' => 'Best Social Media', 'gender' => 'Mr', 'team' => 'Mr. Nel Vincent Aves', 'img' => 'candidate/azureBoy.jpg'],
+    ['position' => 'Best Social Media', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
+    ['position' => 'Best Skeen Life', 'gender' => 'Mr', 'team' => 'Mr. Shawn Esguerra', 'img' => 'candidate/blazingBoy.jpg'],
+    ['position' => 'Best Skeen Life', 'gender' => 'Ms', 'team' => 'Ms. Joanna Espanola', 'img' => 'candidate/blazingGirl.jpg'],
+    ['position' => 'Mr Congeniality', 'gender' => 'Mr', 'team' => 'Mr. Justine Joe Balbon', 'img' => 'candidate/valiantBoy.jpg'],
+    ['position' => 'Ms Congeniality', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
+	['position' => 'Best in Production No.', 'gender' => 'Mr', 'team' => 'Mr. Shawn Esguerra', 'img' => 'candidate/blazingBoy.jpg'],
+    ['position' => 'Best in Production No.', 'gender' => 'Ms', 'team' => 'Ms. Joanna Espanola', 'img' => 'candidate/blazingGirl.jpg'],
+    ['position' => 'Best in Sport Wear', 'gender' => 'Mr', 'team' => 'Mr. Bhenjie Amparo', 'img' => 'candidate/cyberBoy.jpg'],
+    ['position' => 'Best in Sport Wear', 'gender' => 'Ms', 'team' => 'Ms. Norabeth Beceril', 'img' => 'candidate/cyberGirl.jpg'],
+    ['position' => 'Best in Modern Terno', 'gender' => 'Mr', 'team' => 'Mr. Shawn Esguerra', 'img' => 'candidate/blazingBoy.jpg'],
+    ['position' => 'Best in Modern Terno', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
+];
+?>
+
+<div class="row winners text-center" style="margin-top: 20px;">
+    <?php foreach ($winners as $winner): ?>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center <?= $winner['gender'] ?>Winner" style="margin-bottom: 15px;">
+            <img src="<?= $winner['img'] ?>" class="img-fluid" style="width: 200px; height: 200px; border: 2px solid gold; border-radius: 50%;" alt="<?= $winner['gender'] ?> Panagtigi">
+            <h4 style="color: grey; font-weight: bold; margin-top: 5px; font-size: 14px;"><?= $winner['position'] ?></h4>
+            <p style="font-size: 12px;"><?= $winner['team'] ?></p>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+
+					
+					
+		
+						</div>
+					</div><!--/.container-->
+				</section><!--/.works-->
+
+
+		<!--works end -->
+
+		<!--works start -->
+		<section id="works" class="works" style = "margin-top: 40px;">
 			<div class="container">
 				<div class="section-header">
 					<h2 style = "color: orange; font-weight: bolder;">Panagtigi List</h2>
