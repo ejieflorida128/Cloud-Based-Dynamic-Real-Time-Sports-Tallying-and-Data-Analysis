@@ -15,7 +15,8 @@ include('connection/conn.php');
 
         <!--font-family-->
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
         <!-- title of site -->
         <title>Directory Landing Page</title>
 
@@ -264,7 +265,7 @@ include('connection/conn.php');
 		<section id="works" class="works">
 			<div class="container">
 				<div class="section-header">
-					<h2>Panagtigi List</h2>
+					<h2 style = "color: orange; font-weight: bolder;">Panagtigi List</h2>
 					<p>Click check taly for medal infomatiom!</p>
 				</div><!--/.section-header-->
 				<div class="works-content">
@@ -289,6 +290,54 @@ include('connection/conn.php');
 								For additional information
 								</p>
 								<a href="tallyBoard.php?event_id=<?php echo $getEvents['id']; ?>" class="welcome-hero-btn how-work-btn" style="display: inline-block; text-align: center; line-height: 34px;">Check Tally</a>
+
+							</div>
+						</div>
+
+						<?php  } ?>
+						
+						
+
+
+					</div>
+				</div>
+			</div><!--/.container-->
+		
+		</section><!--/.works-->
+		<!--works end -->
+
+
+		<!--works start -->
+		<section id="works" class="works">
+			<div class="container">
+				<div class="section-header">
+					<h2 style = "color: orange; font-weight: bolder;">Game Matches</h2>
+					<p>Click the Events below to show information!</p>
+				</div><!--/.section-header-->
+				<div class="works-content">
+					<div class="row">
+
+					<?php 
+							$selectAllEvents = "SELECT * FROM registered_game";
+							$queryEvents = mysqli_query($conn,$selectAllEvents);
+
+							while($getEvents = mysqli_fetch_assoc($queryEvents)){
+
+							
+					?>
+					
+						<div class="col-md-4 col-sm-6">
+							<div class="single-how-works">
+								<div class="single-how-works-icon">
+								<i class="fas fa-gamepad" style = "font-size: 50px; margin-top: 16px;"></i>
+
+								</div>
+								<h2><a href="#"><?php echo $getEvents['game_type']; ?></a></h2>
+							
+								<p>
+								Show the game information by clicking the button below!
+								</p>
+								<a href="showGames/show.php?event_id=<?php echo $getEvents['id']; ?>" class="welcome-hero-btn how-work-btn" style="display: inline-block; text-align: center; line-height: 34px;">View Matches</a>
 
 							</div>
 						</div>
