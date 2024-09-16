@@ -339,7 +339,7 @@ ob_end_flush();
                                                                                                         $getResult['team_name']
                                                                                                     .'
                                                                                                 </p>
-                                                                                                <p class="text-xs text-secondary mb-0">Panagiti Team</p>
+                                                                                                <p class="text-xs text-secondary mb-0">panagtigi Team</p>
                                                                                             </td>
                                                                                             <td class="align-middle text-center">
                                                                                                      <img src="'.$getResult['logo'].'" class="avatar avatar-sm me-1" alt="user1">
@@ -518,7 +518,7 @@ ob_end_flush();
                                                                                                $getResult['team_name']
                                                                                            .'
                                                                                        </p>
-                                                                                       <p class="text-xs text-secondary mb-0">Panagiti Team</p>
+                                                                                       <p class="text-xs text-secondary mb-0">panagtigi Team</p>
                                                                                    </td>
                                                                                    <td class="align-middle text-center">
                                                                                             <img src="'.$getResult['logo'].'" class="avatar avatar-sm me-1" alt="user1">
@@ -759,7 +759,7 @@ ob_end_flush();
                                                       </td>
                                                       <td>
                                                           <p class="text-xs font-weight-bold mb-0">' . htmlspecialchars($getResult['team_name']) . '</p>
-                                                          <p class="text-xs text-secondary mb-0">Panagiti Team</p>
+                                                          <p class="text-xs text-secondary mb-0">panagtigi Team</p>
                                                       </td>
                                                       <td class="align-middle text-center">
                                                           <img src="' . htmlspecialchars($getResult['logo']) . '" class="avatar avatar-sm me-1" alt="user1">
