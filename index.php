@@ -344,7 +344,7 @@ include('connection/conn.php');
 								<p>
 								Show the game information by clicking the button below!
 								</p>
-								<a href="showGames/show.php?event_id=<?php echo $getEvents['id']; ?>" class="welcome-hero-btn how-work-btn" style="display: inline-block; text-align: center; line-height: 34px;">View Matches</a>
+								<a href="showGames/show.php?event_id=<?php echo $getEvents['id']; ?>&&game_type=<?php echo $getEvents['game_type']; ?>" class="welcome-hero-btn how-work-btn" style="display: inline-block; text-align: center; line-height: 34px;">View Matches</a>
 
 							</div>
 						</div>
