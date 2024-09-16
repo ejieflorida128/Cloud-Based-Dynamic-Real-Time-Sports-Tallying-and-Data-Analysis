@@ -332,23 +332,36 @@ session_start();
                                                                 ";
                                                                     }else if($GAME_TYPE == 'Badminton_Men' || $GAME_TYPE == 'Badminton_Women' || $GAME_TYPE == 'Table_tennis_Men' || $GAME_TYPE == 'Table_tennis_Women'){
 
-                                                                      echo "
-                                                                      <a href = 'decide.php?event_id=$EVENT_ID&&game_id=$GAME_ID&&game_type=$GAME_TYPE' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
-                                                                  <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
-                                                                  <img src = '../$pic' style = 'width: 150px; height: 150px;'>
-                                                                  </div>
+                                                          //             echo "
+                                                          //             <a href = 'decide.php?event_id=$EVENT_ID&&game_id=$GAME_ID&&game_type=$GAME_TYPE' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
+                                                          //         <div class = 'pictures' style = 'display: flex; justify-content: center; margin-top: 10px;'>
+                                                          //         <img src = '../$pic' style = 'width: 150px; height: 150px;'>
+                                                          //         </div>
 
-                                                                  <div class='information' style = 'margin-top: 20px;'>
+                                                          //         <div class='information' style = 'margin-top: 20px;'>
 
-                                                                              <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$GAME_TYPE</h6></div>
-                                                                                <div class = 'status' style = 'display: flex; justify-content: center;'>More Information</div>
+                                                          //                     <div class = 'title' style = 'display: flex; justify-content: center;'> <h6>$GAME_TYPE</h6></div>
+                                                          //                       <div class = 'status' style = 'display: flex; justify-content: center;'>More Information</div>
                                                                               
                                                                               
 
-                                                                  </div>
+                                                          //         </div>
                                                                   
-                                                          </a>   
-                                                                ";
+                                                          // </a>   
+                                                          //       ";
+                                                          echo "
+                                                          <a href = '#' class='col-md-4 col-sm-6' style='pointer-events: none; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id='EventBox'>
+                                                              <div class='pictures' style='display: flex; justify-content: center; margin-top: 10px;'>
+                                                                  <img src='../$pic' style='width: 150px; height: 150px;'>
+                                                              </div>
+                                                              <div class='information' style='margin-top: 20px;'>
+                                                                  <div class='title' style='display: flex; justify-content: center;'> 
+                                                                      <h6>$GAME_TYPE</h6>
+                                                                  </div>
+                                                                  <div class='status' style='display: flex; justify-content: center; color: red; font-weight: bolder;'>Paper Based</div>
+                                                              </div>
+                                                          </a>";
+                                                          
 
                                                                     }else{
                                                                       echo "

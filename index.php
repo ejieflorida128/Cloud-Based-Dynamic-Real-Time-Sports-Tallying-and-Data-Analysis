@@ -435,7 +435,7 @@ $winners = [
 							while($getEvents = mysqli_fetch_assoc($queryEvents)){
 
 
-									if($getEvents['game_type'] == 'Creative_Folk_Dance' || $getEvents['game_type'] == 'Pop_Dance' || $getEvents['game_type'] == 'Vocal_Duet' || $getEvents['game_type'] == 'Pop_Solo' || $getEvents['game_type'] == 'Charcoal_Rendering' || $getEvents['game_type'] == 'Pencil_Drawing' || $getEvents['game_type'] == 'Painting' || $getEvents['game_type'] == 'Poster_Making' ||$getEvents['game_type'] == 'Phone_Photography' || $getEvents['game_type'] == 'Mass_Dance' || $getEvents['game_type'] == 'Dance_Sports' || $getEvents['game_type'] == 'Mr_and_Mrs_Panagtigi'){
+									if($getEvents['game_type'] == 'Creative_Folk_Dance' || $getEvents['game_type'] == 'Pop_Dance' || $getEvents['game_type'] == 'Vocal_Duet' || $getEvents['game_type'] == 'Pop_Solo' || $getEvents['game_type'] == 'Charcoal_Rendering' || $getEvents['game_type'] == 'Pencil_Drawing' || $getEvents['game_type'] == 'Painting' || $getEvents['game_type'] == 'Poster_Making' ||$getEvents['game_type'] == 'Phone_Photography' || $getEvents['game_type'] == 'Mass_Dance' || $getEvents['game_type'] == 'Dance_Sports' || $getEvents['game_type'] == 'Mr_and_Mrs_Panagtigi' || $getEvents['game_type'] == 'Badminton_Men' || $getEvents['game_type'] == 'Badminton_Women' || $getEvents['game_type'] == 'Table_tennis_Men' || $getEvents['game_type'] == 'Table_tennis_Women'){
 
 									}else{
 
