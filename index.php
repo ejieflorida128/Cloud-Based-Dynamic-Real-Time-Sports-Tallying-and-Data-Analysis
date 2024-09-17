@@ -502,14 +502,21 @@ $winners = [
 		           </div>
 				</div>
 				<div class="hm-footer-copyright">
-					<div class="row">
+				<div class="row">
 						<div class="col-sm-5">
-							
+							<p>
+							Created by: Mr. Ejie Cabales Florida BSIT-301
+
+							</p><!--/p-->
 						</div>
 						<div class="col-sm-7">
-							<div class="footer-social">
-			
-							</div>
+						<div class="footer-social">
+						<span><i class="fa fa-phone">+639627905690</i></span>
+							<a href="https://web.facebook.com/ejie.florida.7/" target="_blank"><i class="fa fa-facebook"></i></a>    
+							<a href="https://x.com/EjieF77916" target="_blank"><i class="fa fa-twitter"></i></a>
+							<a href="https://www.linkedin.com/in/ejie-florida-b70100277/" target="_blank"><i class="fa fa-linkedin"></i></a>
+						</div>
+
 						</div>
 					</div>
 					

@@ -171,6 +171,7 @@ include('connection/conn.php');
                 <table class="table align-items-center mb-0">
                     <thead>
                         <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rank</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Team Name</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Team Logo</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">GOLD</th>
@@ -180,102 +181,135 @@ include('connection/conn.php');
                         </tr>
                     </thead>
                     <tbody>
-                        <?php   
-                            $id = $_GET['event_id'];
-                            $selectTeams = "SELECT * FROM tally WHERE event_id = $id";
-                            $queryTeams = mysqli_query($conn, $selectTeams);
+                    <?php   
+$id = $_GET['event_id'];
+$selectTeams = "SELECT * FROM tally WHERE event_id = $id";
+$queryTeams = mysqli_query($conn, $selectTeams);
 
-                            while($getTeam = mysqli_fetch_assoc($queryTeams)){
-                                $org = '';
-                                if($getTeam['team_name'] == 'Cyber Falcon'){
-                                    $org = 'BSIT';
-                                }else if($getTeam['team_name'] == 'Blazing Biz'){
-                                    $org = 'BSBA';
-                                }else if($getTeam['team_name'] == 'Azure Dragons'){
-                                    $org = 'Lab High';
-                                }else{
-                                    $org = 'Education';
-                                }
-                                
-                                $team_name = $getTeam['team_name'];
+// Create an array to store teams and their medal counts
+$teams = [];
 
-                                $getLogo = "SELECT * FROM teams WHERE event_id = '$id' AND team_name = '$team_name'";
-                                $getLogoQuery = mysqli_query($conn,$getLogo);
-                                $result = mysqli_fetch_assoc($getLogoQuery);
+while($getTeam = mysqli_fetch_assoc($queryTeams)) {
+    $team_name = $getTeam['team_name'];
+    $gold = $getTeam['GOLD'];
+    $silver = $getTeam['SILVER'];
+    $bronze = $getTeam['BRONZE'];
+    $totalMedals = $gold + $silver + $bronze;
+    
+    // Get logo
+    $getLogo = "SELECT * FROM teams WHERE event_id = '$id' AND team_name = '$team_name'";
+    $getLogoQuery = mysqli_query($conn, $getLogo);
+    $result = mysqli_fetch_assoc($getLogoQuery);
+    $logo = $result['logo'];
+    
+    if (substr($logo, 0, 3) === '../') {
+        $logo = substr($logo, 3); // Remove the first 3 characters
+    }
+    
+    // Determine the organization based on the team name
+    $org = '';
+    if($team_name == 'Cyber Falcon'){
+        $org = 'BSIT';
+    } else if($team_name == 'Blazing Biz'){
+        $org = 'BSBA';
+    } else if($team_name == 'Azure Dragons'){
+        $org = 'Lab High';
+    } else {
+        $org = 'Education';
+    }
+    
+    // Store each team and its medals in the array
+    $teams[] = [
+        'team_name' => $team_name,
+        'org' => $org,
+        'logo' => $logo,
+        'gold' => $gold,
+        'silver' => $silver,
+        'bronze' => $bronze,
+        'total_medals' => $totalMedals
+    ];
+}
 
-                                $logo = $result['logo'];
-                                if (substr($logo, 0, 3) === '../') {
-                                    $logo = substr($logo, 3); // Remove the first 3 characters
-                                }
-                
-                                $totalMedals = $getTeam['GOLD'] + $getTeam['SILVER'] + $getTeam['BRONZE'];
+// Sort the teams by gold, then silver, then bronze
+usort($teams, function($a, $b) {
+    if ($a['gold'] != $b['gold']) {
+        return $b['gold'] - $a['gold']; // Sort by gold
+    } elseif ($a['silver'] != $b['silver']) {
+        return $b['silver'] - $a['silver']; // If golds are equal, sort by silver
+    } else {
+        return $b['bronze'] - $a['bronze']; // If silver is also equal, sort by bronze
+    }
+});
 
-
-                                
-                               
-                                
-                        ?>
-         <tr>
-    <td style="font-size: 20px;">
-        <div class="d-flex px-2 py-1">
-            <div class="d-flex flex-column justify-content-center" style="display: block;">
-                <h6 class="mb-0 text-sm" style="font-weight: bolder; font-size: 30px;"><?php echo $getTeam['team_name']; ?></h6>
-                <p class="text-xs text-secondary mb-0" style="font-weight: bolder; color: orange; font-size: 20px;"><?php echo $org; ?></p>
+// Assign ranks and display the teams
+$rank = 1;
+foreach ($teams as $team) {
+    ?>
+    <tr>
+    <td class="text-center" style="font-size: 18px;">
+            <p class="text-xs font-weight-bold mb-0" style="font-weight: bolder; font-size: 30px; margin-top: 8px;"> <?php echo $rank; ?></p>
+        </td>
+        <td style="font-size: 20px;">
+            <div class="d-flex px-2 py-1">
+                <div class="d-flex flex-column justify-content-center" style="display: block;">
+                    <h6 class="mb-0 text-sm" style="font-weight: bolder; font-size: 30px;"><?php echo $team['team_name']; ?></h6>
+                    <p class="text-xs text-secondary mb-0" style="font-weight: bolder; color: orange; font-size: 20px;"><?php echo $team['org']; ?></p>
+                </div>
             </div>
-        </div>
-    </td>
-    <td style="font-size: 20px;">
-        <div class="d-flex px-2 py-1">
-            <div class="d-flex flex-column justify-content-center" style="display: block;">
-                <img src='<?php echo $logo; ?>' style="width: 80px; height: 60px;">
+        </td>
+        <td style="font-size: 20px;">
+            <div class="d-flex px-2 py-1">
+                <div class="d-flex flex-column justify-content-center" style="display: block;">
+                    <img src='<?php echo $team['logo']; ?>' style="width: 80px; height: 60px;">
+                </div>
             </div>
-        </div>
-    </td>
-    <td class="text-center" style="font-size: 18px;">
-        <div class="d-flex justify-content-center align-items-center" style="position: relative; top: 10px;">
-            <p class="text-xs font-weight-bold mb-0 medal-value" style="font-weight: bolder; font-size: 30px; margin-top: 8px;"><?php echo $getTeam['GOLD']; ?></p>
-            <img src="background_image/gold.png" id = "medal" alt="gold" class="medal-icon" style="width: 50px; height: 50px;">
-        </div>
-    </td>
-    <td class="text-center" style="font-size: 18px;">
-        <div class="d-flex justify-content-center align-items-center" style="position: relative; top: 10px;">
-            <p class="text-xs font-weight-bold mb-0 medal-value" style="font-weight: bolder; font-size: 30px; margin-top: 8px;"><?php echo $getTeam['SILVER']; ?></p>
-            <img src="background_image/silver.png" id = "medal" alt="silver" class="medal-icon" style="width: 50px; height: 50px;">
-        </div>
-    </td>
-    <td class="text-center" style="font-size: 18px;">
-        <div class="d-flex justify-content-center align-items-center" style="position: relative; top: 10px;">
-            <p class="text-xs font-weight-bold mb-0 medal-value" style="font-weight: bolder; font-size: 30px; margin-top: 8px;"><?php echo $getTeam['BRONZE']; ?></p>
-            <img src="background_image/bronze.png"  id = "medal" alt="bronze" class="medal-icon" style="width: 50px; height: 50px;">
-        </div>
-    </td>
-    <td class="text-center" style="font-size: 18px;">
-        <div class="d-flex justify-content-center align-items-center" style="position: relative; top: 10px;">
-            <p class="text-xs font-weight-bold mb-0" style="font-weight: bolder; font-size: 30px; margin-top: 8px;"><?php echo $totalMedals; ?></p>
-            <p style="font-weight: bolder; color: orange; padding-left: 5px; margin-top: 8px; font-size: 20px;">Medal/s</p>
-        </div>
-    </td>
-</tr>
+        </td>
+        <td class="text-center" style="font-size: 18px;">
+            <div class="d-flex justify-content-center align-items-center" style="position: relative; top: 10px;">
+                <p class="text-xs font-weight-bold mb-0 medal-value" style="font-weight: bolder; font-size: 30px; margin-top: 8px;"><?php echo $team['gold']; ?></p>
+                <img src="background_image/gold.png" id="medal" alt="gold" class="medal-icon" style="width: 50px; height: 50px;">
+            </div>
+        </td>
+        <td class="text-center" style="font-size: 18px;">
+            <div class="d-flex justify-content-center align-items-center" style="position: relative; top: 10px;">
+                <p class="text-xs font-weight-bold mb-0 medal-value" style="font-weight: bolder; font-size: 30px; margin-top: 8px;"><?php echo $team['silver']; ?></p>
+                <img src="background_image/silver.png" id="medal" alt="silver" class="medal-icon" style="width: 50px; height: 50px;">
+            </div>
+        </td>
+        <td class="text-center" style="font-size: 18px;">
+            <div class="d-flex justify-content-center align-items-center" style="position: relative; top: 10px;">
+                <p class="text-xs font-weight-bold mb-0 medal-value" style="font-weight: bolder; font-size: 30px; margin-top: 8px;"><?php echo $team['bronze']; ?></p>
+                <img src="background_image/bronze.png" id="medal" alt="bronze" class="medal-icon" style="width: 50px; height: 50px;">
+            </div>
+        </td>
+        <td class="text-center" style="font-size: 18px;">
+            <div class="d-flex justify-content-center align-items-center" style="position: relative; top: 10px;">
+                <p class="text-xs font-weight-bold mb-0" style="font-weight: bolder; font-size: 30px; margin-top: 8px;"><?php echo $team['total_medals']; ?></p>
+                <p style="font-weight: bolder; color: orange; padding-left: 5px; margin-top: 8px; font-size: 20px;">Medal/s</p>
+            </div>
+        </td>
+        
+    </tr>
+    <?php
+    $rank++;
+}
+?>
 
 <!-- Style block for responsiveness -->
 <style>
-    /* Media Query for small screens (max-width: 768px) */
-    @media (max-width: 768px) {
+/* Media Query for small screens (max-width: 768px) */
+@media (max-width: 768px) {
     td .medal-icon {
         width: 30px !important;
         height: 30px !important;
     }
 
-    td p{
+    td p {
         font-size: 24px !important;
     }
 }
-
-   
 </style>
 
-
-<?php } ?>
 
 
 
@@ -308,14 +342,7 @@ include('connection/conn.php');
 				            </div><!--/.navbar-header-->
 			           	</div>
 			           	<div class="col-sm-9">
-			           		<ul class="footer-menu-item">
-			                    <li class="scroll"><a href="#works">how it works</a></li>
-			                    <li class="scroll"><a href="#explore">explore</a></li>
-			                    <li class="scroll"><a href="#reviews">review</a></li>
-			                    <li class="scroll"><a href="#blog">blog</a></li>
-			                    <li class="scroll"><a href="#contact">contact</a></li>
-			                    <li class=" scroll"><a href="#contact">my account</a></li>
-			                </ul><!--/.nav -->
+			           	
 			           	</div>
 		           </div>
 				</div>
@@ -323,17 +350,18 @@ include('connection/conn.php');
 					<div class="row">
 						<div class="col-sm-5">
 							<p>
-								&copy;copyright. designed and developed by <a href="https://www.themesine.com/">themesine</a>
+							Created by: Mr. Ejie Cabales Florida BSIT-301
+
 							</p><!--/p-->
 						</div>
 						<div class="col-sm-7">
-							<div class="footer-social">
-								<span><i class="fa fa-phone"> +1  (222) 777 8888</i></span>
-								<a href="#"><i class="fa fa-facebook"></i></a>	
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-linkedin"></i></a>
-								<a href="#"><i class="fa fa-google-plus"></i></a>
-							</div>
+                        <div class="footer-social">
+                        <span><i class="fa fa-phone">+639627905690</i></span>
+                            <a href="https://web.facebook.com/ejie.florida.7/" target="_blank"><i class="fa fa-facebook"></i></a>    
+                            <a href="https://x.com/EjieF77916" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.linkedin.com/in/ejie-florida-b70100277/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </div>
+
 						</div>
 					</div>
 					
