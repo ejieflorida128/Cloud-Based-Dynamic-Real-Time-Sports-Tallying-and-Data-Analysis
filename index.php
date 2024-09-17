@@ -209,7 +209,7 @@ $_SESSION['logged_in'] = false;
 								</div>
 								<h2><a href="#">Event Coordinator</a></h2>
 								<p><?php
-										$selectAccounts = "SELECT * FROM accounts";
+										$selectAccounts = "SELECT * FROM accounts WHERE status = 'approved'";
 										$queryAccounts = mysqli_query($conn,$selectAccounts);
 										$accounts_count = 0;
 										while($resultAccounts = mysqli_fetch_assoc($queryAccounts)){
