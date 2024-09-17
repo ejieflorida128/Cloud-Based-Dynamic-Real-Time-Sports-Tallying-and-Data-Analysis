@@ -1,6 +1,10 @@
 <?php
 session_start();
+session_destroy();
+session_start();
 include('connection/conn.php');
+
+$_SESSION['logged_in'] = false;
 
 ?>
 <!doctype html>

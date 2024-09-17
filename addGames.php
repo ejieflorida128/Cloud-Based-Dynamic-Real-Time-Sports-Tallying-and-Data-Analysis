@@ -2,6 +2,12 @@
 <?php
 session_start();
     include('connection/conn.php');
+    
+    if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {  
+      header("Location: index.php");
+      exit();
+  }
+  
 
     $id = $_GET['id'];
      $_SESSION['teamCount'] = $_GET['teamCount'];

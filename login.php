@@ -7,6 +7,7 @@ session_start();
 		$password = $_POST['password'];
 
 		if($username == "admin" && $password == "admin"){
+			$_SESSION['logged_in'] = true;
 			header('Location: loadToSuperAdmin.php');
 			exit(); 
 
@@ -19,6 +20,7 @@ session_start();
 		
 		while ($test = mysqli_fetch_assoc($result)) {
 			if ($username == $test['username'] && $password == $test['password']) {
+				$_SESSION['logged_in'] = true;
 				$_SESSION['id'] = $test['id'];
 				$modalForNoResult = false; // Found matching account, so set to false
 				header('Location: goOnline.php');

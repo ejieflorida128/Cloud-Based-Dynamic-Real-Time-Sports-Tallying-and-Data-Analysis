@@ -1,6 +1,11 @@
 <?php
 session_start();
 include('connection/conn.php');
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {  
+  header("Location: index.php");
+  exit();
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_SESSION['id'];
