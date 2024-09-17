@@ -139,7 +139,7 @@ include('../connection/conn.php');
 
             $teamName = $goldResult['team_name'];
             
-            $updateGold = "UPDATE tally SET GOLD = GOLD + 5 WHERE event_id = '$event_id' AND team_name = '$teamName'";
+            $updateGold = "UPDATE tally SET GOLD = GOLD + 1 WHERE event_id = '$event_id' AND team_name = '$teamName'";
             mysqli_query($conn,$updateGold);
             $teamName = '';
 
@@ -151,7 +151,7 @@ include('../connection/conn.php');
 
             $teamName = $silverResult['team_name'];
             
-            $updatesilver = "UPDATE tally SET SILVER = SILVER + 5 WHERE event_id = '$event_id' AND team_name = '$teamName'";
+            $updatesilver = "UPDATE tally SET SILVER = SILVER + 1 WHERE event_id = '$event_id' AND team_name = '$teamName'";
             mysqli_query($conn,$updatesilver);
             $teamName = '';
 
@@ -163,7 +163,7 @@ include('../connection/conn.php');
 
             $teamName = $bronzeResult['team_name'];
             
-            $updatebronze = "UPDATE tally SET BRONZE = BRONZE + 5 WHERE event_id = '$event_id' AND team_name = '$teamName'";
+            $updatebronze = "UPDATE tally SET BRONZE = BRONZE + 1 WHERE event_id = '$event_id' AND team_name = '$teamName'";
             mysqli_query($conn,$updatebronze);
             $teamName = '';
 
