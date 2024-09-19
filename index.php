@@ -118,9 +118,8 @@ $_SESSION['logged_in'] = false;
 			            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 			                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 			                    <li class=" scroll active"><a href="#home">home</a></li>
-			                    <li class="scroll"><a href="#works">Panagtigi</a></li>
-								<li class=" scroll"><a href="#matches">Matches</a></li>
 								<li class=" scroll"><a href="#panagtigiModels">Mr and Ms Panagtigi 2024</a></li>
+			                    <li class="scroll"><a href="#works">Panagtigi</a></li>					
 								<li class=" scroll"><a href="#Light">The Light Publication</a></li>
 			                   
 			                </ul><!--/.nav -->
@@ -427,71 +426,9 @@ $winners = [
 		<!--works end -->
 
 
-		<!--works start -->
-		<section id="matches" class="matches">
-			<div class="container">
-				<div class="section-header">
-					<h2 style = "color: orange; font-weight: bolder;">Game Matches</h2>
-					<p>Click the Events below to show information!</p>
-				</div><!--/.section-header-->
-				<div class="works-content">
-					<div class="row">
-
-					<?php 
-							$selectAllEvents = "SELECT * FROM registered_game WHERE status = 'submitted'";
-							$queryEvents = mysqli_query($conn,$selectAllEvents);
-
-							while($getEvents = mysqli_fetch_assoc($queryEvents)){
-
-
-									if($getEvents['game_type'] == 'Creative_Folk_Dance' || $getEvents['game_type'] == 'Pop_Dance' || $getEvents['game_type'] == 'Vocal_Duet' || $getEvents['game_type'] == 'Pop_Solo' || $getEvents['game_type'] == 'Charcoal_Rendering' || $getEvents['game_type'] == 'Pencil_Drawing' || $getEvents['game_type'] == 'Painting' || $getEvents['game_type'] == 'Poster_Making' ||$getEvents['game_type'] == 'Phone_Photography' || $getEvents['game_type'] == 'Mass_Dance' || $getEvents['game_type'] == 'Dance_Sports' || $getEvents['game_type'] == 'Mr_and_Mrs_Panagtigi' || $getEvents['game_type'] == 'Badminton_Men' || $getEvents['game_type'] == 'Badminton_Women' || $getEvents['game_type'] == 'Table_tennis_Men' || $getEvents['game_type'] == 'Table_tennis_Women' || $getEvents['game_type'] == 'Runs_Men' || $getEvents['game_type'] == 'Runs_Women' || $getEvents['game_type'] == 'Throws_Men'|| $getEvents['game_type'] == 'Throws_Women'|| $getEvents['game_type'] == 'Jumps_Men'|| $getEvents['game_type'] == 'Jumps_Women'){
-
-									}else{
-
-									
-
-							
-					?>
-					
-						<div class="col-md-4 col-sm-6">
-							<div class="single-how-works">
-								<div class="single-how-works-icon">
-								<i class="fas fa-gamepad" style = "font-size: 50px; margin-top: 16px;"></i>
-
-								</div>
-								<h2><a href="#"><?php
-										if($getEvents['game_type'] == 'Vollayball_Women'){
-											$volleyName = 'Volleyball_Women';
-											echo $volleyName;
-										}else if($getEvents['game_type'] == 'Vollayball_Men'){
-											$volleyName = 'Volleyball_Men';
-											echo $volleyName;
-										}else{
-											echo $getEvents['game_type'];
-										}
-								?></a></h2>
-							
-								<p>
-								Show the game information by clicking the button below!
-								</p>
-								<a href="showGames/show.php?event_id=<?php echo $getEvents['event_id']; ?>&&game_id=<?php echo $getEvents['id']; ?>&&game_type=<?php echo $getEvents['game_type']; ?>" class="welcome-hero-btn how-work-btn" style="display: inline-block; text-align: center; line-height: 34px;">View Match</a>
-
-							</div>
-						</div>
-
-						<?php 
-									}
-					} ?>
-						
-						
-
-
-					</div>
-				</div>
-			</div><!--/.container-->
+	
+	
 		
-		</section><!--/.works-->
-		<!--works end -->
 
 				<!--works start -->
 				<section id="Light" class="Light" style = "margin-top: 40px;">
