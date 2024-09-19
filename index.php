@@ -339,14 +339,14 @@ $winners = [
 <?php
 $winners = [
    
-    ['position' => 'Mr Photogenic', 'gender' => 'Mr', 'team' => 'Mr. Bhenjie Amparo', 'img' => 'candidate/cyberBoy.jpg'],
-    ['position' => 'Ms Photogenic', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
-    ['position' => 'Mr Social Media', 'gender' => 'Mr', 'team' => 'Mr. Nel Vincent Aves', 'img' => 'candidate/azureBoy.jpg'],
-    ['position' => 'Ms Social Media', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
-    ['position' => 'Mr Skeen Life', 'gender' => 'Mr', 'team' => 'Mr. Shawn Esguerra', 'img' => 'candidate/blazingBoy.jpg'],
-    ['position' => 'Ms Skeen Life', 'gender' => 'Ms', 'team' => 'Ms. Joanna Espanola', 'img' => 'candidate/blazingGirl.jpg'],
-    ['position' => 'Mr Congeniality', 'gender' => 'Mr', 'team' => 'Mr. Justine Joe Balbon', 'img' => 'candidate/valiantBoy.jpg'],
-    ['position' => 'Ms Congeniality', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
+    ['position' => 'Mr. Photogenic', 'gender' => 'Mr', 'team' => 'Mr. Bhenjie Amparo', 'img' => 'candidate/cyberBoy.jpg'],
+    ['position' => 'Ms. Photogenic', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
+    ['position' => 'Mr. Social Media', 'gender' => 'Mr', 'team' => 'Mr. Nel Vincent Aves', 'img' => 'candidate/azureBoy.jpg'],
+    ['position' => 'Ms. Social Media', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
+    ['position' => 'Mr. Skeen Life', 'gender' => 'Mr', 'team' => 'Mr. Shawn Esguerra', 'img' => 'candidate/blazingBoy.jpg'],
+    ['position' => 'Ms. Skeen Life', 'gender' => 'Ms', 'team' => 'Ms. Joanna Espanola', 'img' => 'candidate/blazingGirl.jpg'],
+    ['position' => 'Mr. Congeniality', 'gender' => 'Mr', 'team' => 'Mr. Justine Joe Balbon', 'img' => 'candidate/valiantBoy.jpg'],
+    ['position' => 'Ms. Congeniality', 'gender' => 'Ms', 'team' => 'Ms. Tracy Marie Handog', 'img' => 'candidate/azureGirl.jpg'],
 	['position' => 'Best in Production No.', 'gender' => 'Mr', 'team' => 'Mr. Shawn Esguerra', 'img' => 'candidate/blazingBoy.jpg'],
     ['position' => 'Best in Production No.', 'gender' => 'Ms', 'team' => 'Ms. Joanna Espanola', 'img' => 'candidate/blazingGirl.jpg'],
     ['position' => 'Best in Sport Wear', 'gender' => 'Mr', 'team' => 'Mr. Bhenjie Amparo', 'img' => 'candidate/cyberBoy.jpg'],
@@ -444,7 +444,7 @@ $winners = [
 							while($getEvents = mysqli_fetch_assoc($queryEvents)){
 
 
-									if($getEvents['game_type'] == 'Creative_Folk_Dance' || $getEvents['game_type'] == 'Pop_Dance' || $getEvents['game_type'] == 'Vocal_Duet' || $getEvents['game_type'] == 'Pop_Solo' || $getEvents['game_type'] == 'Charcoal_Rendering' || $getEvents['game_type'] == 'Pencil_Drawing' || $getEvents['game_type'] == 'Painting' || $getEvents['game_type'] == 'Poster_Making' ||$getEvents['game_type'] == 'Phone_Photography' || $getEvents['game_type'] == 'Mass_Dance' || $getEvents['game_type'] == 'Dance_Sports' || $getEvents['game_type'] == 'Mr_and_Mrs_Panagtigi' || $getEvents['game_type'] == 'Badminton_Men' || $getEvents['game_type'] == 'Badminton_Women' || $getEvents['game_type'] == 'Table_tennis_Men' || $getEvents['game_type'] == 'Table_tennis_Women'){
+									if($getEvents['game_type'] == 'Creative_Folk_Dance' || $getEvents['game_type'] == 'Pop_Dance' || $getEvents['game_type'] == 'Vocal_Duet' || $getEvents['game_type'] == 'Pop_Solo' || $getEvents['game_type'] == 'Charcoal_Rendering' || $getEvents['game_type'] == 'Pencil_Drawing' || $getEvents['game_type'] == 'Painting' || $getEvents['game_type'] == 'Poster_Making' ||$getEvents['game_type'] == 'Phone_Photography' || $getEvents['game_type'] == 'Mass_Dance' || $getEvents['game_type'] == 'Dance_Sports' || $getEvents['game_type'] == 'Mr_and_Mrs_Panagtigi' || $getEvents['game_type'] == 'Badminton_Men' || $getEvents['game_type'] == 'Badminton_Women' || $getEvents['game_type'] == 'Table_tennis_Men' || $getEvents['game_type'] == 'Table_tennis_Women' || $getEvents['game_type'] == 'Runs_Men' || $getEvents['game_type'] == 'Runs_Women' || $getEvents['game_type'] == 'Throws_Men'|| $getEvents['game_type'] == 'Throws_Women'|| $getEvents['game_type'] == 'Jumps_Men'|| $getEvents['game_type'] == 'Jumps_Women'){
 
 									}else{
 
