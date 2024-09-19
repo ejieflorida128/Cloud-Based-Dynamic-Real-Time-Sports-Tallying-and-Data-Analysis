@@ -375,6 +375,34 @@ session_start();
                                                           </a>";
                                                           
 
+                                                                    }else if($GAME_TYPE == 'MLBB'){
+                                                                      echo "
+                                                                      <a href = '#' class='col-md-4 col-sm-6' style='pointer-events: none; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id='EventBox'>
+                                                                          <div class='pictures' style='display: flex; justify-content: center; margin-top: 10px;'>
+                                                                              <img src='../$pic' style='width: 150px; height: 150px;'>
+                                                                          </div>
+                                                                          <div class='information' style='margin-top: 20px;'>
+                                                                              <div class='title' style='display: flex; justify-content: center;'> 
+                                                                                  <h6>$GAME_TYPE</h6>
+                                                                              </div>
+                                                                              <div class='status' style='display: flex; justify-content: center; color: red; font-weight: bolder;'>Tournament Based</div>
+                                                                          </div>
+                                                                      </a>";
+                                                                    }else if($GAME_TYPE == 'Softball_Women'){
+
+                                                                      echo "
+                                                                      <a href = '#' class='col-md-4 col-sm-6' style='pointer-events: none; box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id='EventBox'>
+                                                                          <div class='pictures' style='display: flex; justify-content: center; margin-top: 10px;'>
+                                                                              <img src='../$pic' style='width: 150px; height: 150px;'>
+                                                                          </div>
+                                                                          <div class='information' style='margin-top: 20px;'>
+                                                                              <div class='title' style='display: flex; justify-content: center;'> 
+                                                                                  <h6>$GAME_TYPE</h6>
+                                                                              </div>
+                                                                              <div class='status' style='display: flex; justify-content: center; color: red; font-weight: bolder;'>Team Score Based</div>
+                                                                          </div>
+                                                                      </a>";
+
                                                                     }else{
                                                                       echo "
                                                                       <a href = 'game_list.php?event_id=$EVENT_ID&&game_id=$GAME_ID&&game_type=$GAME_TYPE' class='col-md-4 col-sm-6' style = ' box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); border-radius: 20px; margin: 17px; width: 250px; height: 250px;' id = 'EventBox'>
