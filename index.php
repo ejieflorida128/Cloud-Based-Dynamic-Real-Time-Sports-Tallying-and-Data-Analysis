@@ -450,6 +450,151 @@ $winners = [
 
 					</style>
 
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗔𝘇𝘂𝗿𝗲 𝗗𝗿𝗮𝗴𝗼𝗻𝘀 𝗲𝘅𝘁𝗲𝗻𝗱 𝗹𝗲𝗮𝗱 𝗼𝘃𝗲𝗿 𝗩𝗮𝗹𝗶𝗮𝗻𝘁 𝗦𝗮𝗯𝗲𝗿𝘁𝗼𝗼𝘁𝗵 𝗮𝗳𝘁𝗲𝗿 𝗰𝗼𝗻𝘀𝗲𝗰𝘂𝘁𝗶𝘃𝗲 𝘄𝗶𝗻𝘀 𝗶𝗻 𝗠𝗲𝗻'𝘀 𝗖𝗵𝗲𝘀𝘀</p>
+				<p style="margin-top: -20px;">By Eureka Ausa</p>
+				<p>
+				The Azure Dragons continued their dominant run in the men's chess tournament, securing two consecutive victories to surge 2.5 points ahead of the Valiant Sabertooth, further cementing their position atop the standings.
+In the opening round, Jairo Emery Gan of the Azure Dragons claimed a crucial victory after a touch-move violation by Kim Gorduiz of the Valiant Sabertooth, scoring the first win of the tournament. Erwin Tampus of the Sabertooth responded by using the French Defense to break through against Clark Raphael Sanico of the Dragons, narrowing the deficit.
+Meanwhile, the match between Sean Christian Manabat of the Sabertooth and Lov Felicida of the Dragons ended in a stalemate, with each earning half a point for their teams.
+After a series of wins, the Azure Dragons consolidated their lead over the Valiant Sabertooth, Blazing Biz, and Cyber Falcons. Despite a promising start, Blazing Biz struggled in the first round and eventually fell to their opponents. However, the Cyber Falcons managed to secure their first point when Lovely Guzmana used the King's Indian Defense to corner Emmanuel Rafael of Blazing Biz, achieving checkmate.
+As the tournament progressed, Blazing Biz faltered, finishing the second round with only 3.5 points as they failed to maintain their early momentum. Despite Guzmana's efforts in earlier rounds, the Cyber Falcons also struggled, accumulating just 2.0 points across the three rounds. Blazing Biz, unable to rally, finished with 3.5 points after the third round, losing to the Azure Dragons.
+The Valiant Sabertooth made a late push, raising their score from 6.0 to 8.0 points, but it was the Azure Dragons who emerged victorious. They finished the tournament with an impressive 10.5 points, securing the gold medal.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗖𝘆𝗯𝗲𝗿 𝗙𝗮𝗹𝗰𝗼𝗻𝘀 𝗰𝗼𝗻𝗾𝘂𝗲𝗿 𝗩𝗮𝗹𝗶𝗮𝗻𝘁 𝗦𝗮𝗯𝗲𝗿𝘁𝗼𝗼𝘁𝗵 𝗶𝗻 𝗙𝘂𝘁𝘀𝗮𝗹, 𝟮-𝟬</p>
+				<p style="margin-top: -20px;">By Kobe Spencer Juranes</p>
+				<p>
+				The defending Futsal champions Valiant Sabertooth met their demise as they lost to the Cyber Falcons in the first round matchup, 2-0. The game was held at the SLSU-TO covered court on September 20, 2024.
+"The preparation is, we practiced during our practice sessions on our schedule, we encouraged our players to practice so that they will know the strategies and techniques," said Mr. John Tibon, the G.A.M. of the VST.
+The game was close in the first half as both teams showed aggressiveness in the offensive end of the court however the 1st half ended with a score of 0-0.
+As the second half started, the tides started to favor the Cyber Falcons as they scored 2 goals in a row thanks to their players, Emjie Pelaez and Jessamae Cabaong. The buzzer sounded and the game ended with a 2-0 score in favor of the Cyber Falcons.
+After the game, Cyber Falcon's General Athletics Manager commented, "Lipay kaayo ko na nasud mi sa Finals, ila jud gibuhat ilang best para masud mi ingana. Ila mga training wala nila sayangi, ila gihapon na adapt ilang mga nakat-unan." (I'm happy as our team made the finals. Their training was worth it and they adapted the things they learned from their practice sessions.)
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗠𝗼𝗯𝗶𝗹𝗲 𝗟𝗲𝗴𝗲𝗻𝗱𝘀: 𝗕𝗮𝗻𝗴 𝗕𝗮𝗻𝗴 𝗗𝗲𝗯𝘂𝘁𝘀 𝗮𝘁 𝗦𝗟𝗦𝗨-𝗧𝗼𝗺𝗮𝘀 𝗢𝗽𝗽𝘂𝘀 – 𝗔 𝗡𝗲𝘄 𝗘𝗿𝗮 𝗼𝗳 𝗖𝗼𝗺𝗽𝗲𝘁𝗶𝘁𝗶𝘃𝗲 𝗚𝗮𝗺𝗶𝗻𝗴</p>
+				<p style="margin-top: -20px;">By Shanneah Necesito</p>
+				<p>
+				Southern Leyte State University-Tomas Oppus is stepping into a new realm of competition with the introduction of Mobile Legends: Bang Bang (MLBB), the popular multiplayer online battle arena (MOBA) game. The much-anticipated event brings together: Valiant Sabertooth, Azure Dragons, Cyber Falcons, and Blazing Biz, who are set to compete in the university’s first official MLBB tournament. This marks an exciting milestone for the SLSU-TO community, as students will experience firsthand the strategy, teamwork, and skill that define this global gaming sensation.
+Mobile Legends: Bang Bang is a fast-paced, strategic 5v5 online game where two teams battle to destroy each other’s base while defending their own. Developed by Moonton, MLBB has become a worldwide phenomenon since its launch, drawing millions of players and establishing itself as a cornerstone of mobile esports. Players select heroes from a diverse pool, each with unique abilities and roles, and work together to outwit and outmaneuver the opposing team.
+The game is played on a three-lane map with distinct areas known as lanes: Top, Mid, and Bottom—and a jungle area filled with neutral monsters. Each lane is defended by towers that the enemy team must destroy to advance toward the Nexus, the core structure that determines victory. Teams must balance offense and defense, strategic positioning, and quick decision-making to succeed.
+In each match, players form teams of five and select heroes from different categories: Marksman, Mage, Fighter, Tank, Assassin, and Support. Each category plays a specific role within the team. For example, Tanks are durable heroes meant to absorb damage, while Marksmen deal significant damage from a distance. Understanding these roles is essential for team coordination and achieving victory.
+The primary goal is to push through the enemy’s defenses, destroy their towers, and ultimately eliminate their Nexus. Along the way, players must defeat waves of minions and neutral monsters in the jungle to earn gold and experience. As heroes gain experience, they level up, unlocking more powerful abilities. Gold is used to purchase items that enhance the hero's stats, increasing their effectiveness in battle.
+Winning in Mobile Legends is about more than just individual skill—it requires teamwork, strategy, and adaptation. Players at SLSU-TO will need to develop a keen understanding of several core elements to succeed in the tournament.
+Each hero has a distinct set of abilities that must be mastered. Players must know when and how to use these abilities to maximize their hero’s potential. This requires practice and familiarity with both the hero and the team’s overall strategy.
+As the tournament approaches, the four competing teams are gearing up to showcase their talents. Each team brings its own unique strategy and strengths to the competition. Valiant Sabertooth, known for its aggressive playstyle, will likely aim to dominate early, while the methodical Azure Dragons will focus on strategic moves and careful map control. Blazing Biz is expected to bring a fiery intensity to the battlefield, while Cyber Falcons, with their sharp tactical approach, will look to outthink their opponents.
+As SLSU-Tomas Oppus embraces this Esports as new era of gaming, the campus is set to experience the intensity and excitement of Mobile Legends: Bang Bang firsthand. The tournament will not only test the skill and strategy of its players but also bring the entire community together in the spirit of friendly competition, teamwork and innovation.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗕𝗹𝗮𝘇𝗶𝗻𝗴 𝗕𝗶𝘇 𝘀𝘄𝗲𝗲𝗽𝘀 𝗔𝘇𝘂𝗿𝗲 𝗗𝗿𝗮𝗴𝗼𝗻𝘀, 𝟰-𝟬 𝗶𝗻 𝘄𝗼𝗺𝗲𝗻'𝘀 𝗙𝘂𝘁𝘀𝗮𝗹</p>
+				<p style="margin-top: -20px;">By Kobe Spencer Juranes</p>
+				<p>
+				The Blazing Biz displayed immense teamwork as they outscored the young Azure Dragons in the Futsal Game ending with a score of 4-0. The match was played on September 20, 2024 at the SLSU Covered Court.
+Before the game, Yamson of the Azure Dragons was asked about her thoughts before the game. "Kulba, kay ang among kontra kay ang BSBA, ang nakapilde namo last year," she said. (Nervous, because they were the ones that defeated us in last year's game.)
+In the first half, the game was close having a deadlock of 0-0 before Blazing Biz's Maylyn Guzmana scored the first goal. The first half ended with a close 1-0 score.
+Having the momentum with them, the Biz continued their pursuit to victory adding 3 more goals in the scoreboard. The game ended with a 4-0 victory in favor to the Blazing Biz.
+Guzmana, when asked about how she felt being the one to score three of the four goals of their team, she said, "Nalipay, kay tungod pod sa among team, nagkuan na mag teamwork jud mi ba, nga nagsabot mi nga ingani amo buhaton aron maka Goal mi." (Happy, because as a team, we practiced teamwork and had strategies for us to score goals.)
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗦𝗟𝗦𝗨-𝗧𝗢 𝗼𝗿𝗴𝗮𝗻𝗶𝘇𝗲𝘀 𝘆𝗲𝗮𝗿𝗹𝘆 𝗦𝗼𝗳𝘁𝗯𝗮𝗹𝗹 𝗳𝗼𝗿 𝗣𝗮𝗻𝗮𝗴𝘁𝗶𝗴𝗶 𝟮𝟬𝟮𝟰</p>
+				<p style="margin-top: -20px;">By John Lord Garvez</p>
+				<p>
+				SLSU-TO organized the annual Softball tournament for PANAGTIGI 2024 on September 18, 2024. The first game saw Valiant Sabertooth facing Cyber Falcons in a thrilling match that ended with the Cyber Falcons emerging victorious with a score of 16-20
+The following game featured Azure Dragons against Blazing Biz, with the Biz dominating and securing a spot in the championship with a score of 5-15. The next day, the bronze title match between Valiant Sabertooth and Azure Dragons ended with the Sabertooth clinching victory with a score of 18-2.
+In the final showdown for gold and silver, Blazing Biz faced Cyber Falcons in a fierce battle. Despite a close match initially, the Cyber Falcons emerged victorious with a score of 3-11, claiming the gold medal. The Cyber Falcons took gold, Blazing Biz earned silver, and Valiant Sabertooth secured the bronze in a showcase of exceptional talent and skill.
+The event was truly a show of talent and skills from the four factions, namely: Valiant Sabertooth, Blazing Biz, Azure Dragons, and Cyber Falcons. The aforementioned groups fought it out for the prestigious gold medal and showed their utmost capabilities for achieving the goal. The Cyber Falcons held the gold medal, the silver medal was earned by the Blazing Biz, and the bronze was for the Valiant Sabertooth.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗖𝘆𝗯𝗲𝗿 𝗙𝗮𝗹𝗰𝗼𝗻𝘀 𝗳𝗹𝘆 𝘁𝗵𝗲𝗶𝗿 𝘄𝗮𝘆 𝘁𝗼 𝘃𝗶𝗰𝘁𝗼𝗿𝘆</p>
+				<p style="margin-top: -20px;">By John Lord Garvez</p>
+				<p>
+				The faction that hailed from the IT department: Cyber Falcons, effortlessly soared the Softball sports event during the PANAGTIGI 2024 held at the field of SLSU-TO, with a total home run of 20 during the first game, and 11 for the championship. The Cyber Falcons showed their improvements and strategies by taking hold of the gold medal against its opposing factions, showcasing how dominant they are in the field of Softball and leaving their enemies with no room to maneuver like a falcon grabbing a worm out from the ground.
+“Ganina gikulbaan mi pero karun kay midaug naman, I’m so very happy! (Earlier we were anxious but since we won, I now became so very happy” says Emmalyn Inutan, one of the best batters in her team.
+“Ang amo ra jud goal kay iout rajud sila [BSBA] tas sa amo pud players, maka home run para daug gyud!(Our intended goal was to just make the other team not play for long and for our own players to score a home run so that we may win)” stated by Lean Joy Serot.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
 					
 
 <div class="row justify-content-center">								
