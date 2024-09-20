@@ -450,6 +450,514 @@ $winners = [
 
 					</style>
 
+					
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗖𝘆𝗯𝗲𝗿 𝗙𝗮𝗹𝗰𝗼𝗻𝘀 𝘁𝗿𝗶𝘂𝗺𝗽𝗵 𝗶𝗻 𝗗𝗶𝘀𝗰𝘂𝘀 𝗧𝗵𝗿𝗼𝘄</p>
+				<p style="margin-top: -20px;">By Alfred Sean Marasigan</p>
+				<p>
+				Clark Delos Reyes and Andelene Suarez of the Cyber Falcons dominated the Discus Throw at Southern Leyte State University - Tomas Oppus (SLSU-TO) on September 17, 2024.
+In pursuit of the coveted gold medal, four teams: Azure Dragons, Valiant Sabertooth, Blazing Biz, and Cyber Falcons, competed fiercely in the discus throw. Each athlete was given three attempts to throw as far as possible. Fouls were called if an athlete crossed the circle before the discus landed.
+In the Men's Category, Delos Reyes of the Cyber Falcons led the way with a spectacular throw of 24.21 meters in his final attempt, securing the gold medal. He was followed by Archie Manduboyan and Israel Gesulga from Valiant Sabertooth, who threw impressive distances of 23.69 meters and 23.31 meters, respectively, in their final attempts, earning silver and bronze.
+In the Women's Category, Suarez from the Cyber Falcons secured gold with an astonishing throw of 13.79 meters on her final attempt. Ma. Janna Lapasanda of Blazing Biz claimed silver with a strong throw of 12.34 meters, while Hanna Purca of Valiant Sabertooth earned bronze with an impressive throw of 11.66 meters, both achieving these results on their final attempts.
+The two athletes from the Cyber Falcons showed no mercy, each taking first place in their respective Men's and Women's categories, bringing home two golds for their team.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗩𝗮𝗹𝗶𝗮𝗻𝘁 𝗦𝗮𝗯𝗲𝗿𝘁𝗼𝗼𝘁𝗵 𝗺𝗮𝗶𝗻𝘁𝗮𝗶𝗻𝘀 𝗹𝗲𝗮𝗱 𝗶𝗻 𝗥𝗼𝘂𝗻𝗱 𝟮 𝗼𝗳 𝗣𝗮𝗻𝗮𝗴𝘁𝗶𝗴𝗶 𝟮𝟬𝟮𝟰 𝗪𝗼𝗺𝗲𝗻'𝘀 𝗖𝗵𝗲𝘀𝘀 𝗧𝗼𝘂𝗿𝗻𝗮𝗺𝗲𝗻𝘁</p>
+				<p style="margin-top: -20px;">By Mary Ann Gelia</p>
+				<p>
+				Valiant Sabertooth continued their dominance in the Panagtigi 2024 Women’s Chess Tournament, maintaining the lead with an overall score of 6 points after Round 2. The competition, held at the Southern Leyte State University–Tomas Oppus (SLSU-TO) library, saw Valiant Sabertooth clinch crucial victories over Blazing Biz, while Azure Dragons made a strong comeback to challenge the standings.
+The first match of Round 2 was a swift victory for Valiant Sabertooth’s Jay Ann Bulawan, who quickly defeated Blazing Biz. However, Blazing Biz responded with Lourine Caadyang outmaneuvering Gerrymae Lequin of Valiant Sabertooth. Despite this setback, Sabertooth’s Jhessadell Damolo secured another point for her team by defeating Blazing Biz’s Lovely Jean Polistico, putting Sabertooth back on top.
+Azure Dragons, determined to improve their standing, swept their matches against Cyber Falcons. Mary Louise Olvina, Jillian Gail Peduche, and Deneolle Roe Matondo each scored wins for Azure Dragons, overpowering Cyber Falcons’ Marybelle Capulo, Bianca Dumalag, and Xandra Verano. These victories boosted Azure Dragons’ total score to 4.5 points, closing in on Blazing Biz, who now holds 4 points.
+The final games of the round saw Sabertooth’s Merry Joy Libaros secure a win against Blazing Biz’s Katrina Jean Daugdaug, while the last match between Cyber Falcons’ Karen Bethany Cadayona and Azure Dragons’ Shammah Faith Docena ended in a draw, wrapping up the round. With Sabertooth still in the lead, the next round promises to be even more intense as teams fight for the top spot.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗩𝗮𝗹𝗶𝗮𝗻𝘁 𝗦𝗮𝗯𝗲𝗿𝘁𝗼𝗼𝘁𝗵 𝗺𝗮𝗶𝗻𝘁𝗮𝗶𝗻𝘀 𝗹𝗲𝗮𝗱 𝗶𝗻 𝗥𝗼𝘂𝗻𝗱 𝟮 𝗼𝗳 𝗣𝗮𝗻𝗮𝗴𝘁𝗶𝗴𝗶 𝟮𝟬𝟮𝟰 𝗪𝗼𝗺𝗲𝗻'𝘀 𝗖𝗵𝗲𝘀𝘀 𝗧𝗼𝘂𝗿𝗻𝗮𝗺𝗲𝗻𝘁</p>
+				<p style="margin-top: -20px;">By Mary Ann Gelia</p>
+				<p>
+				Valiant Sabertooth continued their dominance in the Panagtigi 2024 Women’s Chess Tournament, maintaining the lead with an overall score of 6 points after Round 2. The competition, held at the Southern Leyte State University–Tomas Oppus (SLSU-TO) library, saw Valiant Sabertooth clinch crucial victories over Blazing Biz, while Azure Dragons made a strong comeback to challenge the standings.
+The first match of Round 2 was a swift victory for Valiant Sabertooth’s Jay Ann Bulawan, who quickly defeated Blazing Biz. However, Blazing Biz responded with Lourine Caadyang outmaneuvering Gerrymae Lequin of Valiant Sabertooth. Despite this setback, Sabertooth’s Jhessadell Damolo secured another point for her team by defeating Blazing Biz’s Lovely Jean Polistico, putting Sabertooth back on top.
+Azure Dragons, determined to improve their standing, swept their matches against Cyber Falcons. Mary Louise Olvina, Jillian Gail Peduche, and Deneolle Roe Matondo each scored wins for Azure Dragons, overpowering Cyber Falcons’ Marybelle Capulo, Bianca Dumalag, and Xandra Verano. These victories boosted Azure Dragons’ total score to 4.5 points, closing in on Blazing Biz, who now holds 4 points.
+The final games of the round saw Sabertooth’s Merry Joy Libaros secure a win against Blazing Biz’s Katrina Jean Daugdaug, while the last match between Cyber Falcons’ Karen Bethany Cadayona and Azure Dragons’ Shammah Faith Docena ended in a draw, wrapping up the round. With Sabertooth still in the lead, the next round promises to be even more intense as teams fight for the top spot.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗩𝗮𝗹𝗶𝗮𝗻𝘁 𝗦𝗮𝗯𝗲𝗿𝘁𝗼𝗼𝘁𝗵, 𝗕𝗹𝗮𝘇𝗶𝗻𝗴 𝗕𝗶𝘇 𝘁𝗶𝗲 𝗳𝗼𝗿 𝗳𝗶𝗿𝘀𝘁 𝗿𝗼𝘂𝗻𝗱 𝗶𝗻 𝗪𝗼𝗺𝗲𝗻'𝘀 𝗖𝗵𝗲𝘀𝘀 𝗧𝗼𝘂𝗿𝗻𝗮𝗺𝗲𝗻𝘁</p>
+				<p style="margin-top: -20px;">By Mary Ann Gelia</p>
+				<p>
+				In an exciting first round of the Panagtigi 2024 Women’s Chess Tournament, Valiant Sabertooth and Blazing Biz shared the lead with 3 points each. The tournament, held at the Southern Leyte State University–Tomas Oppus (SLSU-TO) library, saw fierce competition as the four teams battled for early dominance. Azure Dragons and Cyber Falcons, despite strong efforts, ended the round with just 1 point each.
+The opening match between Azure Dragons and Valiant Sabertooth kicked off the round, with Azure Dragons’ Deneolle Roe C. Matondo defeating Valiant Sabertooth's Gerrymae Lequin in a tense first game. However, Sabertooth quickly bounced back, with Jhessadell Damolo securing a win over Azure Dragons' Olvina Mary Louise. Meanwhile, Blazing Biz took control early in their match against Cyber Falcons, as Susan Garde and Lovely Jean Polistico delivered victories over Bianca Dumalag and Merrybelle Capulo.
+As the clock ticked down, tournament officials gave the players a 10-minute time limit to complete their games, adding an extra layer of intensity to the matches. In the final moments, Blazing Biz’s Katrina Jean Daugdaug and Lourine Caadyang claimed two more victories over Cyber Falcons, securing their team’s shared lead with Valiant Sabertooth.
+The final game of the round ended with Valiant Sabertooth’s Jay Ann Bulawan defeating Azure Dragons’ Jillian Gail Peduche at exactly 10:00 AM, capping off a thrilling first round of competition. With the tournament heating up, all eyes are now on the second round, where teams will continue their quest for chess supremacy.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+					
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗩𝗦𝗧 𝗯𝗹𝗼𝘄𝘀 𝗔𝘇𝘂𝗿𝗲 𝗗𝗿𝗮𝗴𝗼𝗻𝘀 𝗰𝗹𝗮𝗶𝗺 𝗯𝗮𝗰𝗸-𝘁𝗼-𝗯𝗮𝗰𝗸 𝗰𝗵𝗮𝗺𝗽𝗶𝗼𝗻𝘀𝗵𝗶𝗽𝘀</p>
+				<p style="margin-top: -20px;">By Alfred Sean Marasigan</p>
+				<p>
+				In a one-sided match between the Azure Dragons and Valiant Sabertooth on September 19, 2024, at the Southern Leyte State University-Tomas Oppus (SLSU-TO) covered court, VST dominated the Azure Dragons.
+The crowd roared with cheers for both Azure Dragons and VST. Valiant Sabertooth made the first serve and successfully took the lead, 0-1. VST maintained their momentum, leading 3-5. With a series of aces from both teams, VST extended their lead to 4-10. The score reached 6-14, a jaw-dropping lead for VST.
+The young players of Azure Dragons refused to give up, fighting back to narrow the score to 12-18, though VST remained in control. VST widened the gap to 13-21, continuing to dominate. The first set ended with VST on top, 18-25.
+Before the second set started, the crowd humorously combined the two team names, chanting "V.S.T. Azure Dragons!" The Azure Dragons made the first serve and took an early lead, 1-0. However, VST quickly regained control, leading 1-5. VST then exploded with a 10-point lead, 1-11. Their dominance continued, extending to a 17-point differential at 3-20. Azure Dragons trailed significantly, 3-23, and VST easily closed out the second set, 5-25.
+Despite being down by two sets, the Azure Dragons' team and fans continued to cheer and chant, keeping their spirits alive. In the third set, VST again took the lead, 0-1, and extended it to 2-6. Another 10-point lead followed, 4-14. VST’s control remained unchallenged, reaching 6-22. They ultimately achieved their goal, demoralizing the Azure Dragons and defending their title as back-to-back champions.
+Filled with joy, Hanz Paulo Dalagangan, the VST team captain, said, "I am very happy knowing that we achieved the gold medal, especially thanks to my teammates. Special thanks to our GAM for giving us the opportunity to play as a team, and a huge thanks to our supporters throughout the games. All I can say is, this is it—we are the champions! Amadz! We are the champions for today’s Panagtigi!"
+With this victory, VST's Men's Volleyball team defended their title as back-to-back champions, while the young and aspiring Azure Dragons took the silver.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗕𝗹𝗮𝘇𝗶𝗻𝗴 𝗕𝗶𝘇 𝗘𝗻𝗱𝘀 𝗖𝘆𝗯𝗲𝗿 𝗙𝗮𝗹𝗰𝗼𝗻𝘀' 𝗛𝗼𝗽𝗲 𝗶𝗻 𝘁𝗵𝗲 𝗠𝗲𝗻'𝘀 𝗩𝗼𝗹𝗹𝗲𝘆𝗯𝗮𝗹𝗹 𝗕𝗿𝗼𝗻𝘇𝗲 𝗠𝗲𝗱𝗮𝗹 𝗚𝗮𝗺𝗲</p>
+				<p style="margin-top: -20px;">By Alfred Sean Marasigan</p>
+				<p>
+				Blazing Biz defeated the Cyber Falcons, 25-16, 23-25, 15-12, in three sets during the Men's Volleyball Bronze Medal Game at SLSU TO Covered Court on September 19, 2024.
+The Cyber Falcons opened the game with a serve in set 1, but Blazing Biz took control early, leading 6-8. The Falcons managed to tie the game at 10-10. However, Blazing Biz capitalized on the Falcons’ errors and their aces to take a 3-point lead, 14-17. The Biz’s strong serves overwhelmed the Falcons, ending the first set 16-25.
+Set 2 began with a service ace by Blazing Biz, giving them a 0-1 lead. However, the Falcons quickly bounced back, taking a 5-3 lead. With the help of service aces, the Falcons extended their lead to 9-4. Despite a timeout called by Blazing Biz at 13-8, the Falcons maintained their advantage. The score reached 20-17 in favor of the Cyber Falcons. Though Blazing Biz tried to rally, the Falcons held on to win set 2, 25-23.
+The third and final set started with a service error by Blazing Biz, giving the Falcons a 1-0 lead. However, Blazing Biz quickly turned the game around, leading 3-4 and extending it to 5-8. Determined to secure the bronze, Blazing Biz pushed their lead to 9-14. The Falcons fought back, reducing the gap to 12-14, but Blazing Biz sealed the match with a final score of 12-15, claiming the bronze.
+Noriene Cosep, the Blazing Biz head coach, commented after they cliched the bronze, "Actually, ang teamwork sa team. Mas maajo ug naa'y teamwork kay kung naa gani team work imong, bisan unsa ka lisod ang imong kontra, madala ra nimo. Unja, self discipline ug perfect ang serbisyo, mao na ang makapadaog" (Actually, it's the teamwork of the team. It's much better if there's teamwork because no matter how tough your opponent is, you can overcome it. Also, self-discipline and perfect serves are what lead to victory).
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗕𝗹𝗮𝘇𝗶𝗻𝗴 𝗕𝗶𝘇 𝗘𝗻𝗱𝘀 𝗖𝘆𝗯𝗲𝗿 𝗙𝗮𝗹𝗰𝗼𝗻𝘀' 𝗛𝗼𝗽𝗲 𝗶𝗻 𝘁𝗵𝗲 𝗠𝗲𝗻'𝘀 𝗩𝗼𝗹𝗹𝗲𝘆𝗯𝗮𝗹𝗹 𝗕𝗿𝗼𝗻𝘇𝗲 𝗠𝗲𝗱𝗮𝗹 𝗚𝗮𝗺𝗲</p>
+				<p style="margin-top: -20px;">By Alfred Sean Marasigan</p>
+				<p>
+				Blazing Biz defeated the Cyber Falcons, 25-16, 23-25, 15-12, in three sets during the Men's Volleyball Bronze Medal Game at SLSU TO Covered Court on September 19, 2024.
+The Cyber Falcons opened the game with a serve in set 1, but Blazing Biz took control early, leading 6-8. The Falcons managed to tie the game at 10-10. However, Blazing Biz capitalized on the Falcons’ errors and their aces to take a 3-point lead, 14-17. The Biz’s strong serves overwhelmed the Falcons, ending the first set 16-25.
+Set 2 began with a service ace by Blazing Biz, giving them a 0-1 lead. However, the Falcons quickly bounced back, taking a 5-3 lead. With the help of service aces, the Falcons extended their lead to 9-4. Despite a timeout called by Blazing Biz at 13-8, the Falcons maintained their advantage. The score reached 20-17 in favor of the Cyber Falcons. Though Blazing Biz tried to rally, the Falcons held on to win set 2, 25-23.
+The third and final set started with a service error by Blazing Biz, giving the Falcons a 1-0 lead. However, Blazing Biz quickly turned the game around, leading 3-4 and extending it to 5-8. Determined to secure the bronze, Blazing Biz pushed their lead to 9-14. The Falcons fought back, reducing the gap to 12-14, but Blazing Biz sealed the match with a final score of 12-15, claiming the bronze.
+Noriene Cosep, the Blazing Biz head coach, commented after they cliched the bronze, "Actually, ang teamwork sa team. Mas maajo ug naa'y teamwork kay kung naa gani team work imong, bisan unsa ka lisod ang imong kontra, madala ra nimo. Unja, self discipline ug perfect ang serbisyo, mao na ang makapadaog" (Actually, it's the teamwork of the team. It's much better if there's teamwork because no matter how tough your opponent is, you can overcome it. Also, self-discipline and perfect serves are what lead to victory).
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗩𝗦𝗧 𝗪𝗼𝗺𝗲𝗻'𝘀 𝗩𝗼𝗹𝗹𝗲𝘆𝗯𝗮𝗹𝗹 𝗧𝗲𝗮𝗺 𝗿𝗶𝘀𝗲𝘀 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗮𝘀𝗵𝗲𝘀 𝘁𝗼 𝗿𝗲𝗰𝗹𝗮𝗶𝗺 𝗚𝗼𝗹𝗱</p>
+				<p style="margin-top: -20px;">By Yhanna Mae Deliman</p>
+				<p>
+				Hail the champions! The VST Women’s Volleyball team triumphed over their opponents—Blazing Biz, Cyber Falcons, and Azure Dragons—on September 19, 2024, at the Covered Court of SLSU-Tomas Oppus.
+"Playing in the championship against the defending champions, Blazing Biz, filled me with an electric bolt of happiness. After finishing with silver last year, we finally clinched the gold medal," said a jubilant team member.
+In the first set, Erica Tagnipez set the tone for the game, establishing an early 3-0 lead for VST. However, a service error allowed Blazing Biz to gain momentum.
+Krisha Joy Kistadio, a left-handed float server, ended the second match with powerful, unreturnable attacks. “Being a self-taught float server since elementary school has really given me an advantage,” she remarked.
+While Blazing Biz attempted to dominate with multiple spikes, Crystal Espere of VST thwarted their efforts with her formidable blocks. Espere countered with unstoppable spikes, putting Blazing Biz on the defensive and securing silver for them.
+Meanwhile, the Cyber Falcons clinched bronze against the Azure Dragons with a decisive 2-0 victory. The Dragons opened the match with the first serve and initially took a 2-1 lead. However, errors and miscommunication soon hampered their performance, allowing the Falcons to extend their lead to 16-22. Despite a late surge from the Dragons that brought the score to 19-23, the Cyber Falcons secured the bronze medal.
+With Krisha Joy Kistadio's perfect serves, Erica Tagnipez's powerful spikes, and Crystal Espere's impenetrable blocks, the VST team showcased exceptional teamwork and communication. They achieved their long-awaited gold medal against the defending champions, Blazing Biz.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗕𝗹𝗮𝘇𝗶𝗻𝗴 𝗕𝗶𝘇 𝗱𝗲𝗺𝗼𝗿𝗮𝗹𝗶𝘇𝗲𝘀 𝗖𝘆𝗯𝗲𝗿 𝗙𝗮𝗹𝗰𝗼𝗻𝘀 𝗶𝗻 𝗠𝗲𝗻'𝘀 𝗕𝗮𝘀𝗸𝗲𝘁𝗯𝗮𝗹𝗹</p>
+				<p style="margin-top: -20px;">By Ivan Sajol</p>
+				<p>
+				"The greater the obstacle, the more glory in overcoming it." — Molière. 
+That simple adage was proven true by the Blazing Biz after they squared off and stomped the behemoth athletes of the Cyber Falcons with a 20-point advantage, 65-45, in the championship match of the Men’s Basketball Tournament during the Panagtigi 2024 at the SLSU-Tomas Oppus covered court on September 18.
+In the early seconds of the game, Misoles showcased a behind-the-back pass play, blindsiding the Cyber Falcons and causing them to commit a foul. The resulting bonus throw heated the covered court with deafening shouts from the Blazing Biz. The Biz capitalized on their mobility and played aggressively, earning points through fast breaks and putting pressure on the Cyber Falcons, 17-8.
+The game quickly became a physical contest as both teams engaged in body-to-body confrontations. As the Cyber Falcons tried to take advantage by scoring in the paint, they managed to narrow the gap, reducing the lead to 4 points, 31-27.
+The game  is shed by blood, as the player from the Blazing Biz accidentally scratched the other player from the other team due to the defensive plays, the Blazing Biz came back stronger zooming their points through man to man defense 53-37, Building steam the Biz countinuously bombarded their rivals and shuting their mouth as they claim Victory wrapping the game 65-45.
+“This year, the Cyber Falcons are much stronger with their new lineup, but we are prepared and more confident in our plays, with no blaming and continuing to push the game,” stated Cosep, the coach of the Blazing Biz, proudly as they were named the champions.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗩𝗦𝗧 𝗿𝗲𝗶𝗴𝗻𝘀 𝗼𝘃𝗲𝗿 𝗕𝗹𝗮𝘇𝗶𝗻𝗴 𝗕𝗶𝘇, 𝘁𝗮𝗸𝗲𝘀 𝗚𝗼𝗹𝗱</p>
+				<p style="margin-top: -20px;">by Alfred Sean Marasigan</p>
+				<p>
+				Pure dominance at its finest. Valiant Sabertooth (VST) showcased their superiority by sweeping Blazing Biz, 25-17, 25-12, 25-20, in the Women's Volleyball Championship at Southern Leyte State University-Tomas Oppus (SLSU-TO) on September 19, 2024.
+The SLSU-TO Covered Court was filled with excitement as the game began. VST opened the first set with a serve and quickly gained a 3-1 lead over Blazing Biz. Cheers and chants for VST echoed through the court as they extended their lead to 9-5. The momentum remained with VST as they surged ahead, 14-9. Crystal Espere of VST showcased her prowess with powerful spikes that pressured the Biz. Although Blazing Biz managed to tie the game at 14, VST’s strategic free balls sealed their victory in the first set, 25-17.
+In set 2, Blazing Biz started with a serve, but a powerful spike from VST put them on the scoreboard first at 1-0. VST maintained their advantage, leading 3-1. Service aces played a key role for VST as they widened the gap to 9-4. Blazing Biz called a timeout as VST increased their lead to 16-11. The gap only grew, with the Sabertooths dominating the set, 25-12, bringing the score to 2-0.
+VST opened the third set with a serve, looking to complete the sweep against the Biz, 3-0. They extended their lead to 6-4, but Blazing Biz fought back, taking the lead at 8-9. VST quickly tied the game at 12-12 and then pushed ahead to 19-16. Ultimately, VST closed out the game with a 25-20 victory, securing the gold.
+Crystal Espere, who led the VST team with a stellar performance, said, "Nagstoryahay ra mi about sa mga unsa'y dapat buhaton sud sa court, then amo pud gitagaan ug chance ang uban nga makasud, dili ra ang kadtong starting 6, and also kadtong uban nga players. Gi enjoy ra namo ang duwa and wala pud mi nagkumpyansa kay kahibaw mi nga ang Blazing Biz is kantigo pud na sila in comes of playing the game. So we're grateful that we won the game." (We communicated about what was needed to be done on the court, and we gave other players the chance to play, not just the starting six. We enjoyed the game but didn't underestimate our opponents because we knew Blazing Biz are skilled players. We're grateful for the win.)
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗖𝘆𝗯𝗲𝗿 𝗙𝗮𝗹𝗰𝗼𝗻𝘀 𝗰𝗹𝗶𝗻𝗰𝗵 𝗕𝗿𝗼𝗻𝘇𝗲 𝗮𝗴𝗮𝗶𝗻𝘀𝘁 𝗔𝘇𝘂𝗿𝗲 𝗗𝗿𝗮𝗴𝗼𝗻𝘀 𝗶𝗻 𝗪𝗼𝗺𝗲𝗻'𝘀 𝗩𝗼𝗹𝗹𝗲𝘆𝗯𝗮𝗹𝗹, 𝟮-𝟬</p>
+				<p style="margin-top: -20px;">by Alfred Sean Marasigan</p>
+				<p>
+				Relying on tactics and capitalizing on the struggles of the opposing team, the Cyber Falcons managed to defeat the Azure Dragons in the Bronze Medal match at the Southern Leyte State University - Tomas Oppus (SLSU-TO) covered court on September 19, 2024.
+The Azure Dragons opened the game with the first serve and took an early 2-1 lead as the crowd chanted, "L.H.S. AZURE DRAGONS!" However, the score was soon tied at 7-7. Errors from both teams kept the game close, tying again at 12-12. The crowd continued to cheer as the Dragons pulled ahead with a 15-12 lead, but miscommunication in their plays allowed the Falcons to take control, leading 15-17. Further errors and miscommunication left the Dragons struggling, and the Falcons extended their lead to 16-22. Though the Dragons narrowed the gap to 21-23, the Falcons ultimately claimed the first set 22-25.
+In the second set, the Falcons quickly took a 1-0 lead. The Azure Dragons couldn’t avoid costly errors, allowing the Falcons to extend their lead to 2-9. The Dragons managed to cut the deficit from 7 points to 3, making it 9-12, but the Falcons surged ahead again, pushing the score to 12-20. Despite a late effort from the Dragons, reducing the gap to 19-23, the Cyber Falcons secured the bronze with a 2-0 set victory.
+Dona Claire Dagoro, Cyber Falcons' team captain, remarked, "Even though napildi mi ganina sa VST, as a Defending Champion last year, amo rang gihimo nga kapildehan ang last game as an inspiration para makuha namo ang bronze karon." (Even though we lost to VST earlier, as last year’s defending champions, we used that defeat as inspiration to win the bronze today.)
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗔𝘇𝘂𝗿𝗲 𝗗𝗿𝗮𝗴𝗼𝗻𝘀 𝗽𝗮𝘀𝘁𝘀 𝗖𝘆𝗯𝗲𝗿 𝗙𝗮𝗹𝗰𝗼𝗻𝘀, 𝘀𝗲𝗰𝘂𝗿𝗶𝗻𝗴 𝘀𝗽𝗼𝘁 𝗶𝗻 𝗠𝗲𝗻'𝘀 𝗩𝗼𝗹𝗹𝗲𝘆𝗯𝗮𝗹𝗹</p>
+				<p style="margin-top: -20px;">by Alfred Sean Marasigan</p>
+				<p>
+				Azure Dragons triumphed over the Cyber Falcons to claim a place in the Championship Game of the Men's Volleyball Category at Southern Leyte State University - Tomas Oppus (SLSU-TO) covered court on September 19, 2024.
+Set 1 began with the Cyber Falcons serving. The game started evenly, with the score tied at 2-2. However, the Azure Dragons quickly took the lead, 6-3. Their effective tactics extended the lead to 13-6. Despite this, the Falcons maintained their composure and managed to tie the game at 16-16. Both teams traded points until the score reached 23-23, but the Azure Dragons ultimately secured the first set, 25-23.
+With the Dragons leading 1-0, the second set started with both teams tied at 4-4. Errors on both sides kept the game close, with the score tied again at 8-8. The Falcons then took control and surged ahead, 11-8. Their smart plays allowed them to extend their lead to 16-12, forcing the Dragons to call a timeout. The Falcons continued their strong performance, eventually dominating the set and tying the match 1-1 with a 19-13 win.
+In the third set, the Azure Dragons took an early lead, 1-0, and built on their momentum, pulling ahead 7-3. They continued to dominate, extending their advantage to 9-4. However, the Cyber Falcons fought back and tied the game at 11-11. Despite this, the Azure Dragons managed to clinch the third set, 15-13, and with it, the match.
+Carl Anthony Balaba, the team captain of the Azure Dragons, expressed his excitement after the game: "Ahong na feel kay puro gajud mi gi kulbaan. Kay ang among kontra college then amo silang napilidi mura'g like dako na ni nga achievement para namo, para sa among tanan. Like, arang ka happy namo nga nadaog mi ani nga duwa karon. Unya sa preparation, basta kay mo duwa mi para unya pero prepare nami either madaog man or mapildi." (We all felt nervous throughout the match, especially since we were up against a college team. Winning against them feels like a huge achievement for all of us. We're extremely happy with today's victory. As for our preparation, we'll be ready for whatever comes, whether we win or lose.") 
+The Azure Dragons will face the Valiant Sabertooths in the Championship match, while the Cyber Falcons will compete against the Blazing Biz for the Bronze.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗩𝗦𝗧 𝗽𝗿𝗲𝘃𝗮𝗶𝗹𝘀 𝗼𝘃𝗲𝗿 𝗕𝗹𝗮𝘇𝗶𝗻𝗴 𝗕𝗶𝘇 𝗶𝗻 𝗠𝗲𝗻'𝘀 𝗩𝗼𝗹𝗹𝗲𝘆𝗯𝗮𝗹𝗹, 𝟮-𝟬 </p>
+				<p style="margin-top: -20px;">by Alfred Sean Marasigan</p>
+				<p>
+				Valiant Sabertooth (VST) defeated Blazing Biz to secure a spot in the Championship Game of the Men's Volleyball Category at Southern Leyte State University - Tomas Oppus (SLSU-TO) covered court on September 19, 2024.
+Blazing Biz started the game with a serve. After VST's serving errors, Blazing Biz took the lead, 3-1. They maintained their momentum, leading 6-3 against VST. A table timeout was called with Blazing Biz still in control, 11-8. Both teams exchanged points on serve, but Blazing Biz continued to lead, 14-11. However, VST regained control and took the lead at 17-15. VST continued to dominate, reaching 20-18. After a close exchange of points, VST ultimately took the first set, 25-21.
+In the second set, VST started strong with a service ace, bringing the score to 1-0, which soon extended to 3-0. VST continued their dominance, leading 7-3. Blazing Biz struggled to catch up and trailed 10-7. However, Blazing Biz managed to tie the game at 14-14. Both teams then exchanged powerful spikes, with the score locked at 17-17. Despite the Biz’s efforts, VST pulled ahead, 22-20. Even though Blazing Biz tried to close the gap, VST stayed composed and determined, eventually winning the set 25-21, eliminating Blazing Biz's hopes for gold.
+Hanz Paulo Dalagangan, the team captain of VST said, "I knew that the game against Blazing Biz would be a nail-biter, so it was crucial for us to win because we are aiming for gold. According to our General Athletics Manager (GAM), we must win to claim back-to-back champion status."
+Similar to the VST Women's Volleyball team, the VST Men's team will advance to the Championship Game, while Blazing Biz will compete for the Bronze.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗩𝗮𝗹𝗶𝗮𝗻𝘁 𝗦𝗮𝗯𝗲𝗿𝘁𝗼𝗼𝘁𝗵 𝗱𝗼𝗺𝗶𝗻𝗮𝘁𝗲𝘀 𝗖𝘆𝗯𝗲𝗿 𝗙𝗮𝗹𝗰𝗼𝗻𝘀 𝗶𝗻 𝗪𝗼𝗺𝗲𝗻'𝘀 𝗩𝗼𝗹𝗹𝗲𝘆𝗯𝗮𝗹𝗹, 𝗲𝘆𝗲𝘀 𝗖𝗵𝗮𝗺𝗽𝗶𝗼𝗻𝘀𝗵𝗶𝗽 𝗚𝗼𝗹𝗱</p>
+				<p style="margin-top: -20px;">by Alfred Sean Marasigan</p>
+				<p>
+				Southern Leyte, Philippines – The Valiant Sabertooth (VST) secured a spot in the Championship Game of the Women's Volleyball Category after defeating the Cyber Falcons at the Southern Leyte State University - Tomas Oppus (SLSU-TO) Covered Court on September 19, 2024.
+The Cyber Falcons started strong, taking an early 2-0 lead. VST’s errors allowed the Falcons to extend their advantage to 6-1. As the gap widened to 10-4, VST called a timeout. Despite continued struggles and the Falcons’ service aces, VST managed to inch closer, bringing the score to 15-9. Their smart plays cut the deficit further, making it 13-17. With momentum building, VST fought back, narrowing the gap to 19-22. In a back-and-forth exchange, VST managed to clinch the first set, 27-25.
+In Set 2, VST opened with a serve, but the Cyber Falcons quickly built a 2-0 lead. Errors from VST helped the Falcons grow their advantage to 7-3. However, VST’s powerful spikes brought them back into contention, reducing the lead to 9-10. The set continued in a tense exchange, with both teams tied at 14. Service errors and aces kept the scores close, with the teams locked at 18-18. In the end, VST’s powerful run secured the second set and the match, 25-21.
+Crystal Espere, whose powerful spikes helped lead VST to victory, said, "We're excited to face the Blazing Biz and are looking forward to bringing home the gold."
+Valiant Sabertooth will face the Blazing Biz in the Championship Game, while the Cyber Falcons will battle the Azure Dragons for the bronze.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗕𝗹𝗮𝘇𝗶𝗻𝗴 𝗕𝗶𝘇 𝘀𝘄𝗲𝗲𝗽𝘀 𝗔𝘇𝘂𝗿𝗲 𝗗𝗿𝗮𝗴𝗼𝗻𝘀 𝗶𝗻 𝗪𝗼𝗺𝗲𝗻'𝘀 𝗩𝗼𝗹𝗹𝗲𝘆𝗯𝗮𝗹𝗹, 𝗮𝗱𝘃𝗮𝗻𝗰𝗲𝘀 𝘁𝗼 𝗖𝗵𝗮𝗺𝗽𝗶𝗼𝗻𝘀𝗵𝗶𝗽 𝗚𝗮𝗺𝗲</p>
+				<p style="margin-top: -20px;">by Alfred Sean Marasigan</p>
+				<p>
+				Blazing Biz defeated the Azure Dragons to secure a spot in the Championship Game of the Women's Volleyball at Southern Leyte State University - Tomas Oppus (SLSU-TO) Covered Court on September 19, 2024.
+The match began with a serve from the Azure Dragons. Both teams made errors early on, resulting in a tied score of 10-10. However, Blazing Biz pulled ahead, leading 14-11, and continued to extend their lead to 20-15 before closing Set 1 with a dominant 25-18 win.
+In Set 2, Blazing Biz’s player number 30 started with a serve. Azure Dragons continued to struggle, allowing Blazing Biz to take a 4-0 lead. With a combination of service aces and errors from the Azure Dragons, Blazing Biz extended their lead to 17-6. Despite the Dragons' efforts to stage a comeback, they trailed 22-8, and Blazing Biz sealed the set with a commanding 25-11 victory, ending any hopes of a third set for the Azure Dragons.
+Blazing Biz Team Captain Mary Guendolyn Codal expressed her excitement, stating, "We’re happy because last year we lost in the single elimination, but now we’re bouncing back with the goal of winning gold."
+With this result, the Azure Dragons will compete for the bronze, while Blazing Biz advances to the gold medal match.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗖𝘆𝗯𝗲𝗿 𝗙𝗮𝗹𝗰𝗼𝗻𝘀 𝗱𝗼𝗺𝗶𝗻𝗮𝘁𝗲 𝟰𝟬𝟬-𝗺𝗲𝘁𝗲𝗿 𝘄𝗼𝗺𝗲𝗻'𝘀 𝗥𝗲𝗹𝗮𝘆</p>
+				<p style="margin-top: -20px;">by Orjiemar Cadogdog</p>
+				<p>
+				Cyber Falcons claimed victory in a thrilling 400-meter relay in the morning of September 17 at the school plaza, finishing with a time of 1:13, as the team of Rica Shean Narciso, Angely Caseñas, Jheanne Salan, and Mary Ann Paulin displayed exceptional speed and teamwork to secure first place.
+Rica Shean Narciso, who anchored the relay, shared her thoughts on the team's strategy: "We maintained our speed and kept our breathing steady, not paying attention to our opponents and focusing solely on our goal of winning."
+The Valiant Sabertooth came in second place, trailing closely behind, while the Blazing Biz secured third. Unfortunately, the Azure Dragons faced disqualification, leaving them out of the final rankings.
+The Cyber Falcons' victory reflects their commitment to focus and endurance, marking them as formidable in future competitions.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗔𝘇𝘂𝗿𝗲 𝗗𝗿𝗮𝗴𝗼𝗻𝘀 𝘁𝗿𝗶𝘂𝗺𝗽𝗵 𝗶𝗻 𝗺𝗲𝗻'𝘀 𝟰𝟬𝟬-𝗺𝗲𝘁𝗲𝗿 𝗥𝗲𝗹𝗮𝘆</p>
+				<p style="margin-top: -20px;">by Orjiemar Cadogdog</p>
+				<p>
+				Azure Dragons emerged victorious in a highly competitive men's 400-meter relay in the morning of September 17 at the School Plaza and secured first place in just 59 seconds, with incredible coordination and speed from the team of Noelson Torion, Jefriel Sacro, RM Niño Dy, and Darren Erick Rosello.
+The team won the men’s 400-meter relay due to their exceptional coordination, speed, and unity. Their trust in each other and effective teamwork allowed them to outperform their competitors and secure the top spot.
+"We had a consistent run and knew that the other teams had great runners, but we trusted and believed in each other, which made us confident of winning," said Torion Noelson, who anchored the relay for the Azure Dragons.
+The Blazing Biz came in second, followed by the Cyber Falcons in third, while the Valiant Sabertooth finished in fourth place.
+Their victory highlighted not only their physical ability but also the strong team spirit that drove them to outperform their competition.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗕𝗹𝗮𝘇𝗶𝗻𝗴 𝗕𝗶𝘇 𝗰𝗹𝗶𝗻𝗰𝗵𝗲𝗱 𝗚𝗼𝗹𝗱 𝗶𝗻 𝟮𝟬𝟬-𝗺𝗲𝘁𝗲𝗿 𝗥𝗮𝗰𝗲</p>
+				<p style="margin-top: -20px;">by Orjiemar Cadogdog</p>
+				<p>
+				Maylyn Guzmana of Blazing Biz triumphed in the 200-meter women's championship and outran the Cyber Falcons, Azure Dragons, and Valiant Sabertooth to claim gold, she finished with an impressive time of 35.71 seconds in the afternoon of September 17 at the school plaza, her victory showcased determination and strength, despite the challenges of balancing motherhood with athletic competition.
+The Blazing Biz secured their win, thanks to Guzmana’s exceptional speed and stamina, completing the race in just 35.71 seconds, far ahead of the competition. Guzmana's performance was critical to the team’s success, as she maintained a consistent lead throughout the race and kept her pace strong and steady against the three other teams.
+Reflecting on her victory, Guzmana attributed her motivation to her daughter, saying, “My inspiration is my daughter. I have shown the students that even though I am a mother, I can still run, even with the responsibilities of having children. Don’t be shy—keep fighting.”
+Guzmana secured the gold for Blazing Biz with a time of 35.71 seconds. Cyber Falcons took silver, while Azure Dragons claimed bronze.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗩𝗮𝗹𝗶𝗮𝗻𝘁 𝗦𝗮𝗯𝗲𝗿𝘁𝗼𝗼𝘁𝗵 𝗰𝗹𝗮𝗶𝗺𝘀 𝗚𝗼𝗹𝗱 𝗶𝗻 𝟭𝟬𝟬 𝗺𝗲𝘁𝗲𝗿𝘀 𝘄𝗼𝗺𝗲𝗻'𝘀 𝗰𝗵𝗮𝗺𝗽𝗶𝗼𝗻𝘀𝗵𝗶𝗽</p>
+				<p style="margin-top: -20px;">by Orjiemar Cadogdog</p>
+				<p>
+				Valiant Sabertooth triumphed in the 100 meters women's championship on September 17 in the afternoon at the School Plaza, securing the gold medal with a stellar time of 15 seconds, outpacing the Azure Dragons, who took second place, and the Cyber Falcons, who finished in third.
+The Valiant Sabertooth’s victory can be attributed to their rigorous training and strategic focus. Elona Jane Biong, a standout athlete from the team, emphasized the importance of setting clear goals and maintaining proper nutrition as key factors in their success. 
+Biong stated, "To win the game, it's all about setting clear goals and focusing on yourself, not your opponent. Stay calm and let things flow naturally. One key strategy I learned as an athlete is maintaining proper nutrition, as it fuels your strength. Taking training seriously shows you're responsible. Above all, never get too comfortable—always give your best."
+The team’s dedication to training and their strategic approach paid off, culminating in their well-deserved gold medal. The Azure Dragons, despite their strong performance, fell short of the top spot, while the Cyber Falcons secured the third place with their commendable effort.
+The Valiant Sabertooth clinched the gold in the 100 meters women's championship, leaving the Azure Dragons with the silver and the Cyber Falcons with the bronze. The event showcased the importance of preparation and focus, as highlighted by Elona Jane Biong’s insightful comments. 
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗔𝘇𝘂𝗿𝗲 𝗗𝗿𝗮𝗴𝗼𝗻𝘀 𝗰𝗹𝗶𝗻𝗰𝗵 𝘃𝗶𝗰𝘁𝗼𝗿𝘆 𝗼𝘃𝗲𝗿 𝗩𝗮𝗹𝗶𝗮𝗻𝘁 𝗦𝗮𝗯𝗲𝗿𝘁𝗼𝗼𝘁𝗵 𝗶𝗻 𝟮𝟬𝟬-𝗺𝗲𝘁𝗲𝗿 𝗠𝗲𝗻'𝘀 𝗥𝗮𝗰𝗲</p>
+				<p style="margin-top: -20px;">by Orjiemar Cadogdog</p>
+				<p>
+				Azure Dragons claimed the 200-meter men’s run in just 34 seconds and defeated the Valiant Sabertooth on September 17 in the afternoon at the school plaza, and Lelis, who had already competed in multiple races, pushed through exhaustion and led his team to victory, overcoming stiff competition.
+The Azure Dragons secured the top spot in the 200-meter race, largely due to Brent Nicholas Lelis’ impressive endurance and focus. Despite being fatigued from prior races, Lelis strategically conserved his energy, which enabled him to deliver a strong finish when it mattered most. His performance was pivotal to the team’s success, setting them apart from their rivals.
+Two teams, Cyber Falcons and Blazing Biz, were disqualified during the race, leaving Azure Dragons and Valiant Sabertooth to battle for the title. Lelis’ determination to avoid injury fueled his perseverance. It helped him push through calf fatigue.
+"My team gave me the inspiration to win," said Lelis, after sealing the championship. "I was really exhausted because I had already run the 100 meters and 200 meters. This was my third race. I conserved my energy, hoping I wouldn’t feel any aches in my calves." 
+At the end, Brent Nicholas K. Lelis led the Azure Dragons to a first-place finish, while the Valiant Sabertooth claimed second. Cyber Falcons and Blazing Biz were disqualified from the competition.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="row justify-content-center">								
+	<!-- Start ne Sa the Light na part -->
+	<div class="col-12 col-md-8">
+		<a href="">
+			<div class="single-how-works d-flex flex-column align-items-center" style="text-align: center; width: 100%;">
+				<div class="single-how-works-icon">
+					<i class="fas fa-bullhorn" style="font-size: 40px; position:relative; top: 8px;"></i>
+				</div>
+				<p style="font-size: 24px;">𝗔𝘇𝘂𝗿𝗲 𝗗𝗿𝗮𝗴𝗼𝗻𝘀 𝘀𝗽𝗿𝗶𝗻𝘁 𝘁𝗼 𝘃𝗶𝗰𝘁𝗼𝗿𝘆 𝗶𝗻 𝟭𝟬𝟬 𝗺𝗲𝘁𝗲𝗿𝘀 𝗠𝗲𝗻'𝘀 𝗖𝗵𝗮𝗺𝗽𝗶𝗼𝗻𝘀𝗵𝗶𝗽</p>
+				<p style="margin-top: -20px;">by Orjiemar Cadogdog</p>
+				<p>
+				Azure Dragons claimed the gold in the 100 meters men's championship, finishing the race in 13 seconds against Blazing Biz, Valiant Sabertooth, and Cyber Falcons, led the race on the afternoon of  September 17 at the school plaza and showcased incredible stamina and speed.
+The Azure Dragons secured their win primarily due to Carl Anthony Balaba's extraordinary performance. His sheer determination and focus throughout the race allowed him to pull ahead of the competition early on. Balaba’s disciplined training and relentless drive gave the Azure Dragons a key advantage, ensuring their top spot.
+Following his win, Balaba shared his personal motivation, saying, “Keep running, never stop, even when it hurts and even when you are exhausted.”
+While the competition was fierce, Blazing Biz, Valiant Sabertooth, and Cyber Falcons trailed behind Balaba, unable to match his impressive pace.
+At the end, Carl Anthony Balaba's 13-second sprint secured the gold medal for the Azure Dragons, with Blazing Biz, Valiant Sabertooth, and Cyber Falcons finishing behind. The standings reflect the Azure Dragons' dominance in this thrilling race.
+				</p>
+				<p style="text-decoration: none; font-weight: bolder;">Source: The Light Publication</p>
+				<p>#thelightofparengtomas #PANAGTIGI2024</p>
+			</div>
+		</a>
+	</div>
+</div>
+
 				<div class="row justify-content-center">								
 	<!-- Start ne Sa the Light na part -->
 	<div class="col-12 col-md-8">
